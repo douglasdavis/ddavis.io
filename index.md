@@ -11,9 +11,9 @@ of the [ATLAS collaboration](https://atlas.cern/) at
 [CERN](https://home.cern/).
 
 - [GitHub](https://github.com/drdavis), [CERN GitLab](https://gitlab.cern.ch/ddavis)
-- [LinkedIn](#)
+- [LinkedIn](https://www.linkedin.com/in/douglasrdavis)
 - [Twitter](https://twitter.com/_ddavis_)
-- [Curriculum Vitae](#) (pdf)
+- [Curriculum Vitae](/assets/pdf/cv.pdf) (pdf)
 
 ## Blog
 
@@ -24,8 +24,8 @@ of the [ATLAS collaboration](https://atlas.cern/) at
 ## About
 
 My favorite parts of experimental particle physics are writing
-software and analyzing data. My blog posts are born from technical
-things I encounter along the way to getting that Ph.D.
+software and analyzing data. My blog posts are (mostly) born from
+technical things I encounter along the way to getting that Ph.D.
 
 I'm currently in my fourth year at Duke where I work in the ATLAS
 group as deputy coordinator in the transition radiation tracker (TRT)
