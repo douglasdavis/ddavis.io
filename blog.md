@@ -3,6 +3,8 @@ layout: default
 title: Doug Davis | Blog
 ---
 
+<a href="/">Home</a>
+
 # Blog
 
 {% for post in site.categories.tech %}
