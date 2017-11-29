@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "Draft Template"
+date: 2017-01-01
 ---
 
-# Draft Template
+# Draft Template Section Title
 
 Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec
 facilisis facilisis, est dui fermentum leo, quis tempor ligula erat
