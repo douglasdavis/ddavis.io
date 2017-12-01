@@ -2,7 +2,9 @@
 layout: post
 title: "Redesigning an Analysis API"
 ---
+
 ------
+
 The [ATLAS](https://atlas.cern) detector is basically an onion - it
 has quite a few layers, or subdetectors. The first subdetector is the
 [Inner Detector](https://atlas.cern/discover/detector/inner-detector)
@@ -11,8 +13,8 @@ in the software group associated with the outermost detector in the
 ID, the Transition Radiation Tracker (TRT). The TRT tracks charged
 particles as they leave evidence of their presence by ionizing the gas
 in our straws. We also take a crack at identifying it's particular
-branch brand. I develop and maintain an API designed for analyzing
-particle tracks through the TRT the data format designed for ATLAS.
+brand. I develop and maintain an API designed for analyzing particle
+tracks through the TRT the data format designed for ATLAS.
 
 ATLAS recently adopted [CMake](https://cmake.org/) as our build system
 and [git](https://git-scm.com/) as our version control system (VCS). I
@@ -54,17 +56,17 @@ data to physics objects. Here's a helper function, documented doxygen
 style, that makes it easy to grab a popular piece of aux data.
 
 ```cpp
-/// return the track occupancy, if available. return -1 if unavailable
+/// return the track occupancy if available. return -1 if unavailable
 float trackOccupancy(const xAOD::TrackParticle* track);
 ```
 
 That's pretty good, seems easy to understand, but we can do better:
 
 ```cpp
-/// return the track occupancy, if available. return -1 if unavailable
+/// return the track occupancy if available. return -1 if unavailable
 /**
  *  This is a helper function that wraps the process of retrieving the
- *  auxiliary data "TRTTrackOccupancy from an xAOD::TrackParticle in
+ *  auxiliary data "TRTTrackOccupancy" from an xAOD::TrackParticle in
  *  one line.
  *
  *  @param track pointer to an xAOD::TrackParticle object.
@@ -80,11 +82,12 @@ Writing the details also helps you find ways to possibly improve the
 implementation. If you write what you're actually trying to accomplish
 with a function - you might realize there's a better way to do
 it. Doing it early helped to organize my API as well. For example, I
-started grouping functions together that were related. Needless to
-say, like with most things in life, doing it early saves you time
-later. These are all things that can be done at some point in the life
-of a piece of software, but it only helped to be cognizant of it from
-line 0.
+started ordering/grouping functions together that were related to use
+the grouping feature in doxygen. This seems pretty obvious as I write
+it; but, like with most things in life, doing it early saves you time
+later and helps the project take shape. These are all things that can
+be done at some point in the life of a piece of software, but it only
+helped to be cognizant of it from line 0.
 
 Finally, write a short to medium length tutorial, orthogonal to inline
 documentation, about how to start using your API. There's great stuff
@@ -105,15 +108,14 @@ repositories, and GitLab's builtin CI is pretty nice.
 
 ## Be your first user
 
-## Be influenced
+## Find inpiration
 
 If you're writing in any programming language, you're using something
 that has likely been used to write a whole bunch of other things, and
-there's a good chance you might be using a library or two (or 10 or
-12). I was using some existing ATLAS libraries and looking at both the
-code and documentation for those libraries helped me get more out of
-them and give me ideas to make my API (and my documentation), in my
-opinion, better.
+there's a good chance you're using a library or two (or 10 or 12). I
+was using some existing ATLAS libraries; looking beyond the
+documentation and at the code helped me get more out of them and give
+me ideas to make my API (and my documentation), in my opinion, better.
 
 I'm one of a large number of people writing a blog post about writing
 an API - so there are plenty of opportunities to learn from [some of

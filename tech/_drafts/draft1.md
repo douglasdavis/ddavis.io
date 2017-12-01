@@ -4,6 +4,8 @@ title: "Draft Template"
 date: 2017-01-01
 ---
 
+------
+
 # Draft Template Section Title
 
 Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec
