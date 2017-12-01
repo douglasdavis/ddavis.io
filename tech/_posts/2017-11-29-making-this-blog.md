@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Making this Website"
+title: "Making this website"
 date: 2017-11-29
 ---
 
