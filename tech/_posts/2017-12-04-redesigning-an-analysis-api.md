@@ -75,28 +75,30 @@ is written in. I made a rule for myself - If you make a class or a
 function - don't move on until you give it at least a doxygen
 one-liner. I also made sure to spend some time going back for details.
 
-(The ATLAS data format relies on the ability to "stick on" auxiliary
-data to physics objects. Here's a helper function, documented doxygen
-style, that makes it easy to grab a popular piece of aux data.)
+The TRT has different types of hits along the track, one is
+"precision", the precision hit fraction (PHF) is a popular variable of
+interest; here's a documented function to calculate it:
 
 ```cpp
-/// return the track occupancy if available. return -1 if unavailable
-float trackOccupancy(const xAOD::TrackParticle* track);
+/// return the precision hit fraction along the track, -1 if hits unavailable.
+float trackPHF(const xAOD::TrackParticle* track);
 ```
 
 That's pretty good, seems easy to understand, but we can do better:
 
 ```cpp
-/// return the track occupancy if available. return -1 if unavailable
+/// return the precision hit fraction along the track, -1 if hits unavailable.
 /**
- *  This is a helper function that wraps the process of retrieving the
- *  auxiliary data "TRTTrackOccupancy" from an xAOD::TrackParticle in
- *  one line.
+ *  This is a helper function that wraps the process of looping over the
+ *  hits to calculate the fraction of precision hits in one line. The
+ *  auxiliary data "msosLink" (container of hits) must be available (along
+ *  with the biased and unbiased residual and pull variables) on the
+ *  xAOD::TrackParticle object, if not, then return -1.
  *
  *  @param track pointer to an xAOD::TrackParticle object.
- *  @return the "TRTTrackOccupancy" auxiliary data (-1 if unavailabe)
+ *  @return the precision hit fraction (-1 if hit container unavailable)
  */
- float trackOccupancy(const xAOD::TrackParticle* track);
+ float trackPHF(const xAOD::TrackParticle* track);
  ```
  
 Let that user know, in detail, why -1 is returned.
