@@ -36,6 +36,9 @@ code, pre {
     /* font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace; */
     font-family: "SF Mono", Roboto Mono, "Roboto Mono", Consolas, monospace;
     /*background-color: #eceff1;*/
+    word-wrap: normal;
+    overflow-x: auto;
+    white-space: pre;
 }
 
 pre {
