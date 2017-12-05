@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Doug Davis | Home
+title: Doug Davis, for your information
 ---
 
 # Doug Davis, for your information
