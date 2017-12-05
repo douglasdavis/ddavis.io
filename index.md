@@ -33,10 +33,3 @@ group as deputy coordinator in the transition radiation tracker (TRT)
 software group and as an analyzer in the single top working group.  My
 thesis analysis will study the cross section of the production of a
 top quark in association with a W boson.
-
-[//]: #(## Selected Projects)
-
-[//]: #(- [TRTFramework](https://gitlab.cern.ch/atlas-trt-software/TRTFramework),)
-[//]: #(  an analysis framework for TRT studies.)
-[//]: #(- [TopLoop](https://github.com/drdavis/TopLoop), a framework for)
-[//]: #(  analyzing top ntuples (ATLAS top group data format).)

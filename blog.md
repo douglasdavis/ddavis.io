@@ -11,3 +11,5 @@ title: Doug Davis | Blog
 - {{ post.date | date: "%Y-%m-%d" }} - [{{ post.title }}]({{ post.url }}) {% endfor %}
 
 [Subscribe with rss](/feed.xml)
+
+{% include post_footer.html %}
