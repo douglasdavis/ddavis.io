@@ -10,10 +10,11 @@ Particle Physics at [Duke University](https://www.duke.edu/). Member
 of the [ATLAS collaboration](https://atlas.cern/) at
 [CERN](https://home.cern/).
 
-- [GitHub](https://github.com/drdavis), [CERN GitLab](https://gitlab.cern.ch/ddavis)
-- [LinkedIn](https://www.linkedin.com/in/douglasrdavis)
-- [Twitter](https://twitter.com/_ddavis_)
-- [Curriculum Vitae](/assets/pdf/cv.pdf) (pdf)
+- <i class="fa fa-github" aria-hidden="true"></i> [GitHub](https://github.com/drdavis)
+- <i class="fa fa-gitlab" aria-hidden="true"></i> [CERN GitLab](https://gitlab.cern.ch/ddavis)
+- <i class="fa fa-linkedin" aria-hidden="true"></i> [LinkedIn](https://www.linkedin.com/in/douglasrdavis)
+- <i class="fa fa-twitter" aria-hidden="true"></i> [Twitter](https://twitter.com/_ddavis_)
+- <i class="fa fa-file-pdf-o" aria-hidden="true"></i> [Curriculum Vitae](/assets/pdf/cv.pdf)
 
 ## Blog
 
