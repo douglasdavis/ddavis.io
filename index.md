@@ -18,7 +18,7 @@ of the [ATLAS collaboration](https://atlas.cern/) at
 ## Blog
 
 [All posts](/blog.html)
-{% for post in site.categories.tech limit: 3 %}
+{% for post in site.categories.content limit: 3 %}
 - {{ post.date | date: "%Y-%m-%d" }} - [{{ post.title }}]({{ post.url }}) {% endfor %}
 
 ## About

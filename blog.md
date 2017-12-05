@@ -7,7 +7,7 @@ title: Doug Davis | Blog
 
 # Blog
 
-{% for post in site.categories.tech %}
+{% for post in site.categories.content %}
 - {{ post.date | date: "%Y-%m-%d" }} - [{{ post.title }}]({{ post.url }}) {% endfor %}
 
 [Subscribe with rss](/feed.xml)
