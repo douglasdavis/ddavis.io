@@ -8,8 +8,8 @@ comments: true
 {{ page.date | date: "%-d %B %Y"}}
 {{ content }}
 
-{% include post_footer.html %}
-
 {% if site.disqus.shortname %}
   {% include disqus_comments.html %}
 {% endif %}
+
+{% include post_footer.html %}
