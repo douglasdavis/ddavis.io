@@ -148,7 +148,8 @@ tests.
 
 The software I've been talking about this whole time is:
 [TRTFramework](https://gitlab.cern.ch/atlas-trt-software/TRTFramework),
-which is an API originally developed by a previous member of the TRT
-before the massive ATLAS SW migration of 2016/2017. The SW group as a
-whole took it over, and as deputy coordinator in the group I took over
-maintaining it -- we now have version 2.
+which is an API originally developed by a collaborator who has since
+moved on from the TRT, before the massive ATLAS SW migration of
+2016/2017. The SW group as a whole took it over, and as deputy
+coordinator in the group I took over maintaining it -- we now have
+version 2.

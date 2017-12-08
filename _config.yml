@@ -37,3 +37,6 @@ sass:
 gems:
   - jekyll-sitemap
   - jekyll-seo-tag
+
+disqus:
+  shortname: ddavis-fyi
