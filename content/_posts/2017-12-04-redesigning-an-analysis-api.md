@@ -2,6 +2,7 @@
 layout: post
 title: "Redesigning an Analysis API"
 date: 2017-12-04
+disqustitle: "apiredesign"
 ---
 
 ------
