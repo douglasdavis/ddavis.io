@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "ROOT without ROOT"
-date: 2017-12-09
+disqustitle: "rootnoroot"
 comments: false
 ---
 
