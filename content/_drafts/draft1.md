@@ -2,6 +2,7 @@
 layout: post
 title: "Draft Template"
 date: 2017-01-01
+comments: false
 ---
 
 ------
