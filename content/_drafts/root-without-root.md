@@ -27,6 +27,46 @@ example: particles live in containers owned by an event, hits live in
 a container owned by a track, whole reconstructed particles have an
 "Element Link" (a pointer on disk) to a track associated with it, etc.
 
+## The problem
+
+ROOT Is a monolithic beast. It's a lot to carry around if all you need
+is to look at a few numbers stored in a ROOT file. It takes a while to
+build the entire library and interpreter. The ROOT team distributes
+some binaries, and some package managers provide binaries or a way to
+build locally (e.g. the [Arch User's
+Repository](https://aur.archlinux.org/)); but let's face it, for
+beginners and quick tasks that's not always a great solution.
+
+Then to actually look at your data you end up writing a C++ "macro"
+(meant to be processed by ROOT's C++ interpreter, cling), or you write
+a proper executable, compile, link, and run.
+
+## The old solution
+
+If your ROOT build was aware of a python installation during the build
+process, you can end up with PyROOT - ROOT's builtin python
+bindings. PyROOT basically allows you to write C++ style code in
+python to talk to ROOT objects. That's not even the old solution I'm
+about to mention. `root_numpy` is what I'd consider the old solution
+here -- it's a python library accelerated with Cython which turns the
+C style arrays stored in ROOT files into numpy arrays. It can also be
+installed with `pip`! Unfortunately, it requires a ROOT installation
+(because it requires `import ROOT`).
+
+## The solution
+
+Now enters `uproot`. This awesome new library requires _only_
+numpy. Being able to interact with ROOT files is as easy as
+
+```
+pip install uproot
+python
+>>> import uproot
+>>> file = uproot.open(myfile.root')
+```
+
+## In action
+
 A few days ago I needed to throw together a quick histogram to explain
 a task to a colleague. The task required just a bit of information
 about some hits along a track. Given the structure of our data format
@@ -44,7 +84,7 @@ for ( auto& event : eventContainer() ) {
     auto trackLink = getAssociatedTrackLink(particle);
     if ( trackLink.isValid() ) {
       // dereference link to get actual object (the track)
-      auto track = *track;
+      auto track = *trackLink;
       // get link to hit container and make sure valid
       auto hitContainerLink = getAssociatedHitsLink(track);
       if ( hitContainerLink.isValid() ) {
