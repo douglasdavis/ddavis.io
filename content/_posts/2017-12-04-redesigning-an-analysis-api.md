@@ -81,25 +81,25 @@ The TRT has different types of hits along the track, one is
 interest; here's a documented function to calculate it:
 
 ```cpp
-/// return the precision hit fraction along the track, -1 if hits unavailable.
-float trackPHF(const xAOD::TrackParticle* track);
+ /// return the precision hit fraction along the track, -1 if hits unavailable.
+ float trackPHF(const xAOD::TrackParticle* track);
 ```
 
 That's pretty good, seems easy to understand, but we can do better:
 
 ```cpp
-/// return the precision hit fraction along the track, -1 if hits unavailable.
-/**
- *  This is a helper function that wraps the process of looping over the
- *  hits to calculate the fraction of precision hits in one line. The
- *  auxiliary data "msosLink" (container of hits) must be available (along
- *  with the biased and unbiased residual and pull variables) on the
- *  xAOD::TrackParticle object, if not, then return -1.
- *
- *  @param track pointer to an xAOD::TrackParticle object.
- *  @return the precision hit fraction (-1 if hit container unavailable)
- */
- float trackPHF(const xAOD::TrackParticle* track);
+ /// return the precision hit fraction along the track, -1 if hits unavailable.
+ /**
+  *  This is a helper function that wraps the process of looping over the
+  *  hits to calculate the fraction of precision hits in one line. The
+  *  auxiliary data "msosLink" (container of hits) must be available (along
+  *  with the biased and unbiased residual and pull variables) on the
+  *  xAOD::TrackParticle object, if not, then return -1.
+  *
+  *  @param track pointer to an xAOD::TrackParticle object.
+  *  @return the precision hit fraction (-1 if hit container unavailable)
+  */
+  float trackPHF(const xAOD::TrackParticle* track);
  ```
  
 Let that user know, in detail, why -1 is returned.
