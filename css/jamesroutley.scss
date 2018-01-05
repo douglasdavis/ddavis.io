@@ -38,14 +38,15 @@ code, pre {
     overflow-x: auto;
     white-space: pre;
     background-color: #eee;
-    padding: 2px 2px 2px 2px;
+    /*padding: 2px 2px 2px 2px;*/
     /*padding-left: 0;*/
 }
 
 pre {
     white-space:pre-line;
-    border:1.0px solid black;
-    padding-left: 0.5;
+    border:1.0px solid lightblue;
+    padding: 1.1em;
+    /*padding-left: 0.5;*/
     margin: 0em;
     -webkit-border-radius: 5px;
     -khtml-border-radius: 5px;	
