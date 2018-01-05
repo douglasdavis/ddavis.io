@@ -6,7 +6,8 @@ body {
     /* font-family: "SF Mono", Roboto Mono, "Roboto Mono", Consolas, monospace; */
     font-family: -apple-system, BlinkMacSystemFont, Roboto, "Roboto", "Roboto Mono";
     line-height: 1.5;
-    text-align: justify;
+    /* text-align: justify; */
+    text-align: left;
 }
 
 .main {
@@ -30,7 +31,6 @@ img {
 }
 
 /* Code styling */
-
 code, pre {
     font-size: 90%;
     font-family: "SF Mono", Roboto Mono, "Roboto Mono", Consolas, monospace;
@@ -38,17 +38,21 @@ code, pre {
     overflow-x: auto;
     white-space: pre;
     background-color: #eee;
-    padding: 2px 3px;
-    border-radius: 2px;
-    border: none;
-    padding-left: 0;
+    padding: 2px 2px 2px 2px;
+    /*padding-left: 0;*/
 }
 
-/*
 pre {
-    padding: 1.2em;
+    white-space:pre-line;
+    border:1.0px solid black;
+    padding-left: 0.5;
+    margin: 0em;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;	
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
-*/
+
 
 /* Hyperlink styling */
 

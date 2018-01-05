@@ -37,26 +37,26 @@ For multiple returns in C++ 11 and 14 we had to use
 [`std::tie`](http://en.cppreference.com/w/cpp/utility/tuple/tie):
 
 ```cpp
- auto foo() {
-   return std::make_tuple(1,2.0,'3');
- }
+auto foo() {
+  return std::make_tuple(1,2.0,'3');
+}
 
- int main() {
-   int i;
-   float j;
-   char k;
-   std::tie(i,j,k) = foo();
-   // ...
- }
+int main() {
+  int i;
+  float j;
+  char k;
+  std::tie(i,j,k) = foo();
+  // ...
+}
 ```
 
 Now, with structured bindings, it's as easy as:
 
 ```cpp
- int main() {
-   auto [i, j, k] = foo();
-   // ...
- }
+int main() {
+  auto [i, j, k] = foo();
+  // ...
+}
 ```
 
 Before C++17, when looping over the `std::map` container, we were
@@ -64,26 +64,26 @@ locked into using the `first` and `second` members of
 [`std::pair`](http://en.cppreference.com/w/cpp/utility/pair):
 
 ```cpp
- {% raw %}int main() {
-   std::map<int,float> myMap {{1,1.1},{2,2.2}};
-   for ( const auto& entry : myMap ) {
-     doSomething(entry.first,entry.second);
-   }
-   // ...
- }{% endraw %}
+{% raw %}int main() {
+  std::map<int,float> myMap {{1,1.1},{2,2.2}};
+  for ( const auto& entry : myMap ) {
+    doSomething(entry.first,entry.second);
+  }
+  // ...
+}{% endraw %}
 ```
 
 With structured bindings, we have something a bit more intuitive with
 less boilerplate:
 
 ```cpp
- {% raw %}int main() {
-   std::map<int,float> myMap {{1,1.1},{2,2.2}};
-   for ( const auto& [i, j] : myMap ) {
-     doSomething(i,j);
-   }
-   // ...
- }{% endraw %}
+{% raw %}int main() {
+  std::map<int,float> myMap {{1,1.1},{2,2.2}};
+  for ( const auto& [i, j] : myMap ) {
+    doSomething(i,j);
+  }
+  // ...
+}{% endraw %}
 ```
 
 For even more boilerplate, go back to C++03 container looping with

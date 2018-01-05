@@ -55,14 +55,14 @@ installed with `pip`! Unfortunately, it requires a ROOT installation
 
 ## The solution
 
-Now enters `uproot`. This awesome new library requires _only_
+Now enter `uproot`. This awesome new library requires _only_
 numpy. Being able to interact with ROOT files is as easy as
 
 ```
- pip install uproot
- python
- >>> import uproot
- >>> file = uproot.open(myfile.root')
+pip install uproot
+python
+>>> import uproot
+>>> file = uproot.open(myfile.root')
 ```
 
 ## In action
@@ -75,31 +75,31 @@ of_ pseudo C++ code, this is very similar to ATLAS code, but with a
 few made up function names):
 
 ```cpp
- for ( auto& event : eventContainer() ) {
-   // grab particle container
-   auto particleContainer = event->getParticleContainer();
-   // loop over particles
-   for ( auto& particle : particleContainer ) {
-     // get link to track and make sure valid
-     auto trackLink = getAssociatedTrackLink(particle);
-     if ( trackLink.isValid() ) {
-       // dereference link to get actual object (the track)
-       auto track = *trackLink;
-       // get link to hit container and make sure valid
-       auto hitContainerLink = getAssociatedHitsLink(track);
-       if ( hitContainerLink.isValid() ) {
-         auto hitContainer = *hitContainerLink;
-         // loop over container
-         for ( auto& hit : hitContainer ) {
-           // get dynamically set properties of the hit and finally use them
-           auto hitFoo = hit->getAuxiliaryData("Foo");
-           auto hitBar = hit->getAuxiliaryData("Bar");
-           if ( hitBar == 42 ) {
-             fooHistogram->Fill(hitFoo);
-           }
-         }
-       }
-     }
-   }
- }
+for ( const auto& event : eventContainer() ) {
+  // grab particle container
+  auto particleContainer = event->getParticleContainer();
+  // loop over particles
+  for ( const auto& particle : particleContainer ) {
+    // get link to track and make sure valid
+    auto trackLink = getAssociatedTrackLink(particle);
+    if ( trackLink.isValid() ) {
+      // dereference link to get actual object (the track)
+      auto track = *trackLink;
+      // get link to hit container and make sure valid
+      auto hitContainerLink = getAssociatedHitsLink(track);
+      if ( hitContainerLink.isValid() ) {
+        auto hitContainer = *hitContainerLink;
+        // loop over container
+        for ( const auto& hit : hitContainer ) {
+          // get dynamically set properties of the hit and finally use them
+          auto hitFoo = hit->getAuxiliaryData("Foo");
+          auto hitBar = hit->getAuxiliaryData("Bar");
+          if ( hitBar == 42 ) {
+            fooHistogram->Fill(hitFoo);
+          }
+        }
+      }
+    }
+  }
+}
 ```
