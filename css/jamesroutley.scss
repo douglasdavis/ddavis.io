@@ -4,7 +4,7 @@ body {
     font-size: 100%;
     /* font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace; */
     /* font-family: "SF Mono", Roboto Mono, "Roboto Mono", Consolas, monospace; */
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, "Roboto", "Roboto Mono";
+    font-family: -apple-system, BlinkMacSystemFont, "Roboto Light", "Roboto", "Roboto Mono";
     line-height: 1.5;
     /* text-align: justify; */
     text-align: left;
@@ -37,15 +37,15 @@ code, pre {
     word-wrap: normal;
     overflow-x: auto;
     white-space: pre;
-    background-color: #eee;
+    background-color: #ffffff;
     /*padding: 2px 2px 2px 2px;*/
     /*padding-left: 0;*/
 }
 
 pre {
     white-space:pre-line;
-    border:1.0px solid lightblue;
-    padding: 1.1em;
+    border:1.0px solid gray;
+    padding: 0.5em;
     /*padding-left: 0.5;*/
     margin: 0em;
     -webkit-border-radius: 5px;
