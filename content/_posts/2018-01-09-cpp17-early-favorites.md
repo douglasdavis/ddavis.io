@@ -26,10 +26,10 @@ bit with a couple of high energy physics analysis use cases.
 
 ## Structured Bindings
 
-When writing Python I always appreciate the simplicity of multiple
-function returns and the intuitive loop over a dictionary. Adding
-structured bindings to C++ makes it easy to use multiple returns and
-intuitive to loop over an
+When writing Python I always appreciate the ease of writing functions
+with multiple returns and the intuitive looping over
+dictionaries. Adding structured bindings to C++ makes it easy to use
+multiple returns and intuitive to loop over an
 [`std::map`](http://en.cppreference.com/w/cpp/container/map).
 
 For multiple returns in C++ 11 and 14 we had to use
