@@ -115,9 +115,7 @@ std::vector<std::string> createDataset(const std::string& path_name,
   for ( const auto& itr : fs::directory_iterator(path_name) ) {
     auto ext = itr.path().extension().string();
     if ( ext == exten && !fs::is_directory(itr.path()) ) {
-      // start with root_path() to make sure we grab "/"
-      auto whole_path = itr.path().root_path() / itr.path().relative_path();
-      dataset.push_back(whole_path.string());
+      dataset.push_back(itr.path().string());
     }
   }
   return dataset;
