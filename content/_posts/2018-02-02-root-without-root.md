@@ -158,7 +158,7 @@ analyze data.
     [TDataFrame](https://root.cern.ch/doc/master/classROOT_1_1Experimental_1_1TDataFrame.html)
     class.
 
-[^4]: uproot [Github project](https://github.com/scikit-hep/uproot).
+[^4]: uproot [GitHub project](https://github.com/scikit-hep/uproot).
 
 [^5]: In some special situations (e.g. reading a column of
     `std::vector` objects into a jagged array) the implementation is

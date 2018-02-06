@@ -114,10 +114,10 @@ std::vector<std::string> createDataset(const std::string& path_name,
   auto itr = fs::directory_iterator(path_name);
   for ( ; itr != fs::directory_iterator(); itr++ ) {
     auto ext = itr->path().extension().string();
-    if ( ext == exten ) {
-      std::string whole_path = "/";
-      whole_path.append(itr->path().relative_path().string());
-      dataset.push_back(whole_path);
+    if ( ext == exten && !fs::is_directory(itr->path()) ) {
+      // start with root_path() to make sure we grab "/"
+      auto whole_path = itr->path().root_path() / itr->path().relative_path();
+      dataset.push_back(whole_path.string());
     }
   }
   return dataset;
@@ -134,7 +134,7 @@ PhysicsResult graduate() {
   PhysicsResult thesis = doPhysicsOnDataset(dataset);
   return thesis; // yay!
 }
-  
+
 ```
 
 ## `if constexpr`
