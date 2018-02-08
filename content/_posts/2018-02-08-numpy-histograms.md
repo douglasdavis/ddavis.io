@@ -74,7 +74,7 @@ loop over all bins to grab only the weights in that bin, and sum their
 squares.
 
 ```python
-import numpy as np
+>>> import numpy as np
 >>> x = np.random.normal(0,2.0,1000)         ## a dataset
 >>> b = np.linspace(-2,2,21)                 ## 20 bins
 >>> w = np.random.normal(1,0.2,1000)         ## some weights
