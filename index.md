@@ -15,6 +15,7 @@ of the [ATLAS collaboration](https://atlas.cern/) at
 - <i class="fa fa-linkedin" aria-hidden="true"></i> [LinkedIn](https://www.linkedin.com/in/douglasrdavis)
 - <i class="fa fa-twitter" aria-hidden="true"></i> [Twitter](https://twitter.com/_ddavis_)
 - <i class="fa fa-file-pdf-o" aria-hidden="true"></i> [Curriculum Vitae](/assets/pdf/cv.pdf)
+- <i class="fa fa-envelope" aria-hidden="true"></i> [Contact](mailto:douglas.davis.092@gmail.com)
 
 ## Blog
 
