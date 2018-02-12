@@ -120,10 +120,10 @@ import uproot
 import matplotlib.pyplot as plt
 
 datatree         = uproot.open('myfile.root')['DataTree']
-Bar_arr          = datatree.array('InnerDetector_Hits_AuxData_Bar')
-selected_Foo_arr = datatree.array('InnerDetector_Hits_AuxData_Foo')[Bar_arr==42]
+Bar_arr          = datatree.array('InnerDetector.Hits.AuxData.Bar')
+selected_Foo_arr = datatree.array('InnerDetector.Hits.AuxData.Foo')[Bar_arr==42]
 
-plt.hist(selected_Foo_arr[Bar_arr==42],bins=20)
+plt.hist(selected_Foo_arr,bins=20)
 plt.show()
 ```
 
