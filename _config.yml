@@ -13,6 +13,8 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://ddavis.fyi" # the base hostname & protocol for your site
 
+include: [".well-known"]
+
 # SEO settings
 twitter:
   username: _ddavis_
