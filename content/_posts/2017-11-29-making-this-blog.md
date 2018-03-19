@@ -6,6 +6,12 @@ date: 2017-11-29
 
 ------
 
+## Update! (March 2018)
+
+I'm now using [Netlify](https://www.netlify.com/) to serve this
+website with an SSL certificate provided by [Let's
+Encrypt](https://letsencrypt.org/).
+
 ## Tools
 
 After seeing many well put together technical blogs I finally decided
@@ -16,8 +22,8 @@ browser based blogging platform. I decided to go with the following
 combination:
 
 - Domain from Squarespace.
-- Jekyll site hosted on GitHub pages.
-- Cloudfare for https://.
+- Jekyll site hosted on Netlify ~~GitHub pages~~.
+- Let's Encrypt ~~Cloudfare~~ for https://.
 
 ## Setting up
 
@@ -28,14 +34,15 @@ found a domain I liked (using my *nix username, ddavis) with a nice
 in my opinion, a cool blog title. I found [somebody
 else](https://github.com/jamesroutley/routley.io)'s
 [Jekyll](https://jekyllrb.com/) theme, hacked it up bit for myself,
-and set up a
-[repository](https://github.com/drdavis/drdavis.github.io) using
-[GitHub pages](https://pages.github.com).
+and set up a [repository](https://github.com/drdavis/ddavis.fyi) to be
+built by [Netlify](https://www.netlify.com/)  ~~[GitHub
+pages](https://pages.github.com).~~
 
-After getting a functional Jekyll build in GitHub pages, I headed over
-to [Cloudfare](https://www.cloudflare.com/) to set up my new domain
-and site with a free SSL certificate. Their
+After getting a functional Jekyll build using Netlify I configured the
+site to use Let's Encrypt. ~~in GitHub pages~~, ~~I headed over to
+~~[Cloudfare](https://www.cloudflare.com/) to set up my new domain and
+site with a free SSL certificate. Their
 [instructions](https://blog.cloudflare.com/secure-and-fast-github-pages-with-cloudflare/)
-were very easy to follow.
+were very easy to follow.~~
 
 And that's it. Now updating my site is a git commit+push away.
