@@ -96,7 +96,7 @@ Happy NumPying :)
 
 ```python
 def extended_hist(data, xmin, xmax, nbins,
-                  underflow=True, overflow=True, weights=None):
+                     underflow=True, overflow=True, weights=None):
     if weights is not None:
         if weights.shape != data.shape:
             raise ValueError(

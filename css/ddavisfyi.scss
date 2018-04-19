@@ -4,7 +4,7 @@ body {
     font-size: 100%;
     /* font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace; */
     /* font-family: "SF Mono", Roboto Mono, "Roboto Mono", Consolas, monospace; */
-    font-family: -apple-system, BlinkMacSystemFont, "Roboto Light", "Roboto", "Roboto Mono";
+    font-family: 'Merriweather', -apple-system, BlinkMacSystemFont, "Merriweather", "Roboto Light", "Roboto", "Roboto Mono";
     line-height: 1.5;
     /* text-align: justify; */
     text-align: left;
@@ -33,7 +33,7 @@ img {
 /* Code styling */
 code, pre {
     font-size: 90%;
-    font-family: "SF Mono", Roboto Mono, "Roboto Mono", Consolas, monospace;
+    font-family: "Ubuntu Mono", Consolas, monospace;
     word-wrap: normal;
     overflow-x: auto;
     white-space: pre;
@@ -49,7 +49,7 @@ pre {
     /*padding-left: 0.5;*/
     margin: 0em;
     -webkit-border-radius: 5px;
-    -khtml-border-radius: 5px;	
+    -khtml-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
 }

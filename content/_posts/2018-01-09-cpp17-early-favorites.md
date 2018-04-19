@@ -109,7 +109,7 @@ lot for my physics analysis).
 namespace fs = std::filesystem;
 
 std::vector<std::string> createDataset(const std::string& path_name,
-                                       const std::string& exten) {
+                                        const std::string& exten) {
   std::vector<std::string> dataset;
   auto itr = fs::directory_iterator(path_name);
   for ( const auto& itr : fs::directory_iterator(path_name) ) {
