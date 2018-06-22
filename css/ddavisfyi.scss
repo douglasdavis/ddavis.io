@@ -4,7 +4,7 @@ body {
     font-size: 100%;
     /* font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace; */
     /* font-family: "SF Mono", Roboto Mono, "Roboto Mono", Consolas, monospace; */
-    font-family: 'Merriweather', -apple-system, BlinkMacSystemFont, "Merriweather", "Roboto Light", "Roboto", "Roboto Mono";
+    font-family: "Roboto Light", "Roboto", -apple-system, BlinkMacSystemFont, "Roboto Mono";
     line-height: 1.5;
     /* text-align: justify; */
     text-align: left;
@@ -33,7 +33,7 @@ img {
 /* Code styling */
 code, pre {
     font-size: 90%;
-    font-family: "Ubuntu Mono", Consolas, monospace;
+    font-family: "Source Code Pro", "Ubuntu Mono", Consolas, monospace;
     word-wrap: normal;
     overflow-x: auto;
     white-space: pre;

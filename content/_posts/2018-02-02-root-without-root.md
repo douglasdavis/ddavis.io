@@ -152,10 +152,9 @@ analyze data.
 
 [^2]: Cling [GitHub project](https://github.com/root-project/cling).
 
-[^3]: At the time of writing this post there is an effort to add the
-    ability to read ROOT files using functional chains with the
-    experimental
-    [TDataFrame](https://root.cern.ch/doc/master/classROOT_1_1Experimental_1_1TDataFrame.html)
+[^3]: As of ROOT version 6.14 (released June 2018) there is a new feature allowing tree
+    analysis using functional chains with the
+    [`ROOT::RDataFrame`](https://root.cern.ch/doc/master/classROOT_1_1RDataFrame.html)
     class.
 
 [^4]: uproot [GitHub project](https://github.com/scikit-hep/uproot).
