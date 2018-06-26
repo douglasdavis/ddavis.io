@@ -60,8 +60,8 @@ Now enter `uproot`[^4]. This awesome new library requires _only_
 numpy. Being able to interact with ROOT files is as easy as
 
 ```
-pip install uproot
-python
+$ pip install uproot
+$ python
 >>> import uproot
 >>> file = uproot.open('myfile.root')
 ```
