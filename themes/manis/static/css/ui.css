@@ -56,7 +56,7 @@ body {
   font-size: 1.6em;
   line-height: 1.7;
   font-weight: 400;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   color: #444;
 }
 
@@ -68,7 +68,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
   font-weight: 300;
   color: #222;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 h1 {
   font-size: 3.2rem;
@@ -176,7 +176,7 @@ ul.no-bullet {
   display: none;
   font-size: 1.7rem;
   color: #666;
-  font-family: monospace;
+  font-family: 'Source Code Pro';
 }
 @media (min-width: 40rem) {
   .no-bullet span {
@@ -186,7 +186,7 @@ ul.no-bullet {
 }
 .terms li>span {
   color: #666;
-  font-family: monospace;
+  font-family: 'Source Code Pro';
 }
 
 dd { margin-left: 2rem; }
@@ -194,7 +194,7 @@ dd { margin-left: 2rem; }
 /* #Code
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 code {
-    font-size: 90%;
+    font-size: 80%;
     overflow-x: auto;
     white-space: pre;
     padding: .2rem .5rem;
