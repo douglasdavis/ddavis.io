@@ -54,7 +54,7 @@ dateFmt = "Jan 02, 2006"
 # Code Highlighting (HighlightJS)
 highlightJs = true
 highlightJsLanguages = ["cpp","python","bash"]
-highlightJsStyle = "Hopscotch"
+highlightJsStyle = "Github"
 
 # Social Links
 email = "douglas.davis.092@gmail.com"
