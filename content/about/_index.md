@@ -20,3 +20,5 @@ technical things I encounter along the way to getting that Ph.D. I
 care a lot about quality software, so I spend a lot of time not only
 doing actual data analysis, but also writing software to _help_ in
 performing analyses.
+
+{{% figure src="/img/atlas.jpg" caption="Hook 'em, with the ATLAS Muon Spectrometer" %}}

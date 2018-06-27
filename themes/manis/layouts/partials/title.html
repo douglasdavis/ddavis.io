@@ -1,8 +1,17 @@
 <hgroup id="brand">
   <!-- Homepage -->
   {{- if eq .Kind "home" -}}
-  <h1>{{ .Site.Title }}</h1>
-  <h5>{{- with .Site.Params.Tagline -}}{{.}}{{- end -}}</h5>
+  <table style="width:47%">
+    <tr>
+      <th>
+        <h1>{{ .Site.Title }}</h1>
+        <h5>{{- with .Site.Params.Tagline -}}{{.}}{{- end -}}</h5>
+      </th>
+      <th>
+        <img src="img/ddh.png" style="width:90px;">
+      </th>
+    </tr>
+  </table>
   <!-- Section List -->
   {{- else if ( or ( eq .Kind "section") ( eq .Kind "taxonomyTerm" ) ) -}}
   <h1>{{ .Title }}</h1>
