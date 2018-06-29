@@ -51,11 +51,6 @@ faviconImg = ""
 # Date format in item list
 dateFmt = "Jan 02, 2006"
 
-# Code Highlighting (HighlightJS)
-highlightJs = true
-highlightJsLanguages = ["cpp","python","bash"]
-highlightJsStyle = "Github"
-
 # Social Links
 email = "douglas.davis.092@gmail.com"
 github = "https://github.com/drdavis/"
