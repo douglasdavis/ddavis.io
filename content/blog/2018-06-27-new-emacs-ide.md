@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Yet Another Emacs C++ IDE"
-date: 2018-06-29
+date: 2018-07-03
 ---
 
 I've seen a lot of posts on the
