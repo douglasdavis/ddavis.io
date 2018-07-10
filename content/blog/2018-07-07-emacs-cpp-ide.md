@@ -44,8 +44,7 @@ choose a global configuration):
   :config
   (require 'company-lsp)
   (push 'company-lsp company-backends)
-  (add-hook 'after-init-hook 'global-company-mode)
-  )
+  (add-hook 'after-init-hook 'global-company-mode))
 ```
 
 Ensure that `lsp-mode` and `lsp-ui` are installed and required:
@@ -54,14 +53,12 @@ Ensure that `lsp-mode` and `lsp-ui` are installed and required:
 (use-package lsp-mode
   :ensure t
   :config
-  (require 'lsp-mode)
-  )
+  (require 'lsp-mode))
 
 (use-package lsp-ui
   :ensure t
   :config
-  (require 'lsp-ui)
-  )
+  (require 'lsp-ui))
 ```
 
 Unfortunately `lsp-clangd` isn't in melpa yet, so I cloned it to my
@@ -76,21 +73,20 @@ hook to C++ mode to enable it:
   :load-path
   "~/.emacs.d/lsp-clangd"
   :init
-  ;; for MacBook
+  ;; for macOS
   (when (equal system-type 'darwin)
     (setq lsp-clangd-executable "/usr/local/opt/llvm/bin/clangd"))
   ;; for Fedora box
   (when (string= (system-name) "proton")
     (setq lsp-clangd-executable "/home/ddavis/Software/llvm/head/bin/clangd"))
 
-  (add-hook 'c++-mode-hook #'lsp-clangd-c++-enable)
-  )
+  (add-hook 'c++-mode-hook #'lsp-clangd-c++-enable))
 ```
 
 Like I said, Clangd is under heavy development, so expect some
 imperfections. For example, using the version shipped with the LLVM
 6.0.0 release wasn't working with header files. I went ahead and built
-a cutting edge installation (using `brew install --HEAD llvm` on macOS
+a bleeding edge installation (using `brew install --HEAD llvm` on macOS
 and building from the trunk of their svn repositories on a Fedora
 machine; read how to do that
 [here](http://clang.llvm.org/get_started.html)) and that fixed the
