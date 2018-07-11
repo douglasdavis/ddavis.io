@@ -6,7 +6,7 @@ date: 2018-02-08
 
 ## Our starting point
 
-Creating a histogram with is very easy using
+Histogramming some data is simple using
 [`numpy.histogram`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.histogram.html):
 
 ```python
