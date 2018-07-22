@@ -7,7 +7,7 @@ date: 2017-11-29
 ## Update 2! (June 2018)
 
 Now I'm using Hugo. See [this post]({{<ref
-"blog/2018-06-26-move-to-hugo.md" >}}).
+"/blog/2018-06-26-move-to-hugo.md" >}}).
 
 ## Update! (March 2018)
 

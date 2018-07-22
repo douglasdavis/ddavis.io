@@ -16,5 +16,5 @@ The transition was pretty painless. I polished up some mistakes in old
 posts, made any changes needed for Hugo, found a theme on the Hugo
 themes website that I liked, and started hacking away. Since I already
 switched over to Netlify (see [this post]({{< ref
-"blog/2017-11-29-making-this-blog.md" >}})) it was very easy to have
+"/blog/2017-11-29-making-this-blog.md" >}})) it was very easy to have
 their service build a Hugo website.
