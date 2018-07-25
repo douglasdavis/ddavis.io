@@ -9,8 +9,9 @@ swamped with work and partially due to spending time (which _could_
 have gone towards new posts) playing with
 [Hugo](https://gohugo.io/). I jumped in the Jekyll boat without really
 investigating other options -- after learning about Hugo it seems to
-be a better fit. Now I have some new motivation to post more - a new
-static website generator toy.
+be a better fit. I particularly like the dependency free, single
+executable (happy to abandon the ruby bundler ecosystem). Now I have
+some new motivation to post more - a new static website generator toy.
 
 The transition was pretty painless. I polished up some mistakes in old
 posts, made any changes needed for Hugo, found a theme on the Hugo
