@@ -213,8 +213,8 @@ pre > code {
   white-space: pre;
   word-wrap: pre;
   overflow-x: scroll;
-  background: #2b303b;
-  color: #c0c5ce;
+  background: #f1f1f1;
+  color: #000000;
   font-family: 'Source Code Pro', 'Fira Mono', monospace;
 }
 

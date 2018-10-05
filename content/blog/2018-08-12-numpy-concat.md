@@ -11,8 +11,8 @@ files. I quickly did something like this:
 files = list_of_files()
 arr   = np.array([],dtype=np.float32)
 for f in files:
-  iarr = get_arr_from_file(f)
-  arr  = np.concatenate([arr,iarr])
+    iarr = get_arr_from_file(f)
+    arr  = np.concatenate([arr,iarr])
 ```
 
 This was taking a lot longer than I thought it should. There's a very
@@ -27,8 +27,8 @@ A better way to do it:
 files = list_of_files()
 arrs  = []
 for f in files:
-  iarr = get_arr_from_file(f)
-  arrs.append(iarr)
+    iarr = get_arr_from_file(f)
+    arrs.append(iarr)
 arr = np.concatenate(arrs)
 ```
 
@@ -60,7 +60,7 @@ def good():
 
 The output:
 
-```
+```none
 CPU times: user 2.69 s, sys: 1.84 s, total: 4.53 s
 Wall time: 2.31 s
 CPU times: user 490 ms, sys: 92.3 ms, total: 582 ms

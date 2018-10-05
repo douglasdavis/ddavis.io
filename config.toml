@@ -12,9 +12,11 @@ paginate = 10
 # Edit this if you want to translate your blog
 defaultContentLanguage = "en"
 
-# Code Highlighting (Chroma)
-pygmentsCodeFences = true
-pygmentsUseClasses = true
+
+# Chroma Syntax Highlighting
+pygmentsCodefences = true
+pygmentsCodefencesGuessSyntax = true
+pygmentsStyle = "pygments"
 
 [taxonomies]
 tag = "tags"

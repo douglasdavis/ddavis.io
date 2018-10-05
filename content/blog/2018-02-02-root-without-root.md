@@ -60,7 +60,7 @@ Now enter [uproot](https://github.com/scikit-hep/uproot). This awesome
 new library requires _only_ numpy. Being able to interact with ROOT
 files is as easy as
 
-```
+```none
 $ pip install uproot
 $ python
 >>> import uproot
