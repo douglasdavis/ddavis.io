@@ -11,9 +11,10 @@ in proton-proton collisions at the [Large Hadron
 Collider](https://en.wikipedia.org/wiki/Large_Hadron_Collider): a [top
 quark](https://en.wikipedia.org/wiki/Top_quark) in association with a
 [W boson](https://en.wikipedia.org/wiki/W_and_Z_bosons). I have also
-served as deputy coordinator in the transition radiation tracker (TRT)
-software group from September 2017 to September 2018. I still serve as
-the particle identification contact.
+served as deputy coordinator in the transition radiation tracker (or
+TRT, one of the ATLAS subdetectors which tracks the particles created
+in the collisions) software group from September 2017 to
+September 2018. I still serve as the particle identification contact.
 
 My favorite parts of experimental particle physics are writing
 software and analyzing data. My blog posts are (mostly) born from
