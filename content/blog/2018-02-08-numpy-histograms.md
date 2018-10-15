@@ -106,10 +106,10 @@ def extended_hist(data, xmin, xmax, nbins,
     neginf = np.array([-np.inf],dtype=np.float32)
     posinf = np.array([ np.inf],dtype=np.float32)
     uselsp = np.concatenate([neginf,edges,posinf])
-    if weights is not None:
-        hist, bin_edges = np.histogram(data,bins=uselsp,weights=weights)
-    else:
+    if weights is None:
         hist, bin_edges = np.histogram(data,bins=uselsp)
+    else:
+        hist, bin_edges = np.histogram(data,bins=uselsp,weights=weights)
 
     n = hist[1:-1]
     if underflow:
@@ -117,7 +117,9 @@ def extended_hist(data, xmin, xmax, nbins,
     if overflow:
         n[-1] += hist[-1]
 
-    if weights is not None:
+    if weights is None:
+        w = np.sqrt(n)
+    else:
         bin_sumw2 = np.zeros(nbins+2,dtype=np.float32)
         digits = np.digitize(data,edges)
         for i in range(nbins+2):
@@ -128,8 +130,6 @@ def extended_hist(data, xmin, xmax, nbins,
         if overflow:
             w[-1] += bin_sumw2[-1]
         w = np.sqrt(w)
-    else:
-        w = np.sqrt(n)
 
     centers = np.delete(edges,[0])-(np.ediff1d(edges)/2.0)
     return n, w, centers, edges
