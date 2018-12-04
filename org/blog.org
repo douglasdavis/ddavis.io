@@ -10,14 +10,15 @@
    :END:
 
    I've recently fallen into a very deep Emacs rabbit hole. It started
-   with the goal of cleaning up Emacs =init.el= file, but expanded to
-   learning more Emacs Lisp and trying to get more out of
+   with the goal of cleaning up my Emacs =init.el= file, but expanded
+   to learning more Emacs Lisp and trying to get more out of
    Org-mode. Now I'm typing this post in Org-mode with a new toy:
-   [[https://ox-hugo.scripter.co/][=ox-hugo=]].
-
+   [[https://ox-hugo.scripter.co/][=ox-hugo=]]. This Emacs packages makes it easy to create blog posts
+   from a single Org-file by seamlessly exporting second level
+   headlines to Hugo's Markdown syntax.
 
    Setting up =ox-hugo= was incredibly easy. With MELPA already
-   configured, the only required addition to my init file:
+   configured, the only required addition to my init file was this:
    #+BEGIN_SRC emacs-lisp :results silent
      (use-package ox-hugo
        :ensure t
