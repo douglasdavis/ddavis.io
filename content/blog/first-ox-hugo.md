@@ -6,8 +6,8 @@ draft = false
 +++
 
 I've recently fallen into a very deep Emacs rabbit hole. It started
-with the goal of of cleaning up Emacs `init.el` file, but expanded
-to learning more Emacs Lisp and trying to get more out of
+with the goal of cleaning up Emacs `init.el` file, but expanded to
+learning more Emacs Lisp and trying to get more out of
 Org-mode. Now I'm typing this post in Org-mode with a new toy:
 [`ox-hugo`](https://ox-hugo.scripter.co/).
 
@@ -26,5 +26,5 @@ Now in the buffer I'm current typing in I use the key-binding
 Luckily before I fell down this rabbit hole my Emacs configuration
 was already cleaned up to my liking, hopefully it stays that way
 for a while! It can be found [right here](https://github.com/drdavis/dotfiles/blob/master/emacs/emacs-init.org) (you'll see it's also
-written in Org-mode, with the Emacs lisp blocks loaded via
+written in Org-mode, with the Emacs Lisp blocks loaded via
 `org-babel-load-file`).
