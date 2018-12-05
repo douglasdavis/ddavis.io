@@ -8,10 +8,10 @@ Particle Physics at [Duke University](https://www.duke.edu/) where I
 work in the [ATLAS](http://atlas.cern/) group. My favorite parts of
 experimental particle physics are writing software and analyzing
 data. My blog posts are (mostly) born from technical things I'm
-encountering during my graduate research in the field. I care a lot
-about quality software, so I spend a lot of time not only doing actual
-data analysis, but also writing software to _help_ in performing
-analyses.
+encountering during my graduate research in the field... and Emacs. I
+care a lot about quality software, so I spend a lot of time not only
+doing actual data analysis, but also writing software to _help_ in
+performing analyses.
 
 My thesis analysis involves studying the production of a couple of
 elementary particles in proton-proton collisions at the [Large Hadron
