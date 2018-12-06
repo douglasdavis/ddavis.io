@@ -42,7 +42,7 @@
 
    In my Emacs rabbit hole I mentioned in my previous post, I decided
    to work on improving my Python development workflow. I recently
-   found the [[https://github.com/joaotavora/eglot][Eglot]] package for running an [[https://microsoft.github.io/language-server-protocol/][LSP]] in Emacs.
+   found the [[https://github.com/joaotavora/eglot][Eglot]] package for running a [[https://microsoft.github.io/language-server-protocol/][LSP]] in Emacs.
 
    The most vanilla setup for Eglot is just =M-x eglot= in a buffer
    editing a python file. This works wonderfully if the executable for

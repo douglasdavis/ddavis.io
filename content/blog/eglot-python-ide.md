@@ -7,7 +7,7 @@ draft = false
 
 In my Emacs rabbit hole I mentioned in my previous post, I decided
 to work on improving my Python development workflow. I recently
-found the [Eglot](https://github.com/joaotavora/eglot) package for running an [LSP](https://microsoft.github.io/language-server-protocol/) in Emacs.
+found the [Eglot](https://github.com/joaotavora/eglot) package for running a [LSP](https://microsoft.github.io/language-server-protocol/) in Emacs.
 
 The most vanilla setup for Eglot is just `M-x eglot` in a buffer
 editing a python file. This works wonderfully if the executable for
