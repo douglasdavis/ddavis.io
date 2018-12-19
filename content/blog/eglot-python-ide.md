@@ -1,6 +1,5 @@
 +++
 title = "Eglot based Emacs Python IDE"
-author = ["Douglas Davis"]
 date = 2018-12-05
 draft = false
 +++
@@ -55,8 +54,8 @@ file:
 
 This way I have a default `pyls` executable from my `base`
 Anaconda environment (which is potentially different on different
-machines). I then have a couple of functions to handling default
-Eglot python environments, where I
+machines). I then have a couple of functions to handle default
+Eglot python environments, where I:
 
 -   Make `use-package` install Eglot if necessary.
 -   Make sure `company-capf` is at the front of `company-backends`.
