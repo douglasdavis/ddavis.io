@@ -1,5 +1,6 @@
 +++
 title = "New Toy: ox-hugo"
+author = ["Douglas Davis"]
 date = 2018-12-04
 draft = false
 +++

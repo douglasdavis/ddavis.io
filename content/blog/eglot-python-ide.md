@@ -1,5 +1,6 @@
 +++
 title = "Eglot based Emacs Python IDE"
+author = ["Douglas Davis"]
 date = 2018-12-05
 draft = false
 +++

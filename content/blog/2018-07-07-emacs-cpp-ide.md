@@ -4,6 +4,12 @@ title: "Clangd based Emacs C++ IDE"
 date: 2018-07-07
 ---
 
+**This is now out of date!**
+
+Updated method here: [click](../eglot-cpp-ide)
+
+---
+
 I've seen a lot of posts on the
 [Emacs](https://old.reddit.com/r/emacs) and
 [C++](https://old.reddit.com/cpp) subreddits over the last few months
