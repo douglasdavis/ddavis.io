@@ -54,17 +54,15 @@ def good():
     arr = np.concatenate(arrs)
     return arr
 
-%time x = bad()
-%time y = good()
+%timeit bad()
+%timeit good()
 ```
 
 The output:
 
 ```none
-CPU times: user 2.69 s, sys: 1.84 s, total: 4.53 s
-Wall time: 2.31 s
-CPU times: user 490 ms, sys: 92.3 ms, total: 582 ms
-Wall time: 437 ms
+1.73 s ± 2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+247 ms ± 2.52 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 ```
 
 Quite the difference!
