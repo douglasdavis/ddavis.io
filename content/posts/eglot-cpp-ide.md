@@ -1,11 +1,12 @@
 +++
 title = "Eglot based Emacs C++ IDE with clangd"
+author = ["Douglas Davis"]
 date = 2019-01-07
 tags = ["emacs", "cpp"]
 draft = false
 +++
 
-I have a an [old post](https://ddavis.fyi/blog/2018-07-07-emacs-cpp-ide/) documenting my first attempt at turning Emacs
+I have a an [old post](https://ddavis.fyi/posts/2018-07-07-emacs-cpp-ide/) documenting my first attempt at turning Emacs
 into a C++ IDE with `clangd`. That post describes using two
 packages: `lsp-mode` and `lsp-clangd`. Those packages have evolved
 and now `clangd` usage is built into `lsp-mode`, so the post is a
