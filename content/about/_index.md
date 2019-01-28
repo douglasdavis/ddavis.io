@@ -1,7 +1,4 @@
----
-title: "About"
-menu: "main"
----
+# About
 
 I am a graduate student and Ph.D. candidate in Experimental Elementary
 Particle Physics at [Duke University](https://www.duke.edu/) where I
@@ -23,4 +20,4 @@ TRT, one of the ATLAS subdetectors which tracks the particles created
 in the collisions) software group from September 2017 to September
 2018.
 
-{{% figure src="/img/atlas.jpg" caption="Hook 'em, with the ATLAS Muon Spectrometer" %}}
+<img src="/img/atlas.jpg" style="max-width:35%;min-width:80px;float:center;" />

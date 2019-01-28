@@ -1,61 +1,34 @@
-baseURL = "https://ddavis.fyi/"
-title = "Doug Davis"
-theme = "manis"
+baseurl = "http://ddavis.fyi/"
+languageCode = "en-US"
+title = "ddavis.fyi"
+theme = "hugo-classic"
+googleAnalytics = ""
+ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
+preserveTaxonomyNames = true
+#enableEmoji = true
+footnotereturnlinkcontents = "↩"
+pygmentsCodeFences = true
+pygmentsStyle = "emacs"
 
-# Copyright notice. Note: You can use HTML tag here
-#copyright = "&copy; 2018 Douglas Davis"
-pluralizeListTitles = false
+[permalinks]
+    post = "/post/:year/:month/:day/:slug/"
 
-# Minimum number of posts before paginate navigation show up
-paginate = 10
-
-# Edit this if you want to translate your blog
-defaultContentLanguage = "en"
-
-
-# Chroma Syntax Highlighting
-pygmentsCodefences = true
-pygmentsCodefencesGuessSyntax = true
-pygmentsStyle = "pygments"
-
-[taxonomies]
-tag = "tags"
-
+[[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 1
+#[[menu.main]]
+#    name = "Posts"
+#    url = "/posts/"
+#    weight = 2
+[[menu.main]]
+    name = "Tags"
+    url = "/tags/"
+    weight = 3
+[[menu.feed]]
+    name = "Subscribe"
+    url = "/index.xml"
 [params]
-# If false, use minified CSS (ui.min.css)
-debugCSS = true
-# Custom CSS
-customCSS = []
-# Site meta description
-description = "ddavis.fyi"
-# Site's Tagline (Subtitle or Keyword)
-tagline = "for your information"
-# If true give attribution to this theme
-themeAttrib = false
-# URL to license file, can be outside of your domain
-#licenseURL = "/about/license"
-
-# Configure which section for Latest Posts
-postSection = "blog"
-
-# 404 Configuration
-#head404 = "Sorry, I can't find what you want."
-#sub404 = "Back to <a href='/'>Home</a>."
-
-# Color of your website's accent
-#colorTheme = "#ff8181"
-colorTheme = "#bf5700"
-
-# Maximum number of item in Latest Posts or Works
-latestCount = 3
-# Path to site's favicon image
-faviconImg = ""
-# Date format in item list
-dateFmt = "Jan 02, 2006"
-
-# Social Links
-email = "douglas.davis.092@gmail.com"
-github = "https://github.com/drdavis/"
-gitlab = "https://gitlab.cern.ch/ddavis/"
-twitter = "https://twitter.com/_ddavis_"
-linkedin = "https://www.linkedin.com/in/douglasrdavis/"
+    description = "ddavis.fyi"
+    footer = "[Mail](mailto:douglas.davis.092@gmail.com) | [GitHub](https://github.com/drdavis) | [CERN GitLab](https://gitlab.cern.ch/ddavis/) | [LinkedIn](https://www.linkedin.com/in/douglasrdavis/) | [Twitter](https://twitter.com/_ddavis_)"
+    custom_css = ["css/theme-override.css"]

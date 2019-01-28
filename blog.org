@@ -1,0 +1,215 @@
+#+HUGO_BASE_DIR: .
+#+HUGO_SECTION: posts/
+
+* Emacs
+
+** New Toy: ox-hugo                                                    :hugo:
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: first-ox-hugo
+   :EXPORT_DATE: 2018-12-04
+   :END:
+
+   I've recently fallen into a very deep Emacs-filled rabbit hole. It
+   started with the goal of cleaning up my Emacs =init.el= file, but
+   expanded to learning more Emacs Lisp and trying to get more out of
+   Org-mode. Now I'm typing this post in Org-mode with a new toy:
+   [[https://ox-hugo.scripter.co/][=ox-hugo=]]. This Emacs package makes it easy to create blog posts
+   from a single Org-file by seamlessly exporting second level
+   headlines to Hugo's Markdown syntax.
+
+   Setting up =ox-hugo= was incredibly easy. With MELPA already
+   configured, the only required addition to my init file was this:
+   #+BEGIN_SRC emacs-lisp :results silent
+     (use-package ox-hugo
+       :ensure t
+       :after ox)
+   #+END_SRC
+   Now, in the buffer I'm currently editing, I use the key-binding
+   =C-c C-e H H= to export a ready-to-go markdown file for Hugo to
+   parse.
+
+   Luckily before I fell down the =ox-hugo= rabbit hole my Emacs
+   configuration was already cleaned up to my liking, hopefully it
+   stays that way for a while! It can be found [[https://github.com/drdavis/dotfiles/blob/master/emacs/emacs-init.org][right here]] (you'll see
+   it's also written in Org-mode, with the Emacs Lisp blocks loaded
+   via =org-babel-load-file=).
+
+** Eglot based Emacs Python IDE                                :emacs:python:
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: eglot-python-ide
+   :EXPORT_DATE: 2018-12-05
+   :END:
+
+   In my Emacs rabbit hole I mentioned in my previous post, I decided
+   to work on improving my Python development workflow. I recently
+   found the [[https://github.com/joaotavora/eglot][Eglot]] package for running a [[https://microsoft.github.io/language-server-protocol/][LSP]] in Emacs.
+
+   The most vanilla setup for Eglot is just =M-x eglot= in a buffer
+   editing a python file. This works wonderfully if the executable for
+   the [[https://github.com/palantir/python-language-server][Python Language Server]] (=pyls=) is found. This works because
+   Eglot defines a list of server programs by default. You can see
+   this list with =M-: eglot-server-programs=
+
+*** Project Editing
+
+    I have a few python virtual/Anaconda environments I like to work
+    with. This is what =.dir-locals.el= is for:
+
+    #+BEGIN_SRC emacs-lisp :results silent
+      ((python-mode . ((eglot-server-programs    . ((python-mode "/path/to/env/bin/pyls")))
+                       (python-shell-interpreter . "/path/to/env/bin/python")
+                       (company-backends         . (company-capf))
+                       )))
+    #+END_SRC
+
+    where =/path/to/env= is the path to a virtual environment or
+    Anaconda environment (that of course has =python-language-server=
+    installed). I also define the path to my Python executable for
+    Emacs' builtin =python.el=. By default, =company-backends=
+    includes =company-capf= for =completion-at-point=, but I want to
+    make sure that's what is used because Eglot provides
+    =completion-at-point=. Eglot also has =pyls= as a =python-mode=
+    entry by default, but not to the virtual environment I want to
+    use; this is why I manually define the list of server programs.
+
+    When I open a buffer in the project I want to work in, I just call
+    =M-x eglot= and I'm up and running.
+
+*** Non-project Editing
+
+    If I'm not editing in a project that has an associated virtual
+    environment, I rely on some "sensible defaults" in my Emacs init
+    file:
+
+    #+BEGIN_SRC emacs-lisp :results silent
+      (defvar ddavis-default-pyls "~/Software/Python/anaconda3/bin/pyls"
+        "define a default pyls to be used")
+    #+END_SRC
+
+    This way I have a default =pyls= executable from my =base=
+    Anaconda environment (which is potentially different on different
+    machines). I then have a couple of functions to handle default
+    Eglot python environments, where I:
+
+    - Make =use-package= install Eglot if necessary.
+    - Make sure =company-capf= is at the front of =company-backends=.
+    - Make sure I add an Eglot server program entry pointing to my
+      =base= Anaconda =pyls= to the front of the
+      =eglot-server-programs= list.
+    - Add the desired hook.
+
+    #+BEGIN_SRC emacs-lisp :results silent
+      (defun ddavis/python-eglot-enable ()
+        "set variables and hook for eglot python IDE"
+        (interactive)
+        (use-package eglot
+          :ensure t
+          :config
+          (require 'eglot))
+        (setq company-backends
+              (cons 'company-capf
+                    (remove 'company-capf company-backends)))
+        (add-to-list 'eglot-server-programs
+                     `(python-mode ,ddavis-default-pyls))
+        (add-hook 'python-mode-hook 'eglot-ensure))
+
+      (defun ddavis/python-eglot-disable ()
+        "remove hook for eglot python"
+        (interactive)
+        (remove-hook 'python-mode-hook 'eglot-ensure))
+    #+END_SRC
+
+    You can see that I just bring =company-capf= to the front of the
+    =company-backends= list, and add my desired Anaconda based =pyls=
+    to front of the =eglot-server-programs= list.
+** Eglot based Emacs C++ IDE with clangd                          :emacs:cpp:
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: eglot-cpp-ide
+   :EXPORT_DATE: 2019-01-07
+   :END:
+
+   I have a an [[https://ddavis.fyi/blog/2018-07-07-emacs-cpp-ide/][old post]] documenting my first attempt at turning Emacs
+   into a C++ IDE with =clangd=. That post describes using two
+   packages: =lsp-mode= and =lsp-clangd=. Those packages have evolved
+   and now =clangd= usage is built into =lsp-mode=, so the post is a
+   bit outdated. I've also started to use [[https://github.com/joaotavora/eglot][Eglot]] (see previous post for
+   my Eglot Python IDE). So, let's put together an updated setup:
+
+*** Requirements
+
+   First, one needs to have =clangd= installed. These days, the 8.0
+   release of LLVM is a few months away, but =clangd= (part of the
+   =clang-tools-extra= LLVM project) is in rapid development and the
+   =HEAD= of the repository should be used. The [[https://llvm.org/docs/GettingStarted.html#for-developers-to-work-with-a-git-monorepo][installation
+   instructions]] from the LLVM documentation are easy to follow.
+
+   My C++ development happens on multiple machines. In my Emacs
+   configuration I keep a simple variable around to point to wherever
+   =clangd= is installed on various machines.
+
+   #+begin_src emacs-lisp :results silent
+     (defvar ddavis-clangd-exe (executable-find "clangd")
+       "clangd executable path")
+   #+END_SRC
+
+   By default I'm letting Emacs find it, but I have things like this
+   sprinkled around my configuration (pointing to a specific LLVM
+   installation not in my =PATH=):
+
+   #+begin_src emacs-lisp :results silent
+     (when (string= (system-name) "pion")
+       (setq ddavis-clangd-exe "~/Software/LLVM/releases/HEAD/bin/clangd"))
+   #+END_SRC
+
+*** Eglot setup
+
+   Eglot uses =project.el=, but I use [[https://github.com/bbatsov/projectile][Projectile]], so I start by
+   defining a function that will tell =project.el= to find a project
+   via Projectile, [[https://github.com/joaotavora/eglot/issues/129#issuecomment-444130367][thanks @wyuenho on GitHub]]:
+
+   #+begin_src emacs-lisp :results silent
+     (defun ddavis/projectile-proj-find-function (dir)
+       (let ((root (projectile-project-root dir)))
+         (and root (cons 'transient root))))
+   #+END_SRC
+
+   Now I have a function I call when I'm ready to start digging into a
+   C++ project which has an associated [[https://clang.llvm.org/docs/JSONCompilationDatabase.html][=compile_commands.json=]]:
+
+   #+begin_src emacs-lisp
+     (defun ddavis/cpp-eglot-enable ()
+       "enable variables and hooks for eglot cpp IDE"
+       (interactive)
+       (use-package eglot
+         :ensure t
+         :config
+         (require 'eglot))
+       (setq company-backends
+             (cons 'company-capf
+                   (remove 'company-capf company-backends)))
+       (projectile-mode t)
+       (with-eval-after-load 'project
+         (add-to-list 'project-find-functions
+                      'ddavis/projectile-proj-find-function))
+       (add-to-list 'eglot-server-programs
+                    `((c++-mode) ,ddavis-clangd-exe))
+       (add-hook 'c++-mode-hook 'eglot-ensure))
+   #+END_SRC
+
+   - I make sure that Eglot is installed via =use-package=.
+   - I make sure that the =completion-at-point= backend is used by
+     =company= (bring it to the front of the =company-backends= list).
+   - Make sure that =project.el= uses Projectile to find my project
+     definition (this is because I usually have C++ projects using git
+     submodules).
+   - Add my =clangd= executable to the =eglot-server-programs= list.
+   - Add the hook to automatically start Eglot.
+
+   If I don't want the hook anymore, I use this very simple function:
+
+   #+begin_src emacs-lisp :results silent
+     (defun ddavis/cpp-eglot-disable ()
+       "disable hook for eglot"
+       (interactive)
+       (remove-hook 'c++-mode-hook 'eglot-ensure))
+   #+END_SRC
