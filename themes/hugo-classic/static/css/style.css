@@ -33,7 +33,7 @@ output:
 .terms { font-size: .9em; }
 .menu, .article-meta, footer { text-align: center; }
 .title { font-size: 1.1em; }
-footer a { text-decoration: none; }
+footer a { text-decoration: none; font-size: 50%; font-family: "Fira Mono", "SF Mono", monospace; }
 
 .pull-left {
     float: left
@@ -110,3 +110,4 @@ table {
 table thead th { border-bottom: 1px solid #ddd; }
 th, td { padding: 5px; }
 tr:nth-child(even) { background: #eee }
+

@@ -31,4 +31,3 @@ pygmentsStyle = "emacs"
 [params]
     description = "ddavis.fyi"
     footer = "[Mail](mailto:douglas.davis.092@gmail.com) | [GitHub](https://github.com/drdavis) | [CERN GitLab](https://gitlab.cern.ch/ddavis/) | [LinkedIn](https://www.linkedin.com/in/douglasrdavis/) | [Twitter](https://twitter.com/_ddavis_)"
-    custom_css = ["css/theme-override.css"]
