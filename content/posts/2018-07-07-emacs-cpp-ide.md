@@ -45,7 +45,7 @@ Here's a quick rundown of the new configuration:
 Ensure that `company-lsp` is installed and enable company-mode (I
 choose a global configuration):
 
-```lisp
+```elisp
 (use-package company-lsp
   :ensure t
   :config
@@ -56,7 +56,7 @@ choose a global configuration):
 
 Ensure that `lsp-mode` and `lsp-ui` are installed and required:
 
-```lisp
+```elisp
 (use-package lsp-mode
   :ensure t
   :config
@@ -75,7 +75,7 @@ PR](https://github.com/melpa/melpa/pull/5593) to add lsp-clangd to
 melpa). Be sure to set the proper clangd executable path and add a
 hook to C++ mode to enable it:
 
-```lisp
+```elisp
 (use-package lsp-clangd
   :load-path
   "~/.emacs.d/lsp-clangd"
