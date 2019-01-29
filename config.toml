@@ -8,7 +8,7 @@ preserveTaxonomyNames = true
 #enableEmoji = true
 footnotereturnlinkcontents = "↩"
 pygmentsCodeFences = true
-pygmentsStyle = "emacs"
+pygmentsStyle = "pygments"
 
 [permalinks]
     post = "/post/:year/:month/:day/:slug/"
