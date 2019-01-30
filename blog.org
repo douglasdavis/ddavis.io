@@ -1,5 +1,6 @@
 #+HUGO_BASE_DIR: .
 #+HUGO_SECTION: posts/
+#+options: author:nil
 
 * Emacs
 
@@ -213,3 +214,45 @@
        (interactive)
        (remove-hook 'c++-mode-hook 'eglot-ensure))
    #+END_SRC
+** Deploying to PyPI with sr.ht                                      :python:
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: deploy-pypi-srht
+   :EXPORT_DATE: 2019-01-30
+   :END:
+
+   I recently started to use [[https://git.sr.ht/][git.sr.ht]] in combination with
+   [[https://builds.sr.ht/][builds.sr.ht]] for developing a small python project and running CI
+   tests. The [[https://sr.ht/][sr.ht]] ecosystem is great and I'm proud to [[https://man.sr.ht/billing-faq.md][financially
+   contribute]] to the effort a bit -- it's been a joy to use so far
+   (even while in a "heavy development" phase).
+
+   I've never deployed a project to [[https://pypi.org/][PyPI]], but after learning more
+   about the =builds.sr.ht= CI system (specifically the ability to use
+   secrets) I decided to give it a shot. Implementing simple unit
+   tests with =builds.sr.ht= was super easy, so I hoped adding PyPI
+   deployment would be pretty simple -- it definitely is.
+
+*** Setting up your secret PyPI credentials
+
+    First create a temporary file (that will be our =pypirc= file, [[https://packaging.python.org/guides/distributing-packages-using-setuptools/#uploading-your-project-to-pypi][you
+    can read more here]] if this doesn't sound familiar) with the
+    following contents:
+
+    #+begin_src
+    [pypi]
+    username = your_username
+    password = your_password
+    #+end_src
+
+    Travel to https://builds.sr.ht/secrets and add it. Just give it a
+    name, select the File type, make the path =~/.pypirc=, make the
+    permission mode =600=, and upload it (get rid of the copy on your
+    local file system if you don't want to keep a local
+    =~/.pypirc=). The fields will look similar to this:
+
+    #+begin_center
+    #+attr_html: :width 250
+    [[/img/srhtpypi.png]]
+    #+end_center
+
+*** The build manifest

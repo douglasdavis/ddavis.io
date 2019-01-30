@@ -1,6 +1,5 @@
 +++
 title = "Eglot based Emacs C++ IDE with clangd"
-author = ["Douglas Davis"]
 date = 2019-01-07
 tags = ["emacs", "cpp"]
 draft = false
