@@ -1,6 +1,6 @@
-baseurl = "http://ddavis.fyi/"
+baseurl = "http://ddavis.io/"
 languageCode = "en-US"
-title = "ddavis.fyi"
+title = "ddavis.io"
 theme = "hugo-classic"
 googleAnalytics = ""
 ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
@@ -29,5 +29,5 @@ pygmentsStyle = "pygments"
     name = "Subscribe"
     url = "/index.xml"
 [params]
-    description = "ddavis.fyi"
+    description = "ddavis.io"
     footer = "[Mail](mailto:douglas.davis.092@gmail.com) | [GitHub](https://github.com/drdavis) | [CERN GitLab](https://gitlab.cern.ch/ddavis/) | [LinkedIn](https://www.linkedin.com/in/douglasrdavis/) | [Twitter](https://twitter.com/_ddavis_)"

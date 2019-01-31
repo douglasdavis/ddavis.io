@@ -41,7 +41,7 @@ else](https://github.com/jamesroutley/routley.io)'s
 [Hugo](https://gohugo.io)
 [theme](https://themes.gohugo.io/manis-hugo-theme/), hacked it up bit
 for myself, and set up a
-[repository](https://github.com/drdavis/ddavis.fyi) to be built by
+[repository](https://github.com/drdavis/ddavis.io) to be built by
 [Netlify](https://www.netlify.com/) ~~[GitHub
 pages](https://pages.github.com).~~
 

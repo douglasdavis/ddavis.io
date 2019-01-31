@@ -1,4 +1,3 @@
-## ddavis.fyi
+## ddavis.io
 
 Personal website and blog
-
