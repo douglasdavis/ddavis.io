@@ -1,4 +1,4 @@
-baseurl = "http://ddavis.io/"
+baseurl = "https://ddavis.io/"
 languageCode = "en-US"
 title = "ddavis.io"
 theme = "hugo-classic"
