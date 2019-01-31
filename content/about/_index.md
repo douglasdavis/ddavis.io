@@ -1,14 +1,17 @@
-# About
+---
+title: About
+---
 
-I am a graduate student and Ph.D. candidate in Experimental Elementary
-Particle Physics at [Duke University](https://www.duke.edu/) where I
-work in the [ATLAS](http://atlas.cern/) group. My favorite parts of
-experimental particle physics are writing software and analyzing
-data. My blog posts are (mostly) born from technical things I'm
-encountering during my graduate research in the field... and Emacs. I
-care a lot about quality software, so I spend a lot of time not only
-doing actual data analysis, but also writing software to _help_ in
-performing analyses.
+I'm Doug Davis, a Ph.D. student in Experimental Elementary Particle
+Physics at [Duke University](https://www.duke.edu/). Within the
+Physics Department I work in the [ATLAS](https://atlas.cern/)
+group. Before starting at Duke, I studied some neutrino physics at The
+University of Texas at Austin. My favorite parts of experimental
+particle physics are writing software and analyzing data. My blog
+posts are (mostly) born from technical things I'm encountering during
+my graduate research in the field... and Emacs. I care a lot about
+quality software, so I spend a lot of time not only doing actual data
+analysis, but also writing software to _help_ in performing analyses.
 
 My thesis analysis involves studying the production of a couple of
 elementary particles in proton-proton collisions at the [Large Hadron
@@ -19,4 +22,6 @@ as deputy coordinator in the transition radiation tracker (or TRT, one
 of the ATLAS subdetectors which tracks the particles created in the
 collisions) software group from September 2017 to September 2018.
 
-<img src="/img/atlas.jpg" style="max-width:50%;min-width:80px;float:center;" />
+<center>
+{{< figure src="/img/atlas.jpg" width="320px" caption="Hook 'em Horns, in front of the ATLAS detector" >}}
+</center>

@@ -1,3 +1,3 @@
 ## ddavis.io
 
-Personal website and blog
+Personal website/blog
