@@ -22,14 +22,11 @@ copying my `arr` variable `len(files)` times to construct a final
 `arr` (and every iteration of the loop `arr` was getting larger). This
 was of course unnecessary.
 
-A better way to do it:
+A better (and more pythonic) way to do it:
 
 ```python
 files = list_of_files()
-arrs = []
-for f in files:
-    iarr = get_arr_from_file(f)
-    arrs.append(iarr)
+arrs = [get_arr_from_file(f) for f in files]
 arr = np.concatenate(arrs)
 ```
 
@@ -40,7 +37,6 @@ A quick test in IPython:
 ```python
 import numpy as np
 
-
 def bad():
     arr = np.array([], dtype=np.float32)
     for i in range(100):
@@ -48,15 +44,9 @@ def bad():
         arr = np.concatenate([arr, iarr])
     return arr
 
-
 def good():
-    arrs = []
-    for i in range(100):
-        iarr = np.random.randn(100000)
-        arrs.append(iarr)
-    arr = np.concatenate(arrs)
-    return arr
-
+    arrs = [np.random.randn(100000) for i in range(100)]
+    return np.concatenate(arrs)
 
 %timeit bad()
 %timeit good()
