@@ -1,7 +1,7 @@
 +++
 title = "Introducing pygram11"
 date = 2019-03-04
-tags = ["python", "cpp", "hep"]
+tags = ["python", "numpy", "cpp", "hep"]
 draft = false
 +++
 
