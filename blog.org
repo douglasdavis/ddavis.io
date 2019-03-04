@@ -214,7 +214,7 @@
        (interactive)
        (remove-hook 'c++-mode-hook 'eglot-ensure))
    #+END_SRC
-** Introducing pygram11                                      :python:cpp:hep:
+** Introducing pygram11                                :python:numpy:cpp:hep:
    :PROPERTIES:
    :EXPORT_FILE_NAME: introducing-pygram11
    :EXPORT_DATE: 2019-03-04
