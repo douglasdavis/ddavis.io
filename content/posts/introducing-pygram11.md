@@ -19,10 +19,10 @@ histograms (both fixed and variable bin width in one and two
 dimensions) which are (optionally) accelerated with [OpenMP](https://www.openmp.org/). To do
 it in Python, I've used [pybind11](https://github.com/pybind/pybind11). Pygram11 can essentially be a
 drop-in replacement for `numpy.histogram` and `numpy.histogram2d`,
-while reaching speeds 20x faster (for a 1D histogram of a array of
+while reaching speeds 20x faster (for a 1D histogram of an array of
 length 10,000) to almost 100x faster than NumPy (for a 2D histogram
-of a very large dataset). The APIs are quite similar (with slightly
-different return styles). On top of that, the
+of 100 million \\((x\_i, y\_i)\\) pairs). The APIs are quite similar
+(with slightly different return styles). On top of that, the
 sum-of-weights-squared calculation is a "first class citizen" in
 pygram11 (see my [NumPy Histogram tricks for HEP](https://ddavis.io/posts/2018-02-08-numpy-histograms/) post).
 
@@ -63,3 +63,11 @@ bins = np.logspace(0.1, 1.0, 10, endpoint=True)
 
 h = histogram(x, bins=bins, omp=True)
 ```
+
+
+## Future plans {#future-plans}
+
+I hope to eventually spend some time potentially optimizing the
+OpenMP usage. I think there is some room for improvement there. I
+would also like to add some optional visualization utilities,
+we'll see.
