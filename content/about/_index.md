@@ -23,5 +23,5 @@ of the ATLAS subdetectors which tracks the particles created in the
 collisions) software group from September 2017 to September 2018.
 
 <center>
-{{< figure src="/img/atlas.jpg" width="320px" caption="Hook 'em Horns, in front of the ATLAS detector" >}}
+{{< figure src="/img/atlas.jpg" width="320px" caption="Me, in front of the ATLAS detector (with my <a href=\"https://en.wikipedia.org/wiki/Hook_%27em_Horns\">horns up</a>)." >}}
 </center>
