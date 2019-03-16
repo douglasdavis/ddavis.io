@@ -6,12 +6,13 @@ I'm Doug Davis, a Ph.D. student in Experimental Elementary Particle
 Physics at [Duke University](https://www.duke.edu/). Within the
 Physics Department I work in the [ATLAS](https://atlas.cern/)
 group. Before starting at Duke, I studied some neutrino physics at The
-University of Texas at Austin. My favorite parts of experimental
-particle physics are writing software and analyzing data. My blog
-posts are (mostly) born from technical things I'm encountering during
-my graduate research in the field... and Emacs. I care a lot about
-quality software, so I spend a lot of time not only doing actual data
-analysis, but also writing software to _help_ in performing analyses.
+University of Texas at Austin🤘. My favorite parts of
+experimental particle physics are writing software and analyzing
+data. My blog posts are (mostly) born from technical things I'm
+encountering during my graduate research in the field... and Emacs. I
+care a lot about quality software, so I spend a lot of time not only
+doing actual data analysis, but also writing software to _help_ in
+performing analyses.
 
 My thesis analysis involves studying the production of a couple of
 elementary particles in proton-proton collisions at the [Large Hadron
