@@ -134,7 +134,7 @@ binary format is being read directly into `numpy` arrays[^2].
 
 There is _absolutely_ a place for the C++ code. If I wanted to apply a
 complex set of requirements to select different objects _above_ the
-hit level but based on hit properties, I need this structure. If we
+hit level (but based on hit properties), I need this structure. If we
 had a perfectly columnar data format (each event as a row in a table
 and a column for every feature), the hit information would be
 duplicated in multiple places because a low level hit may be
