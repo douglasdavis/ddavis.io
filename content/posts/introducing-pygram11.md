@@ -14,15 +14,17 @@ potentially help contribute to the scientific computing community
 in the same way.
 
 This python library aims to make generating a lot of histograms a
-quick task. To do this I've implemented the ability to calculate
-histograms (both fixed and variable bin width in one and two
-dimensions) which are (optionally) accelerated with [OpenMP](https://www.openmp.org/). To do
-it in Python, I've used [pybind11](https://github.com/pybind/pybind11). Pygram11 can essentially be a
-drop-in replacement for `numpy.histogram` and `numpy.histogram2d`,
-while reaching speeds 20x faster (for a 1D histogram of an array of
-length 10,000) to almost 100x faster than NumPy (for a 2D histogram
-of 100 million \\((x\_i, y\_i)\\) pairs). The APIs are quite similar
-(with slightly different return styles). On top of that, the
+quick task (targeting samples of size \\(O(10^6)\\) and larger), while
+supporting weighted statistical uncertainties on the bin counts. To
+do this I've implemented the ability to calculate histograms (both
+fixed and variable bin width in one and two dimensions) which are
+(optionally) accelerated with [OpenMP](https://www.openmp.org/). To do it in Python, I've used
+[pybind11](https://github.com/pybind/pybind11). Pygram11 can essentially be a drop-in replacement for
+`numpy.histogram` and `numpy.histogram2d`, while reaching speeds
+20x faster (for a 1D histogram of an array of length 10,000) to
+almost 100x faster than NumPy (for a 2D histogram of 100 million
+\\((x\_i, y\_i)\\) pairs). The APIs are quite similar (with slightly
+different return styles). On top of that, the
 sum-of-weights-squared calculation is a "first class citizen" in
 pygram11 (see my [NumPy Histogram tricks for HEP](https://ddavis.io/posts/2018-02-08-numpy-histograms/) post).
 
@@ -47,10 +49,13 @@ h_1d = histogram(x, bins=20, range=(-4, 4), omp=True)
 h_2d = histogram2d(x, y, bins=[20, 40], range=[[-4, 4], [-3, 3]], omp=True)
 
 h_1d, sumw2_1d = histogram(x, bins=20, range=(-4, 4), weights=w, omp=True)
-h_2d, sumw2_2d = histogram2d(
-    x, y, bins=[20, 40], range=[[-4, 4], [-3, 3]], weights=w, omp=True
-)
+h_2d, sumw2_2d = histogram2d(x, y, bins=[20, 40], range=[[-4, 4], [-3, 3]], weights=w, omp=True)
 ```
+
+Notice the sum-of-weights squared is returned if the weights
+argument is provided with an array of sample weights. Checkout
+some [benchmarks](https://pygram11.readthedocs.io/en/stable/purpose.html#some-benchmarks) to see how the \`omp\` argument can speed up the
+calculations.
 
 And some variable bin histogramming, uniform logarithmic:
 
