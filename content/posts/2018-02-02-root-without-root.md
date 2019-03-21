@@ -100,8 +100,8 @@ for ( const auto& event : eventContainer() ) {
         // loop over container
         for ( const auto& hit : hitContainer ) {
           // get dynamically set properties of the hit and finally use them
-          auto hitFoo = hit->getAuxiliaryData("Foo");
-          auto hitBar = hit->getAuxiliaryData("Bar");
+          auto hitFoo = hit->getAuxiliaryData("foo");
+          auto hitBar = hit->getAuxiliaryData("bar");
           if ( hitBar == 42 ) {
             fooHistogram.Fill(hitFoo);
           }
