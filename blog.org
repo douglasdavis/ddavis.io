@@ -247,6 +247,12 @@
    Open issues, PRs, email me, tweet me, or write something even
    better.
 
+   To try it out (with OpenMP support), all you need is
+
+   #+begin_src
+   conda install pygram11 -c conda-forge
+   #+end_src
+
 *** In action
 
     Some fixed bin histogramming:

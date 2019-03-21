@@ -32,6 +32,12 @@ So, please go checkout the [documentation](https://pygram11.readthedocs.io/) and
 Open issues, PRs, email me, tweet me, or write something even
 better.
 
+To try it out (with OpenMP support), all you need is
+
+```nil
+conda install pygram11 -c conda-forge
+```
+
 
 ## In action {#in-action}
 
