@@ -121,11 +121,12 @@ container, I can simply write:
 import uproot
 import matplotlib.pyplot as plt
 
-datatree = uproot.open("myfile.root")["DataTree"]
-Bar_arr = datatree.array("InnerDetector.Hits.AuxData.Bar")
-selected_Foo_arr = datatree.array("InnerDetector.Hits.AuxData.Foo")[Bar_arr == 42]
+datatree = uproot.open("myfile.root")["data"]
+bar = datatree.array("innerdetector.hits.auxdata.bar")
+foo = datatree.array("innerdetector.hits.auxdata.foo")
+selected_foo = foo[bar == 42]
 
-plt.hist(selected_Foo_arr, bins=20)
+plt.hist(selected_foo, bins=20)
 plt.show()
 ```
 
