@@ -1,9 +1,16 @@
-    <footer>
-      {{ partial "foot_custom.html" . }}
-      {{ with .Site.Params.footer }}
-      <hr/>
-      {{ . | markdownify }}
-      {{ end }}
-    </footer>
-  </body>
+<footer>
+  {{ partial "foot_custom.html" . }}
+  {{ with .Site.Params.footer }}
+  <hr/>
+  {{ . | markdownify }}
+  {{ end }}
+  <center>
+    <a href="mailto:ddavis@ddavis.io"><i class="fas fa-paper-plane"></i></a> |
+    <a href="https://github.com/drdavis"><i class="fab fa-github"></i></a> |
+    <a href="https://gitlab.cern.ch/ddavis"><i class="fab fa-gitlab"></i></a> |
+    <a href="https://www.linkedin.com/in/douglasrdavis"><i class="fab fa-linkedin-in"></i></a> |
+    <a href="https://twitter.com/_ddavis_"><i class="fab fa-twitter"></i></a>
+  </center>
+</footer>
+</body>
 </html>

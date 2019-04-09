@@ -30,4 +30,4 @@ pygmentsStyle = "pygments"
     url = "/index.xml"
 [params]
     description = "ddavis.io"
-    footer = "[Mail](mailto:ddavis@ddavis.io) | [GitHub](https://github.com/drdavis) | [CERN GitLab](https://gitlab.cern.ch/ddavis/) | [LinkedIn](https://www.linkedin.com/in/douglasrdavis/) | [Twitter](https://twitter.com/_ddavis_)"
+    footer = " " #"[Mail](mailto:ddavis@ddavis.io) | [GitHub](https://github.com/drdavis) | [CERN GitLab](https://gitlab.cern.ch/ddavis/) | [LinkedIn](https://www.linkedin.com/in/douglasrdavis/) | [Twitter](https://twitter.com/_ddavis_)"
