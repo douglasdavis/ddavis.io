@@ -299,24 +299,23 @@
 ** Deploying to PyPI with sr.ht                                      :python:
    :PROPERTIES:
    :EXPORT_FILE_NAME: deploy-pypi-srht
-   :EXPORT_DATE: 2019-01-30
+   :EXPORT_DATE: 2019-04-10
    :END:
 
-   I recently started to use [[https://git.sr.ht/][git.sr.ht]] in combination with
-   [[https://builds.sr.ht/][builds.sr.ht]] for developing a small python project and running CI
-   tests. The [[https://sr.ht/][sr.ht]] ecosystem is great and I'm proud to [[https://man.sr.ht/billing-faq.md][financially
-   contribute]] to the effort a bit -- it's been a joy to use so far
-   (even while in a "heavy development" phase).
-
-   I've never deployed a project to [[https://pypi.org/][PyPI]], but after learning more
-   about the =builds.sr.ht= CI system (specifically the ability to use
-   secrets) I decided to give it a shot. Implementing simple unit
-   tests with =builds.sr.ht= was super easy, so I hoped adding PyPI
-   deployment would be pretty simple -- it definitely is.
+   I recently started to use [[https://builds.sr.ht][builds.sr.ht]] (part of the [[https://sourcehut.org][sourcehut.org]]
+   stack) to run continuous integration for a small python
+   project. The project eventually reached a releasable state, and I
+   wanted to automate that task. I had never deployed a project to
+   [[https://pypi.org/][PyPI]], but after learning more about the builds.sr.ht CI system
+   (specifically the ability to use secrets) I decided to give it a
+   shot. Running simple unit tests with builds.sr.ht was super easy,
+   so I hoped adding PyPI deployment would be pretty simple -- it
+   definitely is.
 
 *** Setting up your secret PyPI credentials
 
-    First create a temporary file (that will be our =pypirc= file, [[https://packaging.python.org/guides/distributing-packages-using-setuptools/#uploading-your-project-to-pypi][you
+    First create a temporary file (that will be our =pypirc= file,
+    [[https://packaging.python.org/guides/distributing-packages-using-setuptools/#uploading-your-project-to-pypi][you
     can read more here]] if this doesn't sound familiar) with the
     following contents:
 
@@ -330,11 +329,69 @@
     name, select the File type, make the path =~/.pypirc=, make the
     permission mode =600=, and upload it (get rid of the copy on your
     local file system if you don't want to keep a local
-    =~/.pypirc=). The fields will look similar to this:
-
-    #+begin_center
-    #+attr_html: :width 250
-    [[/img/srhtpypi.png]]
-    #+end_center
+    =~/.pypirc=).
 
 *** The build manifest
+
+    In the =tasks= section of the build manifest we're just going to
+    add a =deploy= step. In the =build= step, where I setup my python
+    environment, I make sure to install =twine= (necessary for
+    uploading to PyPI).
+
+    #+begin_src
+      image: ...
+      packages:
+        - ...
+      sources:
+        - ...
+      secrets:
+        - abcdefgh-ijkl-lmno-pqrx-tuvwxyz12345
+      tasks:
+        - build: |
+            python -m venv cienv
+            pip install pytest twine setuptools
+            cd myproject
+            pip install .
+        - test: |
+            ...
+        - deploy: |
+            source cienv/bin/activate
+            cd myproject
+            python setup.py sdist
+            python .ci-scripts/srht-pypi.py
+    #+end_src
+
+    For this example I'm only building a =sdist= for my project. In
+    the repository I have a directory called =.ci-scripts= with a
+    script to handle the =PyPI= upload. The script ensures that I only
+    upload to PyPI if the repository git hash is on a tag, and the
+    name of the tag is the same as the version of the python project
+    (the versions and tags are formatted =X.Y.Z=). Here are the
+    contents of that script:
+
+    #+begin_src python
+      import subprocess
+      import myproject.version
+      import sys
+
+      def main():
+          res = subprocess.run(['git', 'describe'], stdout=subprocess.PIPE)
+          describe_out = res.stdout.decode('utf-8').split('-')
+          print(describe_out)
+          if len(describe_out) > 1:
+              return 0
+          elif myproject.version.version == describe_out[0].strip():
+              res = subprocess.run('twine upload dist/*', shell=True)
+              return res.returncode
+          else:
+              return 0;
+
+      if __name__ == '__main__':
+          main()
+    #+end_src
+
+*** Projects using this workflow
+
+    As of writing this post I have two projects deployed to PyPI using this method:
+    - https://github.com/drdavis/pygram11
+    - https://github.com/drdavis/twaml
