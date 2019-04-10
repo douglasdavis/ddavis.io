@@ -54,6 +54,7 @@ secrets:
 tasks:
   - build: |
       python -m venv cienv
+      source cienv/bin/activate
       pip install pytest twine setuptools
       cd myproject
       pip install .
