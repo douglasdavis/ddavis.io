@@ -69,7 +69,7 @@ tasks:
 
 For this example I'm only building a `sdist` for my project. In
 the repository I have a directory called `.ci-scripts` with a
-script to handle the `PyPI` upload. The script ensures that I only
+script to handle the PyPI upload. The script ensures that I only
 upload to PyPI if the repository git hash is on a tag, and the
 name of the tag is the same as the version of the python project
 (the versions and tags are formatted `X.Y.Z`). Here are the
