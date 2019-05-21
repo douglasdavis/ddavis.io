@@ -60,11 +60,11 @@ header ul, header ol {
 }
 
 header nav {
-    padding: 0 0.5rem
+    padding: 0.2rem 0.2rem;
 }
 
 header a {
-    padding: 0 0.5rem;
+    padding: 0 0.25rem;
 }
 
 
