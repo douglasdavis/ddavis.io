@@ -26,7 +26,7 @@ pygmentsStyle = "pygments"
     url = "/tags/"
     weight = 3
 [[menu.feed]]
-    name = "Subscribe"
+    name = "rss"
     url = "/index.xml"
 [params]
     description = "ddavis.io"
