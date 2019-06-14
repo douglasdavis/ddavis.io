@@ -83,29 +83,31 @@ to ATLAS code, but with a few made up function names):
 ```cpp
 Histogram fooHistogram(/* some constructor */);
 
-for ( const auto& event : eventContainer() ) {
+for (const auto& event : eventContainer()) {
   // grab particle container
-  auto particleContainer = event->getParticleContainer();
+  const ns::ParticleContainer* particleContainer = event->getParticleContainer();
   // loop over particles
-  for ( const auto& particle : particleContainer ) {
+  for (const auto& particle : particleContainer) {
     // get link to track and make sure valid
     auto trackLink = getAssociatedTrackLink(particle);
-    if ( trackLink.isValid() ) {
-      // dereference link to get actual object (the track)
-      auto track = *trackLink;
-      // get link to hit container and make sure valid
-      auto hitContainerLink = getAssociatedHitsLink(track);
-      if ( hitContainerLink.isValid() ) {
-        auto hitContainer = *hitContainerLink;
-        // loop over container
-        for ( const auto& hit : hitContainer ) {
-          // get dynamically set properties of the hit and finally use them
-          auto hitFoo = hit->getAuxiliaryData("foo");
-          auto hitBar = hit->getAuxiliaryData("bar");
-          if ( hitBar == 42 ) {
-            fooHistogram.Fill(hitFoo);
-          }
-        }
+    if (!trackLink.isValid()) {
+      continue;
+    }
+    // dereference link to get actual object (the track pointer)
+    const ns::Track* track = *trackLink;
+    // get link to hit container and make sure valid
+    auto hitContainerLink = getAssociatedHitsLink(track);
+    if (!hitContainerLink.isValid()) {
+      continue;
+    }
+    const ns::HitContainer* hitContainer = *hitContainerLink;
+    // loop over container
+    for (const auto& hit : hitContainer) {
+      // get dynamically set properties of the hit and finally use them
+      float hitFoo = hit->getAuxiliaryData<float>("foo");
+      float hitBar = hit->getAuxiliaryData<float>("bar");
+      if (hitBar == 42) {
+        fooHistogram.Fill(hitFoo);
       }
     }
   }

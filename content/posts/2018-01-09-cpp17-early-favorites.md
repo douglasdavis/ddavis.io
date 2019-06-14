@@ -36,14 +36,14 @@ For multiple returns in C++ 11 and 14 we had to use
 
 ```cpp
 auto foo() {
-  return std::make_tuple(1,2.0,'3');
+  return std::make_tuple(1, 2.0, '3');
 }
 
 int main() {
   int i;
   float j;
   char k;
-  std::tie(i,j,k) = foo();
+  std::tie(i, j, k) = foo();
   // ...
 }
 ```
@@ -63,28 +63,28 @@ locked into using the `first` and `second` members of
 
 ```cpp
 int main() {
-  std::map<int,float> myMap {{1,1.1},{2,2.2}};
-  for ( const auto& entry : myMap ) {
-    doSomething(entry.first,entry.second);
+  std::map<int,float> myMap {{1,1.1}, {2,2.2}};
+  for (const auto& entry : myMap) {
+    doSomething(entry.first, entry.second);
   }
   // ...
 }
 ```
 
-With structured bindings, we have something a bit more intuitive with
-less boilerplate:
+With structured bindings, we have something a bit more intuitive and
+less verbose:
 
 ```cpp
 int main() {
-  std::map<int,float> myMap {{1,1.1},{2,2.2}};
-  for ( const auto& [i, j] : myMap ) {
-    doSomething(i,j);
+  std::map<int,float> myMap {{1,1.1}, {2,2.2}};
+  for (const auto& [i, j] : myMap) {
+    doSomething(i, j);
   }
   // ...
 }
 ```
 
-For even more boilerplate, go back to C++03 container looping with
+For even more verbosity, go back to C++03 container looping with
 iterators :)
 
 ## The Filesystem Library
@@ -111,9 +111,9 @@ std::vector<std::string> createDataset(const std::string& path_name,
                                        const std::string& exten) {
   std::vector<std::string> dataset;
   auto itr = fs::directory_iterator(path_name);
-  for ( const auto& itr : fs::directory_iterator(path_name) ) {
+  for (const auto& itr : fs::directory_iterator(path_name)) {
     auto ext = itr.path().extension().string();
-    if ( ext == exten && !fs::is_directory(itr.path()) ) {
+    if (ext == exten && !fs::is_directory(itr.path())) {
       dataset.push_back(itr.path().string());
     }
   }
@@ -121,7 +121,7 @@ std::vector<std::string> createDataset(const std::string& path_name,
 }
 
 PhysicsResult graduate() {
-  auto dataset = createDataset("/path/to/dir/with/files",".root");
+  auto dataset = createDataset("/path/to/dir/with/files", ".root");
   // dataset will be a a vector containing strings ending in .root, e.g.
   // -- /path/to/dir/with/files/file1.root
   // -- /path/to/dir/with/files/file2.root
@@ -158,14 +158,14 @@ multiple times.
 ```cpp
 template <typename T>
 void analyzeTracks(const std::vector<T>& container) {
-  for ( const auto& object : container ) {
-    if constexpr ( std::is_same_v<T,Electron> ) {
+  for (const auto& object : container) {
+    if constexpr (std::is_same_v<T,Electron>) {
       doElectronAnalysis(getTrack(object));
     }
-    else if constexpr ( std::is_same_v<T,Muon> ) {
+    else if constexpr (std::is_same_v<T,Muon>) {
       doMuonAnalysis(getTrack(object));
     }
-    else if constexpr ( std::is_same_v<T,Track> ) {
+    else if constexpr (std::is_same_v<T,Track>) {
       doStandardAnalysis(object)
     }
   }
