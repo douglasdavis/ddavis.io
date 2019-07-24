@@ -6,7 +6,7 @@ draft = false
 +++
 
 I'm very happy to release my first real open source software
-project: [pygram11](https://github.com/drdavis/pygram11). I've been writing software for a while now, but
+project: [pygram11](https://github.com/douglasdavis/pygram11). I've been writing software for a while now, but
 it's mostly been within the confines of a
 physics-experiment-specific use case. In that time I've used a lot
 of other developers' software, so it feels quite nice to
@@ -28,7 +28,7 @@ different return styles). On top of that, the
 sum-of-weights-squared calculation is a "first class citizen" in
 pygram11 (see my [NumPy Histogram tricks for HEP](https://ddavis.io/posts/2018-02-08-numpy-histograms/) post).
 
-So, please go checkout the [documentation](https://pygram11.readthedocs.io/) and [GitHub repository](https://github.com/drdavis/pygram11)!
+So, please go checkout the [documentation](https://pygram11.readthedocs.io/) and [GitHub repository](https://github.com/douglasdavis/pygram11)!
 Open issues, PRs, email me, tweet me, or write something even
 better.
 

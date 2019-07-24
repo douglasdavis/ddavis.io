@@ -101,5 +101,5 @@ if __name__ == '__main__':
 
 As of writing this post I have two projects deployed to PyPI using this method:
 
--   <https://github.com/drdavis/pygram11>
--   <https://github.com/drdavis/twaml>
+-   <https://github.com/douglasdavis/pygram11>
+-   <https://github.com/douglasdavis/twaml>

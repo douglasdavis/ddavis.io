@@ -32,7 +32,7 @@
 
    Luckily before I fell down the =ox-hugo= rabbit hole my Emacs
    configuration was already cleaned up to my liking, hopefully it
-   stays that way for a while! It can be found [[https://github.com/drdavis/dotfiles/blob/master/emacs/emacs-init.org][right here]] (you'll see
+   stays that way for a while! It can be found [[https://github.com/douglasdavis/dotfiles/blob/master/emacs/emacs-init.org][right here]] (you'll see
    it's also written in Org-mode, with the Emacs Lisp blocks loaded
    via =org-babel-load-file=).
 
@@ -222,7 +222,7 @@
    :END:
 
    I'm very happy to release my first real open source software
-   project: [[https://github.com/drdavis/pygram11][pygram11]]. I've been writing software for a while now, but
+   project: [[https://github.com/douglasdavis/pygram11][pygram11]]. I've been writing software for a while now, but
    it's mostly been within the confines of a
    physics-experiment-specific use case. In that time I've used a lot
    of other developers' software, so it feels quite nice to
@@ -244,7 +244,7 @@
    sum-of-weights-squared calculation is a "first class citizen" in
    pygram11 (see my [[https://ddavis.io/posts/2018-02-08-numpy-histograms/][NumPy Histogram tricks for HEP]] post).
 
-   So, please go checkout the [[https://pygram11.readthedocs.io/][documentation]] and [[https://github.com/drdavis/pygram11][GitHub repository]]!
+   So, please go checkout the [[https://pygram11.readthedocs.io/][documentation]] and [[https://github.com/douglasdavis/pygram11][GitHub repository]]!
    Open issues, PRs, email me, tweet me, or write something even
    better.
 
@@ -395,5 +395,5 @@
 *** Projects using this workflow
 
     As of writing this post I have two projects deployed to PyPI using this method:
-    - https://github.com/drdavis/pygram11
-    - https://github.com/drdavis/twaml
+    - https://github.com/douglasdavis/pygram11
+    - https://github.com/douglasdavis/twaml

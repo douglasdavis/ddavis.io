@@ -28,6 +28,6 @@ parse.
 
 Luckily before I fell down the `ox-hugo` rabbit hole my Emacs
 configuration was already cleaned up to my liking, hopefully it
-stays that way for a while! It can be found [right here](https://github.com/drdavis/dotfiles/blob/master/emacs/emacs-init.org) (you'll see
+stays that way for a while! It can be found [right here](https://github.com/douglasdavis/dotfiles/blob/master/emacs/emacs-init.org) (you'll see
 it's also written in Org-mode, with the Emacs Lisp blocks loaded
 via `org-babel-load-file`).
