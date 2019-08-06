@@ -65,6 +65,8 @@ Eglot python environments, where I:
     `eglot-server-programs` list.
 -   Add the desired hook.
 
+<!--listend-->
+
 ```emacs-lisp
 (defun ddavis/python-eglot-enable ()
   "set variables and hook for eglot python IDE"

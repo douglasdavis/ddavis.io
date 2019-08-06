@@ -351,7 +351,7 @@
         - build: |
             python -m venv cienv
             source cienv/bin/activate
-            pip install pytest twine setuptools
+            pip install pytest twine setuptools wheel
             cd myproject
             pip install .
         - test: |
@@ -359,17 +359,18 @@
         - deploy: |
             source cienv/bin/activate
             cd myproject
-            python setup.py sdist
+            python setup.py sdist bdist_wheel
             python .ci-scripts/srht-pypi.py
     #+end_src
 
-    For this example I'm only building a =sdist= for my project. In
-    the repository I have a directory called =.ci-scripts= with a
-    script to handle the PyPI upload. The script ensures that I only
-    upload to PyPI if the repository git hash is on a tag, and the
-    name of the tag is the same as the version of the python project
-    (the versions and tags are formatted =X.Y.Z=). Here are the
-    contents of that script:
+    For this example I'm building both a source distribution (=sdist=)
+    and a wheel (=bdist_wheel=) for the toy project[fn:1]. In the
+    repository I have a directory called =.ci-scripts= with a script
+    to handle the PyPI upload. The script ensures that I only upload
+    to PyPI if the repository git hash is on a tag, and the name of
+    the tag is the same as the version of the python project (the
+    versions and tags are formatted =X.Y.Z=). Here are the contents of
+    that script:
 
     #+begin_src python
       import subprocess
@@ -392,8 +393,8 @@
           main()
     #+end_src
 
-*** Projects using this workflow
+* Footnotes
 
-    As of writing this post I have two projects deployed to PyPI using this method:
-    - https://github.com/douglasdavis/pygram11
-    - https://github.com/douglasdavis/twaml
+[fn:1] when you have to compile extension modules, builds.sr.ht jobs
+    might not be the best choice for wheels. The [[https://github.com/joerick/cibuildwheel][=cibuildwheel=]]
+    package is worth reading about.
