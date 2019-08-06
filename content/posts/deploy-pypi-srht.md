@@ -67,14 +67,14 @@ tasks:
       python .ci-scripts/srht-pypi.py
 ```
 
-For this example I'm only building both a source distribution
-(`sdist`) and a wheel (`bdist_wheel`) for the toy
-project[^fn:1]. In the repository I have a directory called
-`.ci-scripts` with a script to handle the PyPI upload. The script
-ensures that I only upload to PyPI if the repository git hash is
-on a tag, and the name of the tag is the same as the version of
-the python project (the versions and tags are formatted
-`X.Y.Z`). Here are the contents of that script:
+For this example I'm building both a source distribution (`sdist`)
+and a wheel (`bdist_wheel`) for the toy project[^fn:1]. In the
+repository I have a directory called `.ci-scripts` with a script
+to handle the PyPI upload. The script ensures that I only upload
+to PyPI if the repository git hash is on a tag, and the name of
+the tag is the same as the version of the python project (the
+versions and tags are formatted `X.Y.Z`). Here are the contents of
+that script:
 
 ```python
 import subprocess
@@ -82,18 +82,18 @@ import myproject.version
 import sys
 
 def main():
-    res = subprocess.run(['git', 'describe'], stdout=subprocess.PIPE)
-    describe_out = res.stdout.decode('utf-8').split('-')
+    res = subprocess.run(["git", "describe"], stdout=subprocess.PIPE)
+    describe_out = res.stdout.decode("utf-8").split("-")
     print(describe_out)
     if len(describe_out) > 1:
         return 0
     elif myproject.version.version == describe_out[0].strip():
-        res = subprocess.run('twine upload dist/*', shell=True)
+        res = subprocess.run("twine upload dist/*", shell=True)
         return res.returncode
     else:
         return 0;
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
 ```
 
