@@ -1,8 +1,8 @@
 body {
     max-width: 750px;
     margin: 0 auto;
-    padding: 1.25rem;
-    line-height: 1.25em;
+    padding: 1.35rem;
+    line-height: 1.35em;
 }
 
 -/* Table of Contents, if wanted
@@ -46,7 +46,7 @@ header {
     position: relative;
     width: 100%;
     height: 1.75rem;
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
 menu li {
@@ -75,11 +75,11 @@ h2 {
 }
 
 p {
-    line-height: 1.6;
+    line-height: 1.5rem;
 }
 
 body {
-    color: #555;
+    color: #333;
 }
 
 h1, h2, strong {
@@ -87,7 +87,7 @@ h1, h2, strong {
 }
 
 a {
-    color: #bf5700;
+    color: #777;
     text-decoration: none;
 }
 
