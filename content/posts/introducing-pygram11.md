@@ -35,6 +35,12 @@ better.
 To try it out (with OpenMP support), all you need is
 
 ```nil
+pip install pygram11
+```
+
+or
+
+```nil
 conda install pygram11 -c conda-forge
 ```
 
@@ -55,7 +61,8 @@ h_1d = histogram(x, bins=20, range=(-4, 4), omp=True)
 h_2d = histogram2d(x, y, bins=[20, 40], range=[[-4, 4], [-3, 3]], omp=True)
 
 h_1d, sumw2_1d = histogram(x, bins=20, range=(-4, 4), weights=w, omp=True)
-h_2d, sumw2_2d = histogram2d(x, y, bins=[20, 40], range=[[-4, 4], [-3, 3]], weights=w, omp=True)
+h_2d, sumw2_2d = histogram2d(x, y, bins=[20, 40],
+                             range=[[-4, 4], [-3, 3]], weights=w, omp=True)
 ```
 
 Notice the sum-of-weights squared is returned if the `weights`
@@ -74,11 +81,3 @@ bins = np.logspace(0.1, 1.0, 10, endpoint=True)
 
 h = histogram(x, bins=bins, omp=True)
 ```
-
-
-## Future plans {#future-plans}
-
-I hope to eventually spend some time potentially optimizing the
-OpenMP usage. I think there is some room for improvement there. I
-would also like to add some optional visualization utilities,
-we'll see.

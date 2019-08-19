@@ -1,4 +1,3 @@
-
 #+HUGO_BASE_DIR: .
 #+HUGO_SECTION: posts/
 #+options: author:nil
@@ -489,6 +488,163 @@ learning more details about NumPy histogramming.
       >>> h, err = histogram(data, bins=10, range=(xmin, xmax), weights=weights, flow=True)
     #+END_SRC
 
+** Clangd based Emacs C++ IDE                                     :cpp:emacs:
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: clangd-emacs-ide
+   :EXPORT_DATE: 2018-07-07
+   :END:
+
+   *This is now out of date!* Updated method here: [[../eglot-cpp-ide][click]].
+
+   I've seen a lot of posts on the [[https://old.reddit.com/r/emacs][Emacs]] and [[https://old.reddit.com/cpp][C++]] subreddits over the
+   last few months related to Emacs as a C/C++ IDE. If you give the
+   topic a quick googling you'll see a lot of tutorials that walk
+   through using [[https://github.com/cquery-project/cquery][cquery]], [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]], [[https://github.com/Andersbakken/rtags][rtags]], [[https://github.com/leoliu/ggtags][ggtags]], [[https://github.com/Sarcasm/irony-mode][irony]], [[http://company-mode.github.io/][company]],
+   [[https://github.com/abingham/emacs-ycmd][ycmd]], etc. (obviously there are a number of options out there and
+   multiple blog posts and tutorials for each). I've personally tried
+   using cquery and rtags (both [[https://github.com/llvm-mirror/clang/tree/master/tools/libclang][libclang]] based) in combination with
+   company-mode. Playing with those packages produced a hacked up
+   Emacs init file and I didn't really know what I was doing at the
+   time. I was never comfortable with the black box I created for
+   myself -- so I decided to clean it up and start over after some
+   research.
+
+   I've recently landed on a new setup using a combination of
+   lsp-mode, company, and [[https://github.com/emacs-lsp/lsp-clangd][lsp-clangd]]. As is clear from the package
+   name and post title, this method takes advantage of the LLVM/Clang
+   tool [[https://github.com/llvm-mirror/clang-tools-extra/tree/master/clangd][clangd]] (which is very much in development).
+
+   Here's a quick rundown of the new configuration:
+
+   Ensure that =company-lsp= is installed and enable company-mode (I
+   choose a global configuration):
+
+   #+begin_src emacs-lisp
+     (use-package company-lsp
+       :ensure t
+       :config
+       (require 'company-lsp)
+       (push 'company-lsp company-backends)
+       (add-hook 'after-init-hook 'global-company-mode))
+   #+end_src
+
+   Ensure that =lsp-mode= and =lsp-ui= are installed and required:
+
+   #+begin_src emacs-lisp
+     (use-package lsp-mode
+       :ensure t
+       :config
+       (require 'lsp-mode))
+
+     (use-package lsp-ui
+       :ensure t
+       :config
+       (require 'lsp-ui))
+   #+end_src
+
+   Unfortunately =lsp-clangd= isn't in melpa yet, so I cloned it to my
+   =.emacs.d= directory and make sure to point to it (while writing
+   this post there is an [[https://github.com/melpa/melpa/pull/5593][open GitHub PR]] to add lsp-clangd to
+   melpa). Be sure to set the proper clangd executable path and add a
+   hook to C++ mode to enable it:
+
+   #+begin_src emacs-lisp
+     (use-package lsp-clangd
+       :load-path
+       "~/.emacs.d/lsp-clangd"
+       :init
+       ;; for macOS
+       (when (equal system-type 'darwin)
+         (setq lsp-clangd-executable "/usr/local/opt/llvm/bin/clangd"))
+       ;; for Fedora box
+       (when (string= (system-name) "proton")
+         (setq lsp-clangd-executable "/home/ddavis/Software/llvm/head/bin/clangd"))
+
+       (add-hook 'c++-mode-hook #'lsp-clangd-c++-enable))
+   #+end_src
+
+   Like I said, Clangd is under heavy development, so expect some
+   imperfections. For example, using the version shipped with the LLVM
+   6.0.0 release wasn't working with header files. I went ahead and
+   built a bleeding edge installation (using =brew install --HEAD
+   llvm= on macOS and building from the trunk of their svn
+   repositories on a Fedora machine; read how to do that [[http://clang.llvm.org/get_started.html][here]] and that
+   fixed the problem.
+
+   I use this setup in combination with =compile_commands.json= files
+   which are [produced by [[https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html][produced by CMake]]. This file must be kept at
+   the project root (using [[https://github.com/bbatsov/projectile][projectile]] with a =.projectile= file at the
+   project root helps when using git repositories with submodules;
+   lsp-mode appears to handle that nicely).
+
+   I'm still by no means an expert, but it was a good learning
+   experience and I no longer have a black box from copying and
+   pasting from other's Emacs init files. I have code completion and
+   inter/intra-project file and definition jumping -- the two big
+   features I like to add to my C++ development setup in Emacs.
+
+** Repetitive NumPy Concatenations                             :python:numpy:
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: rep-numpy-concat
+   :EXPORT_DATE: 2018-08-12
+   :END:
+
+   I recently had to construct a couple of numpy arrays from a handful
+   of files. I quickly did something like this:
+
+   #+begin_src python
+   files = list_of_files()
+   arr = np.array([], dtype=np.float32)
+   for f in files:
+       iarr = get_arr_from_file(f)
+       arr = np.concatenate([arr, iarr])
+   #+end_src
+
+   This was taking a lot longer than I thought it should. There's a
+   very simple reason: NumPy arrays have to be contiguous in memory so
+   I was copying my =arr= variable =len(files)= times to construct a
+   final =arr= (and every iteration of the loop =arr= was getting
+   larger). This was of course unnecessary.
+
+   A better (and, to those who like to use the label "pythonic", more
+   pythonic) way to do it:
+
+   #+begin_src python
+   files = list_of_files()
+   arrs = [get_arr_from_file(f) for f in files]
+   arr = np.concatenate(arrs)
+   #+end_src
+
+   So when it comes to repetitive NumPy concatenations... avoid it.  A
+   quick test in IPython:
+
+   #+begin_src python
+     import numpy as np
+
+     def bad():
+         arr = np.array([], dtype=np.float32)
+         for i in range(100):
+             iarr = np.random.randn(100000)
+             arr = np.concatenate([arr, iarr])
+         return arr
+
+     def good():
+         arrs = [np.random.randn(100000) for i in range(100)]
+         return np.concatenate(arrs)
+
+     %timeit bad()
+     %timeit good()
+   #+end_src
+
+   The output:
+
+   #+begin_src
+   1.73 s ± 2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+   247 ms ± 2.52 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+   #+end_src
+
+   Quite the difference.
+
 ** New Toy: ox-hugo                                                    :hugo:
    :PROPERTIES:
    :EXPORT_FILE_NAME: first-ox-hugo
@@ -735,6 +891,12 @@ learning more details about NumPy histogramming.
    To try it out (with OpenMP support), all you need is
 
    #+begin_src
+   pip install pygram11
+   #+end_src
+
+   or
+
+   #+begin_src
    conda install pygram11 -c conda-forge
    #+end_src
 
@@ -754,7 +916,8 @@ learning more details about NumPy histogramming.
       h_2d = histogram2d(x, y, bins=[20, 40], range=[[-4, 4], [-3, 3]], omp=True)
 
       h_1d, sumw2_1d = histogram(x, bins=20, range=(-4, 4), weights=w, omp=True)
-      h_2d, sumw2_2d = histogram2d(x, y, bins=[20, 40], range=[[-4, 4], [-3, 3]], weights=w, omp=True)
+      h_2d, sumw2_2d = histogram2d(x, y, bins=[20, 40],
+                                   range=[[-4, 4], [-3, 3]], weights=w, omp=True)
     #+end_src
 
     Notice the sum-of-weights squared is returned if the =weights=
@@ -773,13 +936,6 @@ learning more details about NumPy histogramming.
 
       h = histogram(x, bins=bins, omp=True)
     #+end_src
-
-*** Future plans
-
-    I hope to eventually spend some time potentially optimizing the
-    OpenMP usage. I think there is some room for improvement there. I
-    would also like to add some optional visualization utilities,
-    we'll see.
 
 ** Deploying to PyPI with sr.ht                                      :python:
    :PROPERTIES:
