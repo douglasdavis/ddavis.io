@@ -301,7 +301,7 @@
            }
          }
        }
-      }
+     }
 
      fooHistogram.Draw(/* some options */);
    #+end_src

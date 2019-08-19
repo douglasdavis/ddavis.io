@@ -109,7 +109,7 @@ for (const auto& event : eventContainer()) {
       }
     }
   }
- }
+}
 
 fooHistogram.Draw(/* some options */);
 ```
