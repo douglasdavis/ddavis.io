@@ -4,6 +4,490 @@
 #+options: author:nil
 
 * Emacs
+** git commit -m "first"                                               :meta:
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: first
+   :EXPORT_DATE: 2017-11-24
+   :END:
+
+   After seeing many posts on [Hacker
+   News](https://news.ycombinator.com) about the usefulness of
+   technical blogs, I decided it was time to start one. As I wrap up
+   my Ph.D., I'll write about different technical things I have to
+   solve or play with.
+
+   #+BEGIN_SRC emacs-lisp
+     (defun start-blog ()
+       (message "here we go..."))
+
+     (start-blog)
+   #+END_SRC
+
+** C++17 Early Favorites                                                :cpp:
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: cpp17
+   :EXPORT_DATE: 2018-01-09
+   :END:
+
+   C++ holds a special place in my heart and mind because it was my
+   first programming language and I still use it heavily today. I was
+   lucky enough to _really_ start using the language when the 2011
+   standard was established (but in the growing pain stage with
+   respect to regular use). I learned a lot while following the
+   adoption process and I continue to keep up with the developments of
+   the language and the standard library.
+
+   C++17 was [[https://herbsutter.com/2017/09/06/c17-is-formally-approved/][formally approved]] approved a few months ago. These days
+   the GCC and Clang developers do an awesome job implementing
+   features early on, so a lot of C++17 language and standard library
+   features have been available in a number of recent releases of both
+   compilers (and their respective STL implementations). Unfortunately
+   it'll be a little while before I can use C++17 in my experiment's
+   production code. Nevertheless, I've still identified a few of my
+   early favorite features. I'll discuss them a bit with a couple of
+   high energy physics analysis use cases.
+
+*** Structured Bindings
+
+    When writing Python I always appreciate the ease of writing
+    functions with multiple returns and the intuitive looping over
+    dictionaries. Adding structured bindings to C++ makes it easy to
+    use multiple returns and intuitive to loop over an [[http://en.cppreference.com/w/cpp/container/map][std::map]].
+
+    For multiple returns in C++ 11 and 14 we had to use [[http://en.cppreference.com/w/cpp/utility/tuple/tie][std::tie]].
+
+    #+begin_src C++
+      auto foo() {
+        return std::make_tuple(1, 2.0, '3');
+      }
+
+      int main() {
+        int i;
+        float j;
+        char k;
+        std::tie(i, j, k) = foo();
+        // ...
+      }
+    #+end_src
+
+    Now, with structured bindings:
+
+    #+begin_src C++
+      int main() {
+        auto [i, j, k] = foo();
+        // ...
+      }
+    #+end_src
+
+    Before C++17, when looping over the =std::map= container, we were
+    locked into using the =first= and =second= members of [[http://en.cppreference.com/w/cpp/utility/pair][std::pair]].
+
+    #+begin_src C++
+      int main() {
+        std::map<int,float> myMap {{1,1.1}, {2,2.2}};
+        for (const auto& entry : myMap) {
+          doSomething(entry.first, entry.second);
+        }
+        // ...
+      }
+    #+end_src
+
+    With structured bindings, we have something a bit more intuitive
+    and less verbose:
+
+    #+begin_src C++
+      int main() {
+        std::map<int,float> myMap {{1,1.1}, {2,2.2}};
+        for (const auto& [i, j] : myMap) {
+          doSomething(i, j);
+        }
+        // ...
+      }
+    #+end_src
+
+    For even more verbosity, go back to C++03 container looping with
+    iterators.
+
+*** The Filesystem Library
+
+    Consistent with a number of existing C++ STL features...  [[https://www.boost.org][boost]]
+    was the original supplier of a C++ filesystem library. It's not
+    always desirable to carry Boost around as a dependency; avoiding
+    that dependency makes the [[http://en.cppreference.com/w/cpp/filesystem][filesystem]] library a very welcome
+    inclusion to the standard. Having a way to interact with the
+    filesystem is a very common feature to most languages' standard
+    libraries. With respect to C++, it's about time.
+
+    The library allows users to parse and modify the filesystem. As an
+    example, I'll use the task of selecting files with a specific
+    extension in a given directory. This is a useful piece of code for
+    processing a large dataset that's broken into many files (I do
+    this a lot for my physics analysis).
+
+    #+begin_src C++
+      namespace fs = std::filesystem;
+
+      std::vector<std::string> createDataset(const std::string& path_name,
+                                             const std::string& exten) {
+        std::vector<std::string> dataset;
+        auto itr = fs::directory_iterator(path_name);
+        for (const auto& itr : fs::directory_iterator(path_name)) {
+          auto ext = itr.path().extension().string();
+          if (ext == exten && !fs::is_directory(itr.path())) {
+            dataset.push_back(itr.path().string());
+          }
+        }
+        return dataset;
+      }
+
+      PhysicsResult graduate() {
+        auto dataset = createDataset("/path/to/dir/with/files", ".root");
+        // dataset will be a a vector containing strings ending in .root, e.g.
+        // -- /path/to/dir/with/files/file1.root
+        // -- /path/to/dir/with/files/file2.root
+        // ...
+
+        // ...
+        PhysicsResult thesis = doPhysicsOnDataset(dataset);
+        return thesis; //
+      }
+    #+end_src
+
+
+*** if constexpr
+
+    The [[http://en.cppreference.com/w/cpp/language/constexpr][constexpr]] specifier (for constant expressions) was introduced
+    in C++11. The purpose of the specifier is to communicate to the
+    compiler that the expression should be evaluated at compile time.
+
+    Some awesome things about =if constexpr= are the reduction of
+    boilerplate and decrease in compile time. =if constexpr= tells the
+    compiler what to actually compile based on templates, and to
+    ignore the rest.
+
+    Let's say I have three different objects I can analyze, but one of
+    them is a component of the other two. In particle physics
+    terminology, I can analyze an electron, a muon, or a track; but,
+    all electrons and muons have an associated track. If I have an API
+    which supplies a feature to analyze tracks from containers of all
+    three of these types, =if constexpr= is great if I want study them
+    with different functions elsewhere in the code without overloading
+    an =analyzeTracks= function multiple times.
+
+    #+begin_src C++
+      template <typename T>
+      void analyzeTracks(const std::vector<T>& container) {
+        for (const auto& object : container) {
+          if constexpr (std::is_same_v<T,Electron>) {
+            doElectronAnalysis(getTrack(object));
+          }
+          else if constexpr (std::is_same_v<T,Muon>) {
+            doMuonAnalysis(getTrack(object));
+          }
+          else if constexpr (std::is_same_v<T,Track>) {
+            doStandardAnalysis(object)
+          }
+        }
+      }
+    #+end_src
+
+
+    The =if constexpr= feature of C++17 allows me (when wearing an API
+    developer hat) to avoid writing the boilerplate of multiple
+    function overloads and still supply the same easy to use API.
+
+** ROOT analysis without ROOT                              :hep:numpy:python:
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: root-without-root
+   :EXPORT_DATE: 2018-02-02
+   :END:
+
+   The high energy physics community has used [[https://root.cern/][ROOT]] for over 20 years
+   now. It's a very large, monolithic set of libraries packaged up
+   with a C++ interpreter called [[https://root.cern.ch/cling][Cling]].  ROOT's strength, in my
+   opinion, lay in its ability to serialize C++ objects to disk in
+   binary format (you can read all about it [[https://root.cern.ch/root/htmldoc/guides/users-guide/InputOutput.html][here]]).  This is perfect
+   for HEP. We have classes for events as a whole, classes for hits in
+   the detector, classes for whole reconstructed particles, etc. ROOT
+   is great for storing this in an intuitive way, for example:
+   particles live in containers owned by an event, hits live in a
+   container owned by a track, whole reconstructed particles have an
+   "Element Link" (a class to act as a pointer on disk) to a track
+   associated with it, etc.
+
+*** The problem
+
+   ROOT is a monolithic beast. It's a lot to carry around if all you
+   need to do is look at a few numbers stored in a ROOT file. It takes
+   a while to build the entire library (and the packaged
+   interpreter). The ROOT team distributes some binaries, and some
+   package managers provide binaries or a way to build locally
+   (e.g. the [[https://aur.archlinux.org/][Arch User's Repository]])... but for beginners and quick
+   tasks that's not always a great solution[fn:1].
+
+   Then, to actually look at your data you end up writing a C++
+   "macro" (not a compiler preprocessor macro, this is something that
+   is meant to be processed by ROOT's C++ interpreter, cling), or you
+   write a proper executable, compile, link, and run. This C++ code
+   can be verbose and full of boilerplate (especially for reading ROOT
+   files, where you have to connect C++ variables to ROOT "Branches",
+   one line at a time[fn:2]).
+
+*** The old solution
+
+   If your ROOT build was aware of a python installation during the
+   build process, you can end up with PyROOT - ROOT's builtin python
+   bindings. PyROOT basically allows you to write C++ style code in
+   python to talk to ROOT objects. That's not even the old solution
+   I'm about to mention. [[https://github.com/scikit-hep/root_numpy][root-numpy]] is what I'd consider the /old/
+   solution -- it's a python library accelerated with Cython which
+   turns the C style arrays stored in ROOT files into numpy arrays. It
+   can also be installed with pip.  Unfortunately, it requires a ROOT
+   installation (because it requires =import ROOT=).
+
+*** The solution
+
+   Now enter [[https://github.com/scikit-hep/uproot][uproot]]. This awesome new library is pure Python and does
+   not require a ROOT installation. We can interact with ROOT files is
+   as easy as:
+
+   #+begin_src
+     $ pip install uproot
+     $ python
+     >>> import uproot
+     >>> file = uproot.open("myfile.root")
+   #+end_src
+
+   uproot has knowledge of ROOT's binary format implemented
+   /completely in python/. No ROOT installation required.
+
+*** In action
+
+   A few days ago I needed to throw together a quick histogram to
+   explain a task to a colleague. The task required just a bit of
+   information about some hits along a track. Given the structure of
+   our data format stored in ROOT files, I would need to do something
+   like this cascade of data retrieval (in /kind of/ pseudo C++ code,
+   this is very similar to ATLAS code, but with a few made up function
+   names):
+
+   #+begin_src C++
+     Histogram fooHistogram(/* some constructor */);
+
+     for (const auto& event : eventContainer()) {
+       // grab particle container
+       const ns::ParticleContainer* particleContainer = event->getParticleContainer();
+       // loop over particles
+       for (const auto& particle : particleContainer) {
+         // get link to track and make sure valid
+         auto trackLink = getAssociatedTrackLink(particle);
+         if (!trackLink.isValid()) {
+           continue;
+         }
+         // dereference link to get actual object (the track pointer)
+         const ns::Track* track = *trackLink;
+         // get link to hit container and make sure valid
+         auto hitContainerLink = getAssociatedHitsLink(track);
+         if (!hitContainerLink.isValid()) {
+           continue;
+         }
+         const ns::HitContainer* hitContainer = *hitContainerLink;
+         // loop over container
+         for (const auto& hit : hitContainer) {
+           // get dynamically set properties of the hit and finally use them
+           float hitFoo = hit->getAuxiliaryData<float>("foo");
+           float hitBar = hit->getAuxiliaryData<float>("bar");
+           if (hitBar == 42) {
+             fooHistogram.Fill(hitFoo);
+           }
+         }
+       }
+      }
+
+     fooHistogram.Draw(/* some options */);
+   #+end_src
+
+   In python, with uproot, if I know the naming convention for the hit
+   container, I can simply write:
+
+   #+begin_src python :results silent
+     import uproot
+     import matplotlib.pyplot as plt
+
+     datatree = uproot.open("myfile.root")["data"]
+     bar = datatree.array("innerdetector.hits.auxdata.bar")
+     foo = datatree.array("innerdetector.hits.auxdata.foo")
+     selected_foo = foo[bar == 42]
+
+     plt.hist(selected_foo, bins=20)
+     plt.show()
+   #+end_src
+
+   The python code is very simple and to the point, it's fast because
+   the binary format is being read directly into =numpy= arrays[fn:3].
+
+   There is /absolutely/ a place for the C++ code. If I wanted to
+   apply a complex set of requirements to select different objects
+   /above/ the hit level (but based on hit properties), I need this
+   structure. If we had a perfectly columnar data format (each event
+   as a row in a table and a column for every feature), the hit
+   information would be duplicated in multiple places because a low
+   level hit may be associated with multiple higher level
+   objects. Given our many petabytes of data, this is not
+   feasible. This is where the "links" come in (the pointers on disk
+   that tell a track where the associated hits are).
+
+   In this simple case, I didn't care about selecting hits based on
+   any other information except another (simply) accessible hit
+   property.
+
+   To wrap up: it's nice to have (a) an isolated python library for
+   accessing data stored in ROOT and (b) /options/ for selecting tools
+   to analyze data.
+
+** NumPy Histogram tracks for HEP                          :hep:numpy:python:
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: numpy-histograms
+   :EXPORT_DATE: 2018-02-08
+   :END:
+
+Update August 2019: About a year after writing this blog post I
+created a Python package to handle all of my pythonic histogramming
+needs. It's called [[https://github.com/douglasdavis/pygram11][pygram11]]. This post is definitely still useful for
+learning more details about NumPy histogramming.
+
+*** Our starting point
+
+    Histogramming some data is simple using [[https://docs.scipy.org/doc/numpy/reference/generated/numpy.histogram.html][numpy.histogram]].
+
+    #+begin_src python :results silent
+    >>> import numpy as np
+    >>> x = np.random.randn(10000)           ## create a dataset
+    >>> w = np.random.normal(1, 0.2, 10000)  ## create some phony weights
+    >>> b = np.linspace(-5, 5, 11)           ## bin edges (10 bins from -5 to 5)
+    >>> n, bins = np.histogram(x, bins=b, weights=w)
+    #+end_src
+
+    This gives me two arrays
+    - one for the bin heights (=n=)
+    - one for the bin edges (=bins=).
+
+    Quick and simple -- but what if I want to include underflow and
+    overflow in the first and last bins, respectively? What if I want
+    to compute the error on each bin height given a weighted dataset?
+    These quantities are important for high energy physics, where
+    nearly all of our analysis is done using histograms.
+
+*** Underflow and overflow
+
+    Where the elements of the data contribute to the bin height is of
+    course determined by the bin edges. We can make the left and right
+    edges infinite to be sure to count /all/ of our data[fn:5]. Then
+    we just add the =[0]= bin contents to the =[1]= bin contents, and
+    add the =[-1]= bin contents to the =[-2]= bin contents. Finally,
+    we polish it off by chopping off the out-of-bounds elements:
+
+    #+begin_src python :results silent
+    >>> import numpy as np
+    >>> raw_bins = np.linspace(-5, 5, 11)
+    >>> use_bins = [np.array([-np.inf]), raw_bins, np.array([np.inf])]
+    >>> use_bins = np.concatenate(use_bins)
+    >>> x = np.random.normal(0, 2, 1000) ## phony dataset
+    >>> n, bins = np.histogram(x, bins=use_bins)
+    >>> n[1]  += n[0]   ## add underflow to first bin
+    >>> n[-2] += n[-1]  ## add overflow to last bin
+    >>> n = n[1:-1]     ## chop off the under/overflow
+    >>> bins = raw_bins ## use our original binning (without infinities)
+    #+end_src
+
+    And that's it, now you have /all/ of your data histogrammed
+    including under and overflow.
+
+*** Error on bin height using weights
+
+    The standard error on a bin height is simply the square-root of
+    the bin height, \(\sqrt{N}\)[fn:6]. If a bin is constructed from
+    weighted data, we require the square-root of the sum of the
+    weights squared, \(\sqrt{\sum_i w_i^2}\).
+
+    The =numpy.histogram= function doesn't provide any information
+    about which weights belong to which bin, but we have another
+    useful NumPy function which can generate an array of indices based
+    on where data falls in a particular set of bins, [[https://docs.scipy.org/doc/numpy/reference/generated/numpy.digitize.html][numpy.digitize]].
+
+    First, we get an array representing which bin each data point
+    would fall into. We can then use the conditional function
+    [[https://docs.scipy.org/doc/numpy/reference/generated/numpy.where.html][numpy.where]] in a loop over all bins to grab only the weights in
+    that bin, and sum their squares.
+
+    #+begin_src python :results silent
+    >>> import numpy as np
+    >>> x = np.random.normal(0, 2.0, 1000)         ## a dataset
+    >>> b = np.linspace(-2, 2, 21)                 ## 20 bins
+    >>> w = np.random.normal(1, 0.2, 1000)         ## some weights
+    >>> sum_w2 = np.zeros([20], dtype=np.float32)  ## start with empty errors
+    >>> digits = np.digitize(x, b)                 ## bin index array for each data element
+    >>> for i in range(nbins):
+    >>>     weights_in_current_bin = w[np.where(digits == i)[0]]
+    >>>     sum_w2[i] = np.sum(np.power(weights_in_current_bin, 2))
+    >>> n, bins = np.histogram(x, bins=b, weights=w)
+    >>> err = np.sqrt(sum_w2)
+    #+end_src
+
+    And that's it, now you have an array of bin heights and an array
+    or uncertainty in each bin.
+
+*** Appendix, a function to combine the two methods:
+
+    #+BEGIN_SRC python
+      def extended_hist(data, xmin, xmax, nbins, underflow=True, overflow=True, weights=None):
+          if weights is not None:
+              if weights.shape != data.shape:
+                  raise ValueError(
+                      "Unequal shapes data: {}; weights: {}".format(data.shape, weights.shape)
+                  )
+          edges = np.linspace(xmin, xmax, nbins + 1)
+          neginf = np.array([-np.inf], dtype=np.float32)
+          posinf = np.array([np.inf], dtype=np.float32)
+          uselsp = np.concatenate([neginf, edges, posinf])
+          if weights is None:
+              hist, bin_edges = np.histogram(data, bins=uselsp)
+          else:
+              hist, bin_edges = np.histogram(data, bins=uselsp, weights=weights)
+
+          n = hist[1:-1]
+          if underflow:
+              n[0] += hist[0]
+          if overflow:
+              n[-1] += hist[-1]
+
+          if weights is None:
+              w = np.sqrt(n)
+          else:
+              bin_sumw2 = np.zeros(nbins + 2, dtype=np.float32)
+              digits = np.digitize(data, edges)
+              for i in range(nbins + 2):
+                  bin_sumw2[i] = np.sum(np.power(weights[np.where(digits == i)[0]], 2))
+              w = bin_sumw2[1:-1]
+              if underflow:
+                  w[0] += bin_sumw2[0]
+              if overflow:
+                  w[-1] += bin_sumw2[-1]
+              w = np.sqrt(w)
+
+          centers = np.delete(edges, [0]) - (np.ediff1d(edges) / 2.0)
+          return n, w, centers, edges
+   #+END_SRC
+
+    Update August 2019: With =pygram11=, we can just import the
+    =histogram= function and call a one-liner for the counts and the
+    error:
+
+    #+BEGIN_SRC python
+      >>> from pygram11 import histogram
+      >>> data, weights = get_some_weighted_data()
+      >>> h, err = histogram(data, bins=10, range=(xmin, xmax), weights=weights, flow=True)
+    #+END_SRC
 
 ** New Toy: ox-hugo                                                    :hugo:
    :PROPERTIES:
@@ -364,7 +848,7 @@
     #+end_src
 
     For this example I'm building both a source distribution (=sdist=)
-    and a wheel (=bdist_wheel=) for the toy project[fn:1]. In the
+    and a wheel (=bdist_wheel=) for the toy project[fn:4]. In the
     repository I have a directory called =.ci-scripts= with a script
     to handle the PyPI upload. The script ensures that I only upload
     to PyPI if the repository git hash is on a tag, and the name of
@@ -395,6 +879,24 @@
 
 * Footnotes
 
-[fn:1] when you have to compile extension modules, builds.sr.ht jobs
-    might not be the best choice for wheels. The [[https://github.com/joerick/cibuildwheel][=cibuildwheel=]]
-    package is worth reading about.
+[fn:1] Update summer 2019: ROOT is now available as a [[https://conda-forge.org/][conda-forge]]
+   package, providing a very easy installation method.
+
+[fn:2] As of ROOT version 6.14 (released June 2018) there is a new
+   feature allowing tree analysis using functional chains with the
+   [[https://root.cern.ch/doc/master/classROOT_1_1RDataFrame.html][=RDataFrame=]] class.
+
+[fn:3] In some special situations (e.g. reading a column of
+   =std::vector= objects into a jagged array) the implementation is
+   accelerated with [[https://numba.pydata.org/][numba]] (if installed).
+
+[fn:4] when you have to compile extension modules, builds.sr.ht jobs
+   might not be the best choice for wheels. The [[https://github.com/joerick/cibuildwheel][=cibuildwheel=]] package
+   is worth reading about.
+
+[fn:5] In the implementation of =numpy.histogram=, elements of the
+    input array that live outside the bounds of the binning are
+    ignored.
+
+[fn:6] Bin height is related to counting, therefore the data in a bin
+    is [[https://en.wikipedia.org/wiki/Poisson_distribution][Poissonian]]. The variance of a Poisson distribution is \(N\).
