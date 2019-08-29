@@ -1,5 +1,5 @@
 +++
-title = "NumPy Histogram tracks for HEP"
+title = "NumPy Histogram tricks for HEP"
 date = 2018-02-08
 tags = ["hep", "numpy", "python"]
 draft = false

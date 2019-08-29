@@ -344,7 +344,7 @@
    accessing data stored in ROOT and (b) /options/ for selecting tools
    to analyze data.
 
-** NumPy Histogram tracks for HEP                          :hep:numpy:python:
+** NumPy Histogram tricks for HEP                          :hep:numpy:python:
    :PROPERTIES:
    :EXPORT_FILE_NAME: numpy-histograms
    :EXPORT_DATE: 2018-02-08
