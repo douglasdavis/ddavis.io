@@ -3,6 +3,3 @@ title: Home
 ---
 
 # Posts
-
-
-<!-- ### Blog -->

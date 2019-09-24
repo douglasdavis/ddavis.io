@@ -4,23 +4,25 @@ title = "ddavis.io"
 theme = "hugo-classic"
 googleAnalytics = ""
 ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
-preserveTaxonomyNames = true
-#enableEmoji = true
+#preserveTaxonomyNames = true
+enableEmoji = true
 footnotereturnlinkcontents = "↩"
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 
+
 [permalinks]
     post = "/post/:year/:month/:day/:slug/"
+
+#[[menu.main]]
+#    name = "Posts"
+#    url = "/posts/"
+#    weight = 2
 
 [[menu.main]]
     name = "About"
     url = "/about/"
     weight = 1
-#[[menu.main]]
-#    name = "Posts"
-#    url = "/posts/"
-#    weight = 2
 [[menu.main]]
     name = "Tags"
     url = "/tags/"
@@ -30,4 +32,4 @@ pygmentsUseClasses = true
     url = "/index.xml"
 [params]
     description = "ddavis.io"
-    footer = " " #"[Mail](mailto:ddavis@ddavis.io) | [GitHub](https://github.com/douglasdavis) | [CERN GitLab](https://gitlab.cern.ch/ddavis/) | [LinkedIn](https://www.linkedin.com/in/douglasrdavis/) | [Twitter](https://twitter.com/_ddavis_)"
+    footer = " "

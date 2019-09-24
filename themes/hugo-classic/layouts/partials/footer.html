@@ -5,23 +5,6 @@
   {{ . | markdownify }}
   {{ end }}
   <center>
-    <span style="float: left">
-      {{ with .PrevInSection }}
-      <a href="{{ .Permalink }}">Previous ({{ .Title }})</a>
-      {{ end }}
-    </span>
-
-    <span style="float: right">
-      {{ with .NextInSection }}
-      <a href="{{ .Permalink }}">Next ({{ .Title }})</a>
-      {{ end }}
-    </span>
-
-    {{ with .NextInSection }}
-    <br>
-    <br>
-    {{ end }}
-
     <a href="mailto:ddavis@ddavis.io"><i class="fas fa-paper-plane"></i></a> |
     <a href="https://github.com/douglasdavis"><i class="fab fa-github"></i></a> |
     <a href="https://gitlab.cern.ch/ddavis"><i class="fab fa-gitlab"></i></a> |

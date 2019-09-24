@@ -1,3 +1,4 @@
+
 {{ partial "header.html" . }}
 
 {{if not .IsHome }}
@@ -7,10 +8,9 @@
 {{ .Content }}
 
 <ul>
-  {{ range (where .Data.Pages "Section" "!=" "") }}
+  {{ range (where .Paginator.Pages "Section" "==" "posts") }}
   <li>
-    <span class="date">{{ .Date.Format "2006/01/02" }}</span>
-    <a href="{{ .URL }}">{{ .Title }}</a>
+    {{.Date.Format "2006-01-02"}} | <a href="{{.Permalink}}">{{.Title}}</a>
   </li>
   {{ end }}
 </ul>
