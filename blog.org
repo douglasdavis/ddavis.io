@@ -572,10 +572,10 @@ learning more details about NumPy histogramming.
    fixed the problem.
 
    I use this setup in combination with =compile_commands.json= files
-   which are [produced by [[https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html][produced by CMake]]. This file must be kept at
-   the project root (using [[https://github.com/bbatsov/projectile][projectile]] with a =.projectile= file at the
-   project root helps when using git repositories with submodules;
-   lsp-mode appears to handle that nicely).
+   that are [[https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html][produced by CMake]]. This file must be kept at the project
+   root (using [[https://github.com/bbatsov/projectile][projectile]] with a =.projectile= file at the project
+   root helps when using git repositories with submodules; lsp-mode
+   appears to handle that nicely).
 
    I'm still by no means an expert, but it was a good learning
    experience and I no longer have a black box from copying and

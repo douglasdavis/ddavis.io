@@ -83,10 +83,10 @@ repositories on a Fedora machine; read how to do that [here](http://clang.llvm.o
 fixed the problem.
 
 I use this setup in combination with `compile_commands.json` files
-which are [produced by [produced by CMake](https://cmake.org/cmake/help/latest/variable/CMAKE%5FEXPORT%5FCOMPILE%5FCOMMANDS.html). This file must be kept at
-the project root (using [projectile](https://github.com/bbatsov/projectile) with a `.projectile` file at the
-project root helps when using git repositories with submodules;
-lsp-mode appears to handle that nicely).
+that are [produced by CMake](https://cmake.org/cmake/help/latest/variable/CMAKE%5FEXPORT%5FCOMPILE%5FCOMMANDS.html). This file must be kept at the project
+root (using [projectile](https://github.com/bbatsov/projectile) with a `.projectile` file at the project
+root helps when using git repositories with submodules; lsp-mode
+appears to handle that nicely).
 
 I'm still by no means an expert, but it was a good learning
 experience and I no longer have a black box from copying and
