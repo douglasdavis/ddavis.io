@@ -1033,6 +1033,19 @@ learning more details about NumPy histogramming.
           main()
     #+end_src
 
+** Building Emacs on macOS                                        :emacs:mac:
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: emacs-on-macos
+   :EXPORT_DATE: 2019-10-30
+   :END:
+
+   It's quite easy to install a stable release of Emacs on macOS via a
+   few different channels. The [[https://www.gnu.org/software/emacs/download.html#macos][official website]] describes how to do
+   this. I like to live at the head of Emacs. This involves building
+   the application from scratch every few weeks.
+
+   More to come...
+
 * Footnotes
 
 [fn:1] Update summer 2019: ROOT is now available as a [[https://conda-forge.org/][conda-forge]]

@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Ubuntu+Mono&display=swap');
 
 body {
-    font-family: "Lato";
-    /* font-family: "Inconsolata"; */
+    font-family: "Lato", san-serif;
     font-weight: 400;
 }
 
 code {
-  font-family: "Ubuntu Mono", "Source Code Pro", "Inconsolata", "Lucida Console", Monaco, monospace;
+    font-family: "Ubuntu Mono", monospace;
+    font-size: 90%
 }
 
 p code {
