@@ -11,28 +11,19 @@
 <link href="https://fonts.googleapis.com/css?family=Inconsolata:400|Source+Code+Pro:500&display=swap" rel="stylesheet">
 
 <header>
+  <center>
+    <a href="{{ .Site.BaseURL }}">home</a> |
+    {{ $title := lower .Title }}
+    {{ $section := lower .Section }}
 
-  <nav>
-    <ul>
-      {{ $title := lower .Title }}
-      {{ $section := lower .Section }}
-      <li class="pull-left {{ if .IsHome }}current{{ end }}">
-        <a href="{{ .Site.BaseURL }}">/home/{{ lower .Site.Title}}</a>
-      </li>
-      {{ range .Site.Menus.main }}
-      {{ $name := lower .Name }}
-      <li class="pull-left {{ if eq $name $title }}current{{ else if eq $section $name }}current{{ else if eq $title (pluralize $name) }}current{{ end }}">
-        <a href="{{ .URL }}">~/{{ lower .Name }}</a>
-      </li>
-      {{end}}
+    {{ range .Site.Menus.main }}
+    {{ $name := lower .Name }}
+    <a href="{{ .URL }}">{{ lower .Name }}</a> |
+    {{end}}
 
-      {{ range .Site.Menus.feed }}
-      {{ $name := lower .Name}}
-      <li class="pull-right">
-        <a href="{{ .URL }}">~/{{ lower .Name}}</a>
-      </li>
-      {{end}}
-
-    </ul>
-  </nav>
+    {{ range .Site.Menus.feed }}
+    {{ $name := lower .Name}}
+    <a href="{{ .URL }}">{{ lower .Name }}</a>
+    {{end}}
+  </center>
 </header>
