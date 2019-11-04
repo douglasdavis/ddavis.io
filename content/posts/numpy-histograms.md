@@ -5,10 +5,10 @@ tags = ["hep", "numpy", "python"]
 draft = false
 +++
 
-Update August 2019: About a year after writing this blog post I
+**Update August 2019**: About a year after writing this blog post I
 created a Python package to handle all of my pythonic histogramming
-needs. It's called [pygram11](https://github.com/douglasdavis/pygram11). This post is definitely still useful for
-learning more details about NumPy histogramming.
+needs. It's called [pygram11](https://github.com/douglasdavis/pygram11). This post is definitely still useful
+for learning more details about NumPy histogramming.
 
 
 ## Our starting point {#our-starting-point}
@@ -138,7 +138,7 @@ def extended_hist(data, xmin, xmax, nbins, underflow=True, overflow=True, weight
     return n, w, centers, edges
 ```
 
-Update August 2019: With `pygram11`, we can just import the
+**Update August 2019**: With `pygram11`, we can just import the
 `histogram` function and call a one-liner for the counts and the
 error:
 

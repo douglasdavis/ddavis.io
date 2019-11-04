@@ -1,5 +1,5 @@
 ---
-title: About
+title: about
 ---
 
 I'm Doug Davis, a trained particle physicist, self taught software

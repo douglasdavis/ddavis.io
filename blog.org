@@ -350,10 +350,10 @@
    :EXPORT_DATE: 2018-02-08
    :END:
 
-Update August 2019: About a year after writing this blog post I
-created a Python package to handle all of my pythonic histogramming
-needs. It's called [[https://github.com/douglasdavis/pygram11][pygram11]]. This post is definitely still useful for
-learning more details about NumPy histogramming.
+   *Update August 2019*: About a year after writing this blog post I
+   created a Python package to handle all of my pythonic histogramming
+   needs. It's called [[https://github.com/douglasdavis/pygram11][pygram11]]. This post is definitely still useful
+   for learning more details about NumPy histogramming.
 
 *** Our starting point
 
@@ -478,7 +478,7 @@ learning more details about NumPy histogramming.
           return n, w, centers, edges
    #+END_SRC
 
-    Update August 2019: With =pygram11=, we can just import the
+    *Update August 2019*: With =pygram11=, we can just import the
     =histogram= function and call a one-liner for the counts and the
     error:
 
