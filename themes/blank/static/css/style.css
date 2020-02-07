@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+
 body {
     font-family: Liberation Sans, Arial, sans-serif;
     background-color: #fffaf7;
@@ -20,11 +22,11 @@ time {
     text-decoration: italic;
 }
 code {
-    font-family: "SF Mono", "Fira Code", monospace;
+    font-family: "SF Mono", "Fira Code", "Roboto Mono", monospace;
     font-size: 0.85em;
 }
 pre {
-    font-family: "SF Mono", "Fira Code", monospace;
+    font-family: "SF Mono", "Fira Code", "Roboto Mono", monospace;
     overflow-x: auto;
     padding: 0.5ch;
 }
