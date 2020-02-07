@@ -26,7 +26,7 @@ almost 100x faster than NumPy (for a 2D histogram of 100 million
 \\((x\_i, y\_i)\\) pairs). The APIs are quite similar (with slightly
 different return styles). On top of that, the
 sum-of-weights-squared calculation is a "first class citizen" in
-pygram11 (see my [NumPy Histogram tricks for HEP](https://ddavis.io/posts/2018-02-08-numpy-histograms/) post).
+pygram11 (see my [NumPy Histogram tricks for HEP](https://ddavis.io/posts/numpy-histograms/) post).
 
 So, please go checkout the [documentation](https://pygram11.readthedocs.io/) and [GitHub repository](https://github.com/douglasdavis/pygram11)!
 Open issues, PRs, email me, tweet me, or write something even

@@ -882,7 +882,7 @@
    $(x_i, y_i)$ pairs). The APIs are quite similar (with slightly
    different return styles). On top of that, the
    sum-of-weights-squared calculation is a "first class citizen" in
-   pygram11 (see my [[https://ddavis.io/posts/2018-02-08-numpy-histograms/][NumPy Histogram tricks for HEP]] post).
+   pygram11 (see my [[https://ddavis.io/posts/numpy-histograms/][NumPy Histogram tricks for HEP]] post).
 
    So, please go checkout the [[https://pygram11.readthedocs.io/][documentation]] and [[https://github.com/douglasdavis/pygram11][GitHub repository]]!
    Open issues, PRs, email me, tweet me, or write something even
