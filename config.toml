@@ -1,35 +1,62 @@
 baseurl = "https://ddavis.io/"
-languageCode = "en-US"
 title = "ddavis.io"
-theme = "hugo-classic"
-googleAnalytics = ""
-ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
-#preserveTaxonomyNames = true
-enableEmoji = true
-footnotereturnlinkcontents = "↩"
-pygmentsCodeFences = true
-pygmentsUseClasses = true
+theme = "blank"
+languageCode = "en"
+
+paginate = 100
 
 
-[permalinks]
-    post = "/post/:year/:month/:day/:slug/"
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "solarized-dark"
+    tabWidth = 4
 
-#[[menu.main]]
-#    name = "Posts"
-#    url = "/posts/"
-#    weight = 2
-
-[[menu.main]]
-    name = "about"
-    url = "/about/"
-    weight = 1
-[[menu.main]]
-    name = "tags"
-    url = "/tags/"
-    weight = 3
-[[menu.feed]]
-    name = "rss"
-    url = "/index.xml"
 [params]
-    description = "ddavis.io"
-    footer = " "
+title = "ddavis.io"
+subtitle = "ddavis.io"
+githubUrl = "https://github.com/douglasdavis/"
+author = "Doug Davis"
+description = "ddavis.io"
+
+# baseurl = "https://ddavis.io/"
+# languageCode = "en-US"
+# title = "ddavis.io"
+# theme = "hugo-classic"
+# googleAnalytics = ""
+# ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
+# #preserveTaxonomyNames = true
+# enableEmoji = true
+# footnotereturnlinkcontents = "↩"
+# pygmentsCodeFences = true
+# pygmentsUseClasses = true
+
+
+# [permalinks]
+#     post = "/post/:year/:month/:day/:slug/"
+
+# #[[menu.main]]
+# #    name = "Posts"
+# #    url = "/posts/"
+# #    weight = 2
+
+# [[menu.main]]
+#     name = "about"
+#     url = "/about/"
+#     weight = 1
+# [[menu.main]]
+#     name = "tags"
+#     url = "/tags/"
+#     weight = 3
+# [[menu.feed]]
+#     name = "rss"
+#     url = "/index.xml"
+# [params]
+#     description = "ddavis.io"
+#     footer = " "

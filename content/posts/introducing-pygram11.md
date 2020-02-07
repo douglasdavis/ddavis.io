@@ -67,7 +67,7 @@ h_2d, sumw2_2d = histogram2d(x, y, bins=[20, 40],
 
 Notice the sum-of-weights squared is returned if the `weights`
 argument is provided with an array of sample weights. Checkout
-some [benchmarks](https://pygram11.readthedocs.io/en/stable/purpose.html#some-benchmarks) to see how the `omp` argument can speed up the
+some [benchmarks](https://pygram11.readthedocs.io/en/stable/bench.html) to see how the `omp` argument can speed up the
 calculations.
 
 And some variable bin histogramming, uniform logarithmic:

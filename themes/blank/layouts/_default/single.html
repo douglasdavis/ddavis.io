@@ -1,0 +1,23 @@
+{{ define "main" }}
+<main>
+  <article>
+    <center>
+      <h1>{{ .Title }}</h1>
+    </center>
+    <center>
+      <time>{{ .Date.Format "2006 January 02" }}</time>
+    </center>
+    <ul id="menu">
+      <li>tags:</li>
+      {{ with .Params.tags }}
+      {{ range . }}
+      <li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+      {{ end }}
+      {{ end }}
+    </ul>
+    <div>
+      {{ .Content }}
+    </div>
+  </article>
+</main>
+{{ end }}

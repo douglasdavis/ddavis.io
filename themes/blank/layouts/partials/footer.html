@@ -1,16 +1,14 @@
 <footer>
-  {{ partial "foot_custom.html" . }}
-  {{ with .Site.Params.footer }}
-  <hr/>
-  {{ . | markdownify }}
-  {{ end }}
   <center>
+    <p>
+    <a href="{{ .Site.BaseURL }}">home</a> |
+    <a href="{{ .Site.BaseURL }}/about">about</a> |
+    <a href="{{ .Site.BaseURL }}/tags">tags</a> |
     <a href="mailto:ddavis@ddavis.io"><i class="fas fa-paper-plane"></i></a> |
     <a href="https://github.com/douglasdavis"><i class="fab fa-github"></i></a> |
     <a href="https://gitlab.cern.ch/ddavis"><i class="fab fa-gitlab"></i></a> |
     <a href="https://www.linkedin.com/in/douglasrdavis"><i class="fab fa-linkedin-in"></i></a> |
     <a href="https://twitter.com/_ddavis_"><i class="fab fa-twitter"></i></a>
+    </p>
   </center>
 </footer>
-</body>
-</html>

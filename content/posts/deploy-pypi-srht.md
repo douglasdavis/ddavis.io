@@ -18,12 +18,11 @@ definitely is.
 
 ## Setting up your secret PyPI credentials {#setting-up-your-secret-pypi-credentials}
 
-First create a temporary file (that will be our `pypirc` file,
-[you
+First create a temporary file (that will be our `pypirc` file, [you
 can read more here](https://packaging.python.org/guides/distributing-packages-using-setuptools/#uploading-your-project-to-pypi) if this doesn't sound familiar) with the
 following contents:
 
-```nil
+```toml
 [pypi]
 username = your_username
 password = your_password
@@ -32,8 +31,7 @@ password = your_password
 Travel to <https://builds.sr.ht/secrets> and add it. Just give it a
 name, select the File type, make the path `~/.pypirc`, make the
 permission mode `600`, and upload it (get rid of the copy on your
-local file system if you don't want to keep a local
-`~/.pypirc`).
+local file system if you don't want to keep a local `~/.pypirc`).
 
 
 ## The build manifest {#the-build-manifest}
@@ -43,7 +41,7 @@ add a `deploy` step. In the `build` step, where I setup my python
 environment, I make sure to install `twine` (necessary for
 uploading to PyPI).
 
-```nil
+```yaml
 image: ...
 packages:
   - ...

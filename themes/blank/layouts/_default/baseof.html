@@ -1,4 +1,17 @@
-<!-- KaTeX -->
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en-us" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ .Title }}</title>
+    {{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
+    {{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+    {{ with .OutputFormats.Get "RSS" -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
+    {{- end }}
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css" integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js" integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js" integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF" crossorigin="anonymous"></script>
@@ -8,22 +21,11 @@
       renderMathInElement(document.body);
   });
 </script>
-<link href="https://fonts.googleapis.com/css?family=Inconsolata:400|Source+Code+Pro:500&display=swap" rel="stylesheet">
 
-<header>
-  <center>
-    <a href="{{ .Site.BaseURL }}">home</a> |
-    {{ $title := lower .Title }}
-    {{ $section := lower .Section }}
-
-    {{ range .Site.Menus.main }}
-    {{ $name := lower .Name }}
-    <a href="{{ .URL }}">{{ lower .Name }}</a> |
-    {{end}}
-
-    {{ range .Site.Menus.feed }}
-    {{ $name := lower .Name}}
-    <a href="{{ .URL }}">{{ lower .Name }}</a>
-    {{end}}
-  </center>
-</header>
+  </head>
+  <body>
+    {{ partial "header" . }}
+    {{ block "main" . }}{{ end }}
+    {{ partial "footer" . }}
+  </body>
+</html>

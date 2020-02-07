@@ -922,7 +922,7 @@
 
     Notice the sum-of-weights squared is returned if the =weights=
     argument is provided with an array of sample weights. Checkout
-    some [[https://pygram11.readthedocs.io/en/stable/purpose.html#some-benchmarks][benchmarks]] to see how the =omp= argument can speed up the
+    some [[https://pygram11.readthedocs.io/en/stable/bench.html][benchmarks]] to see how the =omp= argument can speed up the
     calculations.
 
     And some variable bin histogramming, uniform logarithmic:
@@ -955,12 +955,11 @@
 
 *** Setting up your secret PyPI credentials
 
-    First create a temporary file (that will be our =pypirc= file,
-    [[https://packaging.python.org/guides/distributing-packages-using-setuptools/#uploading-your-project-to-pypi][you
+    First create a temporary file (that will be our =pypirc= file, [[https://packaging.python.org/guides/distributing-packages-using-setuptools/#uploading-your-project-to-pypi][you
     can read more here]] if this doesn't sound familiar) with the
     following contents:
 
-    #+begin_src
+    #+begin_src toml
     [pypi]
     username = your_username
     password = your_password
@@ -969,8 +968,7 @@
     Travel to https://builds.sr.ht/secrets and add it. Just give it a
     name, select the File type, make the path =~/.pypirc=, make the
     permission mode =600=, and upload it (get rid of the copy on your
-    local file system if you don't want to keep a local
-    =~/.pypirc=).
+    local file system if you don't want to keep a local =~/.pypirc=).
 
 *** The build manifest
 
@@ -979,7 +977,7 @@
     environment, I make sure to install =twine= (necessary for
     uploading to PyPI).
 
-    #+begin_src
+    #+begin_src yaml
       image: ...
       packages:
         - ...
@@ -1032,19 +1030,6 @@
       if __name__ == "__main__":
           main()
     #+end_src
-
-** Building Emacs on macOS                                        :emacs:mac:
-   :PROPERTIES:
-   :EXPORT_FILE_NAME: emacs-on-macos
-   :EXPORT_DATE: 2019-10-30
-   :END:
-
-   It's quite easy to install a stable release of Emacs on macOS via a
-   few different channels. The [[https://www.gnu.org/software/emacs/download.html#macos][official website]] describes how to do
-   this. I like to live at the head of Emacs. This involves building
-   the application from scratch every few weeks.
-
-   More to come...
 
 * Footnotes
 
