@@ -156,14 +156,14 @@ an `analyzeTracks` function multiple times.
 template <typename T>
 void analyzeTracks(const std::vector<T>& container) {
   for (const auto& object : container) {
-    if constexpr (std::is_same_v<T,Electron>) {
+    if constexpr (std::is_same_v<T, Electron>) {
       doElectronAnalysis(getTrack(object));
     }
-    else if constexpr (std::is_same_v<T,Muon>) {
+    else if constexpr (std::is_same_v<T, Muon>) {
       doMuonAnalysis(getTrack(object));
     }
-    else if constexpr (std::is_same_v<T,Track>) {
-      doStandardAnalysis(object)
+    else if constexpr (std::is_same_v<T, Track>) {
+      doStandardAnalysis(object);
     }
   }
 }
