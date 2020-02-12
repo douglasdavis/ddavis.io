@@ -10,16 +10,18 @@ main {
     padding: 2ch;
     margin: auto;
 }
+
+body {
+    background: #282828;
+    color:      #ebdbb2;
+}
+
 header {
     margin-bottom: 1.5rem;
 }
 
 h1 {
     margin-bottom: .5rem;
-}
-time {
-    color: #888;
-    text-decoration: italic;
 }
 code {
     font-family: "SF Mono", "Fira Code", "Roboto Mono", monospace;
@@ -29,6 +31,9 @@ pre {
     font-family: "SF Mono", "Fira Code", "Roboto Mono", monospace;
     overflow-x: auto;
     padding: 0.5ch;
+    border-radius: 10px;
+    border: 2px solid #689d6a;
+    padding: 10px;
 }
 hr {
     margin-top: 2rem;
@@ -36,16 +41,18 @@ hr {
 #fn {
     font-size: 85%;
 }
-a {
-    color: #ff3c3c;
-    text-decoration: none;
-    outline: 0;
+
+::selection {
+    background: #d3869b;
 }
+
+a, a:visited {
+    text-decoration: none;
+    color: #d79921;
+}
+
 a:hover {
     text-decoration: underline;
-}
-::selection {
-    background-color: #fff888;
 }
 
 #menu ul {
