@@ -104,7 +104,7 @@ for (const auto& event : eventContainer()) {
     for (const auto& hit : hitContainer) {
       // get dynamically set properties of the hit and finally use them
       float hitFoo = hit->getAuxiliaryData<float>("foo");
-      float hitBar = hit->getAuxiliaryData<float>("bar");
+      float hitBar = hit->getAuxiliaryData<int>("bar");
       if (hitBar == 42) {
         fooHistogram.Fill(hitFoo);
       }
