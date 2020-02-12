@@ -75,11 +75,12 @@ explain a task to a colleague. The task required just a bit of
 information about some hits along a track. Given the structure of
 our data format stored in ROOT files, I would need to do something
 like this cascade of data retrieval (in _kind of_ pseudo C++ code,
-this is very similar to ATLAS code, but with a few made up function
+this is very similar to [ATLAS code](https://gitlab.cern.ch/atlas/athena/), but with a few made up function
 names):
 
 ```C++
-Histogram fooHistogram(/* some constructor */);
+// some histogram object that we're going to fill with data
+ns::Histogram fooHistogram(20, 0.0, 100.0);
 
 for (const auto& event : eventContainer()) {
   // grab particle container
