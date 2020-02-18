@@ -856,6 +856,7 @@
        (interactive)
        (remove-hook 'c++-mode-hook 'eglot-ensure))
    #+END_SRC
+
 ** Introducing pygram11                                :python:numpy:cpp:hep:
    :PROPERTIES:
    :EXPORT_FILE_NAME: introducing-pygram11
@@ -1030,6 +1031,107 @@
 
       if __name__ == "__main__":
           main()
+    #+end_src
+
+** Emacs Python IDE with lsp-mode and py(v)env                 :python:emacs:
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: emacs-python-lsp
+   :EXPORT_DATE: 2020-02-18
+   :END:
+
+   I have an [[* Eglot based Emacs Python IDE][old post]] describing how to spin up an IDE-like Python
+   development environment in Emacs with [[https://github.com/joaotavora/eglot][Eglot]] and some
+   =.dir-locals.el= help. Now a year later, I've converged on what I
+   think is a better setup.
+
+*** pyenv
+
+    My main driver for installing different versions of Python and
+    spinning up virtual environments is [[https://github.com/pyenv/pyenv][pyenv]]. I use the [[https://github.com/pyenv/pyenv-installer][automatic]]
+    installer on all machines where I install pyenv, and I manually
+    modify my shell's initialization such that I have to execute a
+    =setupPyenv= function to enable its usage (I also give myself to
+    ability to activate an environment via a single argument):
+
+    #+begin_src bash
+      function setupPyenv() {
+          export PATH="$HOME/.pyenv/bin:$PATH"
+          eval "$(pyenv init -)"
+          eval "$(pyenv virtualenv-init -)"
+          VENV=$1
+          if [ -n "$VENV" ]; then
+              pyenv activate $VENV
+          fi
+      }
+    #+end_src
+
+*** pyvenv
+
+    To activate various Python environments in Emacs I turn to
+    [[https://github.com/jorgenschaefer/pyvenv][pyvenv]]. Since the =pyenv= installer puts itself in your home
+    directory, we can configure =pyvenv= to find virtual environments
+    in =~/.pyenv/versions= via the =WORKON_ON= environment variable.
+    I lean on =use-package= to initialize =pyvenv= and set the
+    environment variable:
+
+    #+begin_src emacs-lisp :results silent
+      (use-package pyvenv
+        :ensure t
+        :config
+        (setenv "WORKON_HOME" "~/.pyenv/versions"))
+    #+end_src
+
+    By setting the =WORKON_HOME= environment variable we can select
+    which =pyenv= virtual environment we want to use by calling =M-x
+    pyvenv-workon=. One can also call =M-x pyvenv-activate= to choose
+    an environment via manual filesystem navigation.
+
+*** lsp-mode
+
+    With a =pyvenv= environment activated in Emacs, all we have to do
+    is call =M-x lsp= (after setting it up of course); [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]] can be
+    configured in your =init.el= with something as simple as:
+
+    #+begin_src emacs-lisp :results silent
+      (use-package lsp-mode
+        :ensure t
+        :commands lsp)
+    #+end_src
+
+    See the GitHub project for more details. The virtual environment
+    you want to use will have to have a language server installed. The
+    easiest and fastest way to get started (a simple =pip install=) is
+    to use [[https://github.com/palantir/python-language-server][pyls]].
+
+*** Automated helper
+
+    Just about all of my Python development happens inside of a
+    [[https://github.com/bbatsov/projectile][projectile]] project. I have a simple interactive function that will
+    automatically activate the environment associated with a project
+    and spin up lsp-mode.
+
+    #+begin_src emacs-lisp :results silent
+      (defun ddavis/get-pyvenv-name ()
+        "grab the name of the active pyvenv (nil if not defined)"
+        (when pyvenv-virtual-env
+          (car (last (split-string (directory-file-name pyvenv-virtual-env) "/")))))
+
+      (defun ddavis/py-auto-lsp ()
+        "turn on lsp mode in a Python project by trying to
+      automatically determine which pyenv virtual environment to
+      activate based on the project name"
+        (interactive)
+        (if (and pyvenv-virtual-env
+                 (file-directory-p pyvenv-virtual-env)
+                 (string= projectile-project-name (ddavis/get-pyvenv-name)))
+            (lsp)
+          (pyvenv-workon (projectile-project-name))
+          (if (file-directory-p pyvenv-virtual-env)
+              (lsp)
+            (message (format "%s does not exist, set env manually"
+                             pyvenv-virtual-env))
+            (call-interactively #'pyvenv-workon)
+            (lsp))))
     #+end_src
 
 * Footnotes
