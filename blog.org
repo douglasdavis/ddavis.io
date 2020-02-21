@@ -682,6 +682,8 @@
    :EXPORT_DATE: 2018-12-05
    :END:
 
+   *This post is now a bit outdated* [[* Emacs Python IDE with lsp-mode and py(v)env][an updated post is here]].
+
    In my Emacs rabbit hole I mentioned in my previous post, I decided
    to work on improving my Python development workflow. I recently
    found the [[https://github.com/joaotavora/eglot][Eglot]] package for running a [[https://microsoft.github.io/language-server-protocol/][LSP]] in Emacs.
@@ -770,7 +772,7 @@
    :EXPORT_DATE: 2019-01-07
    :END:
 
-   I have a an [[https://ddavis.io/posts/2018-07-07-emacs-cpp-ide/][old post]] documenting my first attempt at turning Emacs
+   I have a an [[* Clangd based Emacs C++ IDE][old post]] documenting my first attempt at turning Emacs
    into a C++ IDE with =clangd=. That post describes using two
    packages: =lsp-mode= and =lsp-clangd=. Those packages have evolved
    and now =clangd= usage is built into =lsp-mode=, so the post is a

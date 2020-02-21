@@ -5,6 +5,8 @@ tags = ["emacs", "python"]
 draft = false
 +++
 
+**This post is now a bit outdated** [an updated post is here]({{< relref "emacs-python-lsp" >}}).
+
 In my Emacs rabbit hole I mentioned in my previous post, I decided
 to work on improving my Python development workflow. I recently
 found the [Eglot](https://github.com/joaotavora/eglot) package for running a [LSP](https://microsoft.github.io/language-server-protocol/) in Emacs.
