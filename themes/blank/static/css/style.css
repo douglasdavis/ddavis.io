@@ -34,7 +34,14 @@ pre {
     border-radius: 10px;
     border: 2px solid #d79921;
     padding: 10px;
+    scrollbar-width: none;
 }
+
+pre::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
 hr {
     margin-top: 2rem;
 }
