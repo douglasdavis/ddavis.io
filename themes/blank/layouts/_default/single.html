@@ -19,6 +19,10 @@
     <div>
       {{ .Content }}
     </div>
+      <p style="font-size:1.25em;text-align:center">
+        <a href="{{ .Prev.RelPermalink }}">  &lArr;  </a> |
+        <a href="{{ .Next.RelPermalink }}">  &rArr;  </a>
+      </p>
   </article>
 </main>
 {{ end }}
