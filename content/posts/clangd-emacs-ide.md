@@ -5,7 +5,7 @@ tags = ["cpp", "emacs"]
 draft = false
 +++
 
-**This is now out of date!** Updated method here: [click](../eglot-cpp-ide).
+**This is now out of date!** Updated method here: [click]({{< relref "eglot-cpp-ide" >}}).
 
 I've seen a lot of posts on the [Emacs](https://old.reddit.com/r/emacs) and [C++](https://old.reddit.com/cpp) subreddits over the
 last few months related to Emacs as a C/C++ IDE. If one gives the

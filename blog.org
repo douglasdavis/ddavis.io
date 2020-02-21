@@ -494,7 +494,7 @@
    :EXPORT_DATE: 2018-07-07
    :END:
 
-   *This is now out of date!* Updated method here: [[../eglot-cpp-ide][click]].
+   *This is now out of date!* Updated method here: [[* Eglot based Emacs C++ IDE with clangd][click]].
 
    I've seen a lot of posts on the [[https://old.reddit.com/r/emacs][Emacs]] and [[https://old.reddit.com/cpp][C++]] subreddits over the
    last few months related to Emacs as a C/C++ IDE. If one gives the
