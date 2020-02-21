@@ -12,8 +12,8 @@ found the [Eglot](https://github.com/joaotavora/eglot) package for running a [LS
 The most vanilla setup for Eglot is just `M-x eglot` in a buffer
 editing a python file. This works wonderfully if the executable for
 the [Python Language Server](https://github.com/palantir/python-language-server) (`pyls`) is found. This works because
-Eglot defines a list of server programs by default. You can see
-this list with `M-: eglot-server-programs`
+Eglot defines a list of server programs by default. See this list
+with `M-: eglot-server-programs`
 
 
 ## Project Editing {#project-editing}
@@ -88,6 +88,6 @@ Eglot python environments, where I:
   (remove-hook 'python-mode-hook 'eglot-ensure))
 ```
 
-You can see that I just bring `company-capf` to the front of the
-`company-backends` list, and add my desired Anaconda based `pyls`
-to front of the `eglot-server-programs` list.
+I just bring `company-capf` to the front of the `company-backends`
+list, and add my desired Anaconda based `pyls` to front of the
+`eglot-server-programs` list.

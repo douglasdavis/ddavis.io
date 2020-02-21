@@ -57,8 +57,8 @@ we polish it off by chopping off the out-of-bounds elements:
 >>> bins = raw_bins ## use our original binning (without infinities)
 ```
 
-And that's it, now you have _all_ of your data histogrammed
-including under and overflow.
+And that's it, now _all_ of the data is histogrammed -- including
+under and overflow.
 
 
 ## Error on bin height using weights {#error-on-bin-height-using-weights}
@@ -92,8 +92,8 @@ that bin, and sum their squares.
 >>> err = np.sqrt(sum_w2)
 ```
 
-And that's it, now you have an array of bin heights and an array
-or uncertainty in each bin.
+Now two arrays exist: `n` contains the heights in each bin, and
+`err` contains the standard error on the bin heights.
 
 
 ## Appendix, a function to combine the two methods: {#appendix-a-function-to-combine-the-two-methods}

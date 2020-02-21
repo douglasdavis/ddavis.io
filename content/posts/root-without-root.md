@@ -21,34 +21,34 @@ associated with it, etc.
 
 ## The problem {#the-problem}
 
-ROOT is a monolithic beast. It's a lot to carry around if all you
-need to do is look at a few numbers stored in a ROOT file. It takes
-a while to build the entire library (and the packaged
+ROOT is a monolithic beast. It's a lot to carry around if all one
+needs to do is look at a few numbers stored in a ROOT file. It
+takes a while to build the entire library (and the packaged
 interpreter). The ROOT team distributes some binaries, and some
 package managers provide binaries or a way to build locally
 (e.g. the [Arch User's Repository](https://aur.archlinux.org/))... but for beginners and quick
 tasks that's not always a great solution[^fn:1].
 
-Then, to actually look at your data you end up writing a C++
-"macro" (not a compiler preprocessor macro, this is something that
-is meant to be processed by ROOT's C++ interpreter, cling), or you
-write a proper executable, compile, link, and run. This C++ code
-can be verbose and full of boilerplate (especially for reading ROOT
-files, where you have to connect C++ variables to ROOT "Branches",
-one line at a time[^fn:2]).
+Then, to actually look at one's data a C++ "macro" has be be
+written (not a compiler preprocessor macro, this is something that
+is meant to be processed by ROOT's C++ interpreter, cling); or, one
+writes a proper executable, compile it, link it, and run it. This
+C++ code can be verbose and full of boilerplate (especially for
+reading ROOT files, where one has to connect C++ variables to ROOT
+"branches", one line at a time[^fn:2]).
 
 
 ## The old solution {#the-old-solution}
 
-If your ROOT build was aware of a python installation during the
-build process, you can end up with PyROOT - ROOT's builtin python
-bindings. PyROOT basically allows you to write C++ style code in
-python to talk to ROOT objects. That's not even the old solution
-I'm about to mention. [root-numpy](https://github.com/scikit-hep/root%5Fnumpy) is what I'd consider the _old_
-solution -- it's a python library accelerated with Cython which
-turns the C style arrays stored in ROOT files into numpy arrays. It
-can also be installed with pip.  Unfortunately, it requires a ROOT
-installation (because it requires `import ROOT`).
+If a ROOT build was aware of a python installation during the build
+process, one can end up with PyROOT - ROOT's builtin python
+bindings. PyROOT basically allows writing C++ style code in python
+to talk to ROOT objects. That's not even the old solution I'm about
+to mention. [root-numpy](https://github.com/scikit-hep/root%5Fnumpy) is what I'd consider the _old_ solution --
+it's a python library accelerated with Cython which turns the C
+style arrays stored in ROOT files into numpy arrays. It can also be
+installed with pip.  Unfortunately, it requires a ROOT installation
+(because it requires `import ROOT`).
 
 
 ## The solution {#the-solution}

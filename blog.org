@@ -215,33 +215,33 @@
 
 *** The problem
 
-   ROOT is a monolithic beast. It's a lot to carry around if all you
-   need to do is look at a few numbers stored in a ROOT file. It takes
-   a while to build the entire library (and the packaged
+   ROOT is a monolithic beast. It's a lot to carry around if all one
+   needs to do is look at a few numbers stored in a ROOT file. It
+   takes a while to build the entire library (and the packaged
    interpreter). The ROOT team distributes some binaries, and some
    package managers provide binaries or a way to build locally
    (e.g. the [[https://aur.archlinux.org/][Arch User's Repository]])... but for beginners and quick
    tasks that's not always a great solution[fn:1].
 
-   Then, to actually look at your data you end up writing a C++
-   "macro" (not a compiler preprocessor macro, this is something that
-   is meant to be processed by ROOT's C++ interpreter, cling), or you
-   write a proper executable, compile, link, and run. This C++ code
-   can be verbose and full of boilerplate (especially for reading ROOT
-   files, where you have to connect C++ variables to ROOT "Branches",
-   one line at a time[fn:2]).
+   Then, to actually look at one's data a C++ "macro" has be be
+   written (not a compiler preprocessor macro, this is something that
+   is meant to be processed by ROOT's C++ interpreter, cling); or, one
+   writes a proper executable, compile it, link it, and run it. This
+   C++ code can be verbose and full of boilerplate (especially for
+   reading ROOT files, where one has to connect C++ variables to ROOT
+   "branches", one line at a time[fn:2]).
 
 *** The old solution
 
-   If your ROOT build was aware of a python installation during the
-   build process, you can end up with PyROOT - ROOT's builtin python
-   bindings. PyROOT basically allows you to write C++ style code in
-   python to talk to ROOT objects. That's not even the old solution
-   I'm about to mention. [[https://github.com/scikit-hep/root_numpy][root-numpy]] is what I'd consider the /old/
-   solution -- it's a python library accelerated with Cython which
-   turns the C style arrays stored in ROOT files into numpy arrays. It
-   can also be installed with pip.  Unfortunately, it requires a ROOT
-   installation (because it requires =import ROOT=).
+   If a ROOT build was aware of a python installation during the build
+   process, one can end up with PyROOT - ROOT's builtin python
+   bindings. PyROOT basically allows writing C++ style code in python
+   to talk to ROOT objects. That's not even the old solution I'm about
+   to mention. [[https://github.com/scikit-hep/root_numpy][root-numpy]] is what I'd consider the /old/ solution --
+   it's a python library accelerated with Cython which turns the C
+   style arrays stored in ROOT files into numpy arrays. It can also be
+   installed with pip.  Unfortunately, it requires a ROOT installation
+   (because it requires =import ROOT=).
 
 *** The solution
 
@@ -399,8 +399,8 @@
     >>> bins = raw_bins ## use our original binning (without infinities)
     #+end_src
 
-    And that's it, now you have /all/ of your data histogrammed
-    including under and overflow.
+    And that's it, now /all/ of the data is histogrammed -- including
+    under and overflow.
 
 *** Error on bin height using weights
 
@@ -433,8 +433,8 @@
     >>> err = np.sqrt(sum_w2)
     #+end_src
 
-    And that's it, now you have an array of bin heights and an array
-    or uncertainty in each bin.
+    Now two arrays exist: =n= contains the heights in each bin, and
+    =err= contains the standard error on the bin heights.
 
 *** Appendix, a function to combine the two methods:
 
@@ -497,8 +497,8 @@
    *This is now out of date!* Updated method here: [[../eglot-cpp-ide][click]].
 
    I've seen a lot of posts on the [[https://old.reddit.com/r/emacs][Emacs]] and [[https://old.reddit.com/cpp][C++]] subreddits over the
-   last few months related to Emacs as a C/C++ IDE. If you give the
-   topic a quick googling you'll see a lot of tutorials that walk
+   last few months related to Emacs as a C/C++ IDE. If one gives the
+   topic a quick googling a lot of tutorials pop up that will walk
    through using [[https://github.com/cquery-project/cquery][cquery]], [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]], [[https://github.com/Andersbakken/rtags][rtags]], [[https://github.com/leoliu/ggtags][ggtags]], [[https://github.com/Sarcasm/irony-mode][irony]], [[http://company-mode.github.io/][company]],
    [[https://github.com/abingham/emacs-ycmd][ycmd]], etc. (obviously there are a number of options out there and
    multiple blog posts and tutorials for each). I've personally tried
@@ -672,9 +672,9 @@
 
    Luckily before I fell down the =ox-hugo= rabbit hole my Emacs
    configuration was already cleaned up to my liking, hopefully it
-   stays that way for a while. It can be found [[https://github.com/douglasdavis/dot-emacs][right here]] (you'll see
-   it's also written in Org-mode, with the Emacs Lisp blocks loaded
-   via =org-babel-load-file=).
+   stays that way for a while. It can be found [[https://github.com/douglasdavis/dot-emacs][right here]] (it's also
+   written in Org-mode, with the Emacs Lisp blocks loaded via
+   =org-babel-load-file=).
 
 ** Eglot based Emacs Python IDE                                :emacs:python:
    :PROPERTIES:
@@ -689,8 +689,8 @@
    The most vanilla setup for Eglot is just =M-x eglot= in a buffer
    editing a python file. This works wonderfully if the executable for
    the [[https://github.com/palantir/python-language-server][Python Language Server]] (=pyls=) is found. This works because
-   Eglot defines a list of server programs by default. You can see
-   this list with =M-: eglot-server-programs=
+   Eglot defines a list of server programs by default. See this list
+   with =M-: eglot-server-programs=
 
 *** Project Editing
 
@@ -761,9 +761,9 @@
         (remove-hook 'python-mode-hook 'eglot-ensure))
     #+END_SRC
 
-    You can see that I just bring =company-capf= to the front of the
-    =company-backends= list, and add my desired Anaconda based =pyls=
-    to front of the =eglot-server-programs= list.
+    I just bring =company-capf= to the front of the =company-backends=
+    list, and add my desired Anaconda based =pyls= to front of the
+    =eglot-server-programs= list.
 ** Eglot based Emacs C++ IDE with clangd                          :emacs:cpp:
    :PROPERTIES:
    :EXPORT_FILE_NAME: eglot-cpp-ide
@@ -889,7 +889,8 @@
    Open issues, PRs, email me, tweet me, or write something even
    better.
 
-   To try it out (with OpenMP support), all you need is
+   To try it out, spin up a virtual environment or conda environment
+   and install with:
 
    #+begin_src
    pip install pygram11
@@ -956,9 +957,9 @@
 
 *** Setting up your secret PyPI credentials
 
-    First create a temporary file (that will be our =pypirc= file, [[https://packaging.python.org/guides/distributing-packages-using-setuptools/#uploading-your-project-to-pypi][you
-    can read more here]] if this doesn't sound familiar) with the
-    following contents:
+    First create a temporary file (that will be our =pypirc= file,
+    [[https://packaging.python.org/guides/distributing-packages-using-setuptools/#uploading-your-project-to-pypi][read more here]] if this doesn't sound familiar) with the following
+    contents:
 
     #+begin_src toml
     [pypi]
@@ -1067,7 +1068,7 @@
 *** pyvenv
 
     To activate various Python environments in Emacs I turn to
-    [[https://github.com/jorgenschaefer/pyvenv][pyvenv]]. Since the =pyenv= installer puts itself in your home
+    [[https://github.com/jorgenschaefer/pyvenv][pyvenv]]. Since the =pyenv= installer puts itself in the user's home
     directory, we can configure =pyvenv= to find virtual environments
     in =~/.pyenv/versions= via the =WORKON_ON= environment variable.
     I lean on =use-package= to initialize =pyvenv= and set the
@@ -1089,7 +1090,7 @@
 
     With a =pyvenv= environment activated in Emacs, all we have to do
     is call =M-x lsp= (after setting it up of course); [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]] can be
-    configured in your =init.el= with something as simple as:
+    configured in an =init.el= file with something as simple as:
 
     #+begin_src emacs-lisp :results silent
       (use-package lsp-mode
@@ -1097,10 +1098,14 @@
         :commands lsp)
     #+end_src
 
-    See the GitHub project for more details. The virtual environment
-    you want to use will have to have a language server installed. The
+    See the GitHub project for more details. The working virtual
+    environment will have to have a language server installed. The
     easiest and fastest way to get started (a simple =pip install=) is
-    to use [[https://github.com/palantir/python-language-server][pyls]].
+    to use [[https://github.com/palantir/python-language-server][pyls]]. Alternatively, one can use Microsoft's
+    [[https://github.com/microsoft/python-language-server][python-language-server]] with lsp-mode via [[https://github.com/emacs-lsp/lsp-python-ms][lsp-python-ms]]; upon first
+    use a prompt will ask if the user would like to download
+    =mspyls=. I personally use =mspyls= because it has better
+    performance.
 
 *** Automated helper
 
@@ -1146,9 +1151,10 @@
    =std::vector= objects into a jagged array) the implementation is
    accelerated with [[https://numba.pydata.org/][numba]] (if installed).
 
-[fn:4] when you have to compile extension modules, builds.sr.ht jobs
-   might not be the best choice for wheels. The [[https://github.com/joerick/cibuildwheel][=cibuildwheel=]] package
-   is worth reading about.
+[fn:4] to compile extension modules, builds.sr.ht jobs might not be
+   the best choice for wheels. The [[https://github.com/joerick/cibuildwheel][=cibuildwheel=]] package is worth
+   reading about. It is possible to spin up docker containers in a
+   sr.ht build, but I don't have a strong handle on that procedure.
 
 [fn:5] In the implementation of =numpy.histogram=, elements of the
     input array that live outside the bounds of the binning are

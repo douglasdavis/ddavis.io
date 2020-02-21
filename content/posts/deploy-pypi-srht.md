@@ -18,9 +18,9 @@ definitely is.
 
 ## Setting up your secret PyPI credentials {#setting-up-your-secret-pypi-credentials}
 
-First create a temporary file (that will be our `pypirc` file, [you
-can read more here](https://packaging.python.org/guides/distributing-packages-using-setuptools/#uploading-your-project-to-pypi) if this doesn't sound familiar) with the
-following contents:
+First create a temporary file (that will be our `pypirc` file,
+[read more here](https://packaging.python.org/guides/distributing-packages-using-setuptools/#uploading-your-project-to-pypi) if this doesn't sound familiar) with the following
+contents:
 
 ```toml
 [pypi]
@@ -95,4 +95,4 @@ if __name__ == "__main__":
     main()
 ```
 
-[^fn:1]: when you have to compile extension modules, builds.sr.ht jobs might not be the best choice for wheels. The [`cibuildwheel`](https://github.com/joerick/cibuildwheel) package is worth reading about.
+[^fn:1]: to compile extension modules, builds.sr.ht jobs might not be the best choice for wheels. The [`cibuildwheel`](https://github.com/joerick/cibuildwheel) package is worth reading about. It is possible to spin up docker containers in a sr.ht build, but I don't have a strong handle on that procedure.

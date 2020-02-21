@@ -32,7 +32,8 @@ So, please go checkout the [documentation](https://pygram11.readthedocs.io/) and
 Open issues, PRs, email me, tweet me, or write something even
 better.
 
-To try it out (with OpenMP support), all you need is
+To try it out, spin up a virtual environment or conda environment
+and install with:
 
 ```nil
 pip install pygram11

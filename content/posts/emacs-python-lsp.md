@@ -36,7 +36,7 @@ function setupPyenv() {
 ## pyvenv {#pyvenv}
 
 To activate various Python environments in Emacs I turn to
-[pyvenv](https://github.com/jorgenschaefer/pyvenv). Since the `pyenv` installer puts itself in your home
+[pyvenv](https://github.com/jorgenschaefer/pyvenv). Since the `pyenv` installer puts itself in the user's home
 directory, we can configure `pyvenv` to find virtual environments
 in `~/.pyenv/versions` via the `WORKON_ON` environment variable.
 I lean on `use-package` to initialize `pyvenv` and set the
@@ -59,7 +59,7 @@ an environment via manual filesystem navigation.
 
 With a `pyvenv` environment activated in Emacs, all we have to do
 is call `M-x lsp` (after setting it up of course); [lsp-mode](https://github.com/emacs-lsp/lsp-mode) can be
-configured in your `init.el` with something as simple as:
+configured in an `init.el` file with something as simple as:
 
 ```emacs-lisp
 (use-package lsp-mode
@@ -67,10 +67,14 @@ configured in your `init.el` with something as simple as:
   :commands lsp)
 ```
 
-See the GitHub project for more details. The virtual environment
-you want to use will have to have a language server installed. The
+See the GitHub project for more details. The working virtual
+environment will have to have a language server installed. The
 easiest and fastest way to get started (a simple `pip install`) is
-to use [pyls](https://github.com/palantir/python-language-server).
+to use [pyls](https://github.com/palantir/python-language-server). Alternatively, one can use Microsoft's
+[python-language-server](https://github.com/microsoft/python-language-server) with lsp-mode via [lsp-python-ms](https://github.com/emacs-lsp/lsp-python-ms); upon first
+use a prompt will ask if the user would like to download
+`mspyls`. I personally use `mspyls` because it has better
+performance.
 
 
 ## Automated helper {#automated-helper}

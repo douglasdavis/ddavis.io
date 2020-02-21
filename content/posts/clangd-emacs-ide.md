@@ -8,8 +8,8 @@ draft = false
 **This is now out of date!** Updated method here: [click](../eglot-cpp-ide).
 
 I've seen a lot of posts on the [Emacs](https://old.reddit.com/r/emacs) and [C++](https://old.reddit.com/cpp) subreddits over the
-last few months related to Emacs as a C/C++ IDE. If you give the
-topic a quick googling you'll see a lot of tutorials that walk
+last few months related to Emacs as a C/C++ IDE. If one gives the
+topic a quick googling a lot of tutorials pop up that will walk
 through using [cquery](https://github.com/cquery-project/cquery), [lsp-mode](https://github.com/emacs-lsp/lsp-mode), [rtags](https://github.com/Andersbakken/rtags), [ggtags](https://github.com/leoliu/ggtags), [irony](https://github.com/Sarcasm/irony-mode), [company](http://company-mode.github.io/),
 [ycmd](https://github.com/abingham/emacs-ycmd), etc. (obviously there are a number of options out there and
 multiple blog posts and tutorials for each). I've personally tried
