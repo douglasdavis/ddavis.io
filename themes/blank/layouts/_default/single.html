@@ -19,9 +19,14 @@
     <div>
       {{ .Content }}
     </div>
-      <p style="font-size:1.25em;text-align:center">
-        <a href="{{ .Prev.RelPermalink }}">  &lArr;  </a> |
-        <a href="{{ .Next.RelPermalink }}">  &rArr;  </a>
+    <p style="font-size:1.25em;text-align:center">
+    {{ if .Prev }}
+    <a href="{{ .Prev.RelPermalink }}">  &lArr;  </a>
+    {{ end }}
+    |
+    {{ if .Next }}
+    <a href="{{ .Next.RelPermalink }}">  &rArr;  </a>
+    {{ end }}
       </p>
   </article>
 </main>
