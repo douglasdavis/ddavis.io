@@ -152,7 +152,6 @@
       }
     #+end_src
 
-
 *** if constexpr
 
     The [[http://en.cppreference.com/w/cpp/language/constexpr][constexpr]] specifier (for constant expressions) was introduced
