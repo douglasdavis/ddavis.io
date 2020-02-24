@@ -20,14 +20,14 @@
       {{ .Content }}
     </div>
     <p style="font-size:1.25em;text-align:center">
-    {{ if .Prev }}
-    <a href="{{ .Prev.RelPermalink }}">  &lArr;  </a>
-    {{ end }}
-    |
-    {{ if .Next }}
-    <a href="{{ .Next.RelPermalink }}">  &rArr;  </a>
-    {{ end }}
-      </p>
+      {{ if .Prev }}
+      <a href="{{ .Prev.RelPermalink }}">&#x21E6;</a>
+      {{ end }}
+      |
+      {{ if .Next }}
+      <a href="{{ .Next.RelPermalink }}">&#x21E8;</a>
+      {{ end }}
+    </p>
   </article>
 </main>
 {{ end }}
