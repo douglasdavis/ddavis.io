@@ -8,14 +8,15 @@
     <center>
       <time>{{ .Date.Format "2006 January 02" }}</time>
     </center>
-    <ul id="menu" align="right">
-      <li>tags:</li>
+    <p align="center">
+      tags:
       {{ with .Params.tags }}
       {{ range . }}
-      <li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+      <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
       {{ end }}
       {{ end }}
-    </ul>
+    </p>
+    <hr>
     <div>
       {{ .Content }}
     </div>

@@ -194,7 +194,7 @@
     developer hat) to avoid writing the boilerplate of multiple
     function overloads and still supply the same easy to use API.
 
-** ROOT analysis without ROOT                              :hep:numpy:python:
+** ROOT analysis without ROOT                          :hep:numpy:cpp:python:
    :PROPERTIES:
    :EXPORT_FILE_NAME: root-without-root
    :EXPORT_DATE: 2018-02-02

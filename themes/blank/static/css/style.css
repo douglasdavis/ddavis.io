@@ -42,9 +42,6 @@ pre::-webkit-scrollbar {
     height: 0;
 }
 
-hr {
-    margin-top: 2rem;
-}
 #fn {
     font-size: 85%;
 }
@@ -67,4 +64,9 @@ a:hover {
 }
 #menu li {
     display: inline;
+}
+
+hr {
+    border-top: 1px solid  #d79921;
+    margin-top: 2rem;
 }
