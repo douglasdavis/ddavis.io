@@ -56,13 +56,12 @@ Now I have a function I call when I'm ready to start digging into a
 C++ project which has an associated [`compile_commands.json`](https://clang.llvm.org/docs/JSONCompilationDatabase.html):
 
 ```emacs-lisp
+(use-package eglot
+  :ensure t)
+
 (defun ddavis/cpp-eglot-enable ()
   "enable variables and hooks for eglot cpp IDE"
   (interactive)
-  (use-package eglot
-    :ensure t
-    :config
-    (require 'eglot))
   (setq company-backends
         (cons 'company-capf
               (remove 'company-capf company-backends)))
@@ -70,15 +69,16 @@ C++ project which has an associated [`compile_commands.json`](https://clang.llvm
   (with-eval-after-load 'project
     (add-to-list 'project-find-functions
                  'ddavis/projectile-proj-find-function))
+  (require 'eglot)
   (add-to-list 'eglot-server-programs
                `((c++-mode) ,ddavis-clangd-exe))
   (add-hook 'c++-mode-hook 'eglot-ensure))
 ```
 
--   I make sure that Eglot is installed via `use-package`.
--   I make sure that the `completion-at-point` backend is used by
+-   Ensure that Eglot is installed via `use-package`.
+-   Ensure that the `completion-at-point` backend is used by
     `company` (bring it to the front of the `company-backends` list).
--   Make sure that `project.el` uses Projectile to find my project
+-   Ensure that `project.el` uses Projectile to find my project
     definition (this is because I usually have C++ projects using git
     submodules).
 -   Add my `clangd` executable to the `eglot-server-programs` list.
