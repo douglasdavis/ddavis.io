@@ -29,9 +29,9 @@ is a "first class citizen" in pygram11 (see my [NumPy Histogram
 tricks for HEP](https://ddavis.io/posts/numpy-histograms/) post); the variance in each bin is part of the
 function return.
 
-So, please go checkout the [documentation](https://pygram11.readthedocs.io/) and [GitHub repository](https://github.com/douglasdavis/pygram11)!
-Open issues, PRs, email me, tweet me, or write something even
-better.
+So, please go checkout the [documentation](https://pygram11.readthedocs.io/) and [GitHub repository](https://github.com/douglasdavis/pygram11).
+Open issues, PRs, email me, tweet at me, or write something better
+(checkout some [benchmarks](https://pygram11.readthedocs.io/en/stable/bench.html) in the documentation).
 
 To try it out, spin up a virtual environment or conda environment
 and install with:
@@ -66,10 +66,9 @@ h_1d, err_1d = histogram(x, bins=20, range=(-4, 4), weights=w)
 h_2d, err_2d = histogram2d(x, y, bins=[20, 40], range=[[-4, 4], [-3, 3]], weights=w)
 ```
 
-Notice the sum-of-weights squared is returned if the `weights`
-argument is provided with an array of sample weights. Checkout
-some [benchmarks](https://pygram11.readthedocs.io/en/stable/bench.html) to see how the `omp` argument can speed up the
-calculations.
+Notice the error (square-root of the variance) is the second
+return object (for the unweighted histogram we just throw it away
+with an underscore).
 
 And some variable bin histogramming, uniform logarithmic:
 

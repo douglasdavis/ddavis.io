@@ -888,9 +888,9 @@
    tricks for HEP]] post); the variance in each bin is part of the
    function return.
 
-   So, please go checkout the [[https://pygram11.readthedocs.io/][documentation]] and [[https://github.com/douglasdavis/pygram11][GitHub repository]]!
-   Open issues, PRs, email me, tweet me, or write something even
-   better.
+   So, please go checkout the [[https://pygram11.readthedocs.io/][documentation]] and [[https://github.com/douglasdavis/pygram11][GitHub repository]].
+   Open issues, PRs, email me, tweet at me, or write something better
+   (checkout some [[https://pygram11.readthedocs.io/en/stable/bench.html][benchmarks]] in the documentation).
 
    To try it out, spin up a virtual environment or conda environment
    and install with:
@@ -924,10 +924,9 @@
       h_2d, err_2d = histogram2d(x, y, bins=[20, 40], range=[[-4, 4], [-3, 3]], weights=w)
     #+end_src
 
-    Notice the sum-of-weights squared is returned if the =weights=
-    argument is provided with an array of sample weights. Checkout
-    some [[https://pygram11.readthedocs.io/en/stable/bench.html][benchmarks]] to see how the =omp= argument can speed up the
-    calculations.
+    Notice the error (square-root of the variance) is the second
+    return object (for the unweighted histogram we just throw it away
+    with an underscore).
 
     And some variable bin histogramming, uniform logarithmic:
 
