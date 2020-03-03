@@ -743,13 +743,13 @@
     - Add the desired hook.
 
     #+BEGIN_SRC emacs-lisp :results silent
+      (use-package eglot
+        :ensure t)
+
       (defun ddavis/python-eglot-enable ()
         "set variables and hook for eglot python IDE"
         (interactive)
-        (use-package eglot
-          :ensure t
-          :config
-          (require 'eglot))
+        (require 'eglot)
         (setq company-backends
               (cons 'company-capf
                     (remove 'company-capf company-backends)))
@@ -766,6 +766,7 @@
     I just bring =company-capf= to the front of the =company-backends=
     list, and add my desired Anaconda based =pyls= to front of the
     =eglot-server-programs= list.
+
 ** Eglot based Emacs C++ IDE with clangd                          :emacs:cpp:
    :PROPERTIES:
    :EXPORT_FILE_NAME: eglot-cpp-ide

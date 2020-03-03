@@ -70,13 +70,13 @@ Eglot python environments, where I:
 <!--listend-->
 
 ```emacs-lisp
+(use-package eglot
+  :ensure t)
+
 (defun ddavis/python-eglot-enable ()
   "set variables and hook for eglot python IDE"
   (interactive)
-  (use-package eglot
-    :ensure t
-    :config
-    (require 'eglot))
+  (require 'eglot)
   (setq company-backends
         (cons 'company-capf
               (remove 'company-capf company-backends)))
