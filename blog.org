@@ -877,15 +877,16 @@
    supporting weighted statistical uncertainties on the bin counts. To
    do this I've implemented the ability to calculate histograms (both
    fixed and variable bin width in one and two dimensions) which are
-   (optionally) accelerated with [[https://www.openmp.org/][OpenMP]]. To do it in Python, I've used
+   accelerated with [[https://www.openmp.org/][OpenMP]]. To do it in Python, I've used
    [[https://github.com/pybind/pybind11][pybind11]]. Pygram11 can essentially be a drop-in replacement for
    =numpy.histogram= and =numpy.histogram2d=, while reaching speeds
    20x faster (for a 1D histogram of an array of length 10,000) to
    almost 100x faster than NumPy (for a 2D histogram of 100 million
    $(x_i, y_i)$ pairs). The APIs are quite similar (with slightly
-   different return styles). On top of that, the
-   sum-of-weights-squared calculation is a "first class citizen" in
-   pygram11 (see my [[https://ddavis.io/posts/numpy-histograms/][NumPy Histogram tricks for HEP]] post).
+   different return styles). On top of that, the variance calculation
+   is a "first class citizen" in pygram11 (see my [[https://ddavis.io/posts/numpy-histograms/][NumPy Histogram
+   tricks for HEP]] post); the variance in each bin is part of the
+   function return.
 
    So, please go checkout the [[https://pygram11.readthedocs.io/][documentation]] and [[https://github.com/douglasdavis/pygram11][GitHub repository]]!
    Open issues, PRs, email me, tweet me, or write something even
@@ -916,12 +917,11 @@
       y = np.random.randn(100000)
       w = np.random.uniform(0.8, 1.2, 100000)
 
-      h_1d = histogram(x, bins=20, range=(-4, 4), omp=True)
-      h_2d = histogram2d(x, y, bins=[20, 40], range=[[-4, 4], [-3, 3]], omp=True)
+      h_1d, _ = histogram(x, bins=20, range=(-4, 4))
+      h_2d, _ = histogram2d(x, y, bins=[20, 40], range=[[-4, 4], [-3, 3]])
 
-      h_1d, sumw2_1d = histogram(x, bins=20, range=(-4, 4), weights=w, omp=True)
-      h_2d, sumw2_2d = histogram2d(x, y, bins=[20, 40],
-                                   range=[[-4, 4], [-3, 3]], weights=w, omp=True)
+      h_1d, err_1d = histogram(x, bins=20, range=(-4, 4), weights=w)
+      h_2d, err_2d = histogram2d(x, y, bins=[20, 40], range=[[-4, 4], [-3, 3]], weights=w)
     #+end_src
 
     Notice the sum-of-weights squared is returned if the =weights=
@@ -938,7 +938,7 @@
       x = np.exp(np.random.uniform(0.1, 10.0, 100000))
       bins = np.logspace(0.1, 1.0, 10, endpoint=True)
 
-      h = histogram(x, bins=bins, omp=True)
+      h, _ = histogram(x, bins=bins)
     #+end_src
 
 ** Deploying to PyPI with sr.ht                                      :python:
