@@ -65,7 +65,6 @@ C++ project which has an associated [`compile_commands.json`](https://clang.llvm
   (setq company-backends
         (cons 'company-capf
               (remove 'company-capf company-backends)))
-  (projectile-mode t)
   (with-eval-after-load 'project
     (add-to-list 'project-find-functions
                  'ddavis/projectile-proj-find-function))
