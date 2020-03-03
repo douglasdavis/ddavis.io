@@ -102,8 +102,9 @@ activate based on the project name"
     (pyvenv-workon (projectile-project-name))
     (if (file-directory-p pyvenv-virtual-env)
         (lsp)
-      (message (format "%s does not exist, set env manually"
-                       pyvenv-virtual-env))
-      (call-interactively #'pyvenv-workon)
-      (lsp))))
+      (progn
+        (message (format "%s does not exist, set env manually"
+                         pyvenv-virtual-env))
+        (call-interactively #'pyvenv-workon)
+        (lsp)))))
 ```
