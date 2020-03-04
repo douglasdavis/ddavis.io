@@ -3,7 +3,7 @@
 body {
     font-family: Ubuntu, Liberation Sans, Arial, sans-serif;
     background-color: #fffaf7;
-    line-height: 1.5;
+    line-height: 1.75;
 }
 main {
     max-width: 78ch;
@@ -17,18 +17,19 @@ body {
 }
 
 header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
 }
 
 h1 {
-    margin-bottom: .5rem;
+    font-size: 1.75em;
+    margin-bottom: .25rem;
 }
 code {
-    font-family: "Ubuntu Mono", monospace;
-    font-size: 0.95em;
+    font-family: "JetBrains Mono", "Ubuntu Mono", monospace;
+    font-size: 1.0em;
 }
 pre {
-    font-family: "Ubuntu Mono", monospace;
+    font-family: "JetBrains Mono", "Ubuntu Mono", monospace;
     overflow-x: auto;
     padding: 0.5ch;
     border-radius: 10px;
