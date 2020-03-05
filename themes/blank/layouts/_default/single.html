@@ -1,21 +1,21 @@
 {{ define "main" }}
 <main>
   <article>
-    <p align="right"><a href="../..">home</a></p>
+    <p align="right"><a href="{{ .Site.BaseURL }}">home</a></p>
     <center>
       <h1>{{ .Title }}</h1>
     </center>
     <center>
       <time>{{ .Date.Format "2006 January 02" }}</time>
     </center>
-    <p align="center">
+    <div style="float:right">
       tags:
       {{ with .Params.tags }}
       {{ range . }}
       <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
       {{ end }}
       {{ end }}
-    </p>
+    </div>
     <hr>
     <div>
       {{ .Content }}
@@ -24,7 +24,6 @@
       {{ if .Prev }}
       <a href="{{ .Prev.RelPermalink }}">&#x21E6;</a>
       {{ end }}
-      |
       {{ if .Next }}
       <a href="{{ .Next.RelPermalink }}">&#x21E8;</a>
       {{ end }}
