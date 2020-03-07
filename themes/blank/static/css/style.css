@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 
 body {
-    font-family: Ubuntu, Liberation Sans, Arial, sans-serif;
+    font-family: 'IBM Plex Sans', 'Liberation Sans', Arial, sans-serif;
     background-color: #fffaf7;
     line-height: 1.75;
 }
+
 main {
     max-width: 78ch;
     padding: 2ch;
@@ -24,12 +25,14 @@ h1 {
     font-size: 1.75em;
     margin-bottom: .25rem;
 }
+
 code {
-    font-family: "JetBrains Mono", "Ubuntu Mono", monospace;
-    font-size: 1.0em;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9em;
 }
+
 pre {
-    font-family: "JetBrains Mono", "Ubuntu Mono", monospace;
+    font-family: 'IBM Plex Mono', monospace;
     overflow-x: auto;
     padding: 0.5ch;
     border-radius: 10px;
@@ -63,6 +66,7 @@ a:hover {
 #menu ul {
     list-style: none;
 }
+
 #menu li {
     display: inline;
 }
