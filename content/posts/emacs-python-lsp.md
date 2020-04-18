@@ -17,7 +17,7 @@ My main driver for installing different versions of Python and
 spinning up virtual environments is [pyenv](https://github.com/pyenv/pyenv). I use the [automatic](https://github.com/pyenv/pyenv-installer)
 installer on all machines where I install pyenv, and I manually
 modify my shell's initialization such that I have to execute a
-`setupPyenv` function to enable its usage (I also give myself to
+`setupPyenv` function to enable its usage (I also give myself the
 ability to activate an environment via a single argument):
 
 ```bash

@@ -1051,7 +1051,7 @@
     spinning up virtual environments is [[https://github.com/pyenv/pyenv][pyenv]]. I use the [[https://github.com/pyenv/pyenv-installer][automatic]]
     installer on all machines where I install pyenv, and I manually
     modify my shell's initialization such that I have to execute a
-    =setupPyenv= function to enable its usage (I also give myself to
+    =setupPyenv= function to enable its usage (I also give myself the
     ability to activate an environment via a single argument):
 
     #+begin_src bash
