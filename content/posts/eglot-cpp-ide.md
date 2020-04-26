@@ -36,7 +36,7 @@ installation not in my `PATH`):
 
 ```emacs-lisp
 (when (string= (system-name) "pion")
-  (setq ddavis-clangd-exe "~/Software/LLVM/releases/HEAD/bin/clangd"))
+  (setq ddavis-clangd-exe "~/software/llvm/releases/HEAD/bin/clangd"))
 ```
 
 

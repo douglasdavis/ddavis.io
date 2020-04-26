@@ -69,7 +69,7 @@ hook to C++ mode to enable it:
     (setq lsp-clangd-executable "/usr/local/opt/llvm/bin/clangd"))
   ;; for Fedora box
   (when (string= (system-name) "proton")
-    (setq lsp-clangd-executable "/home/ddavis/Software/llvm/head/bin/clangd"))
+    (setq lsp-clangd-executable "/home/ddavis/software/llvm/head/bin/clangd"))
 
   (add-hook 'c++-mode-hook #'lsp-clangd-c++-enable))
 ```

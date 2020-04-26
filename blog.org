@@ -558,7 +558,7 @@
          (setq lsp-clangd-executable "/usr/local/opt/llvm/bin/clangd"))
        ;; for Fedora box
        (when (string= (system-name) "proton")
-         (setq lsp-clangd-executable "/home/ddavis/Software/llvm/head/bin/clangd"))
+         (setq lsp-clangd-executable "/home/ddavis/software/llvm/head/bin/clangd"))
 
        (add-hook 'c++-mode-hook #'lsp-clangd-c++-enable))
    #+end_src
@@ -726,7 +726,7 @@
     file:
 
     #+BEGIN_SRC emacs-lisp :results silent
-      (defvar ddavis-default-pyls "~/Software/Python/anaconda3/bin/pyls"
+      (defvar ddavis-default-pyls "~/software/Python/anaconda3/bin/pyls"
         "define a default pyls to be used")
     #+END_SRC
 
@@ -803,7 +803,7 @@
 
    #+begin_src emacs-lisp :results silent
      (when (string= (system-name) "pion")
-       (setq ddavis-clangd-exe "~/Software/LLVM/releases/HEAD/bin/clangd"))
+       (setq ddavis-clangd-exe "~/software/llvm/releases/HEAD/bin/clangd"))
    #+END_SRC
 
 *** Eglot setup

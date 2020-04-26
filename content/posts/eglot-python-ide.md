@@ -51,7 +51,7 @@ environment, I rely on some "sensible defaults" in my Emacs init
 file:
 
 ```emacs-lisp
-(defvar ddavis-default-pyls "~/Software/Python/anaconda3/bin/pyls"
+(defvar ddavis-default-pyls "~/software/Python/anaconda3/bin/pyls"
   "define a default pyls to be used")
 ```
 
