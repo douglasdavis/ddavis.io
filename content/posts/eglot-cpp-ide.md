@@ -18,7 +18,7 @@ my Eglot Python IDE). So, let's put together an updated setup:
 First, one needs to have `clangd` installed. These days, the 8.0
 release of LLVM is a few months away, but `clangd` (part of the
 `clang-tools-extra` LLVM project) is in rapid development and the
-`HEAD` of the repository should be used. The [installation
+`master` of the repository should be used. The [installation
 instructions](https://llvm.org/docs/GettingStarted.html#for-developers-to-work-with-a-git-monorepo) from the LLVM documentation are easy to follow.
 
 My C++ development happens on multiple machines. In my Emacs
@@ -36,7 +36,7 @@ installation not in my `PATH`):
 
 ```emacs-lisp
 (when (string= (system-name) "pion")
-  (setq ddavis-clangd-exe "~/software/llvm/releases/HEAD/bin/clangd"))
+  (setq ddavis-clangd-exe "~/software/llvm/releases/master/bin/clangd"))
 ```
 
 

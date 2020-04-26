@@ -785,7 +785,7 @@
    First, one needs to have =clangd= installed. These days, the 8.0
    release of LLVM is a few months away, but =clangd= (part of the
    =clang-tools-extra= LLVM project) is in rapid development and the
-   =HEAD= of the repository should be used. The [[https://llvm.org/docs/GettingStarted.html#for-developers-to-work-with-a-git-monorepo][installation
+   =master= of the repository should be used. The [[https://llvm.org/docs/GettingStarted.html#for-developers-to-work-with-a-git-monorepo][installation
    instructions]] from the LLVM documentation are easy to follow.
 
    My C++ development happens on multiple machines. In my Emacs
@@ -803,7 +803,7 @@
 
    #+begin_src emacs-lisp :results silent
      (when (string= (system-name) "pion")
-       (setq ddavis-clangd-exe "~/software/llvm/releases/HEAD/bin/clangd"))
+       (setq ddavis-clangd-exe "~/software/llvm/releases/master/bin/clangd"))
    #+END_SRC
 
 *** Eglot setup
