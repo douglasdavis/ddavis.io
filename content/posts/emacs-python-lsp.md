@@ -82,7 +82,8 @@ performance.
 Just about all of my Python development happens inside of a
 [projectile](https://github.com/bbatsov/projectile) project. I have a simple interactive function that will
 automatically activate the environment associated with a project
-and spin up lsp-mode.
+and spin up lsp-mode. I bind this helper function to `C-c C-a` in
+the `python-mode-map`.
 
 ```emacs-lisp
 (defun dd/py-workon-project-venv ()
@@ -110,4 +111,6 @@ interactive `pyvenv-workon' function before `lsp'"
       (progn
         (call-interactively #'pyvenv-workon)
         (lsp)))))
+
+(bind-key (kbd "C-c C-a") #'dd/py-auto-lsp python-mode-map)
 ```
