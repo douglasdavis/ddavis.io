@@ -47,7 +47,7 @@ defining a function that will tell `project.el` to find a project
 via Projectile, [thanks @wyuenho on GitHub](https://github.com/joaotavora/eglot/issues/129#issuecomment-444130367):
 
 ```emacs-lisp
-(defun ddavis/projectile-proj-find-function (dir)
+(defun dd/projectile-proj-find-function (dir)
   (let ((root (projectile-project-root dir)))
     (and root (cons 'transient root))))
 ```
@@ -59,7 +59,7 @@ C++ project which has an associated [`compile_commands.json`](https://clang.llvm
 (use-package eglot
   :ensure t)
 
-(defun ddavis/cpp-eglot-enable ()
+(defun dd/cpp-eglot-enable ()
   "enable variables and hooks for eglot cpp IDE"
   (interactive)
   (setq company-backends
@@ -67,8 +67,7 @@ C++ project which has an associated [`compile_commands.json`](https://clang.llvm
               (remove 'company-capf company-backends)))
   (with-eval-after-load 'project
     (add-to-list 'project-find-functions
-                 'ddavis/projectile-proj-find-function))
-  (require 'eglot)
+                 'dd/projectile-proj-find-function))
   (add-to-list 'eglot-server-programs
                `((c++-mode) ,ddavis-clangd-exe))
   (add-hook 'c++-mode-hook 'eglot-ensure))
@@ -86,7 +85,7 @@ C++ project which has an associated [`compile_commands.json`](https://clang.llvm
 If I don't want the hook anymore, I use this very simple function:
 
 ```emacs-lisp
-(defun ddavis/cpp-eglot-disable ()
+(defun dd/cpp-eglot-disable ()
   "disable hook for eglot"
   (interactive)
   (remove-hook 'c++-mode-hook 'eglot-ensure))

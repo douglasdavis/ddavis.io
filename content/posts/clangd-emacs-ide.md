@@ -5,7 +5,7 @@ tags = ["cpp", "emacs"]
 draft = false
 +++
 
-**This is now out of date!** Updated method here: [click]({{< relref "eglot-cpp-ide" >}}).
+**This is now very out of date!** Updated method here: [click]({{< relref "eglot-cpp-ide" >}}).
 
 I've seen a lot of posts on the [Emacs](https://old.reddit.com/r/emacs) and [C++](https://old.reddit.com/cpp) subreddits over the
 last few months related to Emacs as a C/C++ IDE. If one gives the
@@ -34,7 +34,6 @@ choose a global configuration):
 (use-package company-lsp
   :ensure t
   :config
-  (require 'company-lsp)
   (push 'company-lsp company-backends)
   (add-hook 'after-init-hook 'global-company-mode))
 ```
@@ -44,13 +43,10 @@ Ensure that `lsp-mode` and `lsp-ui` are installed and required:
 ```emacs-lisp
 (use-package lsp-mode
   :ensure t
-  :config
-  (require 'lsp-mode))
+  :commands lsp)
 
 (use-package lsp-ui
-  :ensure t
-  :config
-  (require 'lsp-ui))
+  :ensure t)
 ```
 
 Unfortunately `lsp-clangd` isn't in melpa yet, so I cloned it to my
@@ -67,11 +63,10 @@ hook to C++ mode to enable it:
   ;; for macOS
   (when (equal system-type 'darwin)
     (setq lsp-clangd-executable "/usr/local/opt/llvm/bin/clangd"))
-  ;; for Fedora box
+  ;; for linux machine with hostname "proton"
   (when (string= (system-name) "proton")
     (setq lsp-clangd-executable "/home/ddavis/software/llvm/head/bin/clangd"))
-
-  (add-hook 'c++-mode-hook #'lsp-clangd-c++-enable))
+  (add-hook 'c++-mode-hook 'lsp-clangd-c++-enable))
 ```
 
 Like I said, Clangd is under heavy development, so expect some

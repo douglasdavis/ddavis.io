@@ -494,7 +494,7 @@
    :EXPORT_DATE: 2018-07-07
    :END:
 
-   *This is now out of date!* Updated method here: [[* Eglot based Emacs C++ IDE with clangd][click]].
+   *This is now very out of date!* Updated method here: [[* Eglot based Emacs C++ IDE with clangd][click]].
 
    I've seen a lot of posts on the [[https://old.reddit.com/r/emacs][Emacs]] and [[https://old.reddit.com/cpp][C++]] subreddits over the
    last few months related to Emacs as a C/C++ IDE. If one gives the
@@ -523,7 +523,6 @@
      (use-package company-lsp
        :ensure t
        :config
-       (require 'company-lsp)
        (push 'company-lsp company-backends)
        (add-hook 'after-init-hook 'global-company-mode))
    #+end_src
@@ -533,13 +532,10 @@
    #+begin_src emacs-lisp
      (use-package lsp-mode
        :ensure t
-       :config
-       (require 'lsp-mode))
+       :commands lsp)
 
      (use-package lsp-ui
-       :ensure t
-       :config
-       (require 'lsp-ui))
+       :ensure t)
    #+end_src
 
    Unfortunately =lsp-clangd= isn't in melpa yet, so I cloned it to my
@@ -556,11 +552,10 @@
        ;; for macOS
        (when (equal system-type 'darwin)
          (setq lsp-clangd-executable "/usr/local/opt/llvm/bin/clangd"))
-       ;; for Fedora box
+       ;; for linux machine with hostname "proton"
        (when (string= (system-name) "proton")
          (setq lsp-clangd-executable "/home/ddavis/software/llvm/head/bin/clangd"))
-
-       (add-hook 'c++-mode-hook #'lsp-clangd-c++-enable))
+       (add-hook 'c++-mode-hook 'lsp-clangd-c++-enable))
    #+end_src
 
    Like I said, Clangd is under heavy development, so expect some
@@ -746,10 +741,9 @@
       (use-package eglot
         :ensure t)
 
-      (defun ddavis/python-eglot-enable ()
+      (defun dd/python-eglot-enable ()
         "set variables and hook for eglot python IDE"
         (interactive)
-        (require 'eglot)
         (setq company-backends
               (cons 'company-capf
                     (remove 'company-capf company-backends)))
@@ -757,7 +751,7 @@
                      `(python-mode ,ddavis-default-pyls))
         (add-hook 'python-mode-hook 'eglot-ensure))
 
-      (defun ddavis/python-eglot-disable ()
+      (defun dd/python-eglot-disable ()
         "remove hook for eglot python"
         (interactive)
         (remove-hook 'python-mode-hook 'eglot-ensure))
@@ -813,7 +807,7 @@
    via Projectile, [[https://github.com/joaotavora/eglot/issues/129#issuecomment-444130367][thanks @wyuenho on GitHub]]:
 
    #+begin_src emacs-lisp :results silent
-     (defun ddavis/projectile-proj-find-function (dir)
+     (defun dd/projectile-proj-find-function (dir)
        (let ((root (projectile-project-root dir)))
          (and root (cons 'transient root))))
    #+END_SRC
@@ -825,7 +819,7 @@
      (use-package eglot
        :ensure t)
 
-     (defun ddavis/cpp-eglot-enable ()
+     (defun dd/cpp-eglot-enable ()
        "enable variables and hooks for eglot cpp IDE"
        (interactive)
        (setq company-backends
@@ -833,8 +827,7 @@
                    (remove 'company-capf company-backends)))
        (with-eval-after-load 'project
          (add-to-list 'project-find-functions
-                      'ddavis/projectile-proj-find-function))
-       (require 'eglot)
+                      'dd/projectile-proj-find-function))
        (add-to-list 'eglot-server-programs
                     `((c++-mode) ,ddavis-clangd-exe))
        (add-hook 'c++-mode-hook 'eglot-ensure))
@@ -852,7 +845,7 @@
    If I don't want the hook anymore, I use this very simple function:
 
    #+begin_src emacs-lisp :results silent
-     (defun ddavis/cpp-eglot-disable ()
+     (defun dd/cpp-eglot-disable ()
        "disable hook for eglot"
        (interactive)
        (remove-hook 'c++-mode-hook 'eglot-ensure))
@@ -1078,7 +1071,7 @@
     #+begin_src emacs-lisp :results silent
       (use-package pyvenv
         :ensure t
-        :config
+        :init
         (setenv "WORKON_HOME" "~/.pyenv/versions"))
     #+end_src
 

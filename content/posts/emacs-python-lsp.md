@@ -45,7 +45,7 @@ environment variable:
 ```emacs-lisp
 (use-package pyvenv
   :ensure t
-  :config
+  :init
   (setenv "WORKON_HOME" "~/.pyenv/versions"))
 ```
 

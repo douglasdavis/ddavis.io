@@ -73,10 +73,9 @@ Eglot python environments, where I:
 (use-package eglot
   :ensure t)
 
-(defun ddavis/python-eglot-enable ()
+(defun dd/python-eglot-enable ()
   "set variables and hook for eglot python IDE"
   (interactive)
-  (require 'eglot)
   (setq company-backends
         (cons 'company-capf
               (remove 'company-capf company-backends)))
@@ -84,7 +83,7 @@ Eglot python environments, where I:
                `(python-mode ,ddavis-default-pyls))
   (add-hook 'python-mode-hook 'eglot-ensure))
 
-(defun ddavis/python-eglot-disable ()
+(defun dd/python-eglot-disable ()
   "remove hook for eglot python"
   (interactive)
   (remove-hook 'python-mode-hook 'eglot-ensure))
