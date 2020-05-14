@@ -677,7 +677,7 @@
    :EXPORT_DATE: 2018-12-05
    :END:
 
-   *This post is now a bit outdated* [[* Emacs, py(v)env, and lsp-mode][an updated post is here]].
+   *This post is now a bit outdated* [[* Python with Emacs: py(v)env, and lsp-mode][an updated post is here]].
 
    In my Emacs rabbit hole I mentioned in my previous post, I decided
    to work on improving my Python development workflow. I recently
@@ -1027,7 +1027,7 @@
           main()
     #+end_src
 
-** Emacs, py(v)env, and lsp-mode                               :python:emacs:
+** Python with Emacs: py(v)env, and lsp-mode                   :python:emacs:
    :PROPERTIES:
    :EXPORT_FILE_NAME: emacs-python-lsp
    :EXPORT_DATE: 2020-02-18
