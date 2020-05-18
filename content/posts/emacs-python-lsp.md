@@ -22,13 +22,11 @@ ability to activate an environment via a single argument):
 
 ```bash
 function setupPyenv() {
+    VENV=$1
     export PATH="$HOME/.pyenv/bin:$PATH"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
-    VENV=$1
-    if [ -n "$VENV" ]; then
-        pyenv activate $VENV
-    fi
+    [ -n "$VENV" ] && pyenv activate $VENV
 }
 ```
 

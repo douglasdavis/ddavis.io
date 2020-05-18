@@ -1049,13 +1049,11 @@
 
     #+begin_src bash
       function setupPyenv() {
+          VENV=$1
           export PATH="$HOME/.pyenv/bin:$PATH"
           eval "$(pyenv init -)"
           eval "$(pyenv virtualenv-init -)"
-          VENV=$1
-          if [ -n "$VENV" ]; then
-              pyenv activate $VENV
-          fi
+          [ -n "$VENV" ] && pyenv activate $VENV
       }
     #+end_src
 
