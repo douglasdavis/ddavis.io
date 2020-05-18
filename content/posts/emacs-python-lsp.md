@@ -71,8 +71,11 @@ easiest and fastest way to get started (a simple `pip install`) is
 to use [pyls](https://github.com/palantir/python-language-server). Alternatively, one can use Microsoft's
 [python-language-server](https://github.com/microsoft/python-language-server) with lsp-mode via [lsp-python-ms](https://github.com/emacs-lsp/lsp-python-ms); upon first
 use a prompt will ask if the user would like to download
-`mspyls`. I personally use `mspyls` because it has better
-performance.
+`mspyls`. I've used both; while `mspyls` has better performance,
+`pyls` support is built into `lsp-mode` and the server can be
+installed like any other Python package (the Microsoft
+implementation is a C# program). In my opinion those pros
+neutralize the performance con (which is not too bad).
 
 
 ## Automated helper {#automated-helper}
