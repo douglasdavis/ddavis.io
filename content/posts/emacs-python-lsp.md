@@ -65,17 +65,20 @@ configured in an `init.el` file with something as simple as:
   :commands lsp)
 ```
 
-See the GitHub project for more details. The working virtual
-environment will have to have a language server installed. The
-easiest and fastest way to get started (a simple `pip install`) is
-to use [pyls](https://github.com/palantir/python-language-server). Alternatively, one can use Microsoft's
-[python-language-server](https://github.com/microsoft/python-language-server) with lsp-mode via [lsp-python-ms](https://github.com/emacs-lsp/lsp-python-ms); upon first
-use a prompt will ask if the user would like to download
-`mspyls`. I've used both; while `mspyls` has better performance,
-`pyls` support is built into `lsp-mode` and the server can be
-installed like any other Python package (the Microsoft
-implementation is a C# program). In my opinion those pros
-neutralize the performance con (which is not too bad).
+See the GitHub project for more details. Completion (with
+[company-mode](https://company-mode.github.io/)) and static checks (with Flymake, an Emacs builtin,
+or [Flycheck](https://www.flycheck.org/en/latest/)) are easy to setup with `lsp-mode`.
+
+The working virtual environment will have to have a language
+server installed. The easiest and fastest way to get started (a
+simple `pip install`) is to use [pyls](https://github.com/palantir/python-language-server). Alternatively, one can use
+Microsoft's [python-language-server](https://github.com/microsoft/python-language-server) with lsp-mode via
+[lsp-python-ms](https://github.com/emacs-lsp/lsp-python-ms); upon first use a prompt will ask if the user would
+like to download `mspyls`. I've used both; while `mspyls` has
+better performance, `pyls` support is built into `lsp-mode` and
+the server can be installed like any other Python package (the
+Microsoft implementation is a C# program). In my opinion those
+pros neutralize the performance con (which is not too bad).
 
 
 ## Automated helper {#automated-helper}
