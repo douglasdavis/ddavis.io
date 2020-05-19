@@ -79,8 +79,9 @@ blacklist. The blacklist is useful for avoiding compiling Emacs
 Lisp code that we don't often use, or if it takes _forever_ to
 compile (this can only be determined by experience, so my
 blacklist is a bit fluid, sometimes I'll remove one and leave it
-to grind over night). I show a few just for example. See the docs
-for the variable description, it looks for regex matches.
+to grind over night). I show a few entries as an example. See `C-h
+    v RET comp-deferred-compilation-black-list` for more, it looks for
+regex matches.
 
 ```emacs-lisp
 ;; for native-comp branch
