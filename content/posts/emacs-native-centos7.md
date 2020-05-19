@@ -80,7 +80,7 @@ Lisp code that we don't often use, or if it takes _forever_ to
 compile (this can only be determined by experience, so my
 blacklist is a bit fluid, sometimes I'll remove one and leave it
 to grind over night). I show a few entries as an example. See `C-h
-    v RET comp-deferred-compilation-black-list` for more, it looks for
+    v comp-deferred-compilation-black-list` for more, it looks for
 regex matches.
 
 ```emacs-lisp
