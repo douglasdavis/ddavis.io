@@ -104,5 +104,4 @@ loads. So if your `init.el` file loads a lot of packages, prepare
 for Emacs to spend quite a while compiling. Fortunately you can
 still use Emacs while that is happening in the background (and
 keep that `comp-async-jobs-number` below your total number of
-cores). Keep in mind if you update a package via `package.el` or
-`straight.el` any updated `foo.elc` will trigger a recompile.
+cores).
