@@ -7,11 +7,13 @@ draft = false
 
 The Emacs `feature/native-comp` branch has been under development
 for some time now. The performance enhancements from the natively
-compiled Emacs Lisp code are exciting. Andrea Corallo is developing
-this new feature and updates/descriptions of the work can be
-tracked/found [on his website](http://akrl.sdf.org/gccemacs.html). I've been building the branch on my
-CentOS 7 machine for a few weeks now, and I thought I'd walk
-through the process.
+compiled Emacs Lisp code are exciting. Notably, I've been seeing a
+nice speedup for [Helm](https://emacs-helm.github.io/helm/) completions and a smoother [lsp-ui](https://emacs-lsp.github.io/lsp-ui/) experience.
+
+Andrea Corallo is developing this new feature and
+updates/descriptions of the work can be tracked/found [on his
+website](http://akrl.sdf.org/gccemacs.html). I've been building the branch on my CentOS 7 machine for a
+few weeks now, and I thought I'd walk through the process.
 
 
 ## Building Emacs using `--with-nativecomp` {#building-emacs-using-with-nativecomp}
@@ -23,7 +25,7 @@ can install `libgccjit` (and the necessary development headers)
 from the GCC 9.1 series via:
 
 ```nil
-$ sudo yum install devtoolset-9-gcc devtoolset-9-libgccjit-devel
+# yum install devtoolset-9-gcc devtoolset-9-libgccjit-devel
 ```
 
 We'll build Emacs from source after checking out the feature
