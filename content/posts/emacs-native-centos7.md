@@ -95,7 +95,6 @@ regex matches.
             '("ert.el"
               "flycheck.el"
               "help-mode.el"
-              "lsp-mode.el"
               "markdown-mode.el"
               "org.el"
               "org-table.el"))
