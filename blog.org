@@ -1149,10 +1149,11 @@
    :EXPORT_DATE: 2020-05-19
    :END:
 
-   The Emacs =feature/native-comp= branch has been under development
-   for some time now. The performance enhancements from the natively
-   compiled Emacs Lisp code are exciting. Notably, I've been seeing a
-   nice speedup for [[https://emacs-helm.github.io/helm/][Helm]] completions and a smoother [[https://emacs-lsp.github.io/lsp-ui/][lsp-ui]] experience.
+   The GNU Emacs =feature/native-comp= branch has been under
+   development for some time now. The performance enhancements from
+   the natively compiled Emacs Lisp code are exciting. Notably, I've
+   been seeing a nice speedup for [[https://emacs-helm.github.io/helm/][Helm]] completions and a smoother
+   [[https://emacs-lsp.github.io/lsp-ui/][lsp-ui]] experience.
 
    Andrea Corallo is developing this new feature and
    updates/descriptions of the work can be tracked/found [[http://akrl.sdf.org/gccemacs.html][on his
@@ -1195,7 +1196,6 @@
     desirable =configure= options).
 
     #+begin_src
-      $ cd emacs
       $ source scl_source enable devtoolset-9
       $ ./autogen.sh
       $ PKG_CONFIG_PATH=/usr/lib64/pkgconfig ./configure --with-nativecomp
