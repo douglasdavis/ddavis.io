@@ -26,8 +26,7 @@ with. This is what `.dir-locals.el` is for:
 ```emacs-lisp
 ((python-mode . ((eglot-server-programs    . ((python-mode "/path/to/env/bin/pyls")))
                  (python-shell-interpreter . "/path/to/env/bin/python")
-                 (company-backends         . (company-capf))
-                 )))
+                 (company-backends         . (company-capf)))))
 ```
 
 where `/path/to/env` is the path to a virtual environment or
