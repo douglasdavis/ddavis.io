@@ -5,36 +5,34 @@ tags = ["python", "numpy", "cpp", "hep"]
 draft = false
 +++
 
-I'm very happy to release my first real open source software
-project: [pygram11](https://github.com/douglasdavis/pygram11). I've been writing software for a while now, but
-it's mostly been within the confines of a
-physics-experiment-specific use case. In that time I've used a lot
-of other developers' software, so it feels quite nice to
-potentially help contribute to the scientific computing community
-in the same way.
+I'm very happy to release my first open source software project:
+[pygram11](https://github.com/douglasdavis/pygram11). I've been writing software for a while now, but mostly
+within the confines of a physics-experiment-specific use case. In
+that time I've used a lot free and open source software, so it
+feels quite nice to potentially help contribute to the scientific
+computing community in the same way.
 
-This python library aims to make generating a lot of histograms a
-quick task (targeting samples of size \\(O(10^6)\\) and larger), while
-supporting weighted statistical uncertainties on the bin counts. To
-do this I've implemented the ability to calculate histograms (both
-fixed and variable bin width in one and two dimensions) which are
-accelerated with [OpenMP](https://www.openmp.org/). To do it in Python, I've used
-[pybind11](https://github.com/pybind/pybind11). Pygram11 can essentially be a drop-in replacement for
-`numpy.histogram` and `numpy.histogram2d`, while reaching speeds
-20x faster (for a 1D histogram of an array of length 10,000) to
-almost 100x faster than NumPy (for a 2D histogram of 100 million
-\\((x\_i, y\_i)\\) pairs). The APIs are quite similar (with slightly
-different return styles). On top of that, the variance calculation
-is a "first class citizen" in pygram11 (see my [NumPy Histogram
-tricks for HEP](https://ddavis.io/posts/numpy-histograms/) post); the variance in each bin is part of the
-function return.
+This python library aims to make generating many histograms a quick
+task (targeting sample sizes above about 10,000 elements), while
+also supporting weighted statistical uncertainties on the bin
+counts. Fixed and variable bin width histograms can be calculated.
+The backend implementation is in C++ and accelerated with [OpenMP](https://www.openmp.org/),
+with [pybind11](https://github.com/pybind/pybind11) used to generate the Python bindings.
+
+Pygram11 can be a near drop-in replacement for `numpy.histogram`
+and `numpy.histogram2d`, while reaching speeds 20x faster (for a 1D
+histogram of an array of length 10,000) to almost 100x faster than
+NumPy (for a 2D histogram of 100 million \\((x\_i, y\_i)\\) pairs). The
+APIs are quite similar (with slightly different return styles). In
+addition to the faster calculations, constructing the variance in
+each bin is a "first class citizen" in pygram11 (see my [NumPy
+Histogram tricks for HEP](https://ddavis.io/posts/numpy-histograms/) post).
 
 So, please go checkout the [documentation](https://pygram11.readthedocs.io/) and [GitHub repository](https://github.com/douglasdavis/pygram11).
 Open issues, PRs, email me, tweet at me, or write something better
-(checkout some [benchmarks](https://pygram11.readthedocs.io/en/stable/bench.html) in the documentation).
-
-To try it out, spin up a virtual environment or conda environment
-and install with:
+(checkout some [benchmarks](https://pygram11.readthedocs.io/en/stable/bench.html) in the documentation). To try it out,
+spin up a virtual environment or conda environment and install
+with:
 
 ```nil
 pip install pygram11
