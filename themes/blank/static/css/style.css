@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@400;700&family=Roboto+Mono&family=Ubuntu+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@400;700&family=Ubuntu+Mono&display=swap');
 
 body {
     font-family: 'Recursive', 'Liberation Sans', Arial, sans-serif;
     background-color: #fffaf7;
-    line-height: 1.8;
+    line-height: 1.5;
 }
 
 main {
