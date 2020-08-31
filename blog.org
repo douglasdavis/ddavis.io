@@ -858,10 +858,10 @@
 
    I'm very happy to release my first open source software project:
    [[https://github.com/douglasdavis/pygram11][pygram11]]. I've been writing software for a while now, but mostly
-   within the confines of a physics-experiment-specific use case. In
-   that time I've used a lot free and open source software, so it
-   feels quite nice to potentially help contribute to the scientific
-   computing community in the same way.
+   targeting physics-experiment-specific use cases. In that time I've
+   used a lot free and open source software; it feels quite nice to
+   potentially help contribute to the scientific computing community
+   in the same way.
 
    This python library aims to make generating many histograms a quick
    task (targeting sample sizes above about 10,000 elements), while
