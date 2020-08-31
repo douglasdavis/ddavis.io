@@ -17,21 +17,18 @@ for f in files:
 ```
 
 This was taking a lot longer than I thought it should. There's a
-very simple reason: NumPy arrays have to be contiguous in memory so
-I was copying my `arr` variable `len(files)` times to construct a
-final `arr` (and every iteration of the loop `arr` was getting
-larger). This was of course unnecessary.
+very simple reason: I was copying my `arr` variable `len(files)`
+times to construct a final `arr` (and every iteration of the loop
+`arr` was getting larger). This was of course unnecessary.
 
 A better (and, to those who like to use the label "pythonic", more
 pythonic) way to do it:
 
 ```python
-files = list_of_files()
-arrs = [get_arr_from_file(f) for f in files]
-arr = np.concatenate(arrs)
+arr = np.concatenate([get_arr_from_file(f) for f in list_of_files()])
 ```
 
-So when it comes to repetitive NumPy concatenations... avoid it.  A
+So when it comes to repetitive NumPy concatenations... avoid it. A
 quick test in IPython:
 
 ```python
