@@ -23,7 +23,7 @@ We need to install `libgccjit`. Unfortunately CentOS 7 shipped
 with a pretty old GCC release (the 4.8 series). Fortunately Red
 Hat ships modern GCC builds with a number of `devtoolset` RPMs. We
 can install `libgccjit` (and the necessary development headers)
-from the GCC 9.1 series via:
+from the GCC 9 series via:
 
 ```nil
 # yum install devtoolset-9-gcc devtoolset-9-libgccjit-devel
