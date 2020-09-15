@@ -7,11 +7,11 @@ body {
 }
 
 main {
-    max-width: 78ch;
+    min-width: 20em;
+    /* max-width: 42em; */
+    max-width: 70ch;
     padding: 2ch;
     margin: auto;
-    min-width: 20em;
-    /* max-width: 40em; */
     margin-left: 5%;
     margin-right: 10%;
 }

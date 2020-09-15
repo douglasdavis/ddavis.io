@@ -439,20 +439,59 @@
 *** Appendix, a function to combine the two methods:
 
     #+BEGIN_SRC python
-      def extended_hist(data, xmin, xmax, nbins, underflow=True, overflow=True, weights=None):
+      def extended_hist(
+          x: np.ndarray
+          nbins: int
+          range: Tuple[float, float],
+          underflow: bool = True,
+          overflow: bool = True,
+          weights: Optional[np.ndarray] = None,
+      ) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+          """Histogram weighted data with potential under/overflow.
+
+          Parameters
+          ----------
+          x : array_like
+              Data to histogram.
+          nbins : int
+              Total number of bins.
+          range : (float, float)
+              Definition of binning max and min.
+          underflow : bool
+              Include undeflow data in the first bin.
+          overflow : bool
+              Include overflow data in the last bin.
+          weights : array_like, optional
+              Weights associated with each element of ``x``.
+
+          Returns
+          -------
+          numpy.ndarray
+              Total bin counts.
+          numpy.ndarray
+              Poisson uncertainty on each bin count.
+          numpy.ndarray
+              Bin centers.
+          numpy.ndarray
+              Bin edges.
+
+          """
           if weights is not None:
-              if weights.shape != data.shape:
+              if weights.shape != x.shape:
                   raise ValueError(
-                      "Unequal shapes data: {}; weights: {}".format(data.shape, weights.shape)
+                      "Unequal shapes x: {}; weights: {}".format(
+                          x.shape, weights.shape
+                      )
                   )
+          xmin, xmax = range
           edges = np.linspace(xmin, xmax, nbins + 1)
           neginf = np.array([-np.inf], dtype=np.float32)
           posinf = np.array([np.inf], dtype=np.float32)
-          uselsp = np.concatenate([neginf, edges, posinf])
+          bins = np.concatenate([neginf, edges, posinf])
           if weights is None:
-              hist, bin_edges = np.histogram(data, bins=uselsp)
+              hist, bin_edges = np.histogram(x, bins=bins)
           else:
-              hist, bin_edges = np.histogram(data, bins=uselsp, weights=weights)
+              hist, bin_edges = np.histogram(x, bins=bins, weights=weights)
 
           n = hist[1:-1]
           if underflow:
@@ -461,21 +500,23 @@
               n[-1] += hist[-1]
 
           if weights is None:
-              w = np.sqrt(n)
+              u = np.sqrt(n)
           else:
               bin_sumw2 = np.zeros(nbins + 2, dtype=np.float32)
-              digits = np.digitize(data, edges)
+              digits = np.digitize(x, edges)
               for i in range(nbins + 2):
-                  bin_sumw2[i] = np.sum(np.power(weights[np.where(digits == i)[0]], 2))
-              w = bin_sumw2[1:-1]
+                  bin_sumw2[i] = np.sum(
+                      np.power(weights[np.where(digits == i)[0]], 2)
+                  )
+              u = bin_sumw2[1:-1]
               if underflow:
-                  w[0] += bin_sumw2[0]
+                  u[0] += bin_sumw2[0]
               if overflow:
-                  w[-1] += bin_sumw2[-1]
-              w = np.sqrt(w)
+                  u[-1] += bin_sumw2[-1]
+              u = np.sqrt(u)
 
           centers = np.delete(edges, [0]) - (np.ediff1d(edges) / 2.0)
-          return n, w, centers, edges
+          return n, u, centers, edges
    #+END_SRC
 
     *Update August 2019*: With =pygram11=, we can just import the
