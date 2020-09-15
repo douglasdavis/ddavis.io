@@ -10,6 +10,10 @@ main {
     max-width: 78ch;
     padding: 2ch;
     margin: auto;
+    min-width: 20em;
+    /* max-width: 40em; */
+    margin-left: 5%;
+    margin-right: 10%;
 }
 
 body {

@@ -7,5 +7,3 @@ closing months of my Ph.D. at Duke University), a self taught software
 engineer, and an Emacs user. If you're interested in Python, C++,
 Emacs, or data analysis (with help from those tools), then you might
 find my posts useful or interesting.
-
-[home](..)
