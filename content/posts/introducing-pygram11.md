@@ -58,10 +58,12 @@ y = np.random.randn(100000)
 w = np.random.uniform(0.8, 1.2, 100000)
 
 h_1d, _ = histogram(x, bins=20, range=(-4, 4))
-h_2d, _ = histogram2d(x, y, bins=[20, 40], range=[[-4, 4], [-3, 3]])
+h_2d, _ = histogram2d(x, y, bins=(20, 40),
+                      range=((-4, 4), (-3, 3)))
 
 h_1d, err_1d = histogram(x, bins=20, range=(-4, 4), weights=w)
-h_2d, err_2d = histogram2d(x, y, bins=[20, 40], range=[[-4, 4], [-3, 3]], weights=w)
+h_2d, err_2d = histogram2d(x, y, bins=(20, 40),
+                           range=((-4, 4), (-3, 3)), weights=w)
 ```
 
 Notice the error (square-root of the variance) is the second
