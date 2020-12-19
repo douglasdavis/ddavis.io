@@ -79,7 +79,7 @@ want to run the deferred async compilation. If yes, set the number
 of jobs that can run in the background (one can also define a
 blacklist. The blacklist is useful for avoiding compiling Emacs
 Lisp code that we don't often use, see `C-h v
-    comp-deferred-compilation-black-list` for more, it looks for regex
+comp-deferred-compilation-black-list` for more, it looks for regex
 matches).
 
 ```emacs-lisp

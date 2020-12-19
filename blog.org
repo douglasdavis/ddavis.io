@@ -1,1280 +1,1279 @@
 #+HUGO_BASE_DIR: .
 #+HUGO_SECTION: posts/
-#+options: author:nil
+#+OPTIONS: author:nil
+#+STARTUP: noindent
 
 * Emacs
 ** git commit -m "first"                                               :meta:
-   :PROPERTIES:
-   :EXPORT_FILE_NAME: first
-   :EXPORT_DATE: 2017-11-24
-   :END:
+:PROPERTIES:
+:EXPORT_FILE_NAME: first
+:EXPORT_DATE: 2017-11-24
+:END:
 
-   After seeing many posts on [Hacker
-   News](https://news.ycombinator.com) about the usefulness of
-   technical blogs, I decided it was time to start one. As I wrap up
-   my Ph.D., I'll write about different technical things I have to
-   solve or play with.
+After seeing many posts around the web describing the usefulness of
+technical blogs, I decided it was time to start one. As I wrap up my
+Ph.D., I'll write about different technical things I have to solve or
+play with.
 
-   #+BEGIN_SRC emacs-lisp
-     (defun start-blog ()
-       (message "here we go..."))
+#+BEGIN_SRC emacs-lisp
+  (defun start-blog ()
+    (message "here we go..."))
 
-     (start-blog)
-   #+END_SRC
+  (start-blog)
+#+END_SRC
 
 ** C++17 Early Favorites                                                :cpp:
-   :PROPERTIES:
-   :EXPORT_FILE_NAME: cpp17
-   :EXPORT_DATE: 2018-01-09
-   :END:
+:PROPERTIES:
+:EXPORT_FILE_NAME: cpp17
+:EXPORT_DATE: 2018-01-09
+:END:
 
-   C++ holds a special place in my heart and mind because it was my
-   first programming language and I still use it heavily today. I was
-   lucky enough to _really_ start using the language when the 2011
-   standard was established (but in the growing pain stage with
-   respect to regular use). I learned a lot while following the
-   adoption process and I continue to keep up with the developments of
-   the language and the standard library.
+C++ holds a special place in my heart and mind because it was my first
+programming language and I still use it heavily today. I was lucky
+enough to _really_ start using the language when the 2011 standard was
+established (but in the growing pain stage with respect to regular
+use). I learned a lot while following the adoption process and I
+continue to keep up with the developments of the language and the
+standard library.
 
-   C++17 was [[https://herbsutter.com/2017/09/06/c17-is-formally-approved/][formally approved]] approved a few months ago. These days
-   the GCC and Clang developers do an awesome job implementing
-   features early on, so a lot of C++17 language and standard library
-   features have been available in a number of recent releases of both
-   compilers (and their respective STL implementations). Unfortunately
-   it'll be a little while before I can use C++17 in my experiment's
-   production code. Nevertheless, I've still identified a few of my
-   early favorite features. I'll discuss them a bit with a couple of
-   high energy physics analysis use cases.
+C++17 was [[https://herbsutter.com/2017/09/06/c17-is-formally-approved/][formally approved]] approved a few months ago. These days the
+GCC and Clang developers do an awesome job implementing features early
+on, so a lot of C++17 language and standard library features have been
+available in a number of recent releases of both compilers (and their
+respective STL implementations). Unfortunately it'll be a little while
+before I can use C++17 in my experiment's production code.
+Nevertheless, I've still identified a few of my early favorite
+features. I'll discuss them a bit with a couple of high energy physics
+analysis use cases.
 
 *** Structured Bindings
 
-    When writing Python I always appreciate the ease of writing
-    functions with multiple returns and the intuitive looping over
-    dictionaries. Adding structured bindings to C++ makes it easy to
-    use multiple returns and intuitive to loop over an [[http://en.cppreference.com/w/cpp/container/map][std::map]].
+When writing Python I always appreciate the ease of writing functions
+with multiple returns and the intuitive looping over dictionaries.
+Adding structured bindings to C++ makes it easy to use multiple
+returns and intuitive to loop over an [[http://en.cppreference.com/w/cpp/container/map][std::map]].
 
-    For multiple returns in C++ 11 and 14 we had to use [[http://en.cppreference.com/w/cpp/utility/tuple/tie][std::tie]].
+For multiple returns in C++ 11 and 14 we had to use [[http://en.cppreference.com/w/cpp/utility/tuple/tie][std::tie]].
 
-    #+begin_src C++
-      auto foo() {
-        return std::make_tuple(1, 2.0, '3');
-      }
+#+begin_src C++
+  auto foo() {
+    return std::make_tuple(1, 2.0, '3');
+  }
 
-      int main() {
-        int i;
-        float j;
-        char k;
-        std::tie(i, j, k) = foo();
-        // ...
-      }
-    #+end_src
+  int main() {
+    int i;
+    float j;
+    char k;
+    std::tie(i, j, k) = foo();
+    // ...
+  }
+#+end_src
 
-    Now, with structured bindings:
+Now, with structured bindings:
 
-    #+begin_src C++
-      int main() {
-        auto [i, j, k] = foo();
-        // ...
-      }
-    #+end_src
+#+begin_src C++
+  int main() {
+    auto [i, j, k] = foo();
+    // ...
+  }
+#+end_src
 
-    Before C++17, when looping over the =std::map= container, we were
-    locked into using the =first= and =second= members of [[http://en.cppreference.com/w/cpp/utility/pair][std::pair]].
+Before C++17, when looping over the =std::map= container, we were
+locked into using the =first= and =second= members of [[http://en.cppreference.com/w/cpp/utility/pair][std::pair]].
 
-    #+begin_src C++
-      int main() {
-        std::map<int,float> myMap {{1,1.1}, {2,2.2}};
-        for (const auto& entry : myMap) {
-          doSomething(entry.first, entry.second);
-        }
-        // ...
-      }
-    #+end_src
+#+begin_src C++
+  int main() {
+    std::map<int,float> myMap {{1,1.1}, {2,2.2}};
+    for (const auto& entry : myMap) {
+      doSomething(entry.first, entry.second);
+    }
+    // ...
+  }
+#+end_src
 
-    With structured bindings, we have something a bit more intuitive
-    and less verbose:
+With structured bindings, we have something a bit more intuitive
+and less verbose:
 
-    #+begin_src C++
-      int main() {
-        std::map<int,float> myMap {{1,1.1}, {2,2.2}};
-        for (const auto& [i, j] : myMap) {
-          doSomething(i, j);
-        }
-        // ...
-      }
-    #+end_src
+#+begin_src C++
+  int main() {
+    std::map<int,float> myMap {{1,1.1}, {2,2.2}};
+    for (const auto& [i, j] : myMap) {
+      doSomething(i, j);
+    }
+    // ...
+  }
+#+end_src
 
-    For even more verbosity, go back to C++03 container looping with
-    iterators.
+For even more verbosity, go back to C++03 container looping with
+iterators.
 
 *** The Filesystem Library
 
-    Consistent with a number of existing C++ STL features...  [[https://www.boost.org][boost]]
-    was the original supplier of a C++ filesystem library. It's not
-    always desirable to carry Boost around as a dependency; avoiding
-    that dependency makes the [[http://en.cppreference.com/w/cpp/filesystem][filesystem]] library a very welcome
-    inclusion to the standard. Having a way to interact with the
-    filesystem is a very common feature to most languages' standard
-    libraries. With respect to C++, it's about time.
+Consistent with a number of existing C++ STL features...  [[https://www.boost.org][boost]]
+was the original supplier of a C++ filesystem library. It's not
+always desirable to carry Boost around as a dependency; avoiding
+that dependency makes the [[http://en.cppreference.com/w/cpp/filesystem][filesystem]] library a very welcome
+inclusion to the standard. Having a way to interact with the
+filesystem is a very common feature to most languages' standard
+libraries. With respect to C++, it's about time.
 
-    The library allows users to parse and modify the filesystem. As an
-    example, I'll use the task of selecting files with a specific
-    extension in a given directory. This is a useful piece of code for
-    processing a large dataset that's broken into many files (I do
-    this a lot for my physics analysis).
+The library allows users to parse and modify the filesystem. As an
+example, I'll use the task of selecting files with a specific
+extension in a given directory. This is a useful piece of code for
+processing a large dataset that's broken into many files (I do
+this a lot for my physics analysis).
 
-    #+begin_src C++
-      namespace fs = std::filesystem;
+#+begin_src C++
+  namespace fs = std::filesystem;
 
-      std::vector<std::string> createDataset(const std::string& path_name,
-                                             const std::string& exten) {
-        std::vector<std::string> dataset;
-        auto itr = fs::directory_iterator(path_name);
-        for (const auto& itr : fs::directory_iterator(path_name)) {
-          auto ext = itr.path().extension().string();
-          if (ext == exten && !fs::is_directory(itr.path())) {
-            dataset.push_back(itr.path().string());
-          }
-        }
-        return dataset;
+  std::vector<std::string> createDataset(const std::string& path_name,
+                                         const std::string& exten) {
+    std::vector<std::string> dataset;
+    auto itr = fs::directory_iterator(path_name);
+    for (const auto& itr : fs::directory_iterator(path_name)) {
+      auto ext = itr.path().extension().string();
+      if (ext == exten && !fs::is_directory(itr.path())) {
+        dataset.push_back(itr.path().string());
       }
+    }
+    return dataset;
+  }
 
-      PhysicsResult graduate() {
-        auto dataset = createDataset("/path/to/dir/with/files", ".root");
-        // dataset will be a a vector containing strings ending in .root, e.g.
-        // -- /path/to/dir/with/files/file1.root
-        // -- /path/to/dir/with/files/file2.root
-        // ...
+  PhysicsResult graduate() {
+    auto dataset = createDataset("/path/to/dir/with/files", ".root");
+    // dataset will be a a vector containing strings ending in .root, e.g.
+    // -- /path/to/dir/with/files/file1.root
+    // -- /path/to/dir/with/files/file2.root
+    // ...
 
-        // ...
-        PhysicsResult thesis = doPhysicsOnDataset(dataset);
-        return thesis; //
-      }
-    #+end_src
+    // ...
+    PhysicsResult thesis = doPhysicsOnDataset(dataset);
+    return thesis; //
+  }
+#+end_src
 
 *** if constexpr
 
-    The [[http://en.cppreference.com/w/cpp/language/constexpr][constexpr]] specifier (for constant expressions) was introduced
-    in C++11. The purpose of the specifier is to communicate to the
-    compiler that the expression should be evaluated at compile time.
+The [[http://en.cppreference.com/w/cpp/language/constexpr][constexpr]] specifier (for constant expressions) was introduced
+in C++11. The purpose of the specifier is to communicate to the
+compiler that the expression should be evaluated at compile time.
 
-    Some awesome things about =if constexpr= are the reduction of
-    boilerplate and decrease in compile time. =if constexpr= tells the
-    compiler what to actually compile based on templates, and to
-    ignore the rest.
+Some awesome things about =if constexpr= are the reduction of
+boilerplate and decrease in compile time. =if constexpr= tells the
+compiler what to actually compile based on templates, and to
+ignore the rest.
 
-    Let's say I have three different objects I can analyze, but one of
-    them is a component of the other two. In particle physics
-    terminology, I can analyze an electron, a muon, or a track; but,
-    all electrons and muons have an associated track. If I have an API
-    which supplies a feature to analyze tracks from containers of all
-    three of these types, =if constexpr= is great if I want study them
-    with different functions elsewhere in the code without overloading
-    an =analyzeTracks= function multiple times.
+Let's say I have three different objects I can analyze, but one of
+them is a component of the other two. In particle physics
+terminology, I can analyze an electron, a muon, or a track; but,
+all electrons and muons have an associated track. If I have an API
+which supplies a feature to analyze tracks from containers of all
+three of these types, =if constexpr= is great if I want study them
+with different functions elsewhere in the code without overloading
+an =analyzeTracks= function multiple times.
 
-    #+begin_src C++
-      template <typename T>
-      void analyzeTracks(const std::vector<T>& container) {
-        for (const auto& object : container) {
-          if constexpr (std::is_same_v<T, Electron>) {
-            doElectronAnalysis(getTrack(object));
-          }
-          else if constexpr (std::is_same_v<T, Muon>) {
-            doMuonAnalysis(getTrack(object));
-          }
-          else if constexpr (std::is_same_v<T, Track>) {
-            doStandardAnalysis(object);
-          }
-        }
+#+begin_src C++
+  template <typename T>
+  void analyzeTracks(const std::vector<T>& container) {
+    for (const auto& object : container) {
+      if constexpr (std::is_same_v<T, Electron>) {
+        doElectronAnalysis(getTrack(object));
       }
-    #+end_src
+      else if constexpr (std::is_same_v<T, Muon>) {
+        doMuonAnalysis(getTrack(object));
+      }
+      else if constexpr (std::is_same_v<T, Track>) {
+        doStandardAnalysis(object);
+      }
+    }
+  }
+#+end_src
 
 
-    The =if constexpr= feature of C++17 allows me (when wearing an API
-    developer hat) to avoid writing the boilerplate of multiple
-    function overloads and still supply the same easy to use API.
+The =if constexpr= feature of C++17 allows me (when wearing an API
+developer hat) to avoid writing the boilerplate of multiple
+function overloads and still supply the same easy to use API.
 
 ** ROOT analysis without ROOT                          :hep:numpy:cpp:python:
-   :PROPERTIES:
-   :EXPORT_FILE_NAME: root-without-root
-   :EXPORT_DATE: 2018-02-02
-   :END:
+:PROPERTIES:
+:EXPORT_FILE_NAME: root-without-root
+:EXPORT_DATE: 2018-02-02
+:END:
 
-   The high energy physics community has used [[https://root.cern/][ROOT]] for over 20 years
-   now. It's a very large, monolithic set of libraries packaged up
-   with a C++ interpreter called [[https://root.cern.ch/cling][Cling]].  ROOT's strength, in my
-   opinion, lay in its ability to serialize C++ objects to disk in
-   binary format (you can read all about it [[https://root.cern.ch/root/htmldoc/guides/users-guide/InputOutput.html][here]]).  This is perfect
-   for HEP. We have classes for events as a whole, classes for hits in
-   the detector, classes for whole reconstructed particles, etc. ROOT
-   is great for storing this in an intuitive way, for example:
-   particles live in containers owned by an event, hits live in a
-   container owned by a track, whole reconstructed particles have an
-   "Element Link" (a class to act as a pointer on disk) to a track
-   associated with it, etc.
+The high energy physics community has used [[https://root.cern/][ROOT]] since the late 90's.
+It's a very large and monolithic set of libraries packaged up with a
+C++ interpreter called [[https://root.cern.ch/cling][Cling]]. ROOT's strength (in my opinion) is its
+ability to serialize C++ objects to disk in binary format (you can
+read all about it [[https://root.cern.ch/root/htmldoc/guides/users-guide/InputOutput.html][here]]). This is perfect for HEP. We have classes for
+events as a whole, classes for hits in the detector, classes for whole
+reconstructed particles, etc. ROOT is great for storing this in an
+intuitive way, for example: particles live in containers owned by an
+event, hits live in a container owned by a track, whole reconstructed
+particles have an "Element Link" (a class to act as a pointer on disk)
+to a track associated with it, etc.
 
 *** The problem
 
-   ROOT is a monolithic beast. It's a lot to carry around if all one
-   needs to do is look at a few numbers stored in a ROOT file. It
-   takes a while to build the entire library (and the packaged
-   interpreter). The ROOT team distributes some binaries, and some
-   package managers provide binaries or a way to build locally
-   (e.g. the [[https://aur.archlinux.org/][Arch User's Repository]])... but for beginners and quick
-   tasks that's not always a great solution[fn:1].
+ROOT is a monolithic beast. It's a lot to carry around if all one
+needs to do is look at a few numbers stored in a ROOT file. It takes a
+while to build the entire library (and the packaged interpreter). The
+ROOT team distributes some binaries, and some package managers provide
+binaries or a way to build locally (e.g. the [[https://aur.archlinux.org/][Arch User's
+Repository]])... but for beginners and quick tasks that's not always a
+great solution[fn:1].
 
-   Then, to actually look at one's data a C++ "macro" has be be
-   written (not a compiler preprocessor macro, this is something that
-   is meant to be processed by ROOT's C++ interpreter, cling); or, one
-   writes a proper executable, compile it, link it, and run it. This
-   C++ code can be verbose and full of boilerplate (especially for
-   reading ROOT files, where one has to connect C++ variables to ROOT
-   "branches", one line at a time[fn:2]).
+Then, to actually look at one's data a C++ "macro" has be be written
+(not a compiler preprocessor macro, this is something that is meant to
+be processed by ROOT's C++ interpreter, cling); or, one writes a
+proper executable, compile it, link it, and run it. This C++ code can
+be verbose and full of boilerplate (especially for reading ROOT files,
+where one has to connect C++ variables to ROOT "branches", one line at
+a time[fn:2]).
 
 *** The old solution
 
-   If a ROOT build was aware of a python installation during the build
-   process, one can end up with PyROOT - ROOT's builtin python
-   bindings. PyROOT basically allows writing C++ style code in python
-   to talk to ROOT objects. That's not even the old solution I'm about
-   to mention. [[https://github.com/scikit-hep/root_numpy][root-numpy]] is what I'd consider the /old/ solution --
-   it's a python library accelerated with Cython which turns the C
-   style arrays stored in ROOT files into numpy arrays. It can also be
-   installed with pip.  Unfortunately, it requires a ROOT installation
-   (because it requires =import ROOT=).
+If a ROOT build was aware of a python installation during the build
+process, one can end up with PyROOT - ROOT's builtin python bindings.
+PyROOT basically allows writing C++ style code in python to talk to
+ROOT objects. That's not even the old solution I'm about to mention.
+[[https://github.com/scikit-hep/root_numpy][root-numpy]] is what I'd consider the /old/ solution -- it's a python
+library accelerated with Cython which turns the C style arrays stored
+in ROOT files into numpy arrays. It can also be installed with pip.
+Unfortunately, it requires a ROOT installation (because it requires
+=import ROOT=).
 
 *** The solution
 
-   Now enter [[https://github.com/scikit-hep/uproot][uproot]]. This awesome new library is pure Python and does
-   not require a ROOT installation. We can interact with ROOT files is
-   as easy as:
+Now enter [[https://github.com/scikit-hep/uproot][uproot]]. This awesome new library is pure Python and does not
+require a ROOT installation. We can interact with ROOT files is as
+easy as:
 
-   #+begin_src
-     $ pip install uproot
-     $ python
-     >>> import uproot
-     >>> file = uproot.open("myfile.root")
-   #+end_src
+#+begin_src
+  $ pip install uproot
+  $ python
+  >>> import uproot
+  >>> file = uproot.open("myfile.root")
+#+end_src
 
-   uproot has knowledge of ROOT's binary format implemented
-   /completely in python/. No ROOT installation required.
+uproot has knowledge of ROOT's binary format implemented
+/completely in python/. No ROOT installation required.
 
 *** In action
 
-   A few days ago I needed to throw together a quick histogram to
-   explain a task to a colleague. The task required just a bit of
-   information about some hits along a track. Given the structure of
-   our data format stored in ROOT files, I would need to do something
-   like this cascade of data retrieval (in /kind of/ pseudo C++ code,
-   this is very similar to [[https://gitlab.cern.ch/atlas/athena/][ATLAS code]], but with a few made up function
-   names):
+A few days ago I needed to throw together a quick histogram to
+explain a task to a colleague. The task required just a bit of
+information about some hits along a track. Given the structure of
+our data format stored in ROOT files, I would need to do something
+like this cascade of data retrieval (in /kind of/ pseudo C++ code,
+this is very similar to [[https://gitlab.cern.ch/atlas/athena/][ATLAS code]], but with a few made up function
+names):
 
-   #+begin_src C++
-     // some histogram object that we're going to fill with data
-     ns::Histogram fooHistogram(20, 0.0, 100.0);
+#+begin_src C++
+  // some histogram object that we're going to fill with data
+  ns::Histogram fooHistogram(20, 0.0, 100.0);
 
-     for (const auto& event : eventContainer()) {
-       // grab particle container
-       const ns::ParticleContainer* particleContainer = event->getParticleContainer();
-       // loop over particles
-       for (const auto& particle : particleContainer) {
-         // get link to track and make sure valid
-         auto trackLink = getAssociatedTrackLink(particle);
-         if (!trackLink.isValid()) {
-           continue;
-         }
-         // dereference link to get actual object (the track pointer)
-         const ns::Track* track = *trackLink;
-         // get link to hit container and make sure valid
-         auto hitContainerLink = getAssociatedHitsLink(track);
-         if (!hitContainerLink.isValid()) {
-           continue;
-         }
-         const ns::HitContainer* hitContainer = *hitContainerLink;
-         // loop over container
-         for (const auto& hit : hitContainer) {
-           // get dynamically set properties of the hit and finally use them
-           float hitFoo = hit->getAuxiliaryData<float>("foo");
-           int hitBar = hit->getAuxiliaryData<int>("bar");
-           if (hitBar == 42) {
-             fooHistogram.Fill(hitFoo);
-           }
-         }
-       }
-     }
+  for (const auto& event : eventContainer()) {
+    // grab particle container
+    const ns::ParticleContainer* particleContainer = event->getParticleContainer();
+    // loop over particles
+    for (const auto& particle : particleContainer) {
+      // get link to track and make sure valid
+      auto trackLink = getAssociatedTrackLink(particle);
+      if (!trackLink.isValid()) {
+        continue;
+      }
+      // dereference link to get actual object (the track pointer)
+      const ns::Track* track = *trackLink;
+      // get link to hit container and make sure valid
+      auto hitContainerLink = getAssociatedHitsLink(track);
+      if (!hitContainerLink.isValid()) {
+        continue;
+      }
+      const ns::HitContainer* hitContainer = *hitContainerLink;
+      // loop over container
+      for (const auto& hit : hitContainer) {
+        // get dynamically set properties of the hit and finally use them
+        float hitFoo = hit->getAuxiliaryData<float>("foo");
+        int hitBar = hit->getAuxiliaryData<int>("bar");
+        if (hitBar == 42) {
+          fooHistogram.Fill(hitFoo);
+        }
+      }
+    }
+  }
 
-     fooHistogram.Draw(/* some options */);
-   #+end_src
+  fooHistogram.Draw(/* some options */);
+#+end_src
 
-   In python, with uproot, if I know the naming convention for the hit
-   container, I can simply write:
+In python, with uproot, if I know the naming convention for the hit
+container, I can simply write:
 
-   #+begin_src python :results silent
-     import uproot
-     import matplotlib.pyplot as plt
+#+begin_src python :results silent
+  import uproot
+  import matplotlib.pyplot as plt
 
-     datatree = uproot.open("myfile.root")["data"]
-     bar = datatree.array("innerdetector.hits.auxdata.bar")
-     foo = datatree.array("innerdetector.hits.auxdata.foo")
-     selected_foo = foo[bar == 42]
+  datatree = uproot.open("myfile.root")["data"]
+  bar = datatree.array("innerdetector.hits.auxdata.bar")
+  foo = datatree.array("innerdetector.hits.auxdata.foo")
+  selected_foo = foo[bar == 42]
 
-     plt.hist(selected_foo, bins=20)
-     plt.show()
-   #+end_src
+  plt.hist(selected_foo, bins=20)
+  plt.show()
+#+end_src
 
-   The python code is very simple and to the point, it's fast because
-   the binary format is being read directly into =numpy= arrays[fn:3].
+The python code is very simple and to the point, it's fast because
+the binary format is being read directly into =numpy= arrays[fn:3].
 
-   There is /absolutely/ a place for the C++ code. If I wanted to
-   apply a complex set of requirements to select different objects
-   /above/ the hit level (but based on hit properties), I need this
-   structure. If we had a perfectly columnar data format (each event
-   as a row in a table and a column for every feature), the hit
-   information would be duplicated in multiple places because a low
-   level hit may be associated with multiple higher level
-   objects. Given our many petabytes of data, this is not
-   feasible. This is where the "links" come in (the pointers on disk
-   that tell a track where the associated hits are).
+There is /absolutely/ a place for the C++ code. If I wanted to
+apply a complex set of requirements to select different objects
+/above/ the hit level (but based on hit properties), I need this
+structure. If we had a perfectly columnar data format (each event
+as a row in a table and a column for every feature), the hit
+information would be duplicated in multiple places because a low
+level hit may be associated with multiple higher level
+objects. Given our many petabytes of data, this is not
+feasible. This is where the "links" come in (the pointers on disk
+that tell a track where the associated hits are).
 
-   In this simple case, I didn't care about selecting hits based on
-   any other information except another (simply) accessible hit
-   property.
+In this simple case, I didn't care about selecting hits based on
+any other information except another (simply) accessible hit
+property.
 
-   To wrap up: it's nice to have (a) an isolated python library for
-   accessing data stored in ROOT and (b) /options/ for selecting tools
-   to analyze data.
+To wrap up: it's nice to have (a) an isolated python library for
+accessing data stored in ROOT and (b) /options/ for selecting tools
+to analyze data.
 
 ** NumPy Histogram tricks for HEP                          :hep:numpy:python:
-   :PROPERTIES:
-   :EXPORT_FILE_NAME: numpy-histograms
-   :EXPORT_DATE: 2018-02-08
-   :END:
+:PROPERTIES:
+:EXPORT_FILE_NAME: numpy-histograms
+:EXPORT_DATE: 2018-02-08
+:END:
 
-   *Update August 2019*: About a year after writing this blog post I
-   created a Python package to handle all of my pythonic histogramming
-   needs. It's called [[https://github.com/douglasdavis/pygram11][pygram11]]. This post is definitely still useful
-   for learning more details about NumPy histogramming.
+*Update August 2019*: About a year after writing this blog post I
+created a Python package to handle all of my pythonic histogramming
+needs. It's called [[https://github.com/douglasdavis/pygram11][pygram11]]. This post is definitely still useful
+for learning more details about NumPy histogramming.
 
 *** Our starting point
 
-    Histogramming some data is simple using [[https://docs.scipy.org/doc/numpy/reference/generated/numpy.histogram.html][numpy.histogram]].
+Histogramming some data is simple using [[https://docs.scipy.org/doc/numpy/reference/generated/numpy.histogram.html][numpy.histogram]].
 
-    #+begin_src python :results silent
-    >>> import numpy as np
-    >>> x = np.random.randn(10000)           ## create a dataset
-    >>> w = np.random.normal(1, 0.2, 10000)  ## create some phony weights
-    >>> b = np.linspace(-5, 5, 11)           ## bin edges (10 bins from -5 to 5)
-    >>> n, bins = np.histogram(x, bins=b, weights=w)
-    #+end_src
+#+begin_src python :results silent
+>>> import numpy as np
+>>> x = np.random.randn(10000)           ## create a dataset
+>>> w = np.random.normal(1, 0.2, 10000)  ## create some phony weights
+>>> b = np.linspace(-5, 5, 11)           ## bin edges (10 bins from -5 to 5)
+>>> n, bins = np.histogram(x, bins=b, weights=w)
+#+end_src
 
-    This gives me two arrays
-    - one for the bin heights (=n=)
-    - one for the bin edges (=bins=).
+This gives me two arrays
+- one for the bin heights (=n=)
+- one for the bin edges (=bins=).
 
-    Quick and simple -- but what if I want to include underflow and
-    overflow in the first and last bins, respectively? What if I want
-    to compute the error on each bin height given a weighted dataset?
-    These quantities are important for high energy physics, where
-    nearly all of our analysis is done using histograms.
+Quick and simple -- but what if I want to include underflow and
+overflow in the first and last bins, respectively? What if I want
+to compute the error on each bin height given a weighted dataset?
+These quantities are important for high energy physics, where
+nearly all of our analysis is done using histograms.
 
 *** Underflow and overflow
 
-    Where the elements of the data contribute to the bin height is of
-    course determined by the bin edges. We can make the left and right
-    edges infinite to be sure to count /all/ of our data[fn:5]. Then
-    we just add the =[0]= bin contents to the =[1]= bin contents, and
-    add the =[-1]= bin contents to the =[-2]= bin contents. Finally,
-    we polish it off by chopping off the out-of-bounds elements:
+Where the elements of the data contribute to the bin height is of
+course determined by the bin edges. We can make the left and right
+edges infinite to be sure to count /all/ of our data[fn:5]. Then
+we just add the =[0]= bin contents to the =[1]= bin contents, and
+add the =[-1]= bin contents to the =[-2]= bin contents. Finally,
+we polish it off by chopping off the out-of-bounds elements:
 
-    #+begin_src python :results silent
-    >>> import numpy as np
-    >>> raw_bins = np.linspace(-5, 5, 11)
-    >>> use_bins = [np.array([-np.inf]), raw_bins, np.array([np.inf])]
-    >>> use_bins = np.concatenate(use_bins)
-    >>> x = np.random.normal(0, 2, 1000) ## phony dataset
-    >>> n, bins = np.histogram(x, bins=use_bins)
-    >>> n[1]  += n[0]   ## add underflow to first bin
-    >>> n[-2] += n[-1]  ## add overflow to last bin
-    >>> n = n[1:-1]     ## chop off the under/overflow
-    >>> bins = raw_bins ## use our original binning (without infinities)
-    #+end_src
+#+begin_src python :results silent
+>>> import numpy as np
+>>> raw_bins = np.linspace(-5, 5, 11)
+>>> use_bins = [np.array([-np.inf]), raw_bins, np.array([np.inf])]
+>>> use_bins = np.concatenate(use_bins)
+>>> x = np.random.normal(0, 2, 1000) ## phony dataset
+>>> n, bins = np.histogram(x, bins=use_bins)
+>>> n[1]  += n[0]   ## add underflow to first bin
+>>> n[-2] += n[-1]  ## add overflow to last bin
+>>> n = n[1:-1]     ## chop off the under/overflow
+>>> bins = raw_bins ## use our original binning (without infinities)
+#+end_src
 
-    And that's it, now /all/ of the data is histogrammed -- including
-    under and overflow.
+And that's it, now /all/ of the data is histogrammed -- including
+under and overflow.
 
 *** Error on bin height using weights
 
-    The standard error on a bin height is simply the square-root of
-    the bin height, \(\sqrt{N}\)[fn:6]. If a bin is constructed from
-    weighted data, we require the square-root of the sum of the
-    weights squared, \(\sqrt{\sum_i w_i^2}\).
+The standard error on a bin height is simply the square-root of
+the bin height, \(\sqrt{N}\)[fn:6]. If a bin is constructed from
+weighted data, we require the square-root of the sum of the
+weights squared, \(\sqrt{\sum_i w_i^2}\).
 
-    The =numpy.histogram= function doesn't provide any information
-    about which weights belong to which bin, but we have another
-    useful NumPy function which can generate an array of indices based
-    on where data falls in a particular set of bins, [[https://docs.scipy.org/doc/numpy/reference/generated/numpy.digitize.html][numpy.digitize]].
+The =numpy.histogram= function doesn't provide any information
+about which weights belong to which bin, but we have another
+useful NumPy function which can generate an array of indices based
+on where data falls in a particular set of bins, [[https://docs.scipy.org/doc/numpy/reference/generated/numpy.digitize.html][numpy.digitize]].
 
-    First, we get an array representing which bin each data point
-    would fall into. We can then use the conditional function
-    [[https://docs.scipy.org/doc/numpy/reference/generated/numpy.where.html][numpy.where]] in a loop over all bins to grab only the weights in
-    that bin, and sum their squares.
+First, we get an array representing which bin each data point
+would fall into. We can then use the conditional function
+[[https://docs.scipy.org/doc/numpy/reference/generated/numpy.where.html][numpy.where]] in a loop over all bins to grab only the weights in
+that bin, and sum their squares.
 
-    #+begin_src python :results silent
-    >>> import numpy as np
-    >>> x = np.random.normal(0, 2.0, 1000)         ## a dataset
-    >>> b = np.linspace(-2, 2, 21)                 ## 20 bins
-    >>> w = np.random.normal(1, 0.2, 1000)         ## some weights
-    >>> sum_w2 = np.zeros([20], dtype=np.float32)  ## start with empty errors
-    >>> digits = np.digitize(x, b)                 ## bin index array for each data element
-    >>> for i in range(nbins):
-    >>>     weights_in_current_bin = w[np.where(digits == i)[0]]
-    >>>     sum_w2[i] = np.sum(np.power(weights_in_current_bin, 2))
-    >>> n, bins = np.histogram(x, bins=b, weights=w)
-    >>> err = np.sqrt(sum_w2)
-    #+end_src
+#+begin_src python :results silent
+>>> import numpy as np
+>>> x = np.random.normal(0, 2.0, 1000)         ## a dataset
+>>> b = np.linspace(-2, 2, 21)                 ## 20 bins
+>>> w = np.random.normal(1, 0.2, 1000)         ## some weights
+>>> sum_w2 = np.zeros([20], dtype=np.float32)  ## start with empty errors
+>>> digits = np.digitize(x, b)                 ## bin index array for each data element
+>>> for i in range(nbins):
+>>>     weights_in_current_bin = w[np.where(digits == i)[0]]
+>>>     sum_w2[i] = np.sum(np.power(weights_in_current_bin, 2))
+>>> n, bins = np.histogram(x, bins=b, weights=w)
+>>> err = np.sqrt(sum_w2)
+#+end_src
 
-    Now two arrays exist: =n= contains the heights in each bin, and
-    =err= contains the standard error on the bin heights.
+Now two arrays exist: =n= contains the heights in each bin, and
+=err= contains the standard error on the bin heights.
 
 *** Appendix, a function to combine the two methods:
 
-    #+BEGIN_SRC python
-      def extended_hist(
-          x: np.ndarray
-          nbins: int
-          range: Tuple[float, float],
-          underflow: bool = True,
-          overflow: bool = True,
-          weights: Optional[np.ndarray] = None,
-      ) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
-          """Histogram weighted data with potential under/overflow.
+ #+BEGIN_SRC python
+   def extended_hist(
+       x: np.ndarray
+       nbins: int
+       range: Tuple[float, float],
+       underflow: bool = True,
+       overflow: bool = True,
+       weights: Optional[np.ndarray] = None,
+   ) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+       """Histogram weighted data with potential under/overflow.
 
-          Parameters
-          ----------
-          x : array_like
-              Data to histogram.
-          nbins : int
-              Total number of bins.
-          range : (float, float)
-              Definition of binning max and min.
-          underflow : bool
-              Include undeflow data in the first bin.
-          overflow : bool
-              Include overflow data in the last bin.
-          weights : array_like, optional
-              Weights associated with each element of ``x``.
+       Parameters
+       ----------
+       x : array_like
+           Data to histogram.
+       nbins : int
+           Total number of bins.
+       range : (float, float)
+           Definition of binning max and min.
+       underflow : bool
+           Include undeflow data in the first bin.
+       overflow : bool
+           Include overflow data in the last bin.
+       weights : array_like, optional
+           Weights associated with each element of ``x``.
 
-          Returns
-          -------
-          numpy.ndarray
-              Total bin counts.
-          numpy.ndarray
-              Poisson uncertainty on each bin count.
-          numpy.ndarray
-              Bin centers.
-          numpy.ndarray
-              Bin edges.
+       Returns
+       -------
+       numpy.ndarray
+           Total bin counts.
+       numpy.ndarray
+           Poisson uncertainty on each bin count.
+       numpy.ndarray
+           Bin centers.
+       numpy.ndarray
+           Bin edges.
 
-          """
-          if weights is not None:
-              if weights.shape != x.shape:
-                  raise ValueError(
-                      "Unequal shapes x: {}; weights: {}".format(
-                          x.shape, weights.shape
-                      )
-                  )
-          xmin, xmax = range
-          edges = np.linspace(xmin, xmax, nbins + 1)
-          neginf = np.array([-np.inf], dtype=np.float32)
-          posinf = np.array([np.inf], dtype=np.float32)
-          bins = np.concatenate([neginf, edges, posinf])
-          if weights is None:
-              hist, bin_edges = np.histogram(x, bins=bins)
-          else:
-              hist, bin_edges = np.histogram(x, bins=bins, weights=weights)
+       """
+       if weights is not None:
+           if weights.shape != x.shape:
+               raise ValueError(
+                   "Unequal shapes x: {}; weights: {}".format(
+                       x.shape, weights.shape
+                   )
+               )
+       xmin, xmax = range
+       edges = np.linspace(xmin, xmax, nbins + 1)
+       neginf = np.array([-np.inf], dtype=np.float32)
+       posinf = np.array([np.inf], dtype=np.float32)
+       bins = np.concatenate([neginf, edges, posinf])
+       if weights is None:
+           hist, bin_edges = np.histogram(x, bins=bins)
+       else:
+           hist, bin_edges = np.histogram(x, bins=bins, weights=weights)
 
-          n = hist[1:-1]
-          if underflow:
-              n[0] += hist[0]
-          if overflow:
-              n[-1] += hist[-1]
+       n = hist[1:-1]
+       if underflow:
+           n[0] += hist[0]
+       if overflow:
+           n[-1] += hist[-1]
 
-          if weights is None:
-              u = np.sqrt(n)
-          else:
-              bin_sumw2 = np.zeros(nbins + 2, dtype=np.float32)
-              digits = np.digitize(x, edges)
-              for i in range(nbins + 2):
-                  bin_sumw2[i] = np.sum(
-                      np.power(weights[np.where(digits == i)[0]], 2)
-                  )
-              u = bin_sumw2[1:-1]
-              if underflow:
-                  u[0] += bin_sumw2[0]
-              if overflow:
-                  u[-1] += bin_sumw2[-1]
-              u = np.sqrt(u)
+       if weights is None:
+           u = np.sqrt(n)
+       else:
+           bin_sumw2 = np.zeros(nbins + 2, dtype=np.float32)
+           digits = np.digitize(x, edges)
+           for i in range(nbins + 2):
+               bin_sumw2[i] = np.sum(
+                   np.power(weights[np.where(digits == i)[0]], 2)
+               )
+           u = bin_sumw2[1:-1]
+           if underflow:
+               u[0] += bin_sumw2[0]
+           if overflow:
+               u[-1] += bin_sumw2[-1]
+           u = np.sqrt(u)
 
-          centers = np.delete(edges, [0]) - (np.ediff1d(edges) / 2.0)
-          return n, u, centers, edges
-   #+END_SRC
+       centers = np.delete(edges, [0]) - (np.ediff1d(edges) / 2.0)
+       return n, u, centers, edges
+#+END_SRC
 
-    *Update August 2019*: With =pygram11=, we can just import the
-    =histogram= function and call a one-liner for the counts and the
-    error:
+*Update August 2019*: With =pygram11=, we can just import the
+=histogram= function and call a one-liner for the counts and the
+error:
 
-    #+BEGIN_SRC python
-      >>> from pygram11 import histogram
-      >>> data, weights = get_some_weighted_data()
-      >>> h, err = histogram(data, bins=10, range=(xmin, xmax), weights=weights, flow=True)
-    #+END_SRC
+#+BEGIN_SRC python
+  >>> from pygram11 import histogram
+  >>> data, weights = get_some_weighted_data()
+  >>> h, err = histogram(data, bins=10, range=(xmin, xmax), weights=weights, flow=True)
+#+END_SRC
 
 ** Clangd based Emacs C++ IDE                                     :cpp:emacs:
-   :PROPERTIES:
-   :EXPORT_FILE_NAME: clangd-emacs-ide
-   :EXPORT_DATE: 2018-07-07
-   :END:
+:PROPERTIES:
+:EXPORT_FILE_NAME: clangd-emacs-ide
+:EXPORT_DATE: 2018-07-07
+:END:
 
-   *This is now very out of date!* Updated method here: [[* Eglot based Emacs C++ IDE with clangd][click]].
+*This is now very out of date!* Updated method here: [[* Eglot based Emacs C++ IDE with clangd][click]].
 
-   I've seen a lot of posts on the [[https://old.reddit.com/r/emacs][Emacs]] and [[https://old.reddit.com/cpp][C++]] subreddits over the
-   last few months related to Emacs as a C/C++ IDE. If one gives the
-   topic a quick googling a lot of tutorials pop up that will walk
-   through using [[https://github.com/cquery-project/cquery][cquery]], [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]], [[https://github.com/Andersbakken/rtags][rtags]], [[https://github.com/leoliu/ggtags][ggtags]], [[https://github.com/Sarcasm/irony-mode][irony]], [[http://company-mode.github.io/][company]],
-   [[https://github.com/abingham/emacs-ycmd][ycmd]], etc. (obviously there are a number of options out there and
-   multiple blog posts and tutorials for each). I've personally tried
-   using cquery and rtags (both [[https://github.com/llvm-mirror/clang/tree/master/tools/libclang][libclang]] based) in combination with
-   company-mode. Playing with those packages produced a hacked up
-   Emacs init file and I didn't really know what I was doing at the
-   time. I was never comfortable with the black box I created for
-   myself -- so I decided to clean it up and start over after some
-   research.
+I've seen a lot of posts on the [[https://old.reddit.com/r/emacs][Emacs]] and [[https://old.reddit.com/cpp][C++]] subreddits over the
+last few months related to Emacs as a C/C++ IDE. If one gives the
+topic a quick googling a lot of tutorials pop up that will walk
+through using [[https://github.com/cquery-project/cquery][cquery]], [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]], [[https://github.com/Andersbakken/rtags][rtags]], [[https://github.com/leoliu/ggtags][ggtags]], [[https://github.com/Sarcasm/irony-mode][irony]], [[http://company-mode.github.io/][company]],
+[[https://github.com/abingham/emacs-ycmd][ycmd]], etc. (obviously there are a number of options out there and
+multiple blog posts and tutorials for each). I've personally tried
+using cquery and rtags (both [[https://github.com/llvm-mirror/clang/tree/master/tools/libclang][libclang]] based) in combination with
+company-mode. Playing with those packages produced a hacked up
+Emacs init file and I didn't really know what I was doing at the
+time. I was never comfortable with the black box I created for
+myself -- so I decided to clean it up and start over after some
+research.
 
-   I've recently landed on a new setup using a combination of
-   lsp-mode, company, and [[https://github.com/emacs-lsp/lsp-clangd][lsp-clangd]]. As is clear from the package
-   name and post title, this method takes advantage of the LLVM/Clang
-   tool [[https://github.com/llvm-mirror/clang-tools-extra/tree/master/clangd][clangd]] (which is very much in development).
+I've recently landed on a new setup using a combination of
+lsp-mode, company, and [[https://github.com/emacs-lsp/lsp-clangd][lsp-clangd]]. As is clear from the package
+name and post title, this method takes advantage of the LLVM/Clang
+tool [[https://github.com/llvm-mirror/clang-tools-extra/tree/master/clangd][clangd]] (which is very much in development).
 
-   Here's a quick rundown of the new configuration:
+Here's a quick rundown of the new configuration:
 
-   Ensure that =company-lsp= is installed and enable company-mode (I
-   choose a global configuration):
+Ensure that =company-lsp= is installed and enable company-mode (I
+choose a global configuration):
 
-   #+begin_src emacs-lisp
-     (use-package company-lsp
-       :ensure t
-       :config
-       (push 'company-lsp company-backends)
-       (add-hook 'after-init-hook 'global-company-mode))
-   #+end_src
+#+begin_src emacs-lisp
+  (use-package company-lsp
+    :ensure t
+    :config
+    (push 'company-lsp company-backends)
+    (add-hook 'after-init-hook 'global-company-mode))
+#+end_src
 
-   Ensure that =lsp-mode= and =lsp-ui= are installed and required:
+Ensure that =lsp-mode= and =lsp-ui= are installed and required:
 
-   #+begin_src emacs-lisp
-     (use-package lsp-mode
-       :ensure t
-       :commands lsp)
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+    :ensure t
+    :commands lsp)
 
-     (use-package lsp-ui
-       :ensure t)
-   #+end_src
+  (use-package lsp-ui
+    :ensure t)
+#+end_src
 
-   Unfortunately =lsp-clangd= isn't in melpa yet, so I cloned it to my
-   =.emacs.d= directory and make sure to point to it (while writing
-   this post there is an [[https://github.com/melpa/melpa/pull/5593][open GitHub PR]] to add lsp-clangd to
-   melpa). Be sure to set the proper clangd executable path and add a
-   hook to C++ mode to enable it:
+Unfortunately =lsp-clangd= isn't in melpa yet, so I cloned it to my
+=.emacs.d= directory and make sure to point to it (while writing
+this post there is an [[https://github.com/melpa/melpa/pull/5593][open GitHub PR]] to add lsp-clangd to
+melpa). Be sure to set the proper clangd executable path and add a
+hook to C++ mode to enable it:
 
-   #+begin_src emacs-lisp
-     (use-package lsp-clangd
-       :load-path
-       "~/.emacs.d/lsp-clangd"
-       :init
-       ;; for macOS
-       (when (equal system-type 'darwin)
-         (setq lsp-clangd-executable "/usr/local/opt/llvm/bin/clangd"))
-       ;; for linux machine with hostname "proton"
-       (when (string= (system-name) "proton")
-         (setq lsp-clangd-executable "/home/ddavis/software/llvm/head/bin/clangd"))
-       (add-hook 'c++-mode-hook 'lsp-clangd-c++-enable))
-   #+end_src
+#+begin_src emacs-lisp
+  (use-package lsp-clangd
+    :load-path
+    "~/.emacs.d/lsp-clangd"
+    :init
+    ;; for macOS
+    (when (equal system-type 'darwin)
+      (setq lsp-clangd-executable "/usr/local/opt/llvm/bin/clangd"))
+    ;; for linux machine with hostname "proton"
+    (when (string= (system-name) "proton")
+      (setq lsp-clangd-executable "/home/ddavis/software/llvm/head/bin/clangd"))
+    (add-hook 'c++-mode-hook 'lsp-clangd-c++-enable))
+#+end_src
 
-   Like I said, Clangd is under heavy development, so expect some
-   imperfections. For example, using the version shipped with the LLVM
-   6.0.0 release wasn't working with header files. I went ahead and
-   built a bleeding edge installation (using =brew install --HEAD
-   llvm= on macOS and building from the trunk of their svn
-   repositories on a Fedora machine; read how to do that [[http://clang.llvm.org/get_started.html][here]] and that
-   fixed the problem.
+Like I said, Clangd is under heavy development, so expect some
+imperfections. For example, using the version shipped with the LLVM
+6.0.0 release wasn't working with header files. I went ahead and
+built a bleeding edge installation (using =brew install --HEAD
+llvm= on macOS and building from the trunk of their svn
+repositories on a Fedora machine; read how to do that [[http://clang.llvm.org/get_started.html][here]] and that
+fixed the problem.
 
-   I use this setup in combination with =compile_commands.json= files
-   that are [[https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html][produced by CMake]]. This file must be kept at the project
-   root (using [[https://github.com/bbatsov/projectile][projectile]] with a =.projectile= file at the project
-   root helps when using git repositories with submodules; lsp-mode
-   appears to handle that nicely).
+I use this setup in combination with =compile_commands.json= files
+that are [[https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html][produced by CMake]]. This file must be kept at the project
+root (using [[https://github.com/bbatsov/projectile][projectile]] with a =.projectile= file at the project
+root helps when using git repositories with submodules; lsp-mode
+appears to handle that nicely).
 
-   I'm still by no means an expert, but it was a good learning
-   experience and I no longer have a black box from copying and
-   pasting from other's Emacs init files. I have code completion and
-   inter/intra-project file and definition jumping -- the two big
-   features I like to add to my C++ development setup in Emacs.
+I'm still by no means an expert, but it was a good learning
+experience and I no longer have a black box from copying and
+pasting from other's Emacs init files. I have code completion and
+inter/intra-project file and definition jumping -- the two big
+features I like to add to my C++ development setup in Emacs.
 
 ** Repetitive NumPy Concatenations                             :python:numpy:
-   :PROPERTIES:
-   :EXPORT_FILE_NAME: rep-numpy-concat
-   :EXPORT_DATE: 2018-08-12
-   :END:
+:PROPERTIES:
+:EXPORT_FILE_NAME: rep-numpy-concat
+:EXPORT_DATE: 2018-08-12
+:END:
 
-   I recently had to construct a couple of numpy arrays from a handful
-   of files. I quickly did something like this:
+I recently had to construct a couple of numpy arrays from a handful
+of files. I quickly did something like this:
 
-   #+begin_src python
-   files = list_of_files()
-   arr = np.array([], dtype=np.float32)
-   for f in files:
-       iarr = get_arr_from_file(f)
-       arr = np.concatenate([arr, iarr])
-   #+end_src
+#+begin_src python
+files = list_of_files()
+arr = np.array([], dtype=np.float32)
+for f in files:
+    iarr = get_arr_from_file(f)
+    arr = np.concatenate([arr, iarr])
+#+end_src
 
-   This was taking a lot longer than I thought it should. There's a
-   very simple reason: I was copying my =arr= variable =len(files)=
-   times to construct a final =arr= (and every iteration of the loop
-   =arr= was getting larger). This was of course unnecessary.
+This was taking a lot longer than I thought it should. There's a
+very simple reason: I was copying my =arr= variable =len(files)=
+times to construct a final =arr= (and every iteration of the loop
+=arr= was getting larger). This was of course unnecessary.
 
-   A better (and, to those who like to use the label "pythonic", more
-   pythonic) way to do it:
+A better (and, to those who like to use the label "pythonic", more
+pythonic) way to do it:
 
-   #+begin_src python
-   arr = np.concatenate([get_arr_from_file(f) for f in list_of_files()])
-   #+end_src
+#+begin_src python
+arr = np.concatenate([get_arr_from_file(f) for f in list_of_files()])
+#+end_src
 
-   So when it comes to repetitive NumPy concatenations... avoid it. A
-   quick test in IPython:
+So when it comes to repetitive NumPy concatenations... avoid it. A
+quick test in IPython:
 
-   #+begin_src python
-     import numpy as np
+#+begin_src python
+  import numpy as np
 
-     def bad():
-         arr = np.array([], dtype=np.float32)
-         for i in range(100):
-             iarr = np.random.randn(100000)
-             arr = np.concatenate([arr, iarr])
-         return arr
+  def bad():
+      arr = np.array([], dtype=np.float32)
+      for i in range(100):
+          iarr = np.random.randn(100000)
+          arr = np.concatenate([arr, iarr])
+      return arr
 
-     def good():
-         arrs = [np.random.randn(100000) for i in range(100)]
-         return np.concatenate(arrs)
+  def good():
+      arrs = [np.random.randn(100000) for i in range(100)]
+      return np.concatenate(arrs)
 
-     %timeit bad()
-     %timeit good()
-   #+end_src
+  %timeit bad()
+  %timeit good()
+#+end_src
 
-   The output:
+The output:
 
-   #+begin_src
-   1.73 s ± 2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
-   247 ms ± 2.52 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
-   #+end_src
+#+begin_src
+1.73 s ± 2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+247 ms ± 2.52 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+#+end_src
 
-   Quite the difference.
+Quite the difference.
 
 ** New Toy: ox-hugo                                                    :hugo:
-   :PROPERTIES:
-   :EXPORT_FILE_NAME: first-ox-hugo
-   :EXPORT_DATE: 2018-12-04
-   :END:
+:PROPERTIES:
+:EXPORT_FILE_NAME: first-ox-hugo
+:EXPORT_DATE: 2018-12-04
+:END:
 
-   I've recently fallen into a very deep Emacs-filled rabbit hole. It
-   started with the goal of cleaning up my Emacs =init.el= file, but
-   expanded to learning more Emacs Lisp and trying to get more out of
-   Org-mode. Now I'm typing this post in Org-mode with a new toy:
-   [[https://ox-hugo.scripter.co/][=ox-hugo=]]. This Emacs package makes it easy to create blog posts
-   from a single Org-file by seamlessly exporting second level
-   headlines to Hugo's Markdown syntax.
+I've recently fallen into a very deep Emacs-filled rabbit hole. It
+started with the goal of cleaning up my Emacs =init.el= file, but
+expanded to learning more Emacs Lisp and trying to get more out of
+Org-mode. Now I'm typing this post in Org-mode with a new toy:
+[[https://ox-hugo.scripter.co/][=ox-hugo=]]. This Emacs package makes it easy to create blog posts
+from a single Org-file by seamlessly exporting second level
+headlines to Hugo's Markdown syntax.
 
-   Setting up =ox-hugo= was incredibly easy. With MELPA already
-   configured, the only required addition to my init file was this:
-   #+BEGIN_SRC emacs-lisp :results silent
-     (use-package ox-hugo
-       :ensure t
-       :after ox)
-   #+END_SRC
-   Now, in the buffer I'm currently editing, I use the key-binding
-   =C-c C-e H H= to export a ready-to-go markdown file for Hugo to
-   parse.
+Setting up =ox-hugo= was incredibly easy. With MELPA already
+configured, the only required addition to my init file was this:
+#+BEGIN_SRC emacs-lisp :results silent
+  (use-package ox-hugo
+    :ensure t
+    :after ox)
+#+END_SRC
+Now, in the buffer I'm currently editing, I use the key-binding
+=C-c C-e H H= to export a ready-to-go markdown file for Hugo to
+parse.
 
-   Luckily before I fell down the =ox-hugo= rabbit hole my Emacs
-   configuration was already cleaned up to my liking, hopefully it
-   stays that way for a while. It can be found [[https://github.com/douglasdavis/dot-emacs][right here]] (it's also
-   written in Org-mode, with the Emacs Lisp blocks loaded via
-   =org-babel-load-file=).
+Luckily before I fell down the =ox-hugo= rabbit hole my Emacs
+configuration was already cleaned up to my liking, hopefully it
+stays that way for a while. It can be found [[https://github.com/douglasdavis/dot-emacs][right here]] (it's also
+written in Org-mode, with the Emacs Lisp blocks loaded via
+=org-babel-load-file=).
 
 ** Eglot based Emacs Python IDE                                :emacs:python:
-   :PROPERTIES:
-   :EXPORT_FILE_NAME: eglot-python-ide
-   :EXPORT_DATE: 2018-12-05
-   :END:
+:PROPERTIES:
+:EXPORT_FILE_NAME: eglot-python-ide
+:EXPORT_DATE: 2018-12-05
+:END:
 
-   *This post is now a bit outdated* [[* Python with Emacs: py(v)env and lsp-mode][an updated post is here]].
+*This post is now a bit outdated* [[* Python with Emacs: py(v)env and lsp-mode][an updated post is here]].
 
-   In my Emacs rabbit hole I mentioned in my previous post, I decided
-   to work on improving my Python development workflow. I recently
-   found the [[https://github.com/joaotavora/eglot][Eglot]] package for running a [[https://microsoft.github.io/language-server-protocol/][LSP]] in Emacs.
+In my Emacs rabbit hole I mentioned in my previous post, I decided
+to work on improving my Python development workflow. I recently
+found the [[https://github.com/joaotavora/eglot][Eglot]] package for running a [[https://microsoft.github.io/language-server-protocol/][LSP]] in Emacs.
 
-   The most vanilla setup for Eglot is just =M-x eglot= in a buffer
-   editing a python file. This works wonderfully if the executable for
-   the [[https://github.com/palantir/python-language-server][Python Language Server]] (=pyls=) is found. This works because
-   Eglot defines a list of server programs by default. See this list
-   with =M-: eglot-server-programs=
+The most vanilla setup for Eglot is just =M-x eglot= in a buffer
+editing a python file. This works wonderfully if the executable for
+the [[https://github.com/palantir/python-language-server][Python Language Server]] (=pyls=) is found. This works because
+Eglot defines a list of server programs by default. See this list
+with =M-: eglot-server-programs=
 
 *** Project Editing
 
-    I have a few python virtual/Anaconda environments I like to work
-    with. This is what =.dir-locals.el= is for:
+I have a few python virtual/Anaconda environments I like to work
+with. This is what =.dir-locals.el= is for:
 
-    #+BEGIN_SRC emacs-lisp :results silent
-      ((python-mode . ((eglot-server-programs    . ((python-mode "/path/to/env/bin/pyls")))
-                       (python-shell-interpreter . "/path/to/env/bin/python")
-                       (company-backends         . (company-capf)))))
-    #+END_SRC
+#+BEGIN_SRC emacs-lisp :results silent
+  ((python-mode . ((eglot-server-programs    . ((python-mode "/path/to/env/bin/pyls")))
+                   (python-shell-interpreter . "/path/to/env/bin/python")
+                   (company-backends         . (company-capf)))))
+#+END_SRC
 
-    where =/path/to/env= is the path to a virtual environment or
-    Anaconda environment (that of course has =python-language-server=
-    installed). I also define the path to my Python executable for
-    Emacs' builtin =python.el=. By default, =company-backends=
-    includes =company-capf= for =completion-at-point=, but I want to
-    make sure that's what is used because Eglot provides
-    =completion-at-point=. Eglot also has =pyls= as a =python-mode=
-    entry by default, but not to the virtual environment I want to
-    use; this is why I manually define the list of server programs.
+where =/path/to/env= is the path to a virtual environment or
+Anaconda environment (that of course has =python-language-server=
+installed). I also define the path to my Python executable for
+Emacs' builtin =python.el=. By default, =company-backends=
+includes =company-capf= for =completion-at-point=, but I want to
+make sure that's what is used because Eglot provides
+=completion-at-point=. Eglot also has =pyls= as a =python-mode=
+entry by default, but not to the virtual environment I want to
+use; this is why I manually define the list of server programs.
 
-    When I open a buffer in the project I want to work in, I just call
-    =M-x eglot= and I'm up and running.
+When I open a buffer in the project I want to work in, I just call
+=M-x eglot= and I'm up and running.
 
 *** Non-project Editing
 
-    If I'm not editing in a project that has an associated virtual
-    environment, I rely on some "sensible defaults" in my Emacs init
-    file:
+If I'm not editing in a project that has an associated virtual
+environment, I rely on some "sensible defaults" in my Emacs init
+file:
 
-    #+BEGIN_SRC emacs-lisp :results silent
-      (defvar ddavis-default-pyls "~/software/Python/anaconda3/bin/pyls"
-        "define a default pyls to be used")
-    #+END_SRC
+#+BEGIN_SRC emacs-lisp :results silent
+  (defvar ddavis-default-pyls "~/software/Python/anaconda3/bin/pyls"
+    "define a default pyls to be used")
+#+END_SRC
 
-    This way I have a default =pyls= executable from my =base=
-    Anaconda environment (which is potentially different on different
-    machines). I then have a couple of functions to handle default
-    Eglot python environments, where I:
+This way I have a default =pyls= executable from my =base=
+Anaconda environment (which is potentially different on different
+machines). I then have a couple of functions to handle default
+Eglot python environments, where I:
 
-    - Make =use-package= install Eglot if necessary.
-    - Make sure =company-capf= is at the front of =company-backends=.
-    - Make sure I add an Eglot server program entry pointing to my
-      =base= Anaconda =pyls= to the front of the
-      =eglot-server-programs= list.
-    - Add the desired hook.
+- Make =use-package= install Eglot if necessary.
+- Make sure =company-capf= is at the front of =company-backends=.
+- Make sure I add an Eglot server program entry pointing to my
+  =base= Anaconda =pyls= to the front of the
+  =eglot-server-programs= list.
+- Add the desired hook.
 
-    #+BEGIN_SRC emacs-lisp :results silent
-      (use-package eglot
-        :ensure t)
+#+BEGIN_SRC emacs-lisp :results silent
+  (use-package eglot
+    :ensure t)
 
-      (defun dd/python-eglot-enable ()
-        "set variables and hook for eglot python IDE"
-        (interactive)
-        (setq company-backends
-              (cons 'company-capf
-                    (remove 'company-capf company-backends)))
-        (add-to-list 'eglot-server-programs
-                     `(python-mode ,ddavis-default-pyls))
-        (add-hook 'python-mode-hook 'eglot-ensure))
+  (defun dd/python-eglot-enable ()
+    "set variables and hook for eglot python IDE"
+    (interactive)
+    (setq company-backends
+          (cons 'company-capf
+                (remove 'company-capf company-backends)))
+    (add-to-list 'eglot-server-programs
+                 `(python-mode ,ddavis-default-pyls))
+    (add-hook 'python-mode-hook 'eglot-ensure))
 
-      (defun dd/python-eglot-disable ()
-        "remove hook for eglot python"
-        (interactive)
-        (remove-hook 'python-mode-hook 'eglot-ensure))
-    #+END_SRC
+  (defun dd/python-eglot-disable ()
+    "remove hook for eglot python"
+    (interactive)
+    (remove-hook 'python-mode-hook 'eglot-ensure))
+#+END_SRC
 
-    I just bring =company-capf= to the front of the =company-backends=
-    list, and add my desired Anaconda based =pyls= to front of the
-    =eglot-server-programs= list.
+I just bring =company-capf= to the front of the =company-backends=
+list, and add my desired Anaconda based =pyls= to front of the
+=eglot-server-programs= list.
 
 ** Eglot based Emacs C++ IDE with clangd                          :emacs:cpp:
-   :PROPERTIES:
-   :EXPORT_FILE_NAME: eglot-cpp-ide
-   :EXPORT_DATE: 2019-01-07
-   :END:
+:PROPERTIES:
+:EXPORT_FILE_NAME: eglot-cpp-ide
+:EXPORT_DATE: 2019-01-07
+:END:
 
-   I have an [[* Clangd based Emacs C++ IDE][old post]] documenting my first attempt at turning Emacs
-   into a C++ IDE with =clangd=. That post describes using two
-   packages: =lsp-mode= and =lsp-clangd=. Those packages have evolved
-   and now =clangd= usage is built into =lsp-mode=, so the post is a
-   bit outdated. I've also started to use [[https://github.com/joaotavora/eglot][Eglot]] (see previous post for
-   my Eglot Python IDE). So, let's put together an updated setup:
+I have an [[* Clangd based Emacs C++ IDE][old post]] documenting my first attempt at turning Emacs
+into a C++ IDE with =clangd=. That post describes using two
+packages: =lsp-mode= and =lsp-clangd=. Those packages have evolved
+and now =clangd= usage is built into =lsp-mode=, so the post is a
+bit outdated. I've also started to use [[https://github.com/joaotavora/eglot][Eglot]] (see previous post for
+my Eglot Python IDE). So, let's put together an updated setup:
 
 *** Requirements
 
-   First, one needs to have =clangd= installed. These days, the 8.0
-   release of LLVM is a few months away, but =clangd= (part of the
-   =clang-tools-extra= LLVM project) is in rapid development and the
-   =master= of the repository should be used. The [[https://llvm.org/docs/GettingStarted.html#for-developers-to-work-with-a-git-monorepo][installation
-   instructions]] from the LLVM documentation are easy to follow.
+First, one needs to have =clangd= installed. These days, the 8.0
+release of LLVM is a few months away, but =clangd= (part of the
+=clang-tools-extra= LLVM project) is in rapid development and the
+=master= of the repository should be used. The [[https://llvm.org/docs/GettingStarted.html#for-developers-to-work-with-a-git-monorepo][installation
+instructions]] from the LLVM documentation are easy to follow.
 
-   My C++ development happens on multiple machines. In my Emacs
-   configuration I keep a simple variable around to point to wherever
-   =clangd= is installed on various machines.
+My C++ development happens on multiple machines. In my Emacs
+configuration I keep a simple variable around to point to wherever
+=clangd= is installed on various machines.
 
-   #+begin_src emacs-lisp :results silent
-     (defvar ddavis-clangd-exe (executable-find "clangd")
-       "clangd executable path")
-   #+END_SRC
+#+begin_src emacs-lisp :results silent
+  (defvar ddavis-clangd-exe (executable-find "clangd")
+    "clangd executable path")
+#+END_SRC
 
-   By default I'm letting Emacs find it, but I have things like this
-   sprinkled around my configuration (pointing to a specific LLVM
-   installation not in my =PATH=):
+By default I'm letting Emacs find it, but I have things like this
+sprinkled around my configuration (pointing to a specific LLVM
+installation not in my =PATH=):
 
-   #+begin_src emacs-lisp :results silent
-     (when (string= (system-name) "pion")
-       (setq ddavis-clangd-exe "~/software/llvm/releases/master/bin/clangd"))
-   #+END_SRC
+#+begin_src emacs-lisp :results silent
+  (when (string= (system-name) "pion")
+    (setq ddavis-clangd-exe "~/software/llvm/releases/master/bin/clangd"))
+#+END_SRC
 
 *** Eglot setup
 
-   Eglot uses =project.el=, but I use [[https://github.com/bbatsov/projectile][Projectile]], so I start by
-   defining a function that will tell =project.el= to find a project
-   via Projectile, [[https://github.com/joaotavora/eglot/issues/129#issuecomment-444130367][thanks @wyuenho on GitHub]]:
+Eglot uses =project.el=, but I use [[https://github.com/bbatsov/projectile][Projectile]], so I start by
+defining a function that will tell =project.el= to find a project
+via Projectile, [[https://github.com/joaotavora/eglot/issues/129#issuecomment-444130367][thanks @wyuenho on GitHub]]:
 
-   #+begin_src emacs-lisp :results silent
-     (defun dd/projectile-proj-find-function (dir)
-       (let ((root (projectile-project-root dir)))
-         (and root (cons 'transient root))))
-   #+END_SRC
+#+begin_src emacs-lisp :results silent
+  (defun dd/projectile-proj-find-function (dir)
+    (let ((root (projectile-project-root dir)))
+      (and root (cons 'transient root))))
+#+END_SRC
 
-   Now I have a function I call when I'm ready to start digging into a
-   C++ project which has an associated [[https://clang.llvm.org/docs/JSONCompilationDatabase.html][=compile_commands.json=]]:
+Now I have a function I call when I'm ready to start digging into a
+C++ project which has an associated [[https://clang.llvm.org/docs/JSONCompilationDatabase.html][=compile_commands.json=]]:
 
-   #+begin_src emacs-lisp
-     (use-package eglot
-       :ensure t)
+#+begin_src emacs-lisp
+  (use-package eglot
+    :ensure t)
 
-     (defun dd/cpp-eglot-enable ()
-       "enable variables and hooks for eglot cpp IDE"
-       (interactive)
-       (setq company-backends
-             (cons 'company-capf
-                   (remove 'company-capf company-backends)))
-       (with-eval-after-load 'project
-         (add-to-list 'project-find-functions
-                      'dd/projectile-proj-find-function))
-       (add-to-list 'eglot-server-programs
-                    `((c++-mode) ,ddavis-clangd-exe))
-       (add-hook 'c++-mode-hook 'eglot-ensure))
-   #+END_SRC
+  (defun dd/cpp-eglot-enable ()
+    "enable variables and hooks for eglot cpp IDE"
+    (interactive)
+    (setq company-backends
+          (cons 'company-capf
+                (remove 'company-capf company-backends)))
+    (with-eval-after-load 'project
+      (add-to-list 'project-find-functions
+                   'dd/projectile-proj-find-function))
+    (add-to-list 'eglot-server-programs
+                 `((c++-mode) ,ddavis-clangd-exe))
+    (add-hook 'c++-mode-hook 'eglot-ensure))
+#+END_SRC
 
-   - Ensure that Eglot is installed via =use-package=.
-   - Ensure that the =completion-at-point= backend is used by
-     =company= (bring it to the front of the =company-backends= list).
-   - Ensure that =project.el= uses Projectile to find my project
-     definition (this is because I usually have C++ projects using git
-     submodules).
-   - Add my =clangd= executable to the =eglot-server-programs= list.
-   - Add the hook to automatically start Eglot.
+- Ensure that Eglot is installed via =use-package=.
+- Ensure that the =completion-at-point= backend is used by
+  =company= (bring it to the front of the =company-backends= list).
+- Ensure that =project.el= uses Projectile to find my project
+  definition (this is because I usually have C++ projects using git
+  submodules).
+- Add my =clangd= executable to the =eglot-server-programs= list.
+- Add the hook to automatically start Eglot.
 
-   If I don't want the hook anymore, I use this very simple function:
+If I don't want the hook anymore, I use this very simple function:
 
-   #+begin_src emacs-lisp :results silent
-     (defun dd/cpp-eglot-disable ()
-       "disable hook for eglot"
-       (interactive)
-       (remove-hook 'c++-mode-hook 'eglot-ensure))
-   #+END_SRC
+#+begin_src emacs-lisp :results silent
+  (defun dd/cpp-eglot-disable ()
+    "disable hook for eglot"
+    (interactive)
+    (remove-hook 'c++-mode-hook 'eglot-ensure))
+#+END_SRC
 
 ** Introducing pygram11                                :python:numpy:cpp:hep:
-   :PROPERTIES:
-   :EXPORT_FILE_NAME: introducing-pygram11
-   :EXPORT_DATE: 2019-03-04
-   :END:
+:PROPERTIES:
+:EXPORT_FILE_NAME: introducing-pygram11
+:EXPORT_DATE: 2019-03-04
+:END:
 
-   I'm very happy to release my first open source software project:
-   [[https://github.com/douglasdavis/pygram11][pygram11]]. I've been writing software for a while now, but mostly
-   targeting physics-experiment-specific use cases. In that time I've
-   used a lot free and open source software; it feels quite nice to
-   potentially help contribute to the scientific computing community
-   in the same way.
+I'm very happy to release my first open source software project:
+[[https://github.com/douglasdavis/pygram11][pygram11]]. I've been writing software for a while now, but mostly
+targeting physics-experiment-specific use cases. In that time I've
+used a lot free and open source software; it feels quite nice to
+potentially help contribute to the scientific computing community
+in the same way.
 
-   This python library aims to make generating many histograms a quick
-   task (targeting sample sizes above about 10,000 elements), while
-   also supporting weighted statistical uncertainties on the bin
-   counts. Fixed and variable bin width histograms can be calculated.
-   The backend implementation is in C++ and accelerated with [[https://www.openmp.org/][OpenMP]],
-   with [[https://github.com/pybind/pybind11][pybind11]] used to generate the Python bindings.
+This python library aims to make generating many histograms a quick
+task (targeting sample sizes above about 10,000 elements), while
+also supporting weighted statistical uncertainties on the bin
+counts. Fixed and variable bin width histograms can be calculated.
+The backend implementation is in C++ and accelerated with [[https://www.openmp.org/][OpenMP]],
+with [[https://github.com/pybind/pybind11][pybind11]] used to generate the Python bindings.
 
-   Pygram11 can be a near drop-in replacement for =numpy.histogram=
-   and =numpy.histogram2d=, while reaching speeds 20x faster (for a 1D
-   histogram of an array of length 10,000) to almost 100x faster than
-   NumPy (for a 2D histogram of 100 million $(x_i, y_i)$ pairs). The
-   APIs are quite similar (with slightly different return styles). In
-   addition to the faster calculations, constructing the variance in
-   each bin is a "first class citizen" in pygram11 (see my [[https://ddavis.io/posts/numpy-histograms/][NumPy
-   Histogram tricks for HEP]] post).
+Pygram11 can be a near drop-in replacement for =numpy.histogram=
+and =numpy.histogram2d=, while reaching speeds 20x faster (for a 1D
+histogram of an array of length 10,000) to almost 100x faster than
+NumPy (for a 2D histogram of 100 million $(x_i, y_i)$ pairs). The
+APIs are quite similar (with slightly different return styles). In
+addition to the faster calculations, constructing the variance in
+each bin is a "first class citizen" in pygram11 (see my [[https://ddavis.io/posts/numpy-histograms/][NumPy
+Histogram tricks for HEP]] post).
 
-   So, please go checkout the [[https://pygram11.readthedocs.io/][documentation]] and [[https://github.com/douglasdavis/pygram11][GitHub repository]].
-   Open issues, PRs, email me, tweet at me, or write something better
-   (checkout some [[https://pygram11.readthedocs.io/en/stable/bench.html][benchmarks]] in the documentation). To try it out,
-   spin up a virtual environment or conda environment and install
-   with:
+So, please go checkout the [[https://pygram11.readthedocs.io/][documentation]] and [[https://github.com/douglasdavis/pygram11][GitHub repository]].
+Open issues, PRs, email me, tweet at me, or write something better
+(checkout some [[https://pygram11.readthedocs.io/en/stable/bench.html][benchmarks]] in the documentation). To try it out,
+spin up a virtual environment or conda environment and install
+with:
 
-   #+begin_src
-   pip install pygram11
-   #+end_src
+#+begin_src
+pip install pygram11
+#+end_src
 
-   or
+or
 
-   #+begin_src
-   conda install pygram11 -c conda-forge
-   #+end_src
+#+begin_src
+conda install pygram11 -c conda-forge
+#+end_src
 
 *** In action
 
-    Some fixed bin histogramming:
+Some fixed bin histogramming:
 
-    #+begin_src python :results silent
-      import numpy as np
-      from pygram11 import histogram, histogram2d
+#+begin_src python :results silent
+  import numpy as np
+  from pygram11 import histogram, histogram2d
 
-      x = np.random.randn(100000)
-      y = np.random.randn(100000)
-      w = np.random.uniform(0.8, 1.2, 100000)
+  x = np.random.randn(100000)
+  y = np.random.randn(100000)
+  w = np.random.uniform(0.8, 1.2, 100000)
 
-      h_1d, _ = histogram(x, bins=20, range=(-4, 4))
-      h_2d, _ = histogram2d(x, y, bins=(20, 40),
-                            range=((-4, 4), (-3, 3)))
+  h_1d, _ = histogram(x, bins=20, range=(-4, 4))
+  h_2d, _ = histogram2d(x, y, bins=(20, 40),
+                        range=((-4, 4), (-3, 3)))
 
-      h_1d, err_1d = histogram(x, bins=20, range=(-4, 4), weights=w)
-      h_2d, err_2d = histogram2d(x, y, bins=(20, 40),
-                                 range=((-4, 4), (-3, 3)), weights=w)
-    #+end_src
+  h_1d, err_1d = histogram(x, bins=20, range=(-4, 4), weights=w)
+  h_2d, err_2d = histogram2d(x, y, bins=(20, 40),
+                             range=((-4, 4), (-3, 3)), weights=w)
+#+end_src
 
-    Notice the error (square-root of the variance) is the second
-    return object (for the unweighted histogram we just throw it away
-    with an underscore).
+Notice the error (square-root of the variance) is the second
+return object (for the unweighted histogram we just throw it away
+with an underscore).
 
-    And some variable bin histogramming, uniform logarithmic:
+And some variable bin histogramming, uniform logarithmic:
 
-    #+begin_src python :results silent
-      import numpy as np
-      from pygram11 import histogram
+#+begin_src python :results silent
+  import numpy as np
+  from pygram11 import histogram
 
-      x = np.exp(np.random.uniform(0.1, 10.0, 100000))
-      bins = np.logspace(0.1, 1.0, 10, endpoint=True)
+  x = np.exp(np.random.uniform(0.1, 10.0, 100000))
+  bins = np.logspace(0.1, 1.0, 10, endpoint=True)
 
-      h, _ = histogram(x, bins=bins)
-    #+end_src
+  h, _ = histogram(x, bins=bins)
+#+end_src
 
 ** Deploying to PyPI with sr.ht                                      :python:
-   :PROPERTIES:
-   :EXPORT_FILE_NAME: deploy-pypi-srht
-   :EXPORT_DATE: 2019-04-10
-   :END:
+:PROPERTIES:
+:EXPORT_FILE_NAME: deploy-pypi-srht
+:EXPORT_DATE: 2019-04-10
+:END:
 
-   I recently started to use [[https://builds.sr.ht][builds.sr.ht]] (part of the [[https://sourcehut.org][sourcehut.org]]
-   stack) to run continuous integration for a small python
-   project. The project eventually reached a releasable state, and I
-   wanted to automate that task. I had never deployed a project to
-   [[https://pypi.org/][PyPI]], but after learning more about the builds.sr.ht CI system
-   (specifically the ability to use secrets) I decided to give it a
-   shot. Running simple unit tests with builds.sr.ht was super easy,
-   so I hoped adding PyPI deployment would be pretty simple -- it
-   definitely is.
+I recently started to use [[https://builds.sr.ht][builds.sr.ht]] (part of the [[https://sourcehut.org][sourcehut.org]]
+stack) to run continuous integration for a small python
+project. The project eventually reached a releasable state, and I
+wanted to automate that task. I had never deployed a project to
+[[https://pypi.org/][PyPI]], but after learning more about the builds.sr.ht CI system
+(specifically the ability to use secrets) I decided to give it a
+shot. Running simple unit tests with builds.sr.ht was super easy,
+so I hoped adding PyPI deployment would be pretty simple -- it
+definitely is.
 
 *** Setting up your secret PyPI credentials
 
-    First create a temporary file (that will be our =pypirc= file,
-    [[https://packaging.python.org/guides/distributing-packages-using-setuptools/#uploading-your-project-to-pypi][read more here]] if this doesn't sound familiar) with the following
-    contents:
+First create a temporary file (that will be our =pypirc= file,
+[[https://packaging.python.org/guides/distributing-packages-using-setuptools/#uploading-your-project-to-pypi][read more here]] if this doesn't sound familiar) with the following
+contents:
 
-    #+begin_src toml
-    [pypi]
-    username = your_username
-    password = your_password
-    #+end_src
+#+begin_src toml
+[pypi]
+username = your_username
+password = your_password
+#+end_src
 
-    Travel to https://builds.sr.ht/secrets and add it. Just give it a
-    name, select the File type, make the path =~/.pypirc=, make the
-    permission mode =600=, and upload it (get rid of the copy on your
-    local file system if you don't want to keep a local =~/.pypirc=).
+Travel to https://builds.sr.ht/secrets and add it. Just give it a
+name, select the File type, make the path =~/.pypirc=, make the
+permission mode =600=, and upload it (get rid of the copy on your
+local file system if you don't want to keep a local =~/.pypirc=).
 
 *** The build manifest
 
-    In the =tasks= section of the build manifest we're just going to
-    add a =deploy= step. In the =build= step, where I setup my python
-    environment, I make sure to install =twine= (necessary for
-    uploading to PyPI).
+In the =tasks= section of the build manifest we're just going to
+add a =deploy= step. In the =build= step, where I setup my python
+environment, I make sure to install =twine= (necessary for
+uploading to PyPI).
 
-    #+begin_src yaml
-      image: ...
-      packages:
-        - ...
-      sources:
-        - ...
-      secrets:
-        - abcdefgh-ijkl-lmno-pqrx-tuvwxyz12345
-      tasks:
-        - build: |
-            python -m venv cienv
-            source cienv/bin/activate
-            pip install pytest twine setuptools wheel
-            cd myproject
-            pip install .
-        - test: |
-            ...
-        - deploy: |
-            source cienv/bin/activate
-            cd myproject
-            python setup.py sdist bdist_wheel
-            python .ci-scripts/srht-pypi.py
-    #+end_src
+#+begin_src yaml
+  image: ...
+  packages:
+    - ...
+  sources:
+    - ...
+  secrets:
+    - abcdefgh-ijkl-lmno-pqrx-tuvwxyz12345
+  tasks:
+    - build: |
+        python -m venv cienv
+        source cienv/bin/activate
+        pip install pytest twine setuptools wheel
+        cd myproject
+        pip install .
+    - test: |
+        ...
+    - deploy: |
+        source cienv/bin/activate
+        cd myproject
+        python setup.py sdist bdist_wheel
+        python .ci-scripts/srht-pypi.py
+#+end_src
 
-    For this example I'm building both a source distribution (=sdist=)
-    and a wheel (=bdist_wheel=) for the toy project[fn:4]. In the
-    repository I have a directory called =.ci-scripts= with a script
-    to handle the PyPI upload. The script ensures that I only upload
-    to PyPI if the repository git hash is on a tag, and the name of
-    the tag is the same as the version of the python project (the
-    versions and tags are formatted =X.Y.Z=). Here are the contents of
-    that script:
+For this example I'm building both a source distribution (=sdist=)
+and a wheel (=bdist_wheel=) for the toy project[fn:4]. In the
+repository I have a directory called =.ci-scripts= with a script
+to handle the PyPI upload. The script ensures that I only upload
+to PyPI if the repository git hash is on a tag, and the name of
+the tag is the same as the version of the python project (the
+versions and tags are formatted =X.Y.Z=). Here are the contents of
+that script:
 
-    #+begin_src python
-      import subprocess
-      import myproject.version
-      import sys
+#+begin_src python
+  import subprocess
+  import myproject.version
+  import sys
 
-      def main():
-          res = subprocess.run(["git", "describe"], stdout=subprocess.PIPE)
-          describe_out = res.stdout.decode("utf-8").split("-")
-          print(describe_out)
-          if len(describe_out) > 1:
-              return 0
-          elif myproject.version.version == describe_out[0].strip():
-              res = subprocess.run("twine upload dist/*", shell=True)
-              return res.returncode
-          else:
-              return 0;
+  def main():
+      res = subprocess.run(["git", "describe"], stdout=subprocess.PIPE)
+      describe_out = res.stdout.decode("utf-8").split("-")
+      print(describe_out)
+      if len(describe_out) > 1:
+          return 0
+      elif myproject.version.version == describe_out[0].strip():
+          res = subprocess.run("twine upload dist/*", shell=True)
+          return res.returncode
+      else:
+          return 0;
 
-      if __name__ == "__main__":
-          main()
-    #+end_src
+  if __name__ == "__main__":
+      main()
+#+end_src
 
 ** Python with Emacs: py(v)env and lsp-mode                    :python:emacs:
-   :PROPERTIES:
-   :EXPORT_FILE_NAME: emacs-python-lsp
-   :EXPORT_DATE: 2020-02-18
-   :END:
+:PROPERTIES:
+:EXPORT_FILE_NAME: emacs-python-lsp
+:EXPORT_DATE: 2020-02-18
+:END:
 
-   I have an [[* Eglot based Emacs Python IDE][old post]] describing how to spin up an IDE-like Python
-   development environment in Emacs with [[https://github.com/joaotavora/eglot][Eglot]] and some
-   =.dir-locals.el= help. Now a year later, I've converged on what I
-   think is a better setup.
+I have an [[* Eglot based Emacs Python IDE][old post]] describing how to spin up an IDE-like Python
+development environment in Emacs with [[https://github.com/joaotavora/eglot][Eglot]] and some
+=.dir-locals.el= help. Now a year later, I've converged on what I
+think is a better setup.
 
 *** pyenv
 
-    My main driver for installing different versions of Python and
-    spinning up virtual environments is [[https://github.com/pyenv/pyenv][pyenv]]. I use the [[https://github.com/pyenv/pyenv-installer][automatic]]
-    installer on all machines where I install pyenv, and I manually
-    modify my shell's initialization such that I have to execute a
-    =setupPyenv= function to enable its usage (I also give myself the
-    ability to activate an environment via a single argument):
+My main driver for installing different versions of Python and
+spinning up virtual environments is [[https://github.com/pyenv/pyenv][pyenv]]. I use the [[https://github.com/pyenv/pyenv-installer][automatic]]
+installer on all machines where I install pyenv, and I manually
+modify my shell's initialization such that I have to execute a
+=setupPyenv= function to enable its usage (I also give myself the
+ability to activate an environment via a single argument):
 
-    #+begin_src bash
-      function setupPyenv() {
-          VENV=$1
-          export PATH="$HOME/.pyenv/bin:$PATH"
-          eval "$(pyenv init -)"
-          eval "$(pyenv virtualenv-init -)"
-          [ -n "$VENV" ] && pyenv activate $VENV
-      }
-    #+end_src
+#+begin_src bash
+  function setupPyenv() {
+      VENV=$1
+      export PATH="$HOME/.pyenv/bin:$PATH"
+      eval "$(pyenv init -)"
+      eval "$(pyenv virtualenv-init -)"
+      [ -n "$VENV" ] && pyenv activate $VENV
+  }
+#+end_src
 
 *** pyvenv
 
-    To activate various Python environments in Emacs I turn to
-    [[https://github.com/jorgenschaefer/pyvenv][pyvenv]]. Since the =pyenv= installer puts itself in the user's home
-    directory, we can configure =pyvenv= to find virtual environments
-    in =~/.pyenv/versions= via the =WORKON_ON= environment variable.
-    I lean on =use-package= to initialize =pyvenv= and set the
-    environment variable:
+To activate various Python environments in Emacs I turn to
+[[https://github.com/jorgenschaefer/pyvenv][pyvenv]]. Since the =pyenv= installer puts itself in the user's home
+directory, we can configure =pyvenv= to find virtual environments
+in =~/.pyenv/versions= via the =WORKON_ON= environment variable.
+I lean on =use-package= to initialize =pyvenv= and set the
+environment variable:
 
-    #+begin_src emacs-lisp :results silent
-      (use-package pyvenv
-        :ensure t
-        :init
-        (setenv "WORKON_HOME" "~/.pyenv/versions"))
-    #+end_src
+#+begin_src emacs-lisp :results silent
+  (use-package pyvenv
+    :ensure t
+    :init
+    (setenv "WORKON_HOME" "~/.pyenv/versions"))
+#+end_src
 
-    By setting the =WORKON_HOME= environment variable we can select
-    which =pyenv= virtual environment we want to use by calling =M-x
-    pyvenv-workon=. One can also call =M-x pyvenv-activate= to choose
-    an environment via manual filesystem navigation.
+By setting the =WORKON_HOME= environment variable we can select
+which =pyenv= virtual environment we want to use by calling =M-x
+pyvenv-workon=. One can also call =M-x pyvenv-activate= to choose
+an environment via manual filesystem navigation.
 
 *** lsp-mode
 
-    With a =pyvenv= environment activated in Emacs, all we have to do
-    is call =M-x lsp= (after setting it up of course); [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]] can be
-    configured in an =init.el= file with something as simple as:
+With a =pyvenv= environment activated in Emacs, all we have to do
+is call =M-x lsp= (after setting it up of course); [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]] can be
+configured in an =init.el= file with something as simple as:
 
-    #+begin_src emacs-lisp :results silent
-      (use-package lsp-mode
-        :ensure t
-        :commands lsp)
-    #+end_src
+#+begin_src emacs-lisp :results silent
+  (use-package lsp-mode
+    :ensure t
+    :commands lsp)
+#+end_src
 
-    See the GitHub project for more details. Completion (with
-    [[https://company-mode.github.io/][company-mode]]) and static checks (with Flymake, an Emacs builtin,
-    or [[https://www.flycheck.org/en/latest/][Flycheck]]) are easy to setup with =lsp-mode=.
+See the GitHub project for more details. Completion (with
+[[https://company-mode.github.io/][company-mode]]) and static checks (with Flymake, an Emacs builtin,
+or [[https://www.flycheck.org/en/latest/][Flycheck]]) are easy to setup with =lsp-mode=.
 
-    The working virtual environment will have to have a language
-    server installed. The easiest and fastest way to get started (a
-    simple =pip install=) is to use [[https://github.com/palantir/python-language-server][pyls]]. Alternatively, one can use
-    Microsoft's [[https://github.com/microsoft/python-language-server][python-language-server]] with lsp-mode via
-    [[https://github.com/emacs-lsp/lsp-python-ms][lsp-python-ms]]; upon first use a prompt will ask if the user would
-    like to download =mspyls=. I've used both; while =mspyls= has
-    better performance, =pyls= support is built into =lsp-mode= and
-    the server can be installed like any other Python package (the
-    Microsoft implementation is a C# program). In my opinion those
-    pros neutralize the performance con (which is not too bad).
+The working virtual environment will have to have a language
+server installed. The easiest and fastest way to get started (a
+simple =pip install=) is to use [[https://github.com/palantir/python-language-server][pyls]]. Alternatively, one can use
+Microsoft's [[https://github.com/microsoft/python-language-server][python-language-server]] with lsp-mode via
+[[https://github.com/emacs-lsp/lsp-python-ms][lsp-python-ms]]; upon first use a prompt will ask if the user would
+like to download =mspyls=. I've used both; while =mspyls= has
+better performance, =pyls= support is built into =lsp-mode= and
+the server can be installed like any other Python package (the
+Microsoft implementation is a C# program). In my opinion those
+pros neutralize the performance con (which is not too bad).
 
 *** Automated helper
 
-    Just about all of my Python development happens inside of a
-    [[https://github.com/bbatsov/projectile][projectile]] project. I have a simple interactive function that will
-    automatically activate the environment associated with a project
-    and spin up lsp-mode. I bind this helper function to =C-c C-a= in
-    the =python-mode-map=.
+Just about all of my Python development happens inside of a
+[[https://github.com/bbatsov/projectile][projectile]] project. I have a simple interactive function that will
+automatically activate the environment associated with a project
+and spin up lsp-mode. I bind this helper function to =C-c C-a= in
+the =python-mode-map=.
 
-    #+begin_src emacs-lisp :results silent
-      (defun dd/py-workon-project-venv ()
-        "Call pyenv-workon with the current projectile project name.
-      This will return the full path of the associated virtual
-      environment found in $WORKON_HOME, or nil if the environment does
-      not exist."
-        (let ((pname (projectile-project-name)))
-          (pyvenv-workon pname)
-          (if (file-directory-p pyvenv-virtual-env)
-              pyvenv-virtual-env
-            (pyvenv-deactivate))))
+#+begin_src emacs-lisp :results silent
+  (defun dd/py-workon-project-venv ()
+    "Call pyenv-workon with the current projectile project name.
+  This will return the full path of the associated virtual
+  environment found in $WORKON_HOME, or nil if the environment does
+  not exist."
+    (let ((pname (projectile-project-name)))
+      (pyvenv-workon pname)
+      (if (file-directory-p pyvenv-virtual-env)
+          pyvenv-virtual-env
+        (pyvenv-deactivate))))
 
-      (defun dd/py-auto-lsp ()
-        "Turn on lsp mode in a Python project with some automated logic.
-      Try to automatically determine which pyenv virtual environment to
-      activate based on the project name, using
-      `dd/py-workon-project-venv'. If successful, call `lsp'. If we
-      cannot determine the virtualenv automatically, first call the
-      interactive `pyvenv-workon' function before `lsp'"
-        (interactive)
-        (let ((pvenv (dd/py-workon-project-venv)))
-          (if pvenv
-              (lsp)
-            (progn
-              (call-interactively #'pyvenv-workon)
-              (lsp)))))
+  (defun dd/py-auto-lsp ()
+    "Turn on lsp mode in a Python project with some automated logic.
+  Try to automatically determine which pyenv virtual environment to
+  activate based on the project name, using
+  `dd/py-workon-project-venv'. If successful, call `lsp'. If we
+  cannot determine the virtualenv automatically, first call the
+  interactive `pyvenv-workon' function before `lsp'"
+    (interactive)
+    (let ((pvenv (dd/py-workon-project-venv)))
+      (if pvenv
+          (lsp)
+        (progn
+          (call-interactively #'pyvenv-workon)
+          (lsp)))))
 
-      (bind-key (kbd "C-c C-a") #'dd/py-auto-lsp python-mode-map)
-    #+end_src
+  (bind-key (kbd "C-c C-a") #'dd/py-auto-lsp python-mode-map)
+#+end_src
 
 ** Emacs native-comp on CentOS 7                                      :emacs:
-   :PROPERTIES:
-   :EXPORT_FILE_NAME: emacs-native-centos7
-   :EXPORT_DATE: 2020-05-19
-   :END:
+:PROPERTIES:
+:EXPORT_FILE_NAME: emacs-native-centos7
+:EXPORT_DATE: 2020-05-19
+:END:
 
-   The GNU Emacs =feature/native-comp= branch has been under
-   development for some time now. The performance enhancements from
-   the natively compiled Emacs Lisp code are exciting. Notably, I've
-   been seeing nice speed-ups for [[https://emacs-helm.github.io/helm/][Helm]] completions and a smoother
-   [[https://emacs-lsp.github.io/lsp-ui/][lsp-ui]] experience.
+The GNU Emacs =feature/native-comp= branch has been under
+development for some time now. The performance enhancements from
+the natively compiled Emacs Lisp code are exciting. Notably, I've
+been seeing nice speed-ups for [[https://emacs-helm.github.io/helm/][Helm]] completions and a smoother
+[[https://emacs-lsp.github.io/lsp-ui/][lsp-ui]] experience.
 
-   Andrea Corallo is developing this new feature and
-   updates/descriptions of the work can be tracked/found [[http://akrl.sdf.org/gccemacs.html][on his
-   website]]. I've been building the branch on my CentOS 7 machine for a
-   few weeks now, and I thought I'd walk through the process.
+Andrea Corallo is developing this new feature and
+updates/descriptions of the work can be tracked/found [[http://akrl.sdf.org/gccemacs.html][on his
+website]]. I've been building the branch on my CentOS 7 machine for a
+few weeks now, and I thought I'd walk through the process.
 
 *** Building Emacs using =--with-nativecomp=
 
-    We need to install =libgccjit=. Unfortunately CentOS 7 shipped
-    with a pretty old GCC release (the 4.8 series). Fortunately Red
-    Hat ships modern GCC builds with a number of =devtoolset= RPMs. We
-    can install =libgccjit= (and the necessary development headers)
-    from the GCC 9 series via:
+We need to install =libgccjit=. Unfortunately CentOS 7 shipped
+with a pretty old GCC release (the 4.8 series). Fortunately Red
+Hat ships modern GCC builds with a number of =devtoolset= RPMs. We
+can install =libgccjit= (and the necessary development headers)
+from the GCC 9 series via:
 
-    #+begin_src
-      # yum install devtoolset-9-gcc devtoolset-9-libgccjit-devel
-    #+end_src
+#+begin_src
+  # yum install devtoolset-9-gcc devtoolset-9-libgccjit-devel
+#+end_src
 
-    We'll build Emacs from source after checking out the feature
-    branch:
+We'll build Emacs from source after checking out the feature
+branch:
 
-    #+begin_src
-      $ git clone https://git.savannah.gnu.org/git/emacs.git
-      $ cd emacs
-      $ git fetch --all
-      $ git checkout -b native-comp origin/feature/native-comp
-    #+end_src
+#+begin_src
+  $ git clone https://git.savannah.gnu.org/git/emacs.git
+  $ cd emacs
+  $ git fetch --all
+  $ git checkout -b native-comp origin/feature/native-comp
+#+end_src
 
-    Now we'll build Emacs after enabling =devtoolset-9=. We ensure
-    that =pkg-config= will search in =/usr/lib64/pkgconfig= for
-    installed packages, such as =gnutls= or =libjansson= installed
-    with =yum= (this is necessary because we are installing with GCC 9
-    from =devtoolset-9= and not the default =/usr/bin/gcc= compiler).
-    We use =NATIVE_FAST_BOOT= to shorten the compilation process; with
-    this option only Emacs Lisp code necessary for a base Emacs
-    installation will be natively compiled. We're deferring the
-    compilation of other Emacs Lisp code. (Since we're playing with an
-    experimental feature, I'm going to assume that you've built Emacs
-    from source before and that you can handle all other desirable
-    =configure= options). (UPDATE June 2020: as of mid June 2020 the
-    compilation time has been drastically improved, making the
-    =NATIVE_FAST_BOOT= option not as useful as it was before that
-    time).
+Now we'll build Emacs after enabling =devtoolset-9=. We ensure
+that =pkg-config= will search in =/usr/lib64/pkgconfig= for
+installed packages, such as =gnutls= or =libjansson= installed
+with =yum= (this is necessary because we are installing with GCC 9
+from =devtoolset-9= and not the default =/usr/bin/gcc= compiler).
+We use =NATIVE_FAST_BOOT= to shorten the compilation process; with
+this option only Emacs Lisp code necessary for a base Emacs
+installation will be natively compiled. We're deferring the
+compilation of other Emacs Lisp code. (Since we're playing with an
+experimental feature, I'm going to assume that you've built Emacs
+from source before and that you can handle all other desirable
+=configure= options). (UPDATE June 2020: as of mid June 2020 the
+compilation time has been drastically improved, making the
+=NATIVE_FAST_BOOT= option not as useful as it was before that
+time).
 
-    #+begin_src
-      $ source scl_source enable devtoolset-9
-      $ ./autogen.sh
-      $ PKG_CONFIG_PATH=/usr/lib64/pkgconfig ./configure --with-nativecomp
-      $ make -j6 # use NATIVE_FAST_BOOT=1 if desired
-    #+end_src
+#+begin_src
+  $ source scl_source enable devtoolset-9
+  $ ./autogen.sh
+  $ PKG_CONFIG_PATH=/usr/lib64/pkgconfig ./configure --with-nativecomp
+  $ make -j6 # use NATIVE_FAST_BOOT=1 if desired
+#+end_src
 
-    Once Emacs is compiled we can run it with =src/emacs= (you can set
-    an install prefix, but this is an experimental feature, so I only
-    run this executable from the development repository and keep a
-    =master= branch build installed somewhere in my =PATH=). The
-    remainder of this post is not specifically related to CentOS 7,
-    but it's still useful.
+Once Emacs is compiled we can run it with =src/emacs= (you can set
+an install prefix, but this is an experimental feature, so I only
+run this executable from the development repository and keep a
+=master= branch build installed somewhere in my =PATH=). The
+remainder of this post is not specifically related to CentOS 7,
+but it's still useful.
 
 *** Deferred and asynchronous compilation
 
-    Before we run Emacs we can add a few lines to the top of our
-    =init.el= file to steer deferred/async compilation. When running
-    Emacs with the =native-compile-async= symbol defined, we ask if we
-    want to run the deferred async compilation. If yes, set the number
-    of jobs that can run in the background (one can also define a
-    blacklist. The blacklist is useful for avoiding compiling Emacs
-    Lisp code that we don't often use, see =C-h v
-    comp-deferred-compilation-black-list= for more, it looks for regex
-    matches).
+Before we run Emacs we can add a few lines to the top of our
+=init.el= file to steer deferred/async compilation. When running
+Emacs with the =native-compile-async= symbol defined, we ask if we
+want to run the deferred async compilation. If yes, set the number
+of jobs that can run in the background (one can also define a
+blacklist. The blacklist is useful for avoiding compiling Emacs
+Lisp code that we don't often use, see =C-h v
+comp-deferred-compilation-black-list= for more, it looks for regex
+matches).
 
-    #+begin_src emacs-lisp :results silent
-      ;; for native-comp branch
-      (when (fboundp 'native-compile-async)
-        (if (yes-or-no-p "async compile?")
-            (setq comp-async-jobs-number 4 ;; not using all cores
-                  comp-deferred-compilation t
-                  comp-deferred-compilation-black-list '())
-          (setq comp-deferred-compilation nil)))
-    #+end_src
+#+begin_src emacs-lisp :results silent
+  ;; for native-comp branch
+  (when (fboundp 'native-compile-async)
+    (if (yes-or-no-p "async compile?")
+        (setq comp-async-jobs-number 4 ;; not using all cores
+              comp-deferred-compilation t
+              comp-deferred-compilation-black-list '())
+      (setq comp-deferred-compilation nil)))
+#+end_src
 
-    Emacs will asynchronously natively compile all =.elc= files that
-    it loads. So if your =init.el= file loads a lot of packages,
-    prepare for Emacs to spend a bit of time compiling. Fortunately
-    you can still use Emacs while that is happening in the background.
+Emacs will asynchronously natively compile all =.elc= files that
+it loads. So if your =init.el= file loads a lot of packages,
+prepare for Emacs to spend a bit of time compiling. Fortunately
+you can still use Emacs while that is happening in the background.
 
 * Footnotes
 

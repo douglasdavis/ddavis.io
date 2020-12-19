@@ -49,7 +49,7 @@ environment variable:
 
 By setting the `WORKON_HOME` environment variable we can select
 which `pyenv` virtual environment we want to use by calling `M-x
-    pyvenv-workon`. One can also call `M-x pyvenv-activate` to choose
+pyvenv-workon`. One can also call `M-x pyvenv-activate` to choose
 an environment via manual filesystem navigation.
 
 

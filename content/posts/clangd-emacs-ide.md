@@ -73,7 +73,7 @@ Like I said, Clangd is under heavy development, so expect some
 imperfections. For example, using the version shipped with the LLVM
 6.0.0 release wasn't working with header files. I went ahead and
 built a bleeding edge installation (using `brew install --HEAD
-   llvm` on macOS and building from the trunk of their svn
+llvm` on macOS and building from the trunk of their svn
 repositories on a Fedora machine; read how to do that [here](http://clang.llvm.org/get%5Fstarted.html) and that
 fixed the problem.
 

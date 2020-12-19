@@ -5,57 +5,56 @@ tags = ["hep", "numpy", "cpp", "python"]
 draft = false
 +++
 
-The high energy physics community has used [ROOT](https://root.cern/) for over 20 years
-now. It's a very large, monolithic set of libraries packaged up
-with a C++ interpreter called [Cling](https://root.cern.ch/cling).  ROOT's strength, in my
-opinion, lay in its ability to serialize C++ objects to disk in
-binary format (you can read all about it [here](https://root.cern.ch/root/htmldoc/guides/users-guide/InputOutput.html)).  This is perfect
-for HEP. We have classes for events as a whole, classes for hits in
-the detector, classes for whole reconstructed particles, etc. ROOT
-is great for storing this in an intuitive way, for example:
-particles live in containers owned by an event, hits live in a
-container owned by a track, whole reconstructed particles have an
-"Element Link" (a class to act as a pointer on disk) to a track
-associated with it, etc.
+The high energy physics community has used [ROOT](https://root.cern/) since the late 90's.
+It's a very large and monolithic set of libraries packaged up with a
+C++ interpreter called [Cling](https://root.cern.ch/cling). ROOT's strength (in my opinion) is its
+ability to serialize C++ objects to disk in binary format (you can
+read all about it [here](https://root.cern.ch/root/htmldoc/guides/users-guide/InputOutput.html)). This is perfect for HEP. We have classes for
+events as a whole, classes for hits in the detector, classes for whole
+reconstructed particles, etc. ROOT is great for storing this in an
+intuitive way, for example: particles live in containers owned by an
+event, hits live in a container owned by a track, whole reconstructed
+particles have an "Element Link" (a class to act as a pointer on disk)
+to a track associated with it, etc.
 
 
 ## The problem {#the-problem}
 
 ROOT is a monolithic beast. It's a lot to carry around if all one
-needs to do is look at a few numbers stored in a ROOT file. It
-takes a while to build the entire library (and the packaged
-interpreter). The ROOT team distributes some binaries, and some
-package managers provide binaries or a way to build locally
-(e.g. the [Arch User's Repository](https://aur.archlinux.org/))... but for beginners and quick
-tasks that's not always a great solution[^fn:1].
+needs to do is look at a few numbers stored in a ROOT file. It takes a
+while to build the entire library (and the packaged interpreter). The
+ROOT team distributes some binaries, and some package managers provide
+binaries or a way to build locally (e.g. the [Arch User's
+Repository](https://aur.archlinux.org/))... but for beginners and quick tasks that's not always a
+great solution[^fn:1].
 
-Then, to actually look at one's data a C++ "macro" has be be
-written (not a compiler preprocessor macro, this is something that
-is meant to be processed by ROOT's C++ interpreter, cling); or, one
-writes a proper executable, compile it, link it, and run it. This
-C++ code can be verbose and full of boilerplate (especially for
-reading ROOT files, where one has to connect C++ variables to ROOT
-"branches", one line at a time[^fn:2]).
+Then, to actually look at one's data a C++ "macro" has be be written
+(not a compiler preprocessor macro, this is something that is meant to
+be processed by ROOT's C++ interpreter, cling); or, one writes a
+proper executable, compile it, link it, and run it. This C++ code can
+be verbose and full of boilerplate (especially for reading ROOT files,
+where one has to connect C++ variables to ROOT "branches", one line at
+a time[^fn:2]).
 
 
 ## The old solution {#the-old-solution}
 
 If a ROOT build was aware of a python installation during the build
-process, one can end up with PyROOT - ROOT's builtin python
-bindings. PyROOT basically allows writing C++ style code in python
-to talk to ROOT objects. That's not even the old solution I'm about
-to mention. [root-numpy](https://github.com/scikit-hep/root%5Fnumpy) is what I'd consider the _old_ solution --
-it's a python library accelerated with Cython which turns the C
-style arrays stored in ROOT files into numpy arrays. It can also be
-installed with pip.  Unfortunately, it requires a ROOT installation
-(because it requires `import ROOT`).
+process, one can end up with PyROOT - ROOT's builtin python bindings.
+PyROOT basically allows writing C++ style code in python to talk to
+ROOT objects. That's not even the old solution I'm about to mention.
+[root-numpy](https://github.com/scikit-hep/root%5Fnumpy) is what I'd consider the _old_ solution -- it's a python
+library accelerated with Cython which turns the C style arrays stored
+in ROOT files into numpy arrays. It can also be installed with pip.
+Unfortunately, it requires a ROOT installation (because it requires
+`import ROOT`).
 
 
 ## The solution {#the-solution}
 
-Now enter [uproot](https://github.com/scikit-hep/uproot). This awesome new library is pure Python and does
-not require a ROOT installation. We can interact with ROOT files is
-as easy as:
+Now enter [uproot](https://github.com/scikit-hep/uproot). This awesome new library is pure Python and does not
+require a ROOT installation. We can interact with ROOT files is as
+easy as:
 
 ```nil
 $ pip install uproot
