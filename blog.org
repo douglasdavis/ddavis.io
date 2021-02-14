@@ -1355,8 +1355,8 @@ boilerplate) and extendable implementation while achieving the goal of
 explicitly avoiding conversions.
 
 We'll use [[https://github.com/boostorg/mp11][boost::mp11]] for some help. We create a type list for the
-possible data types (=pg_types=) and one for the possible weight types
-(=pg_weights=). The =boost::mp11= library provides the =mp_product=
+possible data types (=pg_Ts=) and one for the possible weight types
+(=pg_Ws=). The =boost::mp11= library provides the =mp_product=
 metafunction to generate all possible combinations of its template
 parameters at compile time.
 
