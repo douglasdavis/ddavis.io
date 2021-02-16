@@ -1275,7 +1275,7 @@ it loads. So if your =init.el= file loads a lot of packages,
 prepare for Emacs to spend a bit of time compiling. Fortunately
 you can still use Emacs while that is happening in the background.
 
-** Avoiding conversions & boilerplate in pybind11      :cpp:python:tmp:numpy:
+** Avoiding conversions & boilerplate in pybind11          :cpp:python:numpy:
 :PROPERTIES:
 :EXPORT_FILE_NAME: avoid-conversions-boilerplate-pybind11
 :EXPORT_DATE: 2021-02-11
