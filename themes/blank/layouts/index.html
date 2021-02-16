@@ -1,5 +1,6 @@
 {{ define "main" }}
 <main>
+  <h2>ddavis.io</h2>
   {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
   {{ range $paginator.Pages }}
   {{ .Render "summary" }}
@@ -7,4 +8,5 @@
   {{ partial "pagination.html" . }}
 </main>
 {{ partial "sidebar.html" . }}
+<a href="/about">about</a> | <a href="/tags">tags</a>
 {{ end }}

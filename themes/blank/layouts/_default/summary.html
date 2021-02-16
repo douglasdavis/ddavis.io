@@ -1,11 +1,9 @@
 <article>
-  <h1><a href="{{ .Permalink }}">{{ .Title }}</a> </h1>
   {{ if ne .Section "tags" }}
-  {{ .Date.Format "2006 January 02" }}
-  <br>
-  tags:
+  <time><tt>{{ .Date.Format "2006-01-02" }}</tt></time>
   {{ end }}
-  {{ range .Params.tags }}
-  <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-  {{ end }}
+  <a href="{{ .Permalink }}">{{ .Title }}</a>
+  <!-- {{ range .Params.tags }} -->
+  <!-- <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> -->
+  <!-- {{ end }} -->
 </article>

@@ -6,10 +6,10 @@ body {
     line-height: 1.5;
 }
 
-main {
+html {
     min-width: 20em;
     /* max-width: 42em; */
-    max-width: 70ch;
+    max-width: 84ch;
     padding: 2ch;
     margin: auto;
     /* margin-left: 5%; */
