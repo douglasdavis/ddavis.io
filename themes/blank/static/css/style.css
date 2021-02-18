@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Recursive:wght@400;700&family=Ubuntu+Mono&display=swap');
 
+@import url("https://dev-cats.github.io/code-snippets/JetBrainsMono.css");
+
 body {
     font-family: 'Recursive', 'Liberation Sans', Arial, sans-serif;
     background-color: #fffaf7;
@@ -32,18 +34,19 @@ h1, h2 {
 }
 
 code {
-    font-family: 'Ubuntu Mono', monospace;
-    font-size: 1.0em;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9em;
 }
 
 pre {
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: 'JetBrains Mono', monospace;
     overflow-x: auto;
     padding: 0.5ch;
     border-radius: 10px;
     border: 2px solid #d79921;
     padding: 10px;
     scrollbar-width: none;
+    font-size: 1.0em;
 }
 
 pre::-webkit-scrollbar {
