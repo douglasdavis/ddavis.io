@@ -26,7 +26,7 @@ NumPy (for a 2D histogram of 100 million \\((x\_i, y\_i)\\) pairs). The
 APIs are quite similar (with slightly different return styles). In
 addition to the faster calculations, constructing the variance in
 each bin is a "first class citizen" in pygram11 (see my [NumPy
-Histogram tricks for HEP](https://ddavis.io/posts/numpy-histograms/) post).
+Histogram tricks for HEP](/posts/numpy-histograms/) post).
 
 So, please go checkout the [documentation](https://pygram11.readthedocs.io/) and [GitHub repository](https://github.com/douglasdavis/pygram11).
 Open issues, PRs, email me, tweet at me, or write something better
