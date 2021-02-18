@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@400;700&family=Ubuntu+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@400;700&display=swap');
 
-@import url("https://dev-cats.github.io/code-snippets/JetBrainsMono.css");
-
-body {
-    font-family: 'Recursive', 'Liberation Sans', Arial, sans-serif;
-    background-color: #fffaf7;
-    line-height: 1.5;
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff/JetBrainsMono-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
 html {
@@ -19,6 +20,8 @@ html {
 }
 
 body {
+    font-family: 'Recursive', 'Liberation Sans', Arial, sans-serif;
+    line-height: 1.5;
     background: #282828;
     color:      #ebdbb2;
 }
@@ -28,7 +31,7 @@ header {
 }
 
 h1, h2 {
-    font-family: 'Recursive';
+    font-family: 'Recursive', 'Liberation Sans', Arial, sans-serif;
     font-size: 1.75em;
     margin-bottom: .25rem;
 }
