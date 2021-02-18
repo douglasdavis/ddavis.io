@@ -1,14 +1,4 @@
-
-# Created by https://www.gitignore.io/api/hugo
-
-### Hugo ###
-# Hugo binary
-
-# Generated files at default location
 /public/
 /resources/_gen
-
+/site.tar.gz
 .DS_Store
-
-
-# End of https://www.gitignore.io/api/hugo
