@@ -380,10 +380,10 @@ nearly all of our analysis is done using histograms.
 
 Where the elements of the data contribute to the bin height is of
 course determined by the bin edges. We can make the left and right
-edges infinite to be sure to count /all/ of our data[fn:5]. Then
-we just add the =[0]= bin contents to the =[1]= bin contents, and
-add the =[-1]= bin contents to the =[-2]= bin contents. Finally,
-we polish it off by chopping off the out-of-bounds elements:
+edges infinite to be sure to include /all/ of our data[fn:5]. Then we
+just add the =[0]= bin contents to the =[1]= bin contents, and add the
+=[-1]= bin contents to the =[-2]= bin contents. Finally, we polish it
+off by chopping off the out-of-bounds elements:
 
 #+begin_src python :results silent
   >>> import numpy as np
@@ -466,7 +466,7 @@ Now two arrays exist: =n= contains the heights in each bin, and
        Returns
        -------
        numpy.ndarray
-           Total bin counts.
+           Total bin values.
        numpy.ndarray
            Poisson uncertainty on each bin count.
        numpy.ndarray
@@ -519,7 +519,7 @@ Now two arrays exist: =n= contains the heights in each bin, and
 #+END_SRC
 
 *Update August 2019*: With =pygram11=, we can just import the
-=histogram= function and call a one-liner for the counts and the
+=histogram= function and call a one-liner for the values and the
 error:
 
 #+BEGIN_SRC python
@@ -897,30 +897,29 @@ I'm very happy to release my first open source software project:
 [[https://github.com/douglasdavis/pygram11][pygram11]]. I've been writing software for a while now, but mostly
 targeting physics-experiment-specific use cases. In that time I've
 used a lot free and open source software; it feels quite nice to
-potentially help contribute to the scientific computing community
-in the same way.
+potentially help contribute to the scientific computing community in
+the same way.
 
 This python library aims to make generating many histograms a quick
-task (targeting sample sizes above about 10,000 elements), while
-also supporting weighted statistical uncertainties on the bin
-counts. Fixed and variable bin width histograms can be calculated.
-The backend implementation is in C++ and accelerated with [[https://www.openmp.org/][OpenMP]],
-with [[https://github.com/pybind/pybind11][pybind11]] used to generate the Python bindings.
+task (targeting sample sizes above about 10,000 elements), while also
+supporting weighted statistical uncertainties on the bin values. Fixed
+and variable bin width histograms can be calculated. The backend
+implementation is in C++ and accelerated with [[https://www.openmp.org/][OpenMP]], with [[https://github.com/pybind/pybind11][pybind11]]
+used to generate the Python bindings.
 
-Pygram11 can be a near drop-in replacement for =numpy.histogram=
-and =numpy.histogram2d=, while reaching speeds 20x faster (for a 1D
+Pygram11 can be a near drop-in replacement for =numpy.histogram= and
+=numpy.histogram2d=, while reaching speeds 20x faster (for a 1D
 histogram of an array of length 10,000) to almost 100x faster than
-NumPy (for a 2D histogram of 100 million $(x_i, y_i)$ pairs). The
-APIs are quite similar (with slightly different return styles). In
-addition to the faster calculations, constructing the variance in
-each bin is a "first class citizen" in pygram11 (see my [[/posts/numpy-histograms/][NumPy
-Histogram tricks for HEP]] post).
+NumPy (for a 2D histogram of 100 million $(x_i, y_i)$ pairs). The APIs
+are quite similar (with slightly different return styles). In addition
+to the faster calculations, constructing the variance in each bin is a
+"first class citizen" in pygram11 (see my [[/posts/numpy-histograms/][NumPy Histogram tricks for
+HEP]] post).
 
-So, please go checkout the [[https://pygram11.readthedocs.io/][documentation]] and [[https://github.com/douglasdavis/pygram11][GitHub repository]].
-Open issues, PRs, email me, tweet at me, or write something better
-(checkout some [[https://pygram11.readthedocs.io/en/stable/bench.html][benchmarks]] in the documentation). To try it out,
-spin up a virtual environment or conda environment and install
-with:
+So, please go checkout the [[https://pygram11.readthedocs.io/][documentation]] and [[https://github.com/douglasdavis/pygram11][GitHub repository]]. Open
+issues, PRs, email me, tweet at me, or write something better
+(checkout some [[https://pygram11.readthedocs.io/en/stable/bench.html][benchmarks]] in the documentation). To try it out, spin
+up a virtual environment or conda environment and install with:
 
 #+begin_src
 pip install pygram11
@@ -1307,12 +1306,12 @@ this form:
   template <typename XType, typename WType>
   py::tuple f1dw(py::array_t<XType> x, py::array_t<WType> w,
                  py::ssize_t nbins, double xmin, double xmax) {
-    py::array_t<WType> counts(nbins);
+    py::array_t<WType> values(nbins);
     py::array_t<WType> variances(nbins);
     // ...
     // do calculations/pass arrays to other C++ code
     // ...
-    return py::make_tuple(counts, variances);
+    return py::make_tuple(values, variances);
   }
 
   PYBIND11_MODULE(_backend, m) {

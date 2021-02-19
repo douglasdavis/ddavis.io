@@ -33,12 +33,12 @@ this form:
 template <typename XType, typename WType>
 py::tuple f1dw(py::array_t<XType> x, py::array_t<WType> w,
                py::ssize_t nbins, double xmin, double xmax) {
-  py::array_t<WType> counts(nbins);
+  py::array_t<WType> values(nbins);
   py::array_t<WType> variances(nbins);
   // ...
   // do calculations/pass arrays to other C++ code
   // ...
-  return py::make_tuple(counts, variances);
+  return py::make_tuple(values, variances);
 }
 
 PYBIND11_MODULE(_backend, m) {

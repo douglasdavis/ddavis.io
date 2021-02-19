@@ -39,10 +39,10 @@ nearly all of our analysis is done using histograms.
 
 Where the elements of the data contribute to the bin height is of
 course determined by the bin edges. We can make the left and right
-edges infinite to be sure to count _all_ of our data[^fn:1]. Then
-we just add the `[0]` bin contents to the `[1]` bin contents, and
-add the `[-1]` bin contents to the `[-2]` bin contents. Finally,
-we polish it off by chopping off the out-of-bounds elements:
+edges infinite to be sure to include _all_ of our data[^fn:1]. Then we
+just add the `[0]` bin contents to the `[1]` bin contents, and add the
+`[-1]` bin contents to the `[-2]` bin contents. Finally, we polish it
+off by chopping off the out-of-bounds elements:
 
 ```python
 >>> import numpy as np
@@ -127,7 +127,7 @@ def extended_hist(
     Returns
     -------
     numpy.ndarray
-        Total bin counts.
+        Total bin values.
     numpy.ndarray
         Poisson uncertainty on each bin count.
     numpy.ndarray
@@ -180,7 +180,7 @@ def extended_hist(
 ```
 
 **Update August 2019**: With `pygram11`, we can just import the
-`histogram` function and call a one-liner for the counts and the
+`histogram` function and call a one-liner for the values and the
 error:
 
 ```python
