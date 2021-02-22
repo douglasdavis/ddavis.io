@@ -1285,18 +1285,18 @@ The goals of [[https://github.com/douglasdavis/pygram11][pygram11]] include:
 - supporting uncertainties on weighted histograms.
 - supporting multiple weight variations in a single histogramming
   procedure.
-To first order, OpenMP is leveraged to execute parallel loops for
-calculating histograms of large input data. This blog post focuses on
-a second order performance consideration: avoiding potentially
-expensive conversions (while supporting different data and weight
-array types).
+At first order, OpenMP is leveraged to execute parallel loops for
+calculating histograms of large input data. This post focuses on a
+second order performance consideration: avoiding potentially expensive
+conversions (while supporting different data and weight array types).
 
-Early versions of pygram11 (up to version 0.10.3) supported any input
-data, but in the backend we supported histogramming calculations only
-on 32- and 64-bit floating point inputs (for both the data and the
-weights). If a non floating point array was passed (as either data or
-weights), we converted the incompatibly typed arrays to floating point
-arrays and passed the converted data to the backend C++.
+Early versions of pygram11 (up to version 0.10.3) supported input
+arrays of any type, but in the backend we supported histogramming
+calculations only on 32- and 64-bit floating point inputs (for both
+the data and the weights). If a non-floating point typed array was
+passed (as either the data input or weights input), we converted the
+incompatibly typed arrays to floating point arrays and passed the
+converted data to the backend C++ functions.
 
 The backend C++ code has always been generic (implemented with
 templated functions). An example function and [[https://github.com/pybind/pybind11][pybind11]] binding was of
@@ -1322,9 +1322,10 @@ this form:
   }
 #+end_src
 
-This setup supports =np.float32= and =np.float64= input and weights
-via a single templated function that is used by four bindings. This
-was the implementation before version 0.11.0 of pygram11.
+This setup supports =np.float32= (C++ float) and =np.float64= (C++
+double) input and weights via a single templated function that is used
+by four bindings. This was the implementation before version 0.11.0 of
+pygram11.
 
 Now let's look at the example of a two-dimensional weighted histogram
 function signature:
@@ -1340,7 +1341,7 @@ function signature:
   }
 
   PYBIND11_MODULE(_backend, m) {
-    m.def("_v2dw", &v2dw<double, double, double>);
+    m.def("_f2dw", &f2dw<double, double, double>);
   }
 #+end_src
 
