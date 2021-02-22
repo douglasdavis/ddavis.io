@@ -12,7 +12,7 @@ The goals of [pygram11](https://github.com/douglasdavis/pygram11) include:
 -   supporting multiple weight variations in a single histogramming
     procedure.
 
-At first order, OpenMP is leveraged to execute parallel loops for
+To first order, OpenMP is leveraged to execute parallel loops for
 calculating histograms of large input data. This post focuses on a
 second order performance consideration: avoiding potentially expensive
 conversions (while supporting different data and weight array types).
