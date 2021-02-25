@@ -1451,6 +1451,31 @@ but it's quite close. Checkout the
 [_backend.cpp](https://github.com/douglasdavis/pygram11/blob/0.11.0/src/_backend.cpp#L1424-L1499)
 file.
 
+** NumPy style docstrings with numpydoc.el               :python:numpy:emacs:
+:PROPERTIES:
+:EXPORT_FILE_NAME: numpydoc-dot-el
+:EXPORT_DATE: 2021-02-25
+:END:
+
+The majority of Python code I've written has used the
+scientific/PyData ecosystem. This leads to reading and writing a lot
+of [[https://numpydoc.readthedocs.io/en/latest/format.html][NumPy style docstrings]]. If you've read some of my other posts
+you've undoubtedly noticed my editor of choice is GNU Emacs. A package
+to generate a skeleton for Sphinx style docstrings does exist:
+[[https://github.com/naiquevin/sphinx-doc.el][sphinx-doc.el]]; but it lacks support for the numpydoc style and does
+not support a couple of other features I'm looking for:
+customizations, type hint support, and automatic formatting of
+user-entered text for the components of the docstring.
+
+I wrote [[https://github.com/douglasdavis/numpydoc.el][numpydoc.el]] to support the features I was looking for. The
+function signature is parsed to determine argument names, types,
+default values, and return type. That information is used to generate
+the =Parameters= block and the =Returns= block for the docstring. The
+default behavior prompts the user to enter a short and long function
+description along with descriptions for the individual components of
+the function. The git repository README includes a gif with some
+example usage.
+
 * Footnotes
 
 [fn:1] Update summer 2019: ROOT is now available as a [[https://conda-forge.org/][conda-forge]]
