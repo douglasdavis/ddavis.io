@@ -28,7 +28,7 @@ function description along with descriptions for the individual
 components of the function. The git repository README includes a gif
 with some example usage.
 
-The package is [available on MELPA](https://melpa.org/#/numpydoc.el). Just add to your (`use-package`
+The package is [available on MELPA](https://melpa.org/#/numpydoc). Just add to your (`use-package`
 leveraging) `init.el`:
 
 ```emacs-lisp
