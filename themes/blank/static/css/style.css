@@ -102,3 +102,7 @@ hr {
     background-color: #191919;
     border-radius: 5px;
 }
+
+#nobullet li {
+    list-style-type: none;
+}
