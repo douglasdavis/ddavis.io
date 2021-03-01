@@ -1454,7 +1454,7 @@ file.
 ** NumPy style docstrings with numpydoc.el               :python:numpy:emacs:
 :PROPERTIES:
 :EXPORT_FILE_NAME: numpydoc-dot-el
-:EXPORT_DATE: 2021-02-25
+:EXPORT_DATE: 2021-02-27
 :END:
 
 The majority of Python code I write uses the scientific/PyData
@@ -1468,17 +1468,17 @@ automatic formatting of user-entered text for the components of the
 docstring. There's also the [[https://github.com/jcs-elpa/docstr][docstr]] package, which caters to any
 programming language. I wanted something a bit more plug-and-play.
 
-I wrote [[https://github.com/douglasdavis/numpydoc.el][numpydoc.el]] to support the features I was looking for. The
-function signature and body are parsed to determine argument names,
-types, default values, return type and what kind of (if any)
-exceptions can be raised. That information is used to generate the
-=Parameters= block and the =Returns= block for the docstring. If
-exceptions are found the =Raises= block is also added. The default
-behavior prompts the user to enter a short and long function
-description along with descriptions for the individual components of
-the function. The git repository README includes a gif with some
-example usage. Checkout the GitHub page to see a gif of the package in
-action.
+I wrote [[https://github.com/douglasdavis/numpydoc.el][numpydoc.el]] to support the features I was looking for. One
+simply calls =numpydoc-generate= from the body of the function of
+interest to create a docstring. The function signature and body are
+parsed to determine argument names, types, default values, return type
+and what exceptions (if any) can be raised. That information is used
+to generate the =Parameters= block and the =Returns= block for the
+docstring. If exceptions are found the =Raises= block is also added.
+The default behavior prompts the user to enter a short and long
+function description along with descriptions for the individual
+components of the function. The git repository README includes a gif
+with some example usage.
 
 The package is [[https://melpa.org/#/numpydoc.el][available on MELPA]]. Just add to your (=use-package=
 leveraging) =init.el=:
