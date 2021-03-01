@@ -1454,7 +1454,7 @@ file.
 ** NumPy style docstrings with numpydoc.el               :python:numpy:emacs:
 :PROPERTIES:
 :EXPORT_FILE_NAME: numpydoc-dot-el
-:EXPORT_DATE: 2021-02-27
+:EXPORT_DATE: 2021-02-28
 :END:
 
 The majority of Python code I write uses the scientific/PyData
