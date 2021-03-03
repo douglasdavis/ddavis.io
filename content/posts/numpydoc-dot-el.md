@@ -26,13 +26,70 @@ docstring. If exceptions are found the `Raises` block is also added.
 The default behavior prompts the user to enter a short and long
 function description along with descriptions for the individual
 components of the function. The git repository README includes a gif
-with some example usage.
+with some example usage. Who doesn't want to turn this:
 
-The package is [available on MELPA](https://melpa.org/#/numpydoc). Just add to your (`use-package`
-leveraging) `init.el`:
+```python
+def func(number: int = 5, label: Optional[str] = None) -> str:
+    if number > 42:
+        raise ValueError("Illegal number")
+    if label is not None:
+        return label * number
+    return "None" * number
+```
+
+into this:
+
+```python
+def func(number: int = 5, label: Optional[str] = None) -> str:
+    """FIXME: Short description.
+
+    FIXME: Long description.
+
+    Parameters
+    ----------
+    number : int
+        FIXME: Add docs.
+    label : Optional[str]
+        FIXME: Add docs.
+
+    Returns
+    -------
+    str
+        FIXME: Add docs.
+
+    Raises
+    ------
+    ValueError
+        FIXME: Add docs.
+
+    Examples
+    --------
+    FIXME: Add docs.
+
+    """
+    if number > 42:
+        raise ValueError("Illegal number")
+    if label is not None:
+        return label * number
+    return "None" * number
+```
+
+with one `M-x` execution? The package is [available on MELPA](https://melpa.org/#/numpydoc). Just add
+to your (`use-package` leveraging) `init.el`:
 
 ```emacs-lisp
 (use-package numpydoc
   :ensure t
   :after python)
+```
+
+Perhaps you can bind it to `C-c C-n` (it's a vacant binding, unused by
+`python.el` as of writing this post):
+
+```emacs-lisp
+(use-package numpydoc
+  :ensure t
+  :after python
+  :bind (:map python-mode-map
+              ("C-c C-n" . numpydoc-generate)))
 ```

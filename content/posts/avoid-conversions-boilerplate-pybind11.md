@@ -94,7 +94,9 @@ template <typename... Ts>
 struct type_list {};
 
 // all data types
-using pg_Ts = type_list<double, int64_t, uint64_t, float, int32_t, uint32_t>;
+using pg_Ts = type_list<
+  double, int64_t, uint64_t, float, int32_t, uint32_t
+>;
 // all weight types
 using pg_Ws = type_list<double, float>;
 // all combinations of data types and weight types
