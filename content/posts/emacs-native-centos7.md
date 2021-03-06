@@ -5,6 +5,9 @@ tags = ["emacs"]
 draft = false
 +++
 
+**As of March 2021 this post is a bit outdated!**. A new section has
+been added to the end of this post with a quick update.
+
 The GNU Emacs `feature/native-comp` branch has been under
 development for some time now. The performance enhancements from
 the natively compiled Emacs Lisp code are exciting. Notably, I've
@@ -96,3 +99,32 @@ Emacs will asynchronously natively compile all `.elc` files that
 it loads. So if your `init.el` file loads a lot of packages,
 prepare for Emacs to spend a bit of time compiling. Fortunately
 you can still use Emacs while that is happening in the background.
+
+
+## March 2021 update {#march-2021-update}
+
+The `native-comp` branch is getting closer to being merged in to the
+main GNU Emacs development branch (which will eventually be use to cut
+GNU Emacs 28). The `configure` option name has changed, and a few
+other customizations have changed. Here's a brief run-down of how I
+build native-compilation supporting GNU Emacs on CentOS 7:
+
+```nil
+$ source scl_source enable devtoolset-9
+$ ./autogen.sh
+$ PKG_CONFIG_PATH=/usr/lib64/pkgconfig ./configure --with-native-compilation # ... other options
+$ make -j6 NATIVE_FULL_AOT=1
+```
+
+The `NATIVE_FULL_AOT` option does full ahead-of-time compilation of
+the Emacs Lisp packages shipped with GNU Emacs. And in my `init.el`:
+
+```emacs-lisp
+;; helper boolean I use here and later in my init.el
+(defconst dd/using-native-comp-p (fboundp 'native-comp-available-p))
+(when dd/using-native-comp-p
+  (setq comp-async-query-on-exit t)
+  (setq comp-async-jobs-number 4)
+  (setq comp-async-report-warnings-errors nil)
+  (setq comp-deferred-compilation t))
+```
