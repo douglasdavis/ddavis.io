@@ -2,7 +2,7 @@
 title: About
 ---
 
-My name is Doug Davis. I'm a software engineer at
+My name is Doug Davis. I'm an open source software engineer at
 [Anaconda](https://anaconda.com). Training to be a particle physicist
 is where I learned I actually wanted to engineer software for a
 living. If you're interested in Python, C++, Emacs, or data analysis
