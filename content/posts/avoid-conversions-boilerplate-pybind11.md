@@ -10,7 +10,7 @@ The goals of [pygram11](https://github.com/douglasdavis/pygram11) include:
 -   providing the fastest possible histogram calculations.
 -   supporting uncertainties on weighted histograms.
 -   supporting multiple weight variations in a single histogramming
-    procedure.
+    routine.
 
 To first order, OpenMP is leveraged to execute parallel loops for
 calculating histograms of large input data. This post focuses on a
