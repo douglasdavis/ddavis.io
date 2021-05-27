@@ -99,8 +99,9 @@ hr {
 
 #menu li a:hover {
     padding: 3px 6px;
-    background-color: #191919;
+    /* background-color: #191919; */
     border-radius: 5px;
+    text-decoration: underline;
 }
 
 #nobullet li {
