@@ -21,6 +21,11 @@ I'd walk through the process.
 ****Update March 2021****: The `configure` option was originally
 `--with-nativecomp`, but it has changed to `--with-native-compilation`.
 
+****Update June 2021****: The `feature/native-comp` branch was merged into
+the `master` branch at the end of April. Originally this post included
+instructions to checkout the feature branch; those instructions have
+been removed.
+
 We need to install `libgccjit`. Unfortunately CentOS 7 shipped with a
 pretty old GCC release (the 4.8 series). Fortunately Red Hat ships
 modern GCC builds with a number of `devtoolset` RPMs. We can install
@@ -37,8 +42,6 @@ branch:
 ```nil
 $ git clone https://git.savannah.gnu.org/git/emacs.git
 $ cd emacs
-$ git fetch --all
-$ git checkout -b native-comp origin/feature/native-comp
 ```
 
 Now we'll build Emacs after enabling `devtoolset-9`. We ensure that
