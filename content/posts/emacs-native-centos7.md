@@ -53,7 +53,8 @@ Emacs from source before and that you can handle all other desirable
 ```nil
 $ source /opt/rh/devtoolset-9/enable
 $ ./autogen.sh
-$ PKG_CONFIG_PATH=/usr/lib64/pkgconfig ./configure --with-native-compilation
+$ PKG_CONFIG_PATH=/usr/lib64/pkgconfig:$PKG_CONFIG_PATH ./configure \
+   --with-native-compilation # ... other configure options
 $ make -j6 NATIVE_FULL_AOT=1
 ```
 
@@ -66,6 +67,10 @@ reading), those package will be natively compiled on the fly (the
 first time they are loaded, that's the just-in-time compilation). I
 prefer to natively compile <span class="underline">all</span> of Emacs when I build it, that way
 Emacs will only just-in-time compile my third-party packages.
+
+Another note: the Emacs binary built with the steps above will always
+require `devtoolset-9`. Sourcing the `enable` script at
+`/opt/rh/devtoolset-9` will be necessary.
 
 Once Emacs is compiled we can run it with `src/emacs` (you can set an
 install prefix, but this is an experimental feature, so I only run
@@ -86,12 +91,12 @@ a quick read.
 
 ```emacs-lisp
 ;; helper boolean I use here and later in my init.el
-(defconst dd/using-native-comp-p (fboundp 'native-comp-available-p))
-(when dd/using-native-comp-p
-  (setq comp-async-query-on-exit t)
-  (setq comp-async-jobs-number 4)
-  (setq comp-async-report-warnings-errors nil)
-  (setq comp-deferred-compilation t))
+(defconst dd/using-native-comp (and (fboundp 'native-comp-available-p)
+                                    (native-comp-available-p)))
+(setq native-comp-deferred-compilation t)
+(setq native-comp-async-query-on-exit t)
+(setq native-comp-async-jobs-number 4)
+(setq native-comp-async-report-warnings-errors nil)
 ```
 
 Emacs will asynchronously natively compile all `.elc` files that it
