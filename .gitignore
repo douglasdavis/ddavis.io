@@ -2,3 +2,4 @@
 /resources/_gen
 /site.tar.gz
 .DS_Store
+.hugo_build.lock
