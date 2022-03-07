@@ -95,4 +95,7 @@ if __name__ == "__main__":
     main()
 ```
 
-[^fn:1]: to compile extension modules, builds.sr.ht jobs might not be the best choice for wheels. The [`cibuildwheel`](https://github.com/joerick/cibuildwheel) package is worth reading about. It is possible to spin up docker containers in a sr.ht build, but I don't have a strong handle on that procedure.
+[^fn:1]: to compile extension modules, builds.sr.ht jobs might not be
+    the best choice for wheels. The [`cibuildwheel`](https://github.com/joerick/cibuildwheel) package is worth
+    reading about. It is possible to spin up docker containers in a
+    sr.ht build, but I don't have a strong handle on that procedure.

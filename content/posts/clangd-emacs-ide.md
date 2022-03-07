@@ -74,11 +74,11 @@ imperfections. For example, using the version shipped with the LLVM
 6.0.0 release wasn't working with header files. I went ahead and
 built a bleeding edge installation (using `brew install --HEAD
 llvm` on macOS and building from the trunk of their svn
-repositories on a Fedora machine; read how to do that [here](http://clang.llvm.org/get%5Fstarted.html) and that
+repositories on a Fedora machine; read how to do that [here](http://clang.llvm.org/get_started.html) and that
 fixed the problem.
 
 I use this setup in combination with `compile_commands.json` files
-that are [produced by CMake](https://cmake.org/cmake/help/latest/variable/CMAKE%5FEXPORT%5FCOMPILE%5FCOMMANDS.html). This file must be kept at the project
+that are [produced by CMake](https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html). This file must be kept at the project
 root (using [projectile](https://github.com/bbatsov/projectile) with a `.projectile` file at the project
 root helps when using git repositories with submodules; lsp-mode
 appears to handle that nicely).

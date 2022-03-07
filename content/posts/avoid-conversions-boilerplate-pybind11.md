@@ -177,5 +177,5 @@ all possible overloads.
 
 This code isn't an exact copy of what is in pygram11 version 0.11.0,
 but it's quite close. Checkout the
-[\_backend.cpp](<https://github.com/douglasdavis/pygram11/blob/0.11.0/src/%5Fbackend.cpp#L1424-L1499>)
+[_backend.cpp](<https://github.com/douglasdavis/pygram11/blob/0.11.0/src/_backend.cpp#L1424-L1499>)
 file.

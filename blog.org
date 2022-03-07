@@ -1499,7 +1499,7 @@ components of the function. You can also configure the package to use
 usage. Who doesn't want to turn this:
 
 #+begin_src python
-  def func(number: int = 5, label: Optional[str] = None) -> str:
+  def func(number: int = 5, label: str | None = None) -> str:
       if number > 42:
           raise ValueError("Illegal number")
       if label is not None:
@@ -1510,7 +1510,7 @@ usage. Who doesn't want to turn this:
 into this:
 
 #+begin_src python
-  def func(number: int = 5, label: Optional[str] = None) -> str:
+  def func(number: int = 5, label: str | None = None) -> str:
       """FIXME: Short description.
 
       FIXME: Long description.
@@ -1519,7 +1519,7 @@ into this:
       ----------
       number : int
           FIXME: Add docs.
-      label : Optional[str]
+      label : str, optional
           FIXME: Add docs.
 
       Returns

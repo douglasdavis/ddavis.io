@@ -28,7 +28,7 @@ components of the function. You can also configure the package to use
 usage. Who doesn't want to turn this:
 
 ```python
-def func(number: int = 5, label: Optional[str] = None) -> str:
+def func(number: int = 5, label: str | None = None) -> str:
     if number > 42:
         raise ValueError("Illegal number")
     if label is not None:
@@ -39,7 +39,7 @@ def func(number: int = 5, label: Optional[str] = None) -> str:
 into this:
 
 ```python
-def func(number: int = 5, label: Optional[str] = None) -> str:
+def func(number: int = 5, label: str | None = None) -> str:
     """FIXME: Short description.
 
     FIXME: Long description.
@@ -48,7 +48,7 @@ def func(number: int = 5, label: Optional[str] = None) -> str:
     ----------
     number : int
         FIXME: Add docs.
-    label : Optional[str]
+    label : str, optional
         FIXME: Add docs.
 
     Returns

@@ -189,5 +189,8 @@ error:
 >>> h, err = histogram(data, bins=10, range=(xmin, xmax), weights=weights, flow=True)
 ```
 
-[^fn:1]: In the implementation of `numpy.histogram`, elements of the input array that live outside the bounds of the binning are ignored.
-[^fn:2]: Bin height is related to counting, therefore the data in a bin is [Poissonian](https://en.wikipedia.org/wiki/Poisson%5Fdistribution). The variance of a Poisson distribution is \\(N\\).
+[^fn:1]: In the implementation of `numpy.histogram`, elements of the
+    input array that live outside the bounds of the binning are
+    ignored.
+[^fn:2]: Bin height is related to counting, therefore the data in a bin
+    is [Poissonian](https://en.wikipedia.org/wiki/Poisson_distribution). The variance of a Poisson distribution is \\(N\\).

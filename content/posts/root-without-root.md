@@ -43,7 +43,7 @@ If a ROOT build was aware of a python installation during the build
 process, one can end up with PyROOT - ROOT's builtin python bindings.
 PyROOT basically allows writing C++ style code in python to talk to
 ROOT objects. That's not even the old solution I'm about to mention.
-[root-numpy](https://github.com/scikit-hep/root%5Fnumpy) is what I'd consider the _old_ solution -- it's a python
+[root-numpy](https://github.com/scikit-hep/root_numpy) is what I'd consider the _old_ solution -- it's a python
 library accelerated with Cython which turns the C style arrays stored
 in ROOT files into numpy arrays. It can also be installed with pip.
 Unfortunately, it requires a ROOT installation (because it requires
@@ -152,6 +152,11 @@ To wrap up: it's nice to have (a) an isolated python library for
 accessing data stored in ROOT and (b) _options_ for selecting tools
 to analyze data.
 
-[^fn:1]: Update summer 2019: ROOT is now available as a [conda-forge](https://conda-forge.org/) package, providing a very easy installation method.
-[^fn:2]: As of ROOT version 6.14 (released June 2018) there is a new feature allowing tree analysis using functional chains with the [`RDataFrame`](https://root.cern.ch/doc/master/classROOT%5F1%5F1RDataFrame.html) class.
-[^fn:3]: In some special situations (e.g. reading a column of `std::vector` objects into a jagged array) the implementation is accelerated with [numba](https://numba.pydata.org/) (if installed).
+[^fn:1]: Update summer 2019: ROOT is now available as a [conda-forge](https://conda-forge.org/)
+    package, providing a very easy installation method.
+[^fn:2]: As of ROOT version 6.14 (released June 2018) there is a new
+    feature allowing tree analysis using functional chains with the
+    [`RDataFrame`](https://root.cern.ch/doc/master/classROOT_1_1RDataFrame.html) class.
+[^fn:3]: In some special situations (e.g. reading a column of
+    `std::vector` objects into a jagged array) the implementation is
+    accelerated with [numba](https://numba.pydata.org/) (if installed).
