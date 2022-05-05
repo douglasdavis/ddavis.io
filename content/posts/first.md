@@ -1,5 +1,7 @@
 +++
-title = "git commit -m \"first\""
+title = """
+  git commit -m "first"
+  """
 date = 2017-11-24
 tags = ["meta"]
 draft = false
