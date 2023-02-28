@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="center">
+      <div class="title monospace">
+        <h1>ddavis.io</h1>
+      </div>
+    </div>
+    <div class="home-row">
+      <div class="home-column">
+        <p><a href="{{get_url(path="@/blog/_index.md")}}">blog</a></p>
+        <p><a href="https://github.com/douglasdavis">github</a></p>
+        <p><a href="https://twitter.com/Mx_ddavis">twitter</a></p>
+      </div>
+    </div>
+
+{% endblock content %}
