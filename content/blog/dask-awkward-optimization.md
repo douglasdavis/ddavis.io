@@ -1,5 +1,5 @@
 +++
-title = "Speeding up dask-awkward... with itself"
+title = "Speeding up dask-awkward with itself"
 date = 2023-03-02
 tags = ["python", "dask"]
 draft = false
@@ -10,11 +10,13 @@ We released the first non-pre-release version of
 of months ago, but the project is far from done! Something that has
 taken a lot of our focus over the last few weeks has been improving
 what we call the "necessary columns" optimization. The goal of the
-optimization is to avoid wasting compute and memory on unnecessary IO.
-This post will describe how the optimization works. I expect the
-reader to have some basic familiarity with Dask.
+optimization is to avoid wasting compute and memory on unnecessary
+disk reads. This post will describe how the optimization works. I'm
+writing this with the expectation that the reader has some basic
+familiarity with [Dask](https://dask.org/) and
+[Awkward-Array](https://awkward-array.org/).
 
-### Projecting columns
+## Projecting columns
 
 Let's consider a simple example: reading a Parquet dataset from disk
 into a `pandas.DataFrame` or `dask.dataframe.DataFrame`. The
@@ -84,22 +86,44 @@ We get a Dask task graph with four steps:
 3. Get column "b" Series.
 4. Divide column "c" by "b".
 
-**None of these steps happen until we call `result.compute()`**
+**None of these steps happen until we call**
+
+```python
+>>> result.compute()
+```
 
 Because of the lazy computation, when we call `.compute()`, Dask can
 parse the task graph _before_ computing step 1 to see that we will use
-Python `geitem` calls to grab _only_ columns "c" and "b". Dask will
-then update step 1 in the graph to **automatically** pass in a
-`columns=` argument to Pandas when it calls the `pd.read_parquet`
-function at the compute node. The task graph is rewritten to have step
-1 be:
+Python `geitem` calls to grab _only_ columns "c" and "b". Side note:
+some example column selection `getitem` calls for DataFrames:
+
+- `df["x"]`: grabbing a single column.
+- `df[["x", "y"]]`: grabbing multiple columns.
+- `df.x`: grabbing a simple column by attribute access.
+
+Back to our example dataset with columns "a", "b", and "c": Dask will
+detect that there are `getitem` calls for accessing "b" and "c", so
+step 1 in the graph will be **automatically** updated such that at the
+`read_parquet` call-site during Dask compute, a `columns=` argument
+will be passed to the Pandas function call. The task graph is
+rewritten to have step 1 be:
 
 1. Read the Parquet data at "/path/to/data" (now with the argument
    `columns=["b", "c"]`)
 
-with the remaining steps unchanged. This was simple example of column
-projection in `dask.dataframe`. It is one optimization that is
+The remaining steps will be unchanged. This was simple example of
+column projection in `dask.dataframe`. It is one optimization that is
 executed when Dask performs a compute. Please [read more about Dask
 optimizations in
 general](https://docs.dask.org/en/stable/optimize.html) if you are
 interested.
+
+## Necessary columns in dask-awkward
+
+In the `dask.dataframe` example that we've walked through, the
+projected columns are determined as necessary by checking specifically
+for Python `getitem` calls. We originally took inspiration from this
+technique when we started to work on optimizations in dask-awkward.
+
+The [Awkward-Array](https://awkward-array.org/) project provides a
+similar interface for accessing *fields* in an awkward Array.
