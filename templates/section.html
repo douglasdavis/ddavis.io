@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header>
+  <div class="center">
+    <a href="{{get_url(path="@/blog/_index.md")}}" class="quiet-link">
+      <div class="title monospace">
+      </div>
+    </a>
+  </div>
+
+  <div class="center nav">
+    <a href="/">home</a> |
+    <a href="{{get_url(path="@/blog/_index.md")}}">blog</a>
+  </div>
+</header>
+
+<div class="content">
+  <article>
+    My name is Doug Davis. I’m an open source software engineer at
+    <a href="https://anaconda.com">Anaconda</a>. Training to be a
+    particle physicist helped me realize that I wanted to engineer
+    software for a living. Most of the software I write is on GitHub
+    (where my username
+    is <a href="https://github.com/douglasdavis">douglasdavis</a>). I
+    (rarely)
+    tweet <a href="https://twitter.com/Mx_ddavis">@Mx_ddavis</a>. You
+    can also reach me by email at <code>ddavis@[blogurl]</code>.
+  </article>
+</div>
+{% endblock content %}
