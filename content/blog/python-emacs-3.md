@@ -1,5 +1,5 @@
 +++
-title = "Python & Emacs, Take 3."
+title = "Python & Emacs, Take 3"
 date = 2021-05-26
 tags = ["python", "emacs"]
 draft = false
