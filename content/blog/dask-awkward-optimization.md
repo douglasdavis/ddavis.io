@@ -335,7 +335,7 @@ at compute time.
 ## Final thoughts
 
 Two data formats support this optimization today: Parquet and
-[ROOT](https://rot.cern). Parquet support is builtin to dask-awkward,
+[ROOT](https://rot.cern). Parquet support is built in to dask-awkward,
 while ROOT support is provided by the
 [uproot](https://github.com/scikit-hep/uproot5) project and the
 `uproot.dask` interface. We still have some work to do. First on our
