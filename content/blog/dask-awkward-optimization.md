@@ -223,7 +223,7 @@ So in this example, those columns/fields would just be "foo" and
 
 Ok, that's an improvement; **but**, by passing in `columns=["foo",
 "baz"]`, we would read the whole set of subfields. That is, "foo.x",
-"foo.y", "baz.a", and "baz.b" would be read from disk. Recall that we
+"foo.y", "baz.a", and "baz.b" will be read from disk. Recall that we
 only need "foo.x" and "baz.b". This is a bit of a problem. Depending
 on the types of these columns, we can be reading a huge amount of
 unnecessary data.
@@ -262,7 +262,7 @@ from the type and structure of the arrays that are being multiplied:
 
 The double hash syntax shows that the typetracer doesn't know the
 length of the array (and it shouldn't, because it only describes
-metadata and does not contain and data buffers). Field access on a
+metadata and does not contain any data buffers). Field access on a
 typetracer array works the same, accessing the field on a typetracer
 array just returns the correct downstream typetracer array.
 
