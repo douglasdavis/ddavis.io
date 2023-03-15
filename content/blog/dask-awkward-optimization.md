@@ -1,6 +1,6 @@
 +++
 title = "Using dask-awkward to speed up dask-awkward"
-date = 2023-03-13
+date = 2023-03-15
 tags = ["python", "dask"]
 draft = false
 +++
