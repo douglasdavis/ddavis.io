@@ -1,5 +1,5 @@
 +++
-title = "Speeding up dask-awkward with itself"
+title = "Using dask-awkward to speed up dask-awkward"
 date = 2023-03-13
 tags = ["python", "dask"]
 draft = false
