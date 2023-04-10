@@ -1,6 +1,6 @@
 +++
 title = "Using dask-awkward to speed up dask-awkward"
-date = 2023-03-15
+date = 2023-04-10
 tags = ["python", "dask"]
 draft = false
 +++
@@ -14,7 +14,23 @@ optimization is to avoid wasting compute and memory on unnecessary
 disk reads. This post will describe how the optimization works. I'm
 writing this with the expectation that the reader has some basic
 familiarity with [Dask](https://dask.org/) and
-[Awkward-Array](https://awkward-array.org/).
+[Awkward-Array](https://awkward-array.org/). The post has four
+sections. The first section uses `dask.dataframe` to introduce the
+need for and concept of column projection in Dask. If you are familiar
+with column projection in `dask.dataframe`, you can probably skip the
+first section.
+
+
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+**Table of Contents**
+
+1. [Projecting columns](#projecting-columns)
+2. [Now with dask-awkward](#now-with-dask-awkward)
+3. [Necessary columns in dask-awkward](#necessary-columns-in-dask-awkward)
+4. [Final thoughts](#final-thoughts)
+
+<!-- markdown-toc end -->
+
 
 ## Projecting columns
 
@@ -239,7 +255,7 @@ execute the task graph!
 Awkward Array has a wonderful feature called typetracer arrays. These
 are awkward Arrays that don't actually contain any data buffers, but
 retain the structure and types of the awkward arrays that they are
-meant to represent. It's like a NumPy dtype on steriods. Almost all
+meant to represent. It's like a NumPy dtype on steroids. Almost all
 awkward functions and methods work on these typetracer arrays. For
 example, if you multiply two typetracer arrays, the result will be
 another typetracer array of the correct type and structure, deduced
@@ -261,7 +277,7 @@ from the type and structure of the arrays that are being multiplied:
 ```
 
 The double hash syntax shows that the typetracer doesn't know the
-length of the array (and it shouldn't, because it only describes
+length of the array (this makes sense, because it only describes
 metadata and does not contain any data buffers). Field access on a
 typetracer array works the same, accessing the field on a typetracer
 array just returns the correct downstream typetracer array.
@@ -338,11 +354,12 @@ Two data formats support this optimization today: Parquet and
 [ROOT](https://rot.cern). Parquet support is built in to dask-awkward,
 while ROOT support is provided by the
 [uproot](https://github.com/scikit-hep/uproot5) project and the
-`uproot.dask` interface. We still have some work to do. First on our
-todo list is to add support for optimizing JSON reads by determining
-necessary columns to generate a proper JSON Schema that allows
-Awkward-Array's JSON reader to skip whole parts of line delimited JSON
-files.
+`uproot.dask` interface. We still have some work to do. We've been
+working through some edge cases where the optimization has been too
+greedy. Also, an item on our to-do list is to add support for
+optimizing reading JSON data. This will use the discovered necessary
+columns to generate a JSON Schema that allows Awkward-Array's JSON
+reader to skip whole parts of line delimited JSON files.
 
 This was few months long team effort, and I'd like to thank [Jim
 Pivarski](https://github.com/jpivarski) and [Angus
