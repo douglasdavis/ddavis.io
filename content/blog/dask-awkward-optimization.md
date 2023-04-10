@@ -333,12 +333,12 @@ with
 {"read-parquet-abc123": ["foo.x", "baz.b"]}
 ```
 
-This creates a mapping connecting the input layer name (in the example
-above we use "abc123" as shorthand for hash that is appended to all
-Dask layer names) in the graph (step one in the example we've been
-using) to the columns that need to be read from disk. This is a
-utility function in dask-awkward for users to inspect their graph.
-When running
+This creates a mapping connecting the input layer name in the graph
+(step one in the example we've been using) to the columns that need to
+be read from disk (in the example above we use "abc123" as shorthand
+for token that is appended to all Dask layer names). The
+`dak.necessary_columns` function is a utility in dask-awkward for
+users to inspect their graph. When running
 
 ```python
 >>> result.compute()
