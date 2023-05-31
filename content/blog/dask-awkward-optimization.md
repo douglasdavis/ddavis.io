@@ -14,11 +14,12 @@ optimization is to avoid wasting compute and memory on unnecessary
 disk reads. This post will describe how the optimization works. I'm
 writing this with the expectation that the reader has some basic
 familiarity with [Dask](https://dask.org/) and
-[Awkward-Array](https://awkward-array.org/). The post has four
-sections. The first section uses `dask.dataframe` to introduce the
-need for and concept of column projection in Dask. If you are familiar
-with column projection in `dask.dataframe`, you can probably skip the
-first section.
+[Awkward-Array](https://awkward-array.org/).
+
+The post has four sections. The first section uses `dask.dataframe` to
+introduce the need for and concept of column projection in Dask. If
+you are familiar with column projection in `dask.dataframe`, you can
+probably skip the first section.
 
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
@@ -34,8 +35,8 @@ first section.
 
 ## Projecting columns
 
-Let's start with a simple DataFrame example example where we read a
-Parquet dataset from disk into a `pandas.DataFrame` or
+Let's start with a simple DataFrame example where we read a Parquet
+dataset from disk into a `pandas.DataFrame` or
 `dask.dataframe.DataFrame`. The [Parquet](https://parquet.apache.org/)
 specification defines columns, and we can decide which columns to read
 from the dataset when instantiating a DataFrame. If we have a dataset
@@ -137,15 +138,15 @@ interested.
 ## Now with dask-awkward
 
 When we started working on a necessary columns optimization in
-dask-awkward, our starting point was the the `getitem`-discovery
-technique that we described above. It was a good starting point
-because awkward-array uses pandas-like column access for awkward array
-**fields**. In awkward-array terms we say records have one of more
-fields. One difference between awkward-array and Pandas is that
-awkward-array give users the ability to work with arbitrarily nested
-data. That nesting can be lists-of-lists or lists-of-records or
-lists-of-records where each record can also contain more
-lists-of-records or lists-of-lists, and so on.
+dask-awkward, we initially implemented the `getitem`-discovery
+technique that exists in `dask.dataframe` (described above). It was a
+good starting point because awkward-array uses pandas-like column
+access for awkward array **fields**. In awkward-array terms, we say
+records have one of more fields. One difference between awkward-array
+and Pandas is that awkward-array give users the ability to work with
+arbitrarily nested data. That nesting can be lists-of-lists or
+lists-of-records or lists-of-records where each record can also
+contain more lists-of-records or lists-of-lists, and so on.
 
 Let's use the "foo", "bar", and "baz" example again, but now as an
 Awkward Array, and actually make it "awkward" with some
@@ -177,8 +178,8 @@ are:
 - `baz.a`
 - `baz.b`
 
-Let's say we want to compute `baz.b * foo.x` and this data is stored
-in disk in Parquet format:
+Let's say we want to compute the product `baz.b * foo.x` and this data
+is stored in disk in Parquet format:
 
 ```python
 >>> import awkward as ak
@@ -284,26 +285,26 @@ array just returns the correct downstream typetracer array.
 
 With this feature, we can run the entire task graph, but **only on
 data-less typetracer arrays**. Since there's no real data, the
-execution negligible compared to computing on real data from disk. In
-our example above, we rewrite step one in the task graph to just be a
-typetracer array of the same form of the data in the Parquet file.
-That is, an array with all of the known fields organized in the
+execution time is negligible compared to computing on real data from
+disk. In our example above, we rewrite step one in the task graph to
+just be a typetracer array of the same form of the data in the Parquet
+file. That is, an array with all of the known fields organized in the
 correct layout. This only requires reading Parquet metadata, not any
 of the data buffers. After rewriting the first step in the task graph,
 we can just reuse the rest of the graph, and execute! This is possible
-because awkward-array functions work on typetracer versions of awkward
-Arrays.
+because awkward-array functions _just work_ (most of the time!) on
+typetracer versions of awkward Arrays.
 
 The only missing piece is information about which fields get used in
 the graph. We grab this information by attaching a mutable typetracer
 report object to the first layer of the typetracer based graph. After
 executing the typetracer based graph, the report object tells us which
-exact fields were touched along the lifetime of the computation. This
-is possible because we create a mapping that connects a string label
-key to a value that is data-less buffer. When that dataless buffer is
-touched during execution of the typetracer only task graph, it's key
-is recorded as necessary, the mutable typetracer report tracks this
-information.
+_exact_ fields were touched along the lifetime of the computation.
+This is possible because we create a mapping that connects a string
+label key to a value that is data-less buffer. When that dataless
+buffer is touched during execution of the typetracer only task graph,
+it's key is recorded as necessary, the mutable typetracer report
+tracks this information.
 
 As of dask-awkward version `2023.3.0` [the magic happens
 here](https://github.com/dask-contrib/dask-awkward/blob/2023.3.0/src/dask_awkward/lib/optimize.py#L235),
@@ -334,9 +335,9 @@ with
 ```
 
 This creates a mapping connecting the input layer name in the graph
-(step one in the example we've been using) to the columns that need to
-be read from disk (in the example above we use "abc123" as shorthand
-for token that is appended to all Dask layer names). The
+(step one in the example that we have been using) to the columns that
+need to be read from disk (in the example above we use "abc123" as
+shorthand for token that is appended to all Dask layer names). The
 `dak.necessary_columns` function is a utility in dask-awkward for
 users to inspect their graph. When running
 
