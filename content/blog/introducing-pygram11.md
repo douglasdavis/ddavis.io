@@ -3,6 +3,8 @@ title = "Introducing pygram11"
 date = 2019-03-04
 tags = ["python", "numpy", "cpp", "hep"]
 draft = false
+[extra]
+katex = true
 +++
 
 I'm very happy to release my first open source software project:

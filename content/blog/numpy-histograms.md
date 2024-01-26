@@ -3,6 +3,8 @@ title = "NumPy Histogram tricks for HEP"
 date = 2018-02-08
 tags = ["hep", "numpy", "python"]
 draft = false
+[extra]
+katex = true
 +++
 
 **Update August 2019**: About a year after writing this blog post I

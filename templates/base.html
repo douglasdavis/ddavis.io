@@ -2,9 +2,15 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="/style.css" />
+
+
+    {% if page and page.extra.katex %}
     <link rel="stylesheet" href="/katex/katex.min.css">
     <script defer src="/katex/katex.min.js"></script>
     <script defer src="/katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    {% endif %}
+
+
     <meta charset="utf-8">
     <title>{% block title %}{{ config.title }}{% endblock title %}</title>
   </head>
