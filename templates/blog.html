@@ -5,7 +5,11 @@
   {{ section.title }}
 </h1>
 <p>
-  <!-- If you are using pagination, section.pages will be empty. You need to use the paginator object -->
+  <p align="right">
+    &rarr; <a href="{{ get_url(path='/rss.xml') }}">feed</a>
+  </p>
+  <!-- If you are using pagination, section.pages will be empty. You
+       need to use the paginator object -->
   <ul>
   {% for page in section.pages %}
   <li>{{ page.date }}: <a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>

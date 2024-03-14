@@ -12,5 +12,5 @@ author = "ddavis"
 highlight_code = true
 highlight_theme = "gruvbox-dark"
 
-[extra]
+# [extra]
 # ...
