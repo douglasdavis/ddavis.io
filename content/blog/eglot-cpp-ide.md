@@ -1,8 +1,9 @@
 +++
 title = "Eglot based Emacs C++ IDE with clangd"
 date = 2019-01-07
-tags = ["emacs", "cpp"]
 draft = false
+[taxonomies]
+tags = ["emacs", "cpp"]
 +++
 
 I have an [old post](@/blog/clangd-emacs-ide.md) documenting my first

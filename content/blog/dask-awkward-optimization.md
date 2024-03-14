@@ -1,8 +1,9 @@
 +++
 title = "Using dask-awkward to speed up dask-awkward"
 date = 2023-04-10
-tags = ["python", "dask"]
 draft = false
+[taxonomies]
+tags = ["python", "dask"]
 +++
 
 We released the first non-pre-release version of

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+{% if terms %}
+<h1 class="title">
+  tags
+</h1>
+<ul>
+  {% for term in terms | sort(attribute="pages") | reverse %}
+  <li>
+    <a href="{{ term.permalink | safe }}">{{ term.name }}</a>
+    ({{ term.pages | length }})
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endblock content %}

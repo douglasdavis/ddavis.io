@@ -8,6 +8,10 @@ feed_filename = "rss.xml"
 
 author = "ddavis"
 
+taxonomies = [
+  { name = "tags" },
+]
+
 [markdown]
 highlight_code = true
 highlight_theme = "gruvbox-dark"

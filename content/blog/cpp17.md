@@ -1,8 +1,9 @@
 +++
 title = "C++17 Early Favorites"
 date = 2018-01-09
-tags = ["cpp"]
 draft = false
+[taxonomies]
+tags=["cpp"]
 +++
 
 C++ holds a special place in my heart and mind because it was my first

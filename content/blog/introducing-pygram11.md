@@ -1,8 +1,9 @@
 +++
 title = "Introducing pygram11"
 date = 2019-03-04
-tags = ["python", "numpy", "cpp", "hep"]
 draft = false
+[taxonomies]
+tags = ["python", "numpy", "cpp", "hep"]
 [extra]
 katex = true
 +++

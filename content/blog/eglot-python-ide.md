@@ -1,8 +1,9 @@
 +++
 title = "Eglot based Emacs Python IDE"
 date = 2018-12-05
-tags = ["emacs", "python"]
 draft = false
+[taxonomies]
+tags = ["emacs", "python"]
 +++
 
 **This post is now a bit outdated** [an updated post is here](@/blog/emacs-python-lsp.md).

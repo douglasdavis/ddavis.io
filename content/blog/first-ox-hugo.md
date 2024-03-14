@@ -1,9 +1,13 @@
 +++
 title = "New Toy: ox-hugo"
 date = 2018-12-04
-tags = ["hugo"]
 draft = false
+[taxonomies]
+tags = ["hugo"]
 +++
+
+**Outdated: Now I'm using [Zola](https://getzola.org/) and simply
+editing raw markdown files.**
 
 I've recently fallen into a very deep Emacs-filled rabbit hole. It
 started with the goal of cleaning up my Emacs `init.el` file, but

@@ -1,8 +1,9 @@
 +++
 title = "Emacs native-comp on CentOS 7"
 date = 2020-05-19
-tags = ["emacs"]
 draft = false
+[taxonomies]
+tags = ["emacs"]
 +++
 
 The GNU Emacs `feature/native-comp` branch has been under development

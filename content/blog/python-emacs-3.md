@@ -1,8 +1,9 @@
 +++
 title = "Python & Emacs, Take 3"
 date = 2021-05-26
-tags = ["python", "emacs"]
 draft = false
+[taxonomies]
+tags = ["python", "emacs"]
 +++
 
 This is the third installment of what has turned into an unofficial

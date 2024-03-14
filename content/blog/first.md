@@ -3,8 +3,9 @@ title = """
   git commit -m "first"
   """
 date = 2017-11-24
-tags = ["meta"]
 draft = false
+[taxonomies]
+tags=["meta"]
 +++
 
 After seeing many posts around the web describing the usefulness of

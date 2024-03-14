@@ -1,8 +1,9 @@
 +++
 title = "Repetitive NumPy Concatenations"
 date = 2018-08-12
-tags = ["python", "numpy"]
 draft = false
+[taxonomies]
+tags = ["python", "numpy"]
 +++
 
 I recently had to construct a couple of numpy arrays from a handful

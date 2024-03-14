@@ -1,8 +1,9 @@
 +++
 title = "NumPy style docstrings with numpydoc.el"
 date = 2021-02-28
-tags = ["python", "numpy", "emacs"]
 draft = false
+[taxonomies]
+tags = ["python", "numpy", "emacs"]
 +++
 
 The majority of Python code I write uses the scientific/PyData

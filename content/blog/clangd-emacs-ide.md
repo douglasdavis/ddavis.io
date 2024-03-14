@@ -1,8 +1,9 @@
 +++
 title = "Clangd based Emacs C++ IDE"
 date = 2018-07-07
-tags = ["cpp", "emacs"]
 draft = false
+[taxonomies]
+tags = ["cpp", "emacs"]
 +++
 
 **This is now very out of date!** Updated method here: [click](@/blog/eglot-cpp-ide.md).

@@ -1,8 +1,9 @@
 +++
 title = "Python with Emacs: py(v)env and lsp-mode"
 date = 2020-02-18
-tags = ["python", "emacs"]
 draft = false
+[taxonomies]
+tags = ["python", "emacs"]
 +++
 
 I have an [old post](@/blog/eglot-python-ide.md) describing how

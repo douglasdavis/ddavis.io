@@ -1,8 +1,9 @@
 +++
 title = "Avoiding conversions & boilerplate in pybind11"
 date = 2021-02-11
-tags = ["cpp", "python", "numpy"]
 draft = false
+[taxonomies]
+tags = ["cpp", "python", "numpy"]
 +++
 
 The goals of [pygram11](https://github.com/douglasdavis/pygram11) include:

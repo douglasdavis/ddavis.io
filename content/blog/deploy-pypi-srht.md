@@ -1,8 +1,9 @@
 +++
 title = "Deploying to PyPI with sr.ht"
 date = 2019-04-10
-tags = ["python"]
 draft = false
+[taxonomies]
+tags = ["python"]
 +++
 
 I recently started to use [builds.sr.ht](https://builds.sr.ht) (part
