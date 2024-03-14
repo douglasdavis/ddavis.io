@@ -3,6 +3,11 @@ base_url = "https://ddavis.io"
 compile_sass = false
 build_search_index = false
 
+generate_feed = true
+feed_filename = "rss.xml"
+
+author = "ddavis"
+
 [markdown]
 highlight_code = true
 highlight_theme = "gruvbox-dark"
