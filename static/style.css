@@ -1,11 +1,8 @@
-@import url("fonts.css");
-
 /* html { */
 /*   max-width: 38rem; */
 /*   padding: 2rem; */
 /*   margin: auto; */
 /* } */
-
 
 html {
     min-width: 20em;
@@ -15,8 +12,9 @@ html {
 }
 
 body {
-    font-family: 'Recursive', 'Liberation Sans', Arial, sans-serif;
+    font-family: 'Alef', 'Liberation Sans', Arial, sans-serif;
     line-height: 1.5;
+    font-size: 1.2em;
     background: #282828;
     color:      #ebdbb2;
 }
@@ -26,13 +24,13 @@ header {
 }
 
 h1, h2 {
-    font-family: 'Recursive', 'Liberation Sans', Arial, sans-serif;
-    font-size: 1.75em;
+    font-family: 'Akaya Telivigala', 'Liberation Sans', Arial, sans-serif;
+    font-size: 1.80em;
     margin-bottom: .25rem;
 }
 
 code {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Sometype Mono', monospace;
     background:  #32302f;
     color:       #d5c481;
     font-size:   0.9em;
@@ -40,14 +38,14 @@ code {
 }
 
 pre {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Sometype Mono', monospace;
     overflow-x: auto;
     padding: 0.5ch;
     border-radius: 10px;
     border: 2px solid #d79921;
     padding: 10px;
     scrollbar-width: none;
-    font-size: 1.0em;
+    font-size: 0.9em;
 }
 
 pre code {
@@ -86,6 +84,8 @@ hr {
 .navbar {
     /* background-color: #333; /\* Background color for the navbar *\/ */
     text-align: right; /* Align the navbar to the right */
+    font-family: 'Akaya Telivigala', 'Liberation Sans', Arial, sans-serif;
+    font-size: 1.4em;
 }
 
 .navbar ul {

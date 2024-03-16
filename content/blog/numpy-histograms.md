@@ -10,13 +10,16 @@ katex = true
 
 **Update August 2019**: About a year after writing this blog post I
 created a Python package to handle all of my pythonic histogramming
-needs. It's called [pygram11](https://github.com/douglasdavis/pygram11). This post is definitely still useful
-for learning more details about NumPy histogramming.
+needs. It's called
+[pygram11](https://github.com/douglasdavis/pygram11). This post is
+definitely still useful for learning more details about NumPy
+histogramming.
 
 
 ## Our starting point {#our-starting-point}
 
-Histogramming some data is simple using [numpy.histogram](https://docs.scipy.org/doc/numpy/reference/generated/numpy.histogram.html).
+Histogramming some data is simple using
+[numpy.histogram](https://docs.scipy.org/doc/numpy/reference/generated/numpy.histogram.html).
 
 ```python
 >>> import numpy as np
@@ -28,14 +31,14 @@ Histogramming some data is simple using [numpy.histogram](https://docs.scipy.org
 
 This gives me two arrays
 
--   one for the bin heights (`n`)
--   one for the bin edges (`bins`).
+- one for the bin heights (`n`)
+- one for the bin edges (`bins`).
 
 Quick and simple -- but what if I want to include underflow and
-overflow in the first and last bins, respectively? What if I want
-to compute the error on each bin height given a weighted dataset?
-These quantities are important for high energy physics, where
-nearly all of our analysis is done using histograms.
+overflow in the first and last bins, respectively? What if I want to
+compute the error on each bin height given a weighted dataset? These
+quantities are important for high energy physics, where nearly all of
+our analysis is done using histograms.
 
 
 ## Underflow and overflow {#underflow-and-overflow}
@@ -66,20 +69,22 @@ under and overflow.
 
 ## Error on bin height using weights {#error-on-bin-height-using-weights}
 
-The standard error on a bin height is simply the square-root of
-the bin height, \\(\sqrt{N}\\)[^2]. If a bin is constructed from
-weighted data, we require the square-root of the sum of the
-weights squared, \\(\sqrt{\sum\_i w\_i^2}\\).
+The standard error on a bin height is simply the square-root of the
+bin height, \\(\sqrt{N}\\)[^2]. If a bin is constructed from weighted
+data, we require the square-root of the sum of the weights squared,
+\\(\sqrt{\sum\_i w\_i^2}\\).
 
-The `numpy.histogram` function doesn't provide any information
-about which weights belong to which bin, but we have another
-useful NumPy function which can generate an array of indices based
-on where data falls in a particular set of bins, [numpy.digitize](https://docs.scipy.org/doc/numpy/reference/generated/numpy.digitize.html).
+The `numpy.histogram` function doesn't provide any information about
+which weights belong to which bin, but we have another useful NumPy
+function which can generate an array of indices based on where data
+falls in a particular set of bins,
+[numpy.digitize](https://docs.scipy.org/doc/numpy/reference/generated/numpy.digitize.html).
 
-First, we get an array representing which bin each data point
-would fall into. We can then use the conditional function
-[numpy.where](https://docs.scipy.org/doc/numpy/reference/generated/numpy.where.html) in a loop over all bins to grab only the weights in
-that bin, and sum their squares.
+First, we get an array representing which bin each data point would
+fall into. We can then use the conditional function
+[numpy.where](https://docs.scipy.org/doc/numpy/reference/generated/numpy.where.html)
+in a loop over all bins to grab only the weights in that bin, and sum
+their squares.
 
 ```python
 >>> import numpy as np
@@ -95,8 +100,8 @@ that bin, and sum their squares.
 >>> err = np.sqrt(sum_w2)
 ```
 
-Now two arrays exist: `n` contains the heights in each bin, and
-`err` contains the standard error on the bin heights.
+Now two arrays exist: `n` contains the heights in each bin, and `err`
+contains the standard error on the bin heights.
 
 
 ## Appendix, a function to combine the two methods: {#appendix-a-function-to-combine-the-two-methods}
