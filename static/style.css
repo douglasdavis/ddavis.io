@@ -112,3 +112,12 @@ hr {
 /* .navbar a:hover { */
 /*     color: #ff6600; /\* Text color on hover *\/ */
 /* } */
+
+.footnote-definition {
+    font-size: 0.8em; /* Adjust the font size as desired */
+    line-height: 1.2; /* Adjust the line height as desired */
+}
+
+.footnote-definition p {
+    margin: 0; /* Remove default paragraph margins */
+}
