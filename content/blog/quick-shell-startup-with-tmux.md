@@ -8,8 +8,8 @@ tags = ["mac", "tmux"]
 
 I recently started a new job. The company cares about security; the
 computer I've been assigned has some program-startup-latency which I'm
-confident has something to do with having some Orwellian Big Brother
-stuff running in the background[^1].
+confident has something to do with some extra security features. It's
+super powerful M2 MacBook Pro that, in general, is very fast.
 
 One of those slow actions is simply starting a new shell (I use Bash).
 Starting Bash takes almost a second (my `.bashrc` isn't doing much;
@@ -27,7 +27,9 @@ but mostly just as a way to keep shells running on remote machines
 shell startup I've been experiencing I decided to see if it could
 help, and it sure does. Instead of new sessions of my terminal
 emulator running `bash`, they run `tmux` and attach (or create, if
-necessary) to a `tmux` session called `scratch`[^2].
+necessary) to a `tmux` session called `scratch` (taking inspiration
+from the best:
+[Emacs](https://www.gnu.org/software/emacs/manual/html_node/emacs/Lisp-Interaction.html).).
 
 With my current terminal of choice,
 [Alacritty](https://alacritty.org/), this is enabled by adding to my
@@ -50,9 +52,3 @@ Now my terminals start without the 1 second drag, and I get to keep my
 scratch shell going all the time. It's also helping me get more out of
 tmux locally, because I'm always in it jumping around sessions,
 windows, and panes. It's really a great tool.
-
-
-[^1]: It's a work-only computer and it's their property, so that's OK.
-
-[^2]: Taking inspiration from the best:
-    [Emacs](https://www.gnu.org/software/emacs/manual/html_node/emacs/Lisp-Interaction.html).
