@@ -29,7 +29,7 @@ help, and it sure does. Instead of new sessions of my terminal
 emulator running `bash`, they run `tmux` and attach (or create, if
 necessary) to a `tmux` session called `scratch` (taking inspiration
 from the best:
-[Emacs](https://www.gnu.org/software/emacs/manual/html_node/emacs/Lisp-Interaction.html).).
+[Emacs](https://www.gnu.org/software/emacs/manual/html_node/emacs/Lisp-Interaction.html)).
 
 With my current terminal of choice,
 [Alacritty](https://alacritty.org/), this is enabled by adding to my
