@@ -121,3 +121,37 @@ hr {
 .footnote-definition p {
     margin: 0; /* Remove default paragraph margins */
 }
+
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 768px) {
+    html {
+        /* Adjust the padding and max-width for smaller screens */
+        padding: 1rem; /* Smaller padding */
+        max-width: 90%; /* Allow the content to be more fluid */
+    }
+
+    body {
+        font-size: 1em; /* Adjust font size for readability on small screens */
+    }
+
+    header, h1, h2, .navbar {
+        /* Adjust heading and navigation styles for smaller screens */
+        text-align: center; /* Center align for better use of space */
+    }
+
+    .navbar ul {
+        padding: 0;
+    }
+
+    .navbar li {
+        display: block; /* Stack navbar items vertically */
+        margin: 0.5em 0; /* Add vertical spacing */
+    }
+
+    pre {
+        padding: 5px; /* Reduce padding for code blocks */
+    }
+
+    /* Add any other mobile-specific styles here */
+}
