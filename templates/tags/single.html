@@ -9,7 +9,7 @@
   </p>
 <ul>
   {% for page in term.pages %}
-  <li>{{ page.date }}: <a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+  <li><tt>{{ page.date }}:</tt> <a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
   {% endfor %}
 </ul>
 {% endblock content %}
