@@ -1,5 +1,5 @@
 +++
-title = "Enabling faster terminal startup with tmux"
+title = "Faster terminal startup with tmux"
 date = 2024-03-16
 draft = false
 [taxonomies]
@@ -8,18 +8,18 @@ tags = ["mac", "tmux"]
 
 I recently started a new job. The company cares about security; the
 computer I've been assigned has some program-startup-latency which I'm
-confident has something to do with some extra security features. It's
+confident has something to do with various security features. It's
 super powerful M2 MacBook Pro that, in general, is very fast.
 
-One of those slow actions is simply starting a new shell (I use Bash).
-Starting Bash takes almost a second (my `.bashrc` isn't doing much;
+One slow action is simply starting a new shell (I use Bash). Starting
+Bash requires waiting nearly a second (my `.bashrc` isn't doing much;
 the equivalent `.bashrc` on my personal Linux box provides an
 unnoticeable startup time). If the shell is slow to start, then
 obviously a fresh terminal which spins up a shell will be slow to
 start. Independent of terminal emulator use (I've tried multiple), it
-gets a little frustrating to type `Cmd+N` and wait a second, or click
-on the icon in the dock and wait a second. For me it's simple muscle
-memory to do both, so it adds up throughout the day.
+is a little frustrating to type `Cmd+N` and wait a second, or click on
+the icon in the dock and wait a second. Both of those actions frequent
+and simple muscle memory, so it adds up throughout the day.
 
 I've been using [tmux](https://github.com/tmux/tmux/wiki) for years,
 but mostly just as a way to keep shells running on remote machines
@@ -31,9 +31,8 @@ necessary) to a `tmux` session called `scratch` (taking inspiration
 from the best:
 [Emacs](https://www.gnu.org/software/emacs/manual/html_node/emacs/Lisp-Interaction.html)).
 
-With my current terminal of choice,
-[Alacritty](https://alacritty.org/), this is enabled by adding to my
-`alacritty.toml` file:
+With [Alacritty](https://alacritty.org/) this is enabled by adding to
+my `alacritty.toml` file:
 
 ```toml
 [shell]
@@ -50,5 +49,5 @@ Profile's shell tab to run the command (same as above):
 
 Now my terminals start without the 1 second drag, and I get to keep my
 scratch shell going all the time. It's also helping me get more out of
-tmux locally, because I'm always in it jumping around sessions,
-windows, and panes. It's really a great tool.
+tmux locally; I'm always in it jumping around sessions, windows, and
+panes. It's really a great tool.
