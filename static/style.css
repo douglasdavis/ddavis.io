@@ -1,3 +1,21 @@
+@font-face {
+    font-family: '0xProto';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('fonts/0xProto-Regular.woff2') format('woff2');
+    /* unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; */
+}
+
+@font-face {
+    font-family: '0xProto';
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url('fonts/0xProto-Italic.woff2') format('woff2');
+    /* unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; */
+}
+
 /* html { */
 /*   max-width: 38rem; */
 /*   padding: 2rem; */
@@ -12,9 +30,9 @@ html {
 }
 
 body {
-    font-family: 'Fira Sans', 'Liberation Sans', Arial, sans-serif;
+    font-family: '0xProto', 'Liberation Sans', Arial, sans-serif;
     line-height: 1.5;
-    font-size: 1.2em;
+    font-size: 1.1em;
     background: #282828;
     color:      #ebdbb2;
 }
@@ -24,32 +42,32 @@ header {
 }
 
 h1, h2 {
-    font-family: 'Fira Sans', 'Liberation Sans', Arial, sans-serif;
+    font-family: '0xProto', 'Liberation Sans', Arial, sans-serif;
     font-size: 1.80em;
     margin-bottom: .25rem;
 }
 
 code {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: '0xProto', monospace;
     background:  #32302f;
     color:       #d5c481;
-    font-size:   0.9em;
+    font-size:   1.0em;
     padding: 3px;
 }
 
 tt {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: '0xProto', monospace;
 }
 
 pre {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: '0xProto', monospace;
     overflow-x: auto;
     padding: 0.5ch;
     border-radius: 10px;
     border: 2px solid #d79921;
     padding: 10px;
     scrollbar-width: none;
-    font-size: 0.9em;
+    font-size: 1.0em;
 }
 
 pre code {
@@ -86,8 +104,8 @@ hr {
 .navbar {
     /* background-color: #333; /\* Background color for the navbar *\/ */
     text-align: center; /* Align the navbar to the right */
-    font-family: 'Fira Sans', 'Liberation Sans', Arial, sans-serif;
-    font-size: 1.4em;
+    font-family: '0xProto', 'Liberation Sans', Arial, sans-serif;
+    font-size: 1.3em;
 }
 
 .navbar ul {

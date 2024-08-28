@@ -236,7 +236,7 @@ So in this example, those columns/fields would just be "foo" and
 "baz". So we would end up writing rewriting step one as:
 
 ```python
->>> dak.read_parquet("/path/to/data", columns=["foo", "baz"]
+>>> dak.read_parquet("/path/to/data", columns=["foo", "baz"])
 ```
 
 Ok, that's an improvement; **but**, by passing in `columns=["foo",

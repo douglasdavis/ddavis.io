@@ -3,8 +3,8 @@ base_url = "https://ddavis.io"
 compile_sass = false
 build_search_index = false
 
-generate_feed = true
-feed_filename = "rss.xml"
+generate_feeds = true
+feed_filenames = ["rss.xml"]
 
 author = "ddavis"
 
