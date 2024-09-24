@@ -1,8 +1,12 @@
 {% extends "base.html" %}
-
 {% block content %}
-<h1 class="title">
-<!-- ddavis.io -->
-</h1>
-<!-- <p><a href="{{ get_url(path='@/blog/_index.md') }}">click</a> to see my posts.</p> -->
+<h1 class="title">recent</h1>
+{% set blog_section = get_section(path="blog/_index.md") %}
+<ul>
+  {% for page in blog_section.pages | slice(end=5) %}
+  <li><tt>{{ page.date }}</tt>: <a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+  {% endfor %}
+</ul>
+
+
 {% endblock content %}

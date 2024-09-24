@@ -30,9 +30,9 @@ html {
 }
 
 body {
-    font-family: '0xProto', 'Liberation Sans', Arial, sans-serif;
+    font-family: 'Kanit', 'Liberation Sans', Arial, sans-serif;
     line-height: 1.5;
-    font-size: 1.1em;
+    font-size: 1.05em;
     background: #282828;
     color:      #ebdbb2;
 }
@@ -42,7 +42,7 @@ header {
 }
 
 h1, h2 {
-    font-family: '0xProto', 'Liberation Sans', Arial, sans-serif;
+    font-family: 'Kanit', 'Liberation Sans', Arial, sans-serif;
     font-size: 1.80em;
     margin-bottom: .25rem;
 }
@@ -51,8 +51,8 @@ code {
     font-family: '0xProto', monospace;
     background:  #32302f;
     color:       #d5c481;
-    font-size:   1.0em;
-    padding: 3px;
+    font-size:   0.85em;
+    padding:     3px;
 }
 
 tt {
@@ -67,12 +67,11 @@ pre {
     border: 2px solid #d79921;
     padding: 10px;
     scrollbar-width: none;
-    font-size: 1.0em;
+    font-size: 0.95em;
 }
 
 pre code {
-     background: #282828; */
-/*     color:      #ebdbb2; */
+     background: #282828;
 }
 
 pre::-webkit-scrollbar {
@@ -104,7 +103,7 @@ hr {
 .navbar {
     /* background-color: #333; /\* Background color for the navbar *\/ */
     text-align: center; /* Align the navbar to the right */
-    font-family: '0xProto', 'Liberation Sans', Arial, sans-serif;
+    font-family: 'Kanit', 'Liberation Sans', Arial, sans-serif;
     font-size: 1.3em;
 }
 
