@@ -315,10 +315,10 @@ on line 235 in dask-awkward's `optimize.py` module. We simply call
 dask.local.get_sync(typetracer_graph, last_layer)
 ```
 
-Which computes for the last layer in the typetracer only graph. We are
-just using Dask's local scheduler on the (slightly altered) task graph
-already stitched together by the user! This is where we are using
-dask-awkward to speed up dask-awkward.
+Which computes the last layer in the typetracer-only graph. We are
+using Dask's local scheduler on the (slightly altered) task graph
+which was already stitched together by the user! That is how we are
+using dask-awkward to speed up dask-awkward.
 
 Going back to our example result:
 

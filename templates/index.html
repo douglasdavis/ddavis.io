@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<h1 class="title">recent</h1>
+<h1 class="title">recent posts</h1>
 {% set blog_section = get_section(path="blog/_index.md") %}
 <ul>
   {% for page in blog_section.pages | slice(end=5) %}
