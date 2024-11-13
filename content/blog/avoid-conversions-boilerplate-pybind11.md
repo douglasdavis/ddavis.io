@@ -8,18 +8,18 @@ tags = ["cpp", "python", "numpy"]
 
 The goals of [pygram11](https://github.com/douglasdavis/pygram11) include:
 
--   providing the fastest possible histogram calculations.
--   supporting uncertainties on weighted histograms.
--   supporting multiple weight variations in a single histogramming
-    routine.
+- providing the fastest possible histogram calculations.
+- supporting uncertainties on weighted histograms.
+- supporting multiple weight variations in a single histogramming
+  routine.
 
-To first order, OpenMP is leveraged to execute parallel loops for
-calculating histograms of large input data. This post focuses on a
-second order performance consideration: avoiding potentially expensive
-conversions (while supporting different data and weight array types).
+The first bullet is accomplished via parallel loops provided by
+OpenMP. This post focuses on a second order performance consideration:
+avoiding potentially expensive conversions (while supporting different
+data and weight array types).
 
-Early versions of pygram11 (up to version 0.10.3) supported input
-arrays of any type, but in the backend we supported histogramming
+Early versions of pygram11 (up to version 0.10.3) supported input data
+(arrays) of any type, but in the backend we supported histogramming
 calculations only on 32- and 64-bit floating point inputs (for both
 the data and the weights). If a non-floating point typed array was
 passed (as either the data input or weights input), we converted the
@@ -82,11 +82,11 @@ We can lean on some template metaprogramming to make a clean (low
 boilerplate) and extendable implementation while achieving the goal of
 explicitly avoiding conversions.
 
-We'll use [boost::mp11](https://github.com/boostorg/mp11) for some help. We create a type list for the
-possible data types (`pg_Ts`) and one for the possible weight types
-(`pg_Ws`). The `boost::mp11` library provides the `mp_product`
-metafunction to generate all possible combinations of its template
-parameters at compile time.
+We'll use [boost::mp11](https://github.com/boostorg/mp11) for some
+help. We create a type list for the possible data types (`pg_Ts`) and
+one for the possible weight types (`pg_Ws`). The `boost::mp11` library
+provides the `mp_product` metafunction to generate all possible
+combinations of its template parameters at compile time.
 
 ```cpp
 using boost::mp11::mp_product;
@@ -110,19 +110,19 @@ using pg_T_pairs_and_Ws = mp_product<type_list, pg_Ts, pg_Ts, pg_Ws>;
 
 Let's think about our new types a bit:
 
--   `pg_Ts_and_Ws` is made up of pairs of data types and weight types:
-    -   `type_list<double, double>`, (1st)
-    -   `type_list<int64_t, double>`, (2nd)
-    -   ...
-    -   `type_list<uint32_t, float>` (12th)
--   `pg_Ts_and_Ts` is made up of pairs of data types:
-    -   `type_list<double, double>`, (1st)
-    -   ...
-    -   `type_list<uint32_t, uint32_t>` (36th)
--   `pg_T_pairs_and_Ws` is made up of data types (x2), and weight types:
-    -   `type_list<double, double, double>` (1st)
-    -   ...
-    -   `type_list<uint32_t, uint32_t, float>` (72nd)
+- `pg_Ts_and_Ws` is made up of pairs of data types and weight types:
+  - `type_list<double, double>`, (1st)
+  - `type_list<int64_t, double>`, (2nd)
+  - ...
+  - `type_list<uint32_t, float>` (12th)
+- `pg_Ts_and_Ts` is made up of pairs of data types:
+  - `type_list<double, double>`, (1st)
+  - ...
+  - `type_list<uint32_t, uint32_t>` (36th)
+- `pg_T_pairs_and_Ws` is made up of data types (x2), and weight types:
+  - `type_list<double, double, double>` (1st)
+  - ...
+  - `type_list<uint32_t, uint32_t, float>` (72nd)
 
 We can write some small functions to inject into a `py::module_`
 object a type list of each of these three forms:
