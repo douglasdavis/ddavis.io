@@ -13,10 +13,11 @@ The goals of [pygram11](https://github.com/douglasdavis/pygram11) include:
 - supporting multiple weight variations in a single histogramming
   routine.
 
-The first bullet is accomplished via parallel loops provided by
-OpenMP. This post focuses on a second order performance consideration:
-avoiding potentially expensive conversions (while supporting different
-data and weight array types).
+The first bullet is _primarily_ accomplished via parallel loops
+provided by OpenMP, but we can squeeze out a bit more performance in
+other places. This post focuses on a second order performance
+consideration: avoiding potentially expensive conversions (while
+supporting different data and weight array types).
 
 Early versions of pygram11 (up to version 0.10.3) supported input data
 (arrays) of any type, but in the backend we supported histogramming
