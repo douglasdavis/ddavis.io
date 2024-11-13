@@ -33,9 +33,6 @@ Beyond `pylsp`, there are a number of other Python language servers
 that I've played around with:
 
 - [jedi-language-server](https://github.com/pappasam/jedi-language-server)
-  with [lsp-jedi](https://github.com/fredcamps/lsp-jedi).
-- [Pyright](https://github.com/microsoft/pyright) with
-  [lsp-pyright](https://github.com/emacs-lsp/lsp-pyright).
+- [Pyright](https://github.com/microsoft/pyright)
 - [anakin-language-server](https://github.com/muffinmad/anakin-language-server)
-  with a sandbox patching of lsp-jedi.
 - Certainly more...
