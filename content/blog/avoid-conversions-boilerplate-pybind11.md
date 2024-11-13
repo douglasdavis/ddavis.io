@@ -28,8 +28,9 @@ incompatibly typed arrays to floating point arrays and passed the
 converted data to the backend C++ functions.
 
 The backend C++ code has always been generic (implemented with
-templated functions). An example function and [pybind11](https://github.com/pybind/pybind11) binding was of
-this form:
+templated functions). An example function and
+[pybind11](https://github.com/pybind/pybind11) binding was of this
+form:
 
 ```cpp
 template <typename XType, typename WType>
