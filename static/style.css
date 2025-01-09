@@ -160,12 +160,15 @@ figcaption {
 
 /* Navigation and metadata */
 /* Navigation */
-navbar {
+.navbar {
     margin-bottom: 2rem;
     text-align: center;
+    font-size: 1.3em;
+    font-family: monospace;
+    font-weight: bold;
 }
 
-navbar ul {
+.navbar ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -179,7 +182,7 @@ navbar li {
     margin: 0;
 }
 
-navbar a {
+.navbar a {
     display: inline-block;
     padding: 0.5rem 0;
     text-decoration: none;
@@ -187,7 +190,7 @@ navbar a {
 }
 
 /* Underline animation on hover */
-navbar a::after {
+.navbar a::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -199,7 +202,7 @@ navbar a::after {
     transition: transform 0.2s ease-in-out;
 }
 
-navbar a:hover::after {
+.navbar a:hover::after {
     transform: scaleX(1);
 }
 
