@@ -159,8 +159,48 @@ figcaption {
 }
 
 /* Navigation and metadata */
-nav {
+/* Navigation */
+navbar {
     margin-bottom: 2rem;
+    text-align: center;
+}
+
+navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+navbar li {
+    margin: 0;
+}
+
+navbar a {
+    display: inline-block;
+    padding: 0.5rem 0;
+    text-decoration: none;
+    position: relative;
+}
+
+/* Underline animation on hover */
+navbar a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.2s ease-in-out;
+}
+
+navbar a:hover::after {
+    transform: scaleX(1);
 }
 
 .meta {
@@ -200,36 +240,4 @@ nav {
         content: " (" attr(href) ")";
         font-size: 0.9em;
     }
-}
-
-
-
-
-
-
-.navbar {
-    /* background-color: #333; /\* Background color for the navbar *\/ */
-    text-align: center; /* Align the navbar to the right */
-    font-family: monospace;
-    font-size: 1.3em;
-}
-
-.navbar ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar li {
-    display: inline;
-    /* margin-right: 20px; /\* Adjust the spacing between navbar items *\/ */
-}
-
-.navbar a {
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.navbar a:hover {
-    text-decoration: underline;
 }
