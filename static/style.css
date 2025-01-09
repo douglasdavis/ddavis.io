@@ -59,12 +59,12 @@ html {
 
 body {
     /* System font stack that respects user preferences */
-    font-family: system-ui, -apple-system, BlinkMacSystemFont,
+    font-family: -apple-system, BlinkMacSystemFont,
                  'Segoe UI', Roboto, Oxygen-Sans, Ubuntu,
                  Cantarell, 'Helvetica Neue', sans-serif;
 
     /* Respect user's font settings if they've set them */
-    font: inherit;
+    /* font: inherit; */
 
     /* Colors and spacing */
     background-color: var(--background);
