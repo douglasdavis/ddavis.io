@@ -1,20 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-  {{ section.title }}
-</h1>
-<p>
-  <p>
-    &rarr; <a href="{{ get_url(path='/rss.xml') }}">feed</a>
-    &rarr; <a href="{{ get_url(path='/tags') }}">tags</a>
-  </p>
-  <!-- If you are using pagination, section.pages will be empty. You
-       need to use the paginator object -->
-  <ul>
-  {% for page in section.pages %}
-  <li><tt>{{ page.date }}</tt>: <a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
-  {% endfor %}
-  </ul>
-</p>
+<h1 class="title">{{ section.title }}</h1>
+<!-- If you are using pagination, section.pages will be empty. You
+     need to use the paginator object -->
+<ul>
+{% for page in section.pages %}
+<li><tt>{{ page.date }}</tt>: <a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+{% endfor %}
+</ul>
+
+<div class="blog-links">
+  <a href="{{ get_url(path='/rss.xml') }}">feed</a>
+  <a href="{{ get_url(path='/tags') }}">tags</a>
+</div>
 {% endblock content %}

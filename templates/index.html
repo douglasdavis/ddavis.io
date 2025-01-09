@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-<h1 class="title">recent posts</h1>
 {% set blog_section = get_section(path="blog/_index.md") %}
+<h1 class="title">posts</h1>
+<!-- If you are using pagination, section.pages will be empty. You
+     need to use the paginator object -->
 <ul>
-  {% for page in blog_section.pages | slice(end=5) %}
-  <li><tt>{{ page.date }}</tt>: <a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
-  {% endfor %}
+{% for page in blog_section.pages %}
+<li><tt>{{ page.date }}</tt>: <a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+{% endfor %}
 </ul>
 
-
+<div class="blog-links">
+  <a href="{{ get_url(path='/rss.xml') }}">feed</a>
+  <a href="{{ get_url(path='/tags') }}">tags</a>
+</div>
 {% endblock content %}

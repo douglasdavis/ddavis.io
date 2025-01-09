@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
+    <script>
+      // Prevent FOUC by setting theme before CSS loads
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.style.colorScheme = 'dark';
+      }
+    </script>
     <link rel="stylesheet" href="/style.css" />
     {% if page and page.extra.katex %}
     <link rel="stylesheet"
@@ -18,22 +23,22 @@
             onload="renderMathInElement(document.body);"></script>
     {% endif %}
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>{% block title %}{{ config.title }}{% endblock title %}</title>
   </head>
   <body>
-    <div class="navbar">
-      <ul>
-        <li><a href="{{ get_url(path='/') }}">home</a></li>
-        <li><a href="{{ get_url(path='@/blog/_index.md') }}">posts</a></li>
-        <li><a href="{{ get_url(path='@/about/_index.md') }}">about</a></li>
-        <li><a href="https://github.com/douglasdavis">github</a></li>
-        <li><a href="https://linkedin.com/in/douglasrdavis">linkedin</a></li>
-      </ul>
-    </div>
-    <section class="section">
-      <div class="container">
+    <div class="site-wrapper">
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="{{ get_url(path='/') }}">posts</a></li>
+          <li><a href="{{ get_url(path='@/about/_index.md') }}">about</a></li>
+          <li><a href="{{ get_url(path='@/projects/_index.md') }}">projects</a></li>
+        </ul>
+      </nav>
+      <div class="separator"></div>
+      <main class="main-content">
         {% block content %} {% endblock %}
-      </div>
-    </section>
+      </main>
+    </div>
   </body>
 </html>

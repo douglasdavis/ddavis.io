@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}{{config.title}} | Projects {% endblock title %}
+{% block content %}
+<h1 class="title">
+  {{ section.title }}
+</h1>
+
+<div class="content">
+  <article>
+
+    List of some open source projects I've created or contributed to.
+
+    <dl>
+
+      <dt><a href="https://github.com/douglasdavis/numpydoc.el">numpydoc.el</a></dt>
+      <dd>
+        Emacs package for automatically generating numpydoc style
+        docstrings for Python functions.
+      </dd>
+
+      <dt><a href="https://github.com/douglasdavis/pygram11">pygram11</a></dt>
+      <dd>
+        Python library for fast histogram calculations, implemented in
+        C++ and built with pybind11 and OpenMP.
+      </dd>
+
+      <dt><a href="https://github.com/dask-contrib/dask-awkward">dask-awkward</a></dt>
+      <dd>
+        Python library providing a native Dask collection for awkward
+        arrays.
+      </dd>
+
+      <dt><a href="https://github.com/dask-contrib/dask-histogram">dask-histogram</a></dt>
+      <dd>
+        Python library providing a native Dask collection for
+        boost-histogram objects.
+      </dd>
+
+      <dt><a href="https://github.com/dask/dask">dask</a></dt>
+      <dd>
+        Python library for parallel and distributed computing.
+      </dd>
+
+      <dt><a href="https://github.com/intake/akimbo">akimbo</a></dt>
+      <dd>
+        Python library providing an awkward array extention type/array
+        for various dataframe libraries; <i>formerly
+        awkward-pandas</i>.
+      </dd>
+
+      <dt><a href="https://github.com/scikit-hep/uproot5">uproot</a></dt>
+      <dd>
+        Python library providing I/O for the ROOT project file format.
+      </dd>
+
+    </dl>
+  </article>
+</div>
+{% endblock content %}
