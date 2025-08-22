@@ -21,14 +21,17 @@
     <title>{% block title %}{{ config.title }}{% endblock title %}</title>
   </head>
   <body>
-    <nav class="sidebar-nav">
-      <ul>
-        <li><a href="{{ get_url(path='/') }}">posts</a></li>
-        <li><a href="{{ get_url(path='@/about/_index.md') }}">about</a></li>
-      </ul>
-    </nav>
-    <main class="main-content">
-      {% block content %} {% endblock %}
-    </main>
+    <div class="site-wrapper">
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="{{ get_url(path='/') }}">posts</a></li>
+          <li><a href="{{ get_url(path='@/about/_index.md') }}">about</a></li>
+        </ul>
+      </nav>
+      <div class="separator"></div>
+      <main class="main-content">
+        {% block content %} {% endblock %}
+      </main>
+    </div>
   </body>
 </html>
