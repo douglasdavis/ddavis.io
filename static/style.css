@@ -1,15 +1,12 @@
 @import url("syntax-theme-dark.css") (prefers-color-scheme: dark);
 @import url("syntax-theme-light.css") (prefers-color-scheme: light);
 
-/* Reset default styles and set up custom properties */
+/* Variables */
 :root {
     --background: #ffffff;
     --text: #1a1a1a;
-    --border: #333333;
     --accent: #0066cc;
     --code-bg: #f5f5f5;
-    --blockquote-bg: #f9f9f9;
-    --blockquote-border: #e5e5e5;
     color-scheme: light dark;
 }
 
@@ -17,68 +14,72 @@
     :root {
         --background: #1a1a1a;
         --text: #ffffff;
-        --border: #666666;
         --accent: #66b3ff;
         --code-bg: #2d2d2d;
-        --blockquote-bg: #262626;
-        --blockquote-border: #404040;
     }
 }
 
-/* Base styles */
-*, *::before, *::after {
+/* Reset */
+* {
     box-sizing: border-box;
 }
 
-html {
-    font-size: 16px;
-    scroll-behavior: smooth;
-
-}
-
-/* Responsive padding adjustment */
-@media (min-width: 768px) {
-    html {
-        padding: 2rem;
-    }
-}
-
-/* Main content container */
-html {
-    max-width: 100ch;
-    margin: 10px auto 10px auto;
-    padding: 1rem;
-    border: 2px solid var(--border);
-    border-radius: 1rem;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-                rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-}
-
 body {
-    /* System font stack that respects user preferences */
-    font-family: -apple-system, BlinkMacSystemFont,
-                 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu,
-                 Cantarell, 'Helvetica Neue', sans-serif;
-    /* Colors and spacing */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--background);
     color: var(--text);
     line-height: 1.6;
     margin: 0;
-    padding: 1rem;
+    padding: 0;
 }
 
+/* Right-aligned navbar - tight with content */
+.sidebar-nav {
+    position: fixed;
+    top: 4rem;
+    left: 4rem;
+    width: 100px;
+    text-align: right;
+}
 
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-nav a {
+    display: block;
+    padding: 0.25rem 0;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--text);
+}
+
+.sidebar-nav a:hover {
+    color: var(--accent);
+}
+
+/* Main content - tighter to navbar */
+.main-content {
+    max-width: 65ch;
+    margin-left: 12rem;
+    padding: 2rem 1rem;
+}
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3 {
     line-height: 1.2;
-    margin: 2rem 0 1rem;
-    scroll-margin-top: 2rem;
+    margin: 1.5rem 0 1rem;
 }
 
-h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); }
-h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
-h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
 
 p {
     margin: 1rem 0;
@@ -87,35 +88,16 @@ p {
 /* Links */
 a {
     color: var(--accent);
-    text-decoration-thickness: 0.1em;
-    text-underline-offset: 0.15em;
+    text-decoration: underline;
 }
 
-a:hover {
-    text-decoration-thickness: 0.2em;
-}
-
-/* Blog-specific elements */
-article {
-    margin-bottom: 3rem;
-}
-
-blockquote {
-    background-color: var(--blockquote-bg);
-    border-left: 4px solid var(--blockquote-border);
-    margin: 1.5rem 0;
-    padding: 1rem;
-    font-style: italic;
-}
-
+/* Code */
 code {
     background-color: var(--code-bg);
     padding: 0.2em 0.4em;
     border-radius: 3px;
-    font-family: monospace, ui-monospace, SFMono-Regular,
-                 Menlo, Monaco, Consolas;
+    font-family: monospace;
     font-size: 0.9em;
-
 }
 
 pre {
@@ -124,119 +106,51 @@ pre {
     border: 1px solid var(--text);
     border-radius: 0.5rem;
     overflow-x: auto;
-    /* white-space: pre-wrap; */
-    /* word-wrap: break-word; */
 }
 
 pre code {
     background-color: transparent;
     padding: 0;
-    /* Respect user's font settings if they've set them */
-    font: inherit; /* Inherit from pre element */
 }
 
-/* Media elements */
-img, video, iframe {
-    max-width: 100%;
-    height: auto;
-    border-radius: 0.5rem;
+/* Lists */
+ul, ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
 }
 
-figure {
-    margin: 1.5rem 0;
-}
-
-figcaption {
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--text);
-    opacity: 0.8;
-    margin-top: 0.5rem;
-}
-
-/* Navigation and metadata */
-/* Navigation */
-.navbar {
-    margin-bottom: 2rem;
-    text-align: center;
-    font-size: 1.3em;
-    font-family: monospace;
-    font-weight: bold;
-}
-
-.navbar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+/* Blog links at bottom */
+.blog-links {
+    margin-top: 2rem;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
-.navbar li {
-    margin: 0;
-}
-
-.navbar a {
-    display: inline-block;
-    padding: 0.5rem 0;
-    text-decoration: none;
-    position: relative;
-}
-
-/* Underline animation on hover */
-.navbar a::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--accent);
-    transform: scaleX(0);
-    transition: transform 0.2s ease-in-out;
-}
-
-.navbar a:hover::after {
-    transform: scaleX(1);
-}
-
-.meta {
+.blog-links a {
     font-size: 0.9rem;
-    opacity: 0.8;
-    margin-bottom: 1rem;
 }
 
-/* Accessibility improvements */
-:focus {
-    outline: 3px solid var(--accent);
-    outline-offset: 2px;
-}
-
-::selection {
-    background-color: var(--accent);
-    color: var(--background);
-}
-
-/* Print styles */
-@media print {
-    body {
-        padding: 0;
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .sidebar-nav {
+        position: static;
+        width: 100%;
+        padding: 1rem;
+        border-bottom: 1px solid var(--text);
     }
-
-    main {
-        border: none;
-        box-shadow: none;
+    
+    .sidebar-nav ul {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
     }
-
-    a {
-        text-decoration: underline;
-        color: var(--text);
+    
+    .sidebar-nav li {
+        margin-bottom: 0;
     }
-
-    a[href^="http"]::after {
-        content: " (" attr(href) ")";
-        font-size: 0.9em;
+    
+    .main-content {
+        margin-left: 0;
+        padding: 1rem;
     }
 }
