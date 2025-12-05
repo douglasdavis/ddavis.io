@@ -1,9 +1,26 @@
 @import url("syntax-theme-dark.css") (prefers-color-scheme: dark);
 @import url("syntax-theme-light.css") (prefers-color-scheme: light);
 
+@font-face {
+    font-family: 'Agave Nerd Font Mono';
+    src: local('Agave Nerd Font Mono'),
+         local('AgaveNerdFontMono-Regular'),
+         url('/fonts/AgaveNerdFontMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Agave Nerd Font Mono';
+    src: local('Agave Nerd Font Mono Bold'),
+         local('AgaveNerdFontMono-Bold'),
+         url('/fonts/AgaveNerdFontMono-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
 :root {
-    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    /* --font-family: monospace, "Apple Color Emoji", "Segoe UI Emoji"; */
+    --font-family: 'Agave Nerd Font Mono', 'Agave Nerd Font', monospace, "Apple Color Emoji", "Segoe UI Emoji";
     --bg-color: #ffffff;
     --text-color: #212121;
     --link-color: #007acc;
@@ -62,7 +79,7 @@ a:hover {
 }
 
 pre, code {
-    font-family: monospace;
+    font-family: var(--font-family);
     background-color: var(--code-bg-color);
     border-radius: 6px;
 }

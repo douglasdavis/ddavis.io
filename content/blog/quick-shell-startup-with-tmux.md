@@ -8,8 +8,8 @@ tags = ["mac", "tmux"]
 
 I recently started a new job. The company cares about security; the
 computer I've been assigned has some program-startup-latency which I'm
-confident has something to do with various security features. It's
-super powerful M2 MacBook Pro that, in general, is very fast.
+confident has something to do with various security features (it's a
+super powerful M2 MacBook Pro that, most of the time, is very fast).
 
 One slow action is simply starting a new shell (I use Bash). Starting
 Bash requires waiting nearly a second (my `.bashrc` isn't doing much;

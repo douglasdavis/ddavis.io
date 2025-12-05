@@ -27,7 +27,7 @@ Unfortunately `ruff` isn't able to run both `format` and the import
 sorting mechanism of the linter (`ruff check`) in the same command. So
 I have a couple of reformatters defined to handle both steps:
 
-```
+```el
 (use-package reformatter
   :ensure t
   :config
@@ -46,7 +46,7 @@ automatically finds `.venv` in the project and calls `pyvenv-activate`
 (from the [pyvenv](https://github.com/jorgenschaefer/pyvenv) package);
 it also enables the reformatters:
 
-```
+```el
 (defun dd/python-init ()
   (let* ((project (project-current))
          (project-root (when project (project-root project)))
@@ -68,7 +68,7 @@ eglot</kbd> will give us choices based on whatever `eglot` finds
 (through its `executable-find` usage in `eglot-alternatives` calls
 within `eglot-server-programs`). My Python incantation:
 
-```
+```el
 (add-to-list 'eglot-server-programs
              `(python-base-mode
                . ,(eglot-alternatives '(("basedpyright-langserver" "--stdio")
@@ -84,7 +84,7 @@ You'll notice that I cycle through using
 I'm hopeful that sometime in the near future my `eglot-alternatives`
 list can be redefined to
 
-```
+```el
 (add-to-list 'eglot-server-programs
              `(python-base-mode
                . ,(eglot-alternatives '(("uv" "run" "basedpyright-langserver" "--stdio")
