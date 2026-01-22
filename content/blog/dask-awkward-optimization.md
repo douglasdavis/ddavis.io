@@ -73,8 +73,8 @@ such that it only reads those columns.
 
 In [dask.dataframe](https://docs.dask.org/en/stable/dataframe.html),
 column projection occurs when the task graph detects that some kind of
-column selection (via a Python `getitem` call on a DataFrame) has
-occurred. When working with Dask, your workflow builds up a task
+column selection has occurred (e.g. via a Python `getitem` call on a
+DataFrame). When working with Dask, your workflow builds up a task
 graph, staging future computation. When we call `read_parquet` with
 `dask.dataframe`, we are not immediately reading the data from disk,
 we are staging that IO step.
@@ -286,26 +286,26 @@ array just returns the correct downstream typetracer array.
 
 With this feature, we can run the entire task graph, but **only on
 data-less typetracer arrays**. Since there's no real data, the
-execution time is negligible compared to computing on real data from
-disk. In our example above, we rewrite step one in the task graph to
-just be a typetracer array of the same form of the data in the Parquet
-file. That is, an array with all of the known fields organized in the
-correct layout. This only requires reading Parquet metadata, not any
-of the data buffers. After rewriting the first step in the task graph,
-we can just reuse the rest of the graph, and execute! This is possible
-because awkward-array functions _just work_ (most of the time!) on
-typetracer versions of awkward Arrays.
+execution time is negligible compared to computing on real data (read
+from disk or network IO). In our example above, we rewrite step one in
+the task graph to just be a typetracer array of the same form of the
+data in the Parquet file. That is, an array with all of the known
+fields organized in the correct layout. This only requires reading
+Parquet metadata, not any of the data buffers. After rewriting the
+first step in the task graph, we can just reuse the rest of the graph,
+and execute! This is possible because awkward-array functions _just
+work_ (most of the time) on typetracer versions of awkward Arrays.
 
 The only missing piece is information about which fields get used in
-the graph. We grab this information by attaching a mutable typetracer
-report object to the first layer of the typetracer based graph. After
+the graph. We grab this information by attaching a mutable _typetracer
+report_ object to the first layer of the typetracer based graph. After
 executing the typetracer based graph, the report object tells us which
-_exact_ fields were touched along the lifetime of the computation.
-This is possible because we create a mapping that connects a string
-label key to a value that is data-less buffer. When that dataless
-buffer is touched during execution of the typetracer only task graph,
-it's key is recorded as necessary, the mutable typetracer report
-tracks this information.
+_exact_ fields were touched during the execution of the Dask task
+graph. This is possible because we create a mapping that connects a
+string label to a value that is a data-less buffer. When that dataless
+buffer is touched during execution of the typetracer only task graph
+its key is recorded as necessary; the mutable typetracer report tracks
+this information.
 
 As of dask-awkward version `2023.3.0` [the magic happens
 here](https://github.com/dask-contrib/dask-awkward/blob/2023.3.0/src/dask_awkward/lib/optimize.py#L235),
