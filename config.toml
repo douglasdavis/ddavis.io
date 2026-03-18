@@ -12,15 +12,10 @@ taxonomies = [
   { name = "tags" },
 ]
 
-[markdown]
-highlight_code = true
-# highlight_theme = "inspired-github"
-
-highlight_theme = "css"
-highlight_themes_css = [
-  { theme = "gruvbox-dark", filename = "syntax-theme-dark.css" },
-  { theme = "inspired-github", filename = "syntax-theme-light.css" },
-]
+[markdown.highlighting]
+dark_theme = "gruvbox-dark-medium"
+light_theme = "gruvbox-light-medium"
+# style = "class"
 
 # [extra]
 # ...
