@@ -1,5 +1,5 @@
 +++
-title = "Avoiding conversions & boilerplate in pybind11"
+title = "Avoiding conversions & boilerplate with pybind11"
 date = 2021-02-11
 draft = false
 tags = ["cpp", "python", "numpy"]
