@@ -2,7 +2,6 @@
 title = "Deploying to PyPI with sr.ht"
 date = 2019-04-10
 draft = false
-[taxonomies]
 tags = ["python"]
 +++
 

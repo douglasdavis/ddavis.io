@@ -2,7 +2,6 @@
 title = "Using dask-awkward to speed up dask-awkward"
 date = 2023-04-10
 draft = false
-[taxonomies]
 tags = ["python", "dask", "awkward"]
 +++
 

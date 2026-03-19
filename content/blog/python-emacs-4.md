@@ -2,14 +2,13 @@
 title = "Python & Emacs, 2025"
 date = 2025-08-27
 draft = false
-[taxonomies]
 tags = ["python", "emacs"]
 +++
 
 Here we go with installment four of the unofficial series
-([first](@/blog/eglot-python-ide.md),
-[second](@/blog/emacs-python-lsp.md),
-[third](@/blog/python-emacs-3.md)). I've decided I'll start putting
+([first]({{< relref "/blog/eglot-python-ide.md" >}}),
+[second]({{< relref "/blog/emacs-python-lsp.md" >}}),
+[third]({{< relref "/blog/python-emacs-3.md" >}})). I've decided I'll start putting
 the year in the title.
 
 Back in 2022 [`python-base-mode` was

@@ -2,14 +2,13 @@
 title = "Python & Emacs, Take 3"
 date = 2021-05-26
 draft = false
-[taxonomies]
 tags = ["python", "emacs"]
 +++
 
 This is the third installment of what has turned into an unofficial
 series of posts on using Emacs for Python development
-([first](@/blog/eglot-python-ide.md) and
-[second](@/blog/emacs-python-lsp.md) posts). I probably shouldn't
+([first]({{< relref "/blog/eglot-python-ide.md" >}}) and
+[second]({{< relref "/blog/emacs-python-lsp.md" >}}) posts). I probably shouldn't
 expect it to be the last.
 
 At this point I use [Eglot](https://github.com/jaoatavora/eglot) and

@@ -2,9 +2,8 @@
 title = "NumPy Histogram tricks for HEP"
 date = 2018-02-08
 draft = false
-[taxonomies]
 tags = ["hep", "numpy", "python"]
-[extra]
+[params]
 katex = true
 +++
 

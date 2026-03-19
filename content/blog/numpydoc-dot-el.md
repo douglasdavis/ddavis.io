@@ -2,7 +2,6 @@
 title = "NumPy style docstrings with numpydoc.el"
 date = 2021-02-28
 draft = false
-[taxonomies]
 tags = ["python", "numpy", "emacs"]
 +++
 

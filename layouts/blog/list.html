@@ -1,0 +1,13 @@
+{{ define "content" }}
+<h1 class="title">{{ .Title }}</h1>
+<ul>
+{{ range .Pages }}
+<li>{{ .Date.Format "2006-01-02" }}: <a href="{{ .Permalink }}">{{ .Title }}</a></li>
+{{ end }}
+</ul>
+
+<div class="blog-links">
+  <a href="/rss.xml">feed</a>
+  <a href="/tags/">tags</a>
+</div>
+{{ end }}

@@ -2,7 +2,6 @@
 title = "C++17 Early Favorites"
 date = 2018-01-09
 draft = false
-[taxonomies]
 tags=["cpp"]
 +++
 

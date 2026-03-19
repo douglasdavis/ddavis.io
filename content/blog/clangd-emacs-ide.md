@@ -2,11 +2,10 @@
 title = "Clangd based Emacs C++ IDE"
 date = 2018-07-07
 draft = false
-[taxonomies]
 tags = ["cpp", "emacs"]
 +++
 
-**This is now very out of date!** Updated method here: [click](@/blog/eglot-cpp-ide.md).
+**This is now very out of date!** Updated method here: [click]({{< relref "/blog/eglot-cpp-ide.md" >}}).
 
 I've seen a lot of posts on the
 [Emacs](https://old.reddit.com/r/emacs) and

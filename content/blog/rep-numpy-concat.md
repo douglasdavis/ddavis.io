@@ -2,7 +2,6 @@
 title = "Repetitive NumPy Concatenations"
 date = 2018-08-12
 draft = false
-[taxonomies]
 tags = ["python", "numpy"]
 +++
 

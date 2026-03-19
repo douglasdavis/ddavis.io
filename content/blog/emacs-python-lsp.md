@@ -2,11 +2,10 @@
 title = "Python with Emacs: py(v)env and lsp-mode"
 date = 2020-02-18
 draft = false
-[taxonomies]
 tags = ["python", "emacs"]
 +++
 
-I have an [old post](@/blog/eglot-python-ide.md) describing how
+I have an [old post]({{< relref "/blog/eglot-python-ide.md" >}}) describing how
 to spin up an IDE-like Python development environment in Emacs with
 [Eglot](https://github.com/joaotavora/eglot) and some `.dir-locals.el`
 help. Now a year later, I've converged on what I think is a better

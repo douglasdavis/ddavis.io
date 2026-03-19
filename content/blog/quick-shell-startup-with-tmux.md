@@ -2,7 +2,6 @@
 title = "Faster terminal startup with tmux"
 date = 2024-03-16
 draft = false
-[taxonomies]
 tags = ["mac", "tmux"]
 +++
 

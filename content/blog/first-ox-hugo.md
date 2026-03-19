@@ -2,7 +2,6 @@
 title = "New Toy: ox-hugo"
 date = 2018-12-04
 draft = false
-[taxonomies]
 tags = ["hugo"]
 +++
 

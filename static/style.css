@@ -1,13 +1,44 @@
-@import url("syntax-theme-dark.css") (prefers-color-scheme: dark);
-@import url("syntax-theme-light.css") (prefers-color-scheme: light);
+@import url("syntax.css");
+
+@font-face {
+    font-family: 'Monaspace Argon';
+    src: url('/fonts/MonaspaceArgon-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Monaspace Argon';
+    src: url('/fonts/MonaspaceArgon-Italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Monaspace Argon';
+    src: url('/fonts/MonaspaceArgon-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Monaspace Argon';
+    src: url('/fonts/MonaspaceArgon-BoldItalic.woff2') format('woff2');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
 
 :root {
-    --font-family: ui-monospace, 'SFMono-Regular', 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace, "Apple Color Emoji", "Segoe UI Emoji";
+    --font-family: 'Monaspace Argon', ui-monospace, 'SFMono-Regular', 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace, "Apple Color Emoji", "Segoe UI Emoji";
     --bg-color: #ffffff;
     --text-color: #212121;
     --link-color: #007acc;
     --separator-color: #e0e0e0;
-    --code-bg-color: #f5f5f5;
+    --code-bg-color: #fbf1c7;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,7 +47,7 @@
         --text-color: #e0e0e0;
         --link-color: #64b5f6;
         --separator-color: #333333;
-        --code-bg-color: #212121;
+        --code-bg-color: #282828;
     }
 }
 
@@ -71,7 +102,7 @@ pre {
     overflow-x: auto;
     white-space: pre;
     text-indent: 0;
-    margin: 0;
+    margin: 1.2em 0;
 }
 
 pre code {
@@ -86,10 +117,10 @@ code {
 
 .site-wrapper {
     display: grid;
-    grid-template-columns: 130px 1px minmax(0, 710px); /* nav | separator | content */
+    grid-template-columns: 130px 1px minmax(0, 850px); /* nav | separator | content */
     gap: 2rem;
     padding: 3rem 2rem;
-    max-width: 900px; /* Adjust this to control overall width */
+    max-width: 1060px; /* Adjust this to control overall width */
     margin-left: calc(3vw + 1.5rem); /* This creates a proportional off-center, left-weighted feel */
 }
 
@@ -107,12 +138,6 @@ code {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-}
-
-.sidebar-nav .nav-title {
-    font-weight: bold;
-    font-size: 1.2em;
-    margin-bottom: 1rem;
 }
 
 .separator {
@@ -179,7 +204,6 @@ code {
 
     .main-content {
         overflow-wrap: break-word;
-        word-wrap: break-word;
         max-width: 100%;
         width: 100%;
         box-sizing: border-box;
@@ -194,7 +218,6 @@ code {
     pre {
         overflow-x: auto;
         max-width: 100%;
-        word-wrap: normal;
     }
 
     .main-content img {
@@ -210,7 +233,6 @@ code {
     }
 
     h1, h2, h3, h4, h5, h6 {
-        word-wrap: break-word;
         overflow-wrap: break-word;
     }
 }

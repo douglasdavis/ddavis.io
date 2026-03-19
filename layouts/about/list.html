@@ -1,8 +1,7 @@
-{% extends "base.html" %}
-{% block title %}{{config.title}} | About {% endblock title %}
-{% block content %}
+{{ define "title" }}{{ .Site.Title }} | About{{ end }}
+{{ define "content" }}
 <h1 class="title">
-  {{ section.title }}
+  {{ .Title }}
 </h1>
 
 <div class="content">
@@ -17,9 +16,9 @@
     includes only my views and no one else's. My posts are mostly
     about software, data, or technical things I've encountered over
     the years. Some of the software I write is on GitHub (my username
-    is <tt>douglasdavis</tt>). I live in Austin, Texas, with my wife,
+    is <code>douglasdavis</code>). I live in Austin, Texas, with my wife,
     Kristie, and our two amazing kids. You can reach me by
     email: <code>ddavis@[this-site-domain]</code>.
   </article>
 </div>
-{% endblock content %}
+{{ end }}

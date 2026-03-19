@@ -1,0 +1,22 @@
+title = "ddavis.io"
+baseURL = "https://ddavis.io"
+languageCode = "en-us"
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+  [markup.goldmark.renderer]
+    unsafe = true
+
+[taxonomies]
+  tag = "tags"
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+[outputFormats.RSS]
+  mediatype = "application/rss+xml"
+  baseName = "rss"
+
+[params]
+  author = "ddavis"

@@ -4,7 +4,6 @@ title = """
   """
 date = 2017-11-24
 draft = false
-[taxonomies]
 tags=["meta"]
 +++
 

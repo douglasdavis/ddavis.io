@@ -2,7 +2,6 @@
 title = "ROOT analysis without ROOT"
 date = 2018-02-02
 draft = false
-[taxonomies]
 tags = ["hep", "numpy", "cpp", "python"]
 +++
 

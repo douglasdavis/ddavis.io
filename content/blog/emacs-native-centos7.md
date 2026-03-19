@@ -2,7 +2,6 @@
 title = "Emacs native-comp on CentOS 7"
 date = 2020-05-19
 draft = false
-[taxonomies]
 tags = ["emacs"]
 +++
 

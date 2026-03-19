@@ -2,11 +2,10 @@
 title = "Eglot based Emacs Python IDE"
 date = 2018-12-05
 draft = false
-[taxonomies]
 tags = ["emacs", "python"]
 +++
 
-**This post is now a bit outdated** [an updated post is here](@/blog/emacs-python-lsp.md).
+**This post is now a bit outdated** [an updated post is here]({{< relref "/blog/emacs-python-lsp.md" >}}).
 
 In my Emacs rabbit hole I mentioned in my previous post, I decided to
 work on improving my Python development workflow. I recently found the
