@@ -1,44 +1,62 @@
 @import url("syntax.css");
 
 @font-face {
-    font-family: 'Monaspace Argon';
-    src: url('/fonts/MonaspaceArgon-Regular.woff2') format('woff2');
+    font-family: 'Source Serif 4';
+    src: url('/fonts/SourceSerif4-Regular.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Serif 4';
+    src: url('/fonts/SourceSerif4-Italic.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Victor Mono';
+    src: url('/fonts/VictorMono-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Monaspace Argon';
-    src: url('/fonts/MonaspaceArgon-Italic.woff2') format('woff2');
+    font-family: 'Victor Mono';
+    src: url('/fonts/VictorMono-Italic.woff2') format('woff2');
     font-weight: 400;
     font-style: italic;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Monaspace Argon';
-    src: url('/fonts/MonaspaceArgon-Bold.woff2') format('woff2');
+    font-family: 'Victor Mono';
+    src: url('/fonts/VictorMono-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Monaspace Argon';
-    src: url('/fonts/MonaspaceArgon-BoldItalic.woff2') format('woff2');
+    font-family: 'Victor Mono';
+    src: url('/fonts/VictorMono-BoldItalic.woff2') format('woff2');
     font-weight: 700;
     font-style: italic;
     font-display: swap;
 }
 
 :root {
-    --font-family: 'Monaspace Argon', ui-monospace, 'SFMono-Regular', 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace, "Apple Color Emoji", "Segoe UI Emoji";
+    --prose-font: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    --mono-font: 'Victor Mono', ui-monospace, 'SFMono-Regular', 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
     --bg-color: #ffffff;
     --text-color: #212121;
     --link-color: #007acc;
     --separator-color: #e0e0e0;
     --code-bg-color: #fbf1c7;
+    --font-size-base: 1.1rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -60,10 +78,11 @@ html {
 }
 
 body {
-    font-family: var(--font-family);
+    font-family: var(--prose-font);
+    font-size: var(--font-size-base);
     background-color: var(--bg-color);
     color: var(--text-color);
-    line-height: 1.7;
+    line-height: 1.75;
     margin: 0;
     padding: 0;
     transition: background-color 0.3s, color 0.3s;
@@ -92,12 +111,13 @@ a:hover {
 }
 
 pre, code {
-    font-family: var(--font-family);
+    font-family: var(--mono-font);
     background-color: var(--code-bg-color);
     border-radius: 6px;
 }
 
 pre {
+    font-size: 0.875em;
     padding: 1em;
     overflow-x: auto;
     white-space: pre;
@@ -106,21 +126,23 @@ pre {
 }
 
 pre code {
+    font-size: 1em; /* inherits from pre, not reset */
     display: block;
     padding: 0;
     background: transparent;
 }
 
 code {
+    font-size: 0.8em;
     padding: 0.2em 0.4em;
 }
 
 .site-wrapper {
     display: grid;
-    grid-template-columns: 130px 1px minmax(0, 850px); /* nav | separator | content */
+    grid-template-columns: 130px 1px minmax(0, 680px); /* nav | separator | content */
     gap: 2rem;
     padding: 3rem 2rem;
-    max-width: 1060px; /* Adjust this to control overall width */
+    max-width: 860px; /* Adjust this to control overall width */
     margin-left: calc(3vw + 1.5rem); /* This creates a proportional off-center, left-weighted feel */
 }
 
@@ -158,7 +180,7 @@ code {
 }
 
 /* small screens */
-@media (max-width: 1200px) {
+@media (max-width: 960px) {
     .site-wrapper {
         margin-left: auto;
         margin-right: auto;

@@ -68,11 +68,12 @@ eglot</kbd> will give us choices based on whatever `eglot` finds
 within `eglot-server-programs`). My Python incantation:
 
 ```el
-(add-to-list 'eglot-server-programs
-             `(python-base-mode
-               . ,(eglot-alternatives '(("basedpyright-langserver" "--stdio")
-                                        ("ty" "server")
-                                        ("pyright-langserver" "--stdio")))))
+(add-to-list
+ 'eglot-server-programs
+ `(python-base-mode
+   . ,(eglot-alternatives '(("basedpyright-langserver" "--stdio")
+                            ("ty" "server")
+                            ("pyright-langserver" "--stdio")))))
 ```
 
 You'll notice that I cycle through using
@@ -84,11 +85,12 @@ I'm hopeful that sometime in the near future my `eglot-alternatives`
 list can be redefined to
 
 ```el
-(add-to-list 'eglot-server-programs
-             `(python-base-mode
-               . ,(eglot-alternatives '(("uv" "run" "basedpyright-langserver" "--stdio")
-                                        ("uv" "run" "ty" "server")
-                                        ("uv" "run" "pyright-langserver" "--stdio")))))
+(add-to-list
+ 'eglot-server-programs
+ `(python-base-mode
+   . ,(eglot-alternatives '(("uv" "run" "basedpyright-langserver" "--stdio")
+                            ("uv" "run" "ty" "server")
+                            ("uv" "run" "pyright-langserver" "--stdio")))))
 ```
 
 such that I can rely on `uv`'s automatic virtual environment
